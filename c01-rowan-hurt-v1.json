@@ -1,0 +1,24 @@
+{
+  "filename": "c01-rowan-hurt.png",
+  "category": "portraits",
+  "prompt": "Edit the reference image to create ONE expression variant of Rowan Ashby (C01, lead, larkspire). Expression required: wounded, eyes down. Preserve EXACTLY the same character identity, age, face structure, hair, outfit, props, pixel-art style, warm lighting, three-quarter pose, scale and canvas framing as the supplied neutral portrait. Change only the facial expression and its necessary subtle head/eye direction. Make the requested emotion readable and natural at small game size. Keep all hair, full head and chin within canvas. True transparent background, retain any original transparency. No captions, lettering or expression labels. No collage. The reference is the edit target, not a loose style suggestion.",
+  "references": [
+    "/workspace/scratch/7fd93e0525d5/Wrenfold_Complete/art/masters/portraits/c01-rowan-neutral.png"
+  ],
+  "transparent": true,
+  "source": "/workspace/scratch/7fd93e0525d5/generated_images/exec-11922f64-b6ed-4be7-800a-7528e763cdad.png",
+  "tool": "built-in image_gen",
+  "path": "art/masters/portraits/c01-rowan-hurt.png",
+  "size": [
+    1122,
+    1402
+  ],
+  "mode": "RGBA",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "sha256": "5264589379dedbb6e397746434c7d8c0bdfdf4deafd9abd0597069c6c35fe679",
+  "status": "generated",
+  "visual_review": "pending"
+}

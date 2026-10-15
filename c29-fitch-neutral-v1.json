@@ -1,0 +1,24 @@
+{
+  "filename": "c29-fitch-neutral.png",
+  "category": "portraits",
+  "prompt": "Use case: illustration-story. One individual production portrait for Wrenfold: A School for Late Magic. A 4:5 canvas, ideally 1122 x 1402. Head and shoulders with upper chest, natural adult proportions, full hair and chin, top of head about 5% below top, substantial shoulders reaching the bottom. Neutral to mild three-quarter view looking toward the viewer. True transparent alpha background: no rectangle, no scenery, no frame, no ground shadow, no baked checkerboard. Warm candlelight highlights and quiet plum-shadow pixel clusters. Maintain clear readable facial features at 256 x 320 game size. Painted pixel art with refined 16-bit-era detail, hand-placed square pixel clusters and edges, a controlled rich palette, selective soft ordered dithering. Warm, storybook, merry and wondrous with a little melancholy. No photorealism, no vector smoothness, no airbrushed gradients, no watermark or lettering. Subject: Ptolemy Fitch (C29, minor). Thin, fussy clerk with a long nose, pince-nez, a quill behind each ear and a waistcoat covered in ink blots. Sparse grey hair combed over; sallow skin. Expression: resting face, the default. One person only. Clothing and features must match the brief. Preserve the distinctive face rather than generic beauty.  Reference establishes ONLY pixel texture, candlelit shading, head-and-shoulders scale and transparent format. Create a completely distinct face, hairstyle, outfit and age exactly following the character brief. Do not copy the reference identity. Entire hair/head silhouette with comfortable top margin, complete chin, upper torso reaching lower edge, 1122 x 1402 portrait. TRUE transparent alpha, no black rectangle or baked checkerboard. Age accurately: old people must have naturally aged faces, not youthful faces with white hair. Keep a reserved resting expression, not dramatic emotion. Costume house trims: Larkspire gold/rose, Owlcombe plum/SILVER, Heronmere sea-green/pearl, Rookhallow black/COPPER. No unrelated jewellery, props or emblems. All students and young people are ADULTS, age 21+.",
+  "transparent": true,
+  "references": [
+    "/workspace/scratch/7fd93e0525d5/Wrenfold_Portraits/art/masters/portraits/c01-rowan-neutral.png"
+  ],
+  "source": "/workspace/scratch/7fd93e0525d5/generated_images/exec-9d1531db-fb7d-4cc0-9d7a-cb052bcc7d35.png",
+  "tool": "built-in image_gen",
+  "path": "art/masters/portraits/c29-fitch-neutral.png",
+  "size": [
+    1122,
+    1402
+  ],
+  "mode": "RGBA",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "sha256": "9987c9aa890c481b83e5da391406dc3bf708b3ff76c43f9c57fd6f7794abeeed",
+  "status": "generated",
+  "visual_review": "pending"
+}

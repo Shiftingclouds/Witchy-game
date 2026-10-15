@@ -1,0 +1,20 @@
+{
+  "filename": "c02-imogen-neutral.png",
+  "category": "portraits",
+  "prompt": "Use case: illustration-story. One individual production portrait for Wrenfold: A School for Late Magic. A 4:5 canvas, ideally 1122 x 1402. Head and shoulders with upper chest, natural adult proportions, full hair and chin, top of head about 5% below top, substantial shoulders reaching the bottom. Neutral to mild three-quarter view looking toward the viewer. True transparent alpha background: no rectangle, no scenery, no frame, no ground shadow, no baked checkerboard. Warm candlelight highlights and quiet plum-shadow pixel clusters. Maintain clear readable facial features at 256 x 320 game size. Painted pixel art with refined 16-bit-era detail, hand-placed square pixel clusters and edges, a controlled rich palette, selective soft ordered dithering. Warm, storybook, merry and wondrous with a little melancholy. No photorealism, no vector smoothness, no airbrushed gradients, no watermark or lettering. Subject: Imogen Sallow (C02, lead, owlcombe). Clearly an adult, approximately mid-twenties or the stated older age. Slight, very upright, heart-shaped face with a sharp chin and quick dark eyes behind thin gold glasses. Black hair in a severe bob with a blunt fringe; light olive skin. A tailored plum waistcoat under her robes; ink on her fingers. Expression: resting face, the default. One person only. Clothing and features must match the brief. Preserve the distinctive face rather than generic beauty. ",
+  "source": "/workspace/scratch/f9f3c0c8074b/generated_images/exec-ced90865-d06f-45e2-9cb7-a70b3f09ba13.png",
+  "references": [],
+  "path": "art/masters/portraits/c02-imogen-neutral.png",
+  "size": [
+    1122,
+    1402
+  ],
+  "mode": "RGBA",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "sha256": "7fb75af028750b974f5afbf0dfd8b9ad8210b5dde1dfc9251931db0b38b46e3b",
+  "status": "generated",
+  "visual_review": "pending"
+}
