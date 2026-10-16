@@ -1,6 +1,6 @@
 # Character sheets and player relationships
 
-Every named character has one editable JSON sheet: `active/` contains the 45 playable identities, and `proposed/` contains the 15 planned additions. Proposed people have no art or game entry yet and are deliberately excluded from the AI and browser registry.
+Every named character has one editable JSON sheet: `active/` contains the 46 playable identities, and `proposed/` contains the 14 planned additions. Proposed people have no art or game entry yet and are deliberately excluded from the AI and browser registry.
 
 These files define characters. **They never contain a real player's save, private notes, friendship score, or conversation transcript.** Each Book/Live save stores those separately. Exporting a save carries its relationships and memories; a fresh game starts without another player's history.
 
@@ -26,11 +26,12 @@ After adding/removing an active sheet, run `npm run sync:characters` to regenera
 | `bonds[characterId]` | Authoritative friendship score, 0–100. Existing game actions alone change it. The label is derived from this score; there is no second competing score in the sheet. |
 | `characterMemories[characterId]` | Up to 16 shared moments identified by game-controlled keys, with in-game dates. Introductions, chosen topics, daily time together, gatherings, and chapter decisions are recorded by the engine. |
 | `conversations[characterId]` | Up to four recent AI exchanges, including player text, reply, actual expression, source (`provider` or `pasted`), date, and chapter. These are unverified dialogue, not facts about completed quests. |
+| `storyChoices[sceneId:beatId]` | Immutable local decision IDs. Only relevant keys accompany the selected character’s memories in AI context. |
 | `conversationSequence` | Local ordering for trimming the oldest dialogue when the whole save exceeds 60,000 conversation characters. |
 
-Shared memories are compact references such as `talk:hello` or `event:arrival-day:0`. The context builder looks up their authored meaning. It does not accept arbitrary text labelled “verified memory” from a provider. Clearing saved AI conversation removes the transcript for that character without lowering friendship or erasing real shared events.
+Shared memories are compact references such as `talk:hello` or `event:arrival-day:0`, `scene:arrival:first-observation:record`, or `meeting:arrival:first-observation`. Scene memories must match a saved choice and its earliest possible date; introductions use explicit authored checkpoints. The context builder looks up their authored meaning. It does not accept arbitrary text labelled “verified memory” from a provider. Clearing saved AI conversation removes the transcript for that character without lowering friendship or erasing real shared events.
 
-Save version 3 adds these stores. Versions 1 and 2 migrate automatically, preserving scores, journal notes, spells, and progress. Old introduction/topic rewards supply recoverable memories with an unknown date. Missing conversation history and past event choices are left unknown; migration never invents them. Runtime parsing validates IDs, dates, chronology, sizes, and sources, and removes unrecognised fields. There is no cloud account or shared server-side player memory in this implementation.
+Save version 4 retains these stores and adds `storyChoices`. Versions 1–3 migrate automatically, preserving scores, journal notes, spells, and progress. Old introduction/topic rewards supply recoverable memories with an unknown date. Missing conversation history and past event choices are left unknown; migration never invents them. Runtime parsing validates IDs, dates, chronology, sizes, and sources, and removes unrecognised fields. There is no cloud account or shared server-side player memory in this implementation.
 
 ## How AI retrieves context
 

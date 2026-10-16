@@ -1,3 +1,4 @@
+import { dateLabel } from '../../engine.mjs';
 import { chapterBeats, chapterSceneId, choiceKey } from '../../scene-beats.mjs';
 import { characterById, locationById } from '../../content.mjs';
 
@@ -66,7 +67,10 @@ export function AuthoredChapter({ game, act }) {
         <div key={beat.id} data-story-beat={beat.id} tabIndex={-1}>
           {beat.section && beat.section.id !== beats[index - 1]?.section?.id && (
             <header className="story-section-heading">
-              <small>{locationById[beat.section.location]?.name}</small>
+              <small>
+                {locationById[beat.section.location]?.name}
+                {beat.section.date && ` · ${dateLabel(beat.section.date)}`}
+              </small>
               <h3>{beat.section.title}</h3>
             </header>
           )}

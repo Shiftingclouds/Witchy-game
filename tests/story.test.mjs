@@ -21,11 +21,20 @@ test('unanswered decisions gate both modes, reject out-of-order actions, and can
     assert.equal(next.storyChoices['arrival:first-observation'], 'record');
     assert.deepEqual(before.storyChoices, {});
     assert.equal(next.points, before.points);
-    assert.deepEqual(next.bonds, before.bonds);
+    assert.deepEqual(next.bonds, { rowan: 1, imogen: 1 });
     assert.equal(next.bookmark.beat, 'record-columns');
     assert.equal(choose(next, 'arrival:first-observation', 'frame'), next);
-    assert.equal(next.characterMemories.imogen[0].key, 'scene:arrival:first-observation:record');
-    assert.equal(next.characterMemories.rowan, undefined);
+    assert.ok(
+      next.characterMemories.imogen.some(
+        (memory) => memory.key === 'scene:arrival:first-observation:record',
+      ),
+    );
+    assert.ok(
+      next.characterMemories.rowan.some(
+        (memory) => memory.key === 'meeting:arrival:first-observation',
+      ),
+    );
+    assert.ok(!next.characterMemories.rowan.some((memory) => memory.key.startsWith('scene:')));
     assert.ok(chapterBeats(0, next).some((b) => b.id === 'record-thanks'));
     assert.ok(!chapterBeats(0, next).some((b) => b.id === 'frame-thanks'));
     assert.ok(!chapterBeats(0, next).some((b) => b.id === 'night-key'));
@@ -101,4 +110,53 @@ test('imported bookmarks and AI memories cannot claim an unchosen branch', () =>
     memories: [{ key: 'scene:arrival:first-observation:record', date: state.date }],
   });
   assert.deepEqual(forged.relationship.sharedMemories, []);
+});
+
+test('dated story choices advance early saves, reset daily activity, and never rewind world time', () => {
+  let state = initialState('book');
+  for (const [key, option] of [
+    ['arrival:first-observation', 'record'],
+    ['arrival:corridor-job', 'trunk'],
+    ['arrival:night-intention', 'ask'],
+  ])
+    state = choose(state, key, option);
+  assert.equal(state.date, '2026-09-01');
+  assert.equal(state.period, 3);
+  const morning = choose(state, 'arrival:common-room-rule', 'quiet');
+  assert.equal(morning.date, '2026-09-02');
+  assert.equal(morning.period, 0);
+  assert.equal(morning.daily.date, morning.date);
+  assert.equal(morning.characterMemories.noor[0].date, '2026-09-02');
+  const late = {
+    ...state,
+    date: '2026-10-01',
+    period: 3,
+    daily: { date: '2026-10-01', checkins: ['rowan'], event: null },
+  };
+  const unchangedTime = choose(late, 'arrival:common-room-rule', 'quiet');
+  assert.equal(unchangedTime.date, late.date);
+  assert.equal(unchangedTime.period, late.period);
+  assert.deepEqual(unchangedTime.daily, late.daily);
+  assert.throws(() => parseSave({ ...morning, date: '2026-09-01' }));
+  const forged = structuredClone(morning);
+  forged.characterMemories.noor[0].date = '2026-09-01';
+  assert.throws(() => parseSave(forged));
+});
+
+test('authored introductions satisfy meeting requirements and enter only the selected character context', () => {
+  const state = finishSceneChoices(initialState('live'));
+  assert.equal(canAdvance(state), true);
+  assert.equal(state.bonds.rowan, 1);
+  assert.equal(state.bonds.saoirse, 1);
+  assert.ok(
+    buildCharacterContext('rowan', characterInput(state, 'rowan')).relationship.sharedMemories.some(
+      (memory) => memory.key === 'meeting:arrival:first-observation',
+    ),
+  );
+  const noorContext = buildCharacterContext('noor', characterInput(state, 'noor'));
+  assert.equal(noorContext.relationship.level, 'Acquaintance');
+  assert.ok(
+    noorContext.relationship.sharedMemories.every((memory) => !memory.text.includes('watering')),
+  );
+  assert.equal(choose(state, 'arrival:common-room-rule', 'quiet'), state);
 });

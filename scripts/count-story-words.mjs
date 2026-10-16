@@ -304,6 +304,16 @@ const report = {
     holidayGatherings: festivalEvents.length,
     expandedIllustratedScenes: stagedScenes.length,
   },
+  authoredSceneWords: uniqueWordCount(
+    [...reachableBeats].flatMap((beat) => [
+      beat.text,
+      ...(beat.choice?.options || []).map((option) => option.label),
+    ]),
+  ),
+  authoredSceneRouteWords: {
+    minimum: Math.min(...storyPaths.map((path) => uniqueWordCount(routeStrings(path)))),
+    maximum: Math.max(...storyPaths.map((path) => uniqueWordCount(routeStrings(path)))),
+  },
   bookRouteWords: bookRoutes,
   illustratedRouteWords: illustratedRoutes,
   categories: categoryRows,

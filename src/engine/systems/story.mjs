@@ -10,6 +10,7 @@ import { rememberCharacter } from '../../character-memory.mjs';
 import { reward, bond, entry } from '../effects.mjs';
 import { refreshDay } from '../time.mjs';
 import { canAdvance } from '../selectors.mjs';
+import { introductions } from '../../story/choices.mjs';
 
 export const storySystem = {
   id: 'story',
@@ -27,7 +28,19 @@ export const storySystem = {
       const option = definition.beat.choice.options.find((option) => option.id === action.option);
       if (!pending || choiceKey(definition.scene.id, pending.id) !== action.key || !option)
         return false;
+      const storyDate = definition.beat.section?.date || chapters[s.chapter].date;
+      const storyPeriod = definition.beat.section?.period ?? 0;
+      // Reading a later dated decision can advance the day, never rewind Live time.
+      if (s.date < storyDate) {
+        s.date = storyDate;
+        s.period = storyPeriod;
+        refreshDay(s);
+      } else if (s.date === storyDate) s.period = Math.max(s.period, storyPeriod);
       s.storyChoices[action.key] = option.id;
+      for (const id of introductions[action.key]?.people || []) {
+        s.bonds[id] = Math.max(s.bonds[id] || 0, 1);
+        rememberCharacter(s, id, `meeting:${action.key}`);
+      }
       const path = chapterBeats(s.chapter, s);
       const index = path.findIndex((beat) => beat.id === definition.beat.id);
       s.bookmark = { scene: definition.scene.id, beat: path[index + 1]?.id || definition.beat.id };

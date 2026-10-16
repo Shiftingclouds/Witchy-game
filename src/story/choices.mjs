@@ -1,5 +1,29 @@
 export const choiceKey = (scene, beat) => `${scene}:${beat}`;
 
+// Explicit story introductions; stage positions and portrait presence grant nothing.
+export const introductions = {
+  'arrival:first-observation': {
+    people: ['rowan', 'imogen'],
+    text: 'We met at the welcome supper and examined the extinguished hall lantern.',
+  },
+  'arrival:corridor-job': {
+    people: ['grey', 'cas', 'toby'],
+    text: 'We met on arrival evening while the lantern report and luggage route were being sorted out.',
+  },
+  'arrival:common-room-rule': {
+    people: ['noor', 'idris'],
+    text: 'We met during the open common-room visit and helped plan the study-hour invitation.',
+  },
+  'arrival:watering-method': {
+    people: ['saoirse', 'rhys'],
+    text: 'We met in the glasshouses and helped make the watering prototype safe to test.',
+  },
+  'first-kindle:partner-response': {
+    people: ['elian-vale'],
+    text: 'We met in the first supervised Kindle practical.',
+  },
+};
+
 export function matchesCondition(beat, choices) {
   return !beat.when || (choices[beat.when.choice] ?? null) === beat.when.equals;
 }

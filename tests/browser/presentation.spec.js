@@ -43,6 +43,7 @@ test('authored speaker turns retain the listener and use the correct expressions
   await expect(page.locator('[data-character=imogen]')).toHaveClass(/speaking/);
   await expect(page.locator('[data-character=rowan]')).toHaveClass(/listening/);
   await expect(page.getByAltText('Imogen, amused expression')).toBeVisible();
+  const rowanX = (await page.locator('[data-character=rowan]').boundingBox()).x;
   const fade = page.evaluate(
     () =>
       new Promise((resolve) => {
@@ -59,6 +60,7 @@ test('authored speaker turns retain the listener and use the correct expressions
   expect(await fade).toBe('expression-dissolve');
   await expect(page.locator('[data-character=rowan]')).toHaveClass(/speaking/);
   await expect(page.locator('[data-character=imogen]')).toHaveClass(/listening/);
+  expect((await page.locator('[data-character=rowan]').boundingBox()).x).toBe(rowanX);
   await expect(page.getByAltText('Rowan, laugh expression')).toBeVisible();
   await expect(page.locator('.expression-previous')).toHaveCount(0);
   await page.getByText('Read the conversation so far', { exact: true }).click();

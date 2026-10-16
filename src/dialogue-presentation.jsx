@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowRight, ChevronLeft } from 'lucide-react';
 import { art, chapters, characterById, portrait, locationById } from './content.mjs';
-import { sceneArt } from './engine.mjs';
+import { sceneArt, dateLabel } from './engine.mjs';
 import { Button, Modal } from './components.jsx';
 import { SceneDecision } from './features/story/AuthoredChapter.jsx';
 import {
@@ -284,6 +284,7 @@ export function SceneReader({ game, reading, act, onClose }) {
   const sceneId = chapterSceneId(game.chapter);
   const choiceMade = useRef(false),
     speechRef = useRef(null);
+  const readerRef = useRef(null);
   useEffect(() => {
     if (choiceMade.current) {
       speechRef.current?.focus();
@@ -307,6 +308,9 @@ export function SceneReader({ game, reading, act, onClose }) {
       Boolean(game.bookmark),
     );
   const final = position === beats.length - 1;
+  useEffect(() => {
+    readerRef.current?.scrollTo({ top: 0, behavior: 'instant' });
+  }, [current.id]);
   const pending = Boolean(current.choice && !game.storyChoices?.[choiceKey(sceneId, current.id)]);
   const location = current.section?.location || chapter.scene;
   function go(index) {
@@ -327,8 +331,8 @@ export function SceneReader({ game, reading, act, onClose }) {
     go(position + 1);
   }
   return (
-    <Modal title={chapter.title} wide onClose={onClose}>
-      <div className="scene-reader">
+    <Modal title={chapter.title} wide className="scene-modal" onClose={onClose}>
+      <div className="scene-reader" ref={readerRef}>
         <div className="performance-scene" aria-label={locationById[location].name}>
           <img
             className="performance-background"
@@ -336,7 +340,7 @@ export function SceneReader({ game, reading, act, onClose }) {
               sceneArt({
                 ...game,
                 location,
-                date: chapter.date,
+                date: current.section?.date || chapter.date,
                 period: current.section?.period ?? 0,
               }),
             )}
@@ -357,6 +361,7 @@ export function SceneReader({ game, reading, act, onClose }) {
           {current.section && (
             <div className="scene-section-title">
               {current.section.title} · {locationById[location].name}
+              {current.section.date && ` · ${dateLabel(current.section.date)}`}
             </div>
           )}
           <button

@@ -28,28 +28,28 @@ The production server uses port 4173, configurable through `PORT`. Run behind HT
 
 - **Live the world:** visit 37 illustrated locations, meet the cast, learn and cast three spells, uncover clues, gain house points, and complete an eight-chapter first-year mystery with two endings.
 - **Read the book:** the same complete arc told through illustrated scenes and choices, with progression handled by the story. It has a separate save.
-- **Play scene:** open a chapter's scene view from The story. The arrival has an expanded two-person exchange with Rowan and Imogen, authored expression cues, visible listeners, short portrait fades, and paced text reveal. Other chapter scene views currently reuse the compact prototype prose. Previous, transcript, and saved bookmarks support returning to a line without replaying rewards.
-- Prepared and optional AI conversations also use text reveal and expression transitions. Set reveal speed in Settings or the scene reader; tap Show full text to reveal immediately. Device reduced-motion settings disable portrait/ambient motion and make text appear instantly.
-- All 45 characters have distinct profiles, introductions, and daily routines. Rowan, Imogen, and Saoirse have authored conversations and matching expression changes using the supplied art; 12 supporting characters also have fuller conversations, with more personal replies as trust grows. Individual character arcs remain future content.
+- **Play scene:** open a chapter's scene view from The story. The opening has 13 scene sections, seven saved local decisions, and later callbacks. Book and scene views share the same text. The remaining six chapters currently reuse the compact prototype prose. Previous, transcript, and saved bookmarks support returning to a line without replaying rewards.
+- Prepared and optional AI conversations also use text reveal and expression transitions. Set reveal speed, story text size, and motion preferences in Settings, the book, or the scene reader. Tap Show full text to reveal immediately. Both device and in-game reduced-motion preferences are respected.
+- All 46 characters have distinct profiles, introductions, and daily routines. Rowan, Imogen, and Saoirse have authored conversations and matching expression changes using the supplied art; 13 supporting characters also have fuller conversations, with more personal replies as trust grows. Individual character arcs remain future content.
 - Find people through their profiles and the People page as they move between four periods of the day. Some routines change at weekends, and gathering hosts stay at their event. Spend time with each friend once per day to keep building the relationship beyond the introductory conversations.
 - Eight rotating everyday gatherings and six festival activities offer authored choices, friendship, house points, and journal memories. Each day's gathering can be completed once; both choices are valid ways to help.
 - Four houses and eight familiar choices use the existing common rooms and animal artwork. House points currently track the player's contribution, rather than simulating a full competitive league.
 - A real calendar, six annual occasions, four seasons, seasonal scene variants where supplied, a journal, and save export/import.
 - All 142 originals are accessible through Settings → Art collection, including variants and the contemporary environments that are not part of the academy route.
 
-The map is clickable; exploration travels between illustrated scenes rather than using a walking avatar. Character routines follow game time in four daily periods. Minigames, romance routes, procedural quests, and multiple years are not implemented. The initial story is compact and complete, designed to establish the systems before expanding its length.
+The map is clickable; exploration travels between illustrated scenes rather than using a walking avatar. Character routines follow game time in four daily periods. Minigames, romance routes, procedural quests, and multiple years are not implemented. The opening is expanded; the remaining six chapters retain the compact playable arc while production continues.
 
-The current brief is [OBJECTIVES.md](OBJECTIVES.md). The new production target is at least **250,000 unique authored story words**, with a 270,000-word scene/quest budget. The current measured corpus is **4,812 words**, not a full novel-length game. The roadmap, cast roles, and proposed art queue are in `docs/STORY_EXPANSION.md`, `docs/ART_COMPLETION.md`, and `docs/PRESENTATION_DIRECTION.md`. Use `npm run count:words` for a reproducible audit; the methodology and playthrough-length distinction are in `docs/WORD_COUNT.md`.
+The current brief is [OBJECTIVES.md](OBJECTIVES.md). The new production target is at least **250,000 unique authored story words**, with a 270,000-word scene/quest budget. The current measured corpus is **15,105 words**, not a full novel-length game. The roadmap, cast roles, and proposed art queue are in `docs/STORY_EXPANSION.md`, `docs/ART_COMPLETION.md`, and `docs/PRESENTATION_DIRECTION.md`. Use `npm run count:words` for a reproducible audit; the methodology and playthrough-length distinction are in `docs/WORD_COUNT.md`.
 
-The original 45 characters are a starting cast. `docs/CAST_EXPANSION.md` proposes 15 additions and maps faculty, classes, house companions, complete Glimmer squads, shopkeepers, and further relationship candidates. These are planned characters awaiting writing, art, and implementation; the playable cast remains 45.
+The original 45 characters are a starting cast. `docs/CAST_EXPANSION.md` proposes 15 additions and maps faculty, classes, house companions, complete Glimmer squads, shopkeepers, and further relationship candidates. Elian Vale is now playable, with a portrait, teaching scene, dialogue, and routine. The other 14 additions remain planned.
 
-All 60 identities now have individual [character sheets](characters/README.md). The 45 active sheets supply names, profiles, personality, voice, boundaries, NPC connections, and gated story knowledge. The 15 proposed sheets remain outside gameplay. Each save separately tracks friendship scores, shared moments, and recent AI exchanges. Open “Your history with…” in a conversation to review shared events or clear that character's saved AI chat.
+All 60 identities now have individual [character sheets](characters/README.md). The 46 active sheets supply names, profiles, personality, voice, boundaries, NPC connections, and gated story knowledge. The 14 proposed sheets remain outside gameplay. Each save separately tracks friendship scores, shared moments, and recent AI exchanges. Open “Your history with…” in a conversation to review shared events or clear that character's saved AI chat.
 
 ## Offline and saves
 
 On the first production visit, the service worker caches the entire app and approximately 27 MiB of artwork. Wait for **Saved for offline** before disconnecting. Both modes then reload and play without network access. Offline caching is intentionally disabled during Vite development.
 
-Progress is automatically stored in this browser. Export it in Settings or Journal to move devices or keep a backup. Browser storage eviction, clearing site data, or private browsing can remove local progress. Imported saves are validated; the current save is backed up to `lanternmere.import-backup` before replacement. Version-one and version-two saves automatically upgrade to version three, preserving progress, friendship scores, and notes. Recoverable topic memories carry an unknown date; missing old conversation history stays unknown. No account or cloud sync is configured.
+Progress is automatically stored in this browser. Export it in Settings or Journal to move devices or keep a backup. Browser storage eviction, clearing site data, or private browsing can remove local progress. Imported saves are validated; the current save is backed up to `lanternmere.import-backup` before replacement. Version-one, version-two, and version-three saves automatically upgrade to version four, preserving progress, friendship scores, and notes. Recoverable topic memories carry an unknown date; missing old conversation history and story decisions stay unknown. Scene decisions and confirmed introductions persist into character context. No account or cloud sync is configured.
 
 ## Optional AI
 
@@ -86,7 +86,7 @@ npm run check:story-length # release-length gate; intentionally fails below 250,
 
 Browser tests default to `/usr/bin/chromium`; set `CHROMIUM_PATH` for another installed Chromium executable. They start an isolated test server on port 4173 with temporary AI configuration, so this port must be free. The setup test uses a local fake provider and cannot spend a real API key. Use `npm run format` to apply the repository's code style.
 
-Read [ENGINE.md](docs/ENGINE.md) for module ownership, feature commands, state migrations, save handling, and provider adapters. Existing saves remain version-three compatible.
+Read [ENGINE.md](docs/ENGINE.md) for module ownership, feature commands, state migrations, save handling, and provider adapters. Existing versions 1–3 upgrade to version 4 without inventing decisions.
 
 Main files:
 
@@ -102,7 +102,8 @@ Main files:
 - `src/main.jsx` and `src/styles.css`: the responsive application.
 - `src/World.jsx` and `src/daily-life.jsx`: exploration, profiles, and daily activities.
 - `src/components.jsx`: shared controls, portraits, and accessible dialogs.
-- `src/scene-beats.mjs`: the expanded arrival, authored staging cues, stable beat IDs, and text pacing.
+- `src/story/`: shared authored scenes, explicit decisions, conditions, and introductions. See [STORY_AUTHORING.md](docs/STORY_AUTHORING.md).
+- `src/scene-beats.mjs`: scene registry, stable beat IDs, resolved reading paths, and text pacing.
 - `src/dialogue-presentation.jsx` and its CSS: scene player, portrait transitions, text reveal, transcript, and reading preferences.
 - `scripts/count-story-words.mjs`: source-labelled, deduplicated authored-word audit.
 - `server.mjs`: server startup; `server/app.mjs` handles HTTP and `server/ai/` owns configuration, credentials, adapters, and dialogue routes.
@@ -110,4 +111,4 @@ Main files:
 - `scripts/build-sw.mjs`: versioned complete offline cache.
 - `ART_REVIEW.md`: asset inventory and the design decisions it supports.
 
-No Git commit, push, public deployment, or environment publication is performed automatically.
+Local Git checkpoints save reviewed work under the user’s instruction. Pushes, public deployment, and environment publication remain separate actions.

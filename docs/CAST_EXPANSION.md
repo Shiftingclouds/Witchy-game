@@ -27,11 +27,11 @@ Dunne offers research workshops and library appointments; Hask maintains records
 
 ## New faculty
 
-Names, ages, and visual notes are writing/design proposals. Their portraits do not exist yet.
+Elian is now active, aged 47, with a reviewed neutral portrait, a full teaching scene, dialogue, and routine. The other names, ages, and visual notes remain proposals.
 
 | Character | Role and dramatic purpose | Visual brief |
 | --- | --- | --- |
-| **Elian Vale**, 47, he/him (`elian-vale`) | Firecraft teacher. A gifted demonstrator who struggles to explain an intuitive skill. The first Kindle lesson makes him learn how the player learns; later he must accept an experiment that challenges his explanation of the failing lamps. | Lean silhouette, silver-threaded dark hair, rolled sleeves, brass snuffer; practical teaching clothes in the existing plum and parchment palette. |
+| **Elian Vale**, 47, he/him (`elian-vale`) | Firecraft teacher. A gifted demonstrator who struggles to explain an intuitive skill. The first Kindle lesson makes him learn how the player learns; later he must accept an experiment that challenges his explanation of the failing lamps. | Implemented: medium-brown skin, short dark curls with grey temples, salt-and-pepper beard, olive coat, oxblood waistcoat, cream shirt, and brass flame pin. No permanent hand prop; neutral upper-body portrait. |
 | **Maelin Quill**, 56, they/them (`maelin-quill`) | History and rune lecturer. Publicly confident in a published translation that the missing names call into question. They must correct a specific scholarly mistake; Petra and Imogen contribute evidence without replacing the teacher's expertise. | Broad silhouette, close-cropped grey curls, copper spectacles, weathered document case, layered moss and ink fabrics. |
 | **Vesper Sen**, 38, she/her (`vesper-sen`) | Familiar-studies teacher. Excellent at patient observation and sometimes too cautious about students making independent judgements. Toby and Jonty help solve a practical migration problem, while Vesper remains responsible for the class. | Tied-back dark hair, green field coat, repaired gloves, tiny feed pouch; avoid a permanently attached animal that would need to appear in every scene. |
 

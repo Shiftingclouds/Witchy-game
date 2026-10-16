@@ -43,7 +43,7 @@ export function characterInput(game, id) {
     memories: game.characterMemories?.[id] || [],
     storyChoices: Object.fromEntries(
       (game.characterMemories?.[id] || [])
-        .filter((memory) => memory.key.startsWith('scene:'))
+        .filter((memory) => memory.key.startsWith('scene:') || memory.key.startsWith('meeting:'))
         .map((memory) => {
           const [, scene, beat] = memory.key.split(':');
           const key = `${scene}:${beat}`;
@@ -74,6 +74,7 @@ export function normalizeCharacterInput(id, input = {}) {
       !sceneMemoryMatches(memory.key, input.storyChoices)
     )
       continue;
+    if (definition.minimumDate && (!memory.date || memory.date < definition.minimumDate)) continue;
     if (
       memory.date !== null &&
       (!isGameDate(memory.date) || (isGameDate(input.date) && memory.date > input.date))

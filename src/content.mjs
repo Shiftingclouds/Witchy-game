@@ -572,7 +572,7 @@ export const chapters = [
       'Above your place, a single lantern goes out. Nobody else seems to notice.',
     ],
     choices: [
-      ['Tell Rowan about the dark lantern.', 'rowan', 'warm'],
+      ['Keep investigating with Rowan.', 'rowan', 'warm'],
       ['Ask him how he found his place here.', 'rowan', 'shy'],
     ],
   },

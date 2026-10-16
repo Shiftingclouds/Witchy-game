@@ -12,7 +12,7 @@ export function Button({ children, icon: Icon, className = '', ...props }) {
 export function Eyebrow({ children }) {
   return <div className="eyebrow">{children}</div>;
 }
-export function Modal({ title, children, onClose, wide = false }) {
+export function Modal({ title, children, onClose, wide = false, className = '' }) {
   const id = useId(),
     ref = useRef(null);
   useEffect(() => {
@@ -50,7 +50,7 @@ export function Modal({ title, children, onClose, wide = false }) {
     <div className="modal-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
       <section
         ref={ref}
-        className={'modal ' + (wide ? 'wide' : '')}
+        className={'modal ' + (wide ? 'wide ' : '') + className}
         role="dialog"
         aria-modal="true"
         aria-labelledby={id}

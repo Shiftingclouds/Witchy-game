@@ -13,7 +13,7 @@ export const kindleScene = {
       ),
       n(
         'greys-answer',
-        'Grey’s answer came yesterday, as promised. He found no broken fitting and could not relight the hall lantern with its usual charm. He has asked the warding teachers to examine it next. The red ribbon remains on the chain above your supper seat. The report in your notebook now has a second date and a sentence that ends with further checks. It is not the answer you hoped for, but it is an answer someone took the trouble to bring you.',
+        'Grey’s answer came on your second evening, as promised. He found no broken fitting and could not relight the hall lantern with its usual charm. He has asked the warding teachers to examine it next. The red ribbon remains on the chain above your supper seat. The report in your notebook now has a second date and a sentence that ends with further checks. It is not the answer you hoped for, but it is an answer someone took the trouble to bring you.',
       ),
       n(
         'room-layout',
@@ -110,6 +110,36 @@ export const kindleScene = {
       ),
     ]),
     ...section('partners', 'Two people, one experiment', 'classroom', [
+      ...when(
+        'arrival:common-room-rule',
+        'quiet',
+        n(
+          'quiet-lesson-callback',
+          'Before the partner work begins, Rowan asks whether you want him to talk through the instructions while you try. You remember how much clearer the study notice became when quiet had a beginning and an end. You ask for one silent attempt, then comments afterwards. Rowan agrees and puts the pencil across his notebook as a reminder. It is a small arrangement, easy to change if it does not help, and much easier than trying to concentrate while also wondering how to ask someone to stop speaking.',
+        ),
+        s(
+          'quiet-rowan-agreement',
+          'rowan',
+          'warm',
+          'One attempt, then observations. If I start narrating, point at the pencil. I am giving you permission before I discover how much I enjoy the sound of my own helpfulness.',
+          e(),
+        ),
+      ),
+      ...when(
+        'arrival:common-room-rule',
+        'welcome',
+        n(
+          'welcome-lesson-callback',
+          'Before the partner work begins, you ask Rowan to describe what the observer is supposed to do. Making Noor’s invitation clearer taught you how much can hide inside a familiar word. Rowan checks the instruction card instead of guessing. The observer watches the paper, counts the breaths, and says stop if anything leaves the mat. You each repeat the list in your own words. You will still make mistakes, but at least neither of you has to make them while trying to infer the other person’s job.',
+        ),
+        s(
+          'welcome-rowan-agreement',
+          'rowan',
+          'amused',
+          'I had imagined standing nearby and looking encouraging. This is much more useful. My encouraging expression is available as an optional extra.',
+          e(),
+        ),
+      ),
       n(
         'partner-work',
         'You work in pairs, one casting and one observing. Rowan offers to go first, then catches himself and asks which you would prefer. You let him take the first turn. He sets his lantern squarely on the mat, pushes his sleeves back, and produces a flame that rises beautifully for half a second before vanishing. His hand stays in the air after the light has gone.',
@@ -356,6 +386,38 @@ export const kindleScene = {
       n(
         'class-dismissed',
         'The bell rings. Chairs scrape, bags are recovered, and the student near the window shows someone a scorch mark that now apparently resembles a hare. Elian asks whether you would like a few quiet minutes before leaving. You do. Rowan stays to stack the unused mats. This time he carries only two.',
+      ),
+    ]),
+    ...section('packing-up', 'One more observation', 'classroom', [
+      ...when(
+        'arrival:watering-method',
+        'measure',
+        n(
+          'measure-lesson-callback',
+          'While packing your lantern, you remember the three pots on Saoirse’s bench. The amount leaving the tank did not prove how much reached a plant. In the same way, knowing what your hand intended does not establish where the voice began. You add a note beneath your account: the light stayed steady while the words were heard. It might matter later, or it might remain an ordinary detail beside a strange one. You hand the addition to Elian before leaving. He dates it and clips it to the first page.',
+        ),
+        s(
+          'measure-teacher-callback',
+          'elian-vale',
+          'neutral',
+          'Good. Keep adding observations as you remember them, and mark when you remembered. That lets us distinguish the account you made immediately from the details you recalled after thinking about it.',
+          r(),
+        ),
+      ),
+      ...when(
+        'arrival:watering-method',
+        'simplify',
+        n(
+          'simplify-lesson-callback',
+          'While packing your lantern, you remember how much easier Saoirse’s machine became to understand after two outlets were removed. You ask Elian whether he changed anything between his two attempts to reproduce the voice. He says he kept the lantern, mat, and gesture the same. The person casting was different from your attempt, of course. He writes that distinction down when you point it out. A question about the method has become something the teacher can use. You did not need to know more magic than he does to ask it.',
+        ),
+        s(
+          'simplify-teacher-callback',
+          'elian-vale',
+          'neutral',
+          'Next time, if you are comfortable, we can compare one thing at a time. We will agree when to stop before we begin. I will not keep asking you to repeat an unsettling experience just because I want an answer.',
+          r(),
+        ),
       ),
     ]),
     ...section('lesson-aftermath', 'A question with somewhere to go', 'corridor', [

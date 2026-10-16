@@ -1,3 +1,4 @@
+import { arrivalOrientation } from './arrival-orientation.mjs';
 import { arrivalEvening } from './arrival-evening.mjs';
 import { chapters } from '../content.mjs';
 // These are authored performance directions, not emotion guesses from keywords.
@@ -153,3 +154,5 @@ arrivalScene.beats.push(...arrivalEvening);
 arrivalScene.beats.forEach((beat) => {
   beat.section.period = beat.section.id === 'first-night' ? 3 : 2;
 });
+
+arrivalScene.beats.push(...arrivalOrientation);

@@ -19,7 +19,7 @@ AI reply → validated dialogue + expression → conversation command
 | `src/engine/systems/world.mjs` | Exploration, discoveries, resting, waiting, journal notes. |
 | `src/engine/systems/relationships.mjs` | Authored topics, check-ins, gatherings, shared memories, saved AI dialogue. |
 | `src/engine/systems/magic.mjs` | Lessons, spell prerequisites, casting, restoration requirements. |
-| `src/engine/systems/story.mjs` | Chapter choices, endings, bookmarks, Book-mode progression. |
+| `src/engine/systems/story.mjs` | Local decisions, introductions, chapter choices, endings, bookmarks, and Book-mode progression. |
 | `src/engine/state.mjs` | New-game defaults and save schema version. |
 | `src/engine/effects.mjs` | Shared journal, reward, and friendship operations. |
 | `src/engine/time.mjs` | Game calendar, seasons, festivals, day changes. |
@@ -48,7 +48,7 @@ Providers return text and an available expression. Their output cannot choose a 
 
 ## Persistence and failure behavior
 
-Book and Live retain separate version-three saves. The repository validates an import before replacing data. It backs up the current game and the target slot when switching modes. Malformed existing data is preserved and reported, rather than silently replaced by a new game. Browser quota errors leave current in-memory play available and display an export warning.
+Book and Live retain separate version-four saves. The repository validates an import before replacing data. It backs up the current game and the target slot when switching modes. Malformed existing data is preserved and reported, rather than silently replaced by a new game. Browser quota errors leave current in-memory play available and display an export warning.
 
 The setup page tests a real short provider response before replacing its active configuration. Test-only never saves. Failed tests leave the prior configuration intact. Configuration writes are atomic and serialized; a server restart reads the saved settings. Keys are stored only in an ignored server file with owner-only permissions, or supplied by the server environment. This is a single-server configuration, not a per-user account system.
 
@@ -57,7 +57,7 @@ The UI has an error boundary, and AI requests have timeouts and cancellation. Pr
 ## Checks
 
 ```sh
-npm run check          # formatting, character references, engine and API tests
+npm run check          # formatting, character/scene references, engine and API tests
 npm run build          # art derivatives, validation, production app, offline cache
 npm run test:browser   # isolated local server + Chromium, including a fake provider
 npm run count:words    # actual authored prose, excluding setup and engine documentation
@@ -65,4 +65,8 @@ npm run count:words    # actual authored prose, excluding setup and engine docum
 
 Use `npm run format` before checking. Generated character imports are excluded from formatting; regenerate them with `npm run sync:characters`. The browser server deliberately uses a temporary AI configuration and fake setup code so tests cannot spend a real provider key. Port 4173 must be free. `CHROMIUM_PATH` can select another installed Chromium binary.
 
-This refactor preserves the current compact story; it does not implement all planned content, romance, minigames, accounts, or the 250,000-word manuscript. Those additions should use these extension points and their own acceptance tests.
+The shared scene engine now supports the expanded opening; it does not implement all planned content, romance, minigames, accounts, or the 250,000-word manuscript. Those additions should use these extension points and their own acceptance tests.
+
+## Authored scene progression
+
+See [STORY_AUTHORING.md](STORY_AUTHORING.md) for the data contract. Both readers use `chapterBeats(chapter, state)`, which stops at the first unanswered decision and filters unchosen passages. `story-choice` validates order, applies an explicit introduction at most once, records eligible memories, advances to a later authored date when necessary, and bookmarks the chosen continuation. It never rewinds Live time. Replaying a line has no gameplay effect. Old saves use unknown-decision fallback prose; they do not receive fabricated choice history.

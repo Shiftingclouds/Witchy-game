@@ -10,9 +10,10 @@ This is the current project brief and production backlog. It incorporates the us
 - [x] Decode incoming expressions before short crossfades; retain the previous image if loading fails. Keep portrait scale consistent and never mirror asymmetric designs.
 - [x] Apply portrait transitions and text reveal to prepared and optional AI conversations.
 - [x] Add a conversation transcript, reduced-motion behavior, and saved scene bookmarks that travel with exported saves.
-- [ ] Convert the complete long-form manuscript to explicit scene/beat data. The expanded arrival is the current staging sample; the other seven scene views still present the compact prototype prose.
+- [ ] Convert the complete long-form manuscript to explicit scene/beat data. The opening now has 13 sections and 10,795 authored scene words; the remaining six chapters retain compact prototype prose.
 - [ ] Review every authored line and listener reaction against its exact expression. Missing emotions must appear in the art queue, rather than silently being treated as completed coverage.
-- [ ] Add deliberate scene exits, appropriate location effects, larger text controls, an in-game motion override, and content-update migrations for the expanded scene graph.
+- [x] Add larger text controls, an in-game motion override, shared book/stage paths, section navigation, and saved decisions with version-four migrations.
+- [ ] Complete scene exits, effects, and expanded graph migrations for the remaining manuscript.
 - [ ] Test final scenes with keyboard, touch, screen readers, reduced motion, slow asset loads, offline reloads, and save imports. No animation may decide a choice or award a reward.
 
 The intended feel combines the staged portraits and illustrated scenes of *Choices* and *Chapters* with the controlled text reveal of *Stardew Valley* and *Pokémon*. Preserve our art's identity and build an original interface. See [presentation direction](docs/PRESENTATION_DIRECTION.md).
@@ -31,7 +32,7 @@ The intended feel combines the staged portraits and illustrated scenes of *Choic
 - [ ] Track clues, knowledge, promises, choices, and later callbacks. Both modes must reach a complete climax without AI, romance, grinding, or being online on a particular real-world date.
 - [ ] Report shortest, typical, and longest reachable playthrough lengths separately from the all-branches total.
 
-The current measured corpus is **4,812 eligible words (1.92%)**, including the expanded arrival. **245,188 words remain to the minimum.** The 270,000-word allocation is a plan, not material already written. Run `npm run check:story-length` for the intentional release-length gate; it currently fails because the manuscript is short. See [word-count methodology](docs/WORD_COUNT.md) and [story/cast expansion](docs/STORY_EXPANSION.md).
+The current measured corpus is **15,105 eligible words (6.04%)**, including the expanded arrival. **234,895 words remain to the minimum.** The 270,000-word allocation is a plan, not material already written. Run `npm run check:story-length` for the intentional release-length gate; it currently fails because the manuscript is short. See [word-count methodology](docs/WORD_COUNT.md) and [story/cast expansion](docs/STORY_EXPANSION.md).
 
 Romance is proposed, not currently enabled. The writing plan uses an adult academy and adult peers, with opt-in romance and developed friendship alternatives. Record ages and eligibility in canon before implementing routes; do not infer them from portraits or make faculty/evaluators romance candidates.
 
@@ -59,7 +60,7 @@ The earlier art proposal of 132 additional story images, plus optional motion la
 
 ## 5. Keep characters consistent across conversations
 
-- [x] Create an editable character sheet for every interactable identity: 45 active sheets and 15 proposed additions in [characters/](characters/README.md). Include individual voices, motives, boundaries, NPC connections, story knowledge, expression coverage, and future writing notes.
+- [x] Create an editable character sheet for every interactable identity: 46 active sheets and 14 proposed additions in [characters/](characters/README.md). Include individual voices, motives, boundaries, NPC connections, story knowledge, expression coverage, and future writing notes.
 - [x] Keep static canon separate from each player's relationship score, shared moments, and recent conversations. Book and Live saves remain independent; exported saves carry this history.
 - [x] Use the same character context builder for the optional AI relay and copy-to-another-AI flow. Include only reached story facts and trust-appropriate topics; exclude authoring plans, private journal notes, and other characters' conversations.
 - [x] Record actual game interactions as shared memories and keep AI dialogue separate from verified events. Dialogue cannot award points, change friendship, learn spells, or complete quests.
@@ -72,8 +73,10 @@ The earlier art proposal of 132 additional story images, plus optional motion la
 The engine foundation now has explicit world, relationship, magic, and story modules, a stable public API, sequential save migrations, and separate persistence. The optional AI setup page includes provider instructions, connection testing, and protected server-side configuration. See [ENGINE.md](docs/ENGINE.md) and [AI_SETUP.md](docs/AI_SETUP.md). This infrastructure does not add manuscript words or enable the proposed cast and romance routes.
 
 1. **Presentation and character foundation:** the two-person arrival, text/portrait transitions, transcript, bookmarks, 60 character sheets, and per-save character context are implemented and verified. Continue editorial review as scenes expand.
-2. **First playable story package:** expand arrival through the first Kindle lesson into 10,000–15,000 edited and integrated words, with a meaningful choice/rejoin, the player's house companions, a dedicated firecraft teacher, and an early character quest. Compare scene pacing and reading layout before scaling production.
+2. **First playable story package:** integrated at 10,795 scene words across 13 sections, with saved branches, common-room life, Saoirse’s prototype, a dedicated firecraft teacher, and callbacks. Dedicated dormmate arcs remain ahead. Continue pacing and art review while expanding the remaining acts.
 3. **Act packages:** write and test the eight-act main story, then interleave the trio, supporting arcs, community work, house stories, and relationship alternatives. Commission art from approved scene requirements.
 4. **Complete-year audit:** require the 250,000-word floor, editorial review, complete reachable routes, sufficient expression coverage, tested saves, and offline asset availability. Publish measured progress rather than treating outline completion as game completion.
 
 Track each package as **outlined → drafted → edited → integrated → tested**. Only integrated, reachable text enters the automated shipping count; final acceptance also requires editorial and route testing.
+
+The step-by-step working sequence is [PRODUCTION_PLAN.md](docs/PRODUCTION_PLAN.md); completed packages and test evidence are recorded in [PROGRESS.md](PROGRESS.md).

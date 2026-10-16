@@ -24,7 +24,9 @@ test('book decisions reveal only the chosen branch and resume in the staged read
     JSON.parse(localStorage.getItem('lanternmere.save.book')),
   );
   expect(state.storyChoices['arrival:first-observation']).toBe('record');
-  expect(state.characterMemories.imogen[0].key).toBe('scene:arrival:first-observation:record');
+  expect(state.characterMemories.imogen.map((memory) => memory.key)).toContain(
+    'scene:arrival:first-observation:record',
+  );
   await context.setOffline(false);
 });
 
@@ -78,13 +80,26 @@ test('large text and motion preferences persist and keep a two-person lesson usa
   expect(
     await dialog.locator('.scene-light').evaluate((el) => getComputedStyle(el).animationName),
   ).toBe('none');
+  expect(await dialog.locator('.scene-reader').evaluate((el) => el.scrollTop)).toBe(0);
   expect(await page.locator('body').evaluate((el) => el.scrollWidth)).toBe(320);
   expect(await dialog.evaluate((el) => el.scrollWidth <= el.clientWidth)).toBe(true);
-  await page.screenshot({ path: '/tmp/lanternmere-review/lesson-mobile.png', fullPage: true });
+  await page.screenshot({
+    path: '/tmp/lanternmere-review/lesson-mobile.png',
+    animations: 'disabled',
+    fullPage: false,
+  });
   await page.reload();
   await page.getByRole('button', { name: 'Continue your story' }).click();
   await expect(page.getByLabel('Story text size')).toHaveValue('largest');
   await expect(page.getByLabel('Reading motion')).toHaveValue('reduce');
   await page.getByRole('button', { name: 'Play scene', exact: true }).click();
   await expect(page.locator('.speech-text')).toContainText('Elian Vale. Introductory charms');
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.getByRole('dialog').getByLabel('Story text size').selectOption('standard');
+  await page.locator('.scene-reader').evaluate((el) => el.scrollTo(0, 0));
+  await page.screenshot({
+    path: '/tmp/lanternmere-review/lesson-desktop.png',
+    animations: 'disabled',
+    fullPage: false,
+  });
 });

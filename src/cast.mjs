@@ -323,6 +323,15 @@ export const castDetails = Object.fromEntries(
 
 // Four authored topics plus a more personal reply at 20 friendship.
 export const supportingDialogues = {
+  'elian-vale': {
+    mystery:
+      'If a charm behaves unexpectedly, write down what happened before explaining why. The explanation can wait for a second observation.',
+    care: 'I am rewriting a lesson that I thought was very clear. Apparently knowing a thing and explaining it are separate qualifications.',
+    laugh:
+      'I once built a lantern that lit itself whenever someone praised it. It was an excellent demonstration of the wrong incentive.',
+    trust:
+      'I used to think a hesitant explanation made students trust me less. Now I worry more about the confident explanation that leaves no room for a question.',
+  },
   cas: {
     mystery:
       'I checked the lantern fittings. Nothing is broken. That worries me more than a loose wire would.',
@@ -430,6 +439,10 @@ export const supportingDialogues = {
 };
 
 export const dailyLines = {
+  'elian-vale': [
+    'I am testing a new instruction card. Read the first line and tell me what you think it asks you to do. If we disagree, the card needs work.',
+    'The practice lantern has a dent because I dropped it while explaining how carefully it should be handled. I have kept the dent in the lesson.',
+  ],
   rowan: [
     'I kept a little flame steady all through breakfast. It was not impressive, but I am pleased with it.',
     'Shall we sit for a minute? I have spent all day making light. It is nice to let the sunset do it.',

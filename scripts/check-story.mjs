@@ -1,7 +1,13 @@
 import assert from 'node:assert/strict';
+import { isGameDate } from '../src/character-memory.mjs';
 import { chapters, characterById, expressions, locationById } from '../src/content.mjs';
 import { stagedScenes } from '../src/scene-beats.mjs';
-import { choiceKey, enumeratePaths, enumerateStoryPaths } from '../src/story/choices.mjs';
+import {
+  choiceKey,
+  enumeratePaths,
+  enumerateStoryPaths,
+  introductions,
+} from '../src/story/choices.mjs';
 
 const identifiers = new Set(),
   chapterIds = new Set(),
@@ -41,6 +47,13 @@ for (const scene of [...stagedScenes].sort((a, b) => a.chapter - b.chapter)) {
         `Offstage speaker ${beat.id}`,
       );
     assert.ok(beat.section, `Missing section ${beat.id}`);
+    if (beat.section.date) {
+      assert.ok(isGameDate(beat.section.date));
+      assert.ok(beat.section.date >= chapters[scene.chapter].date);
+      assert.ok(
+        !chapters[scene.chapter + 1] || beat.section.date < chapters[scene.chapter + 1].date,
+      );
+    }
     id(beat.section.id);
     text(beat.section.title);
     assert.ok(
@@ -79,6 +92,11 @@ for (const scene of [...stagedScenes].sort((a, b) => a.chapter - b.chapter)) {
   }
 }
 const paths = enumerateStoryPaths(stagedScenes);
+for (const [key, introduction] of Object.entries(introductions)) {
+  assert.ok(choices.has(key), `Unknown introduction checkpoint ${key}`);
+  text(introduction.text);
+  for (const person of introduction.people) assert.ok(Object.hasOwn(characterById, person));
+}
 const reachable = new Set(paths.flatMap((p) => p.beats));
 const legacy = new Set(
   stagedScenes.flatMap((scene) => enumeratePaths(scene).flatMap((p) => p.beats)),

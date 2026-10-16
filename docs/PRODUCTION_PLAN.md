@@ -45,4 +45,6 @@ Owner: the development agent, following the user's art-led, cozy-mysterious acad
 
 ## Current next checkpoint
 
-Step 1 is complete: `f96f697` preserves the engine, 60 character sheets, provider setup, and existing game. The previous verification passed 33 unit/API tests and 20 browser scenarios, plus build, clean installation, and development/production checks. The current corpus is 4,812 words. Work proceeds with step 2 and a reviewed first opening package. The 15 proposed cast additions, long-form year, romance, and art packets remain unfinished.
+Steps 1–4 have an integrated, checked opening package: 10,795 eligible scene words across 13 sections, seven local decisions and 128 opening combinations. The whole game contains 15,105 eligible words; 234,895 remain to the requested minimum. See [PROGRESS.md](../PROGRESS.md) for checkpoint evidence and [STORY_AUTHORING.md](STORY_AUTHORING.md) for the implementation contract.
+
+The next production package is **Notes in the margins**. Its evidence sequence and six proposed scenes are specified in [YEAR_CONTINUITY.md](YEAR_CONTINUITY.md). Step 5 has a full-year evidence/knowledge ledger; adult peer age and romance eligibility decisions still need to be established before those routes ship. The route auditor also needs bounded per-act analysis before the growing year exceeds its 4,096-path package cap. Fourteen proposed cast additions, later long-form chapters, full personal arcs, romance, and art packets remain unfinished.

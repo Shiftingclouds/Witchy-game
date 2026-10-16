@@ -97,6 +97,7 @@ export function parseSave(value) {
     const definition = choiceDefinition(key);
     if (
       !definition ||
+      (definition.beat.section?.date && s.date < definition.beat.section.date) ||
       definition.scene.chapter > s.chapter ||
       !definition.beat.choice.options.some((option) => option.id === value) ||
       !matchesCondition(definition.beat, s.storyChoices)

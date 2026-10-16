@@ -89,6 +89,30 @@
 .scene-reader {
   max-width: 100%;
 }
+.modal.scene-modal {
+  display: flex;
+  flex-direction: column;
+  height: min(960px, 94dvh);
+  overflow: hidden;
+}
+.scene-modal .modal-heading {
+  flex-shrink: 0;
+}
+.scene-modal .scene-reader {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  --stage-height: 300px;
+}
+.scene-modal .performance-scene {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  height: var(--stage-height);
+}
+.scene-modal .speech-text {
+  scroll-margin-top: calc(var(--stage-height) + 12px);
+}
 .performance-scene {
   height: 350px;
   position: relative;
@@ -275,6 +299,9 @@
   }
 }
 @media (max-width: 760px) {
+  .scene-modal .scene-reader {
+    --stage-height: clamp(130px, 24dvh, 220px);
+  }
   .performance-scene {
     height: 250px;
   }
@@ -512,6 +539,8 @@
   line-height: 1.75;
 }
 [data-reduced-motion='true'] .scene-light,
+[data-reduced-motion='true'] .modal-backdrop,
+[data-reduced-motion='true'] .toast,
 [data-reduced-motion='true'] .stage-actor,
 [data-reduced-motion='true'] .expression-current,
 [data-reduced-motion='true'] .speech-box,
