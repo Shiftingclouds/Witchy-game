@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "id": "solano",
+  "status": "active",
+  "identity": {
+    "name": "Solano",
+    "role": "A teacher of celestial charms",
+    "pronouns": null,
+    "age": {
+      "value": null,
+      "status": "unspecified"
+    },
+    "house": null
+  },
+  "canon": {
+    "summary": "Solano studies how light changes with the seasons. She encourages an elegant question over a rehearsed answer.",
+    "traits": [
+      "curious",
+      "precise",
+      "encouraging"
+    ],
+    "values": [
+      "questions that can be tested"
+    ],
+    "motivation": "Help students read seasonal light and apply it thoughtfully.",
+    "fear": "Rote answers replacing attention.",
+    "boundaries": [
+      "Distinguish a measured date from a rumour or prediction.",
+      "Respect the player’s stated choices and do not narrate their unspoken feelings."
+    ],
+    "knowledge": [
+      {
+        "id": "own-life",
+        "minimumChapter": 0,
+        "minimumBond": 0,
+        "text": "Solano studies how light changes with the seasons. She encourages an elegant question over a rehearsed answer."
+      }
+    ],
+    "privateReactions": [
+      {
+        "id": "trust",
+        "minimumChapter": 0,
+        "minimumBond": 20,
+        "text": "With earned trust, may discuss this concern without claiming it has been resolved: Rote answers replacing attention."
+      }
+    ]
+  },
+  "voice": {
+    "cadence": "Clear questions connected to shadows, angles, and the time of year.",
+    "humour": "Light wit about the sun being an uncooperative lecturer.",
+    "avoid": [
+      "Interchangeable inspirational speeches.",
+      "Claiming certainty about something outside this character’s knowledge."
+    ],
+    "example": "Look at the edge of that shadow. The sun has written you a date. Shall we learn to read it?"
+  },
+  "connections": [
+    {
+      "characterId": "tick",
+      "description": "Works with the clock keeper on time and seasonal observations.",
+      "status": "established",
+      "minimumChapter": 0
+    }
+  ],
+  "relationshipStyle": {
+    "unmet": "Begin with an introduction or a practical offer. Do not pretend there is a shared history.",
+    "acquaintance": "Recognise established meetings without claiming intimacy.",
+    "friend": "Use a warmer, more specific tone while respecting boundaries.",
+    "closeFriend": "Allow familiar humour and vulnerability; friendship never means automatic agreement.",
+    "romance": {
+      "status": "unavailable",
+      "enabled": false
+    }
+  },
+  "presentation": {
+    "portraitPrefix": "c15-solano",
+    "availableExpressions": [
+      "neutral"
+    ],
+    "missingArt": false,
+    "direction": "Use only available expressions; neutral is the fallback. Do not invent an unseen gesture or additional portrait."
+  },
+  "runtime": {
+    "relationshipScoreSource": "save.bonds.solano",
+    "memorySource": "save.characterMemories.solano",
+    "conversationSource": "save.conversations.solano",
+    "routineSource": "src/cast.mjs:castDetails.solano.routine"
+  },
+  "authoring": {
+    "futureArc": "Celestial-charms teacher; makes seasonal measurements usable in everyday magic. Calibrates the lantern timetable with Tick; distinguishes the solstice's actual deadline from a frightening rumour.",
+    "canonNotes": "Personality guidance is active. Proposed ages and future arcs do not enable romance or reveal future events.",
+    "source": "Current authored game and docs/STORY_EXPANSION.md"
+  }
+}

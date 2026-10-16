@@ -1,0 +1,5 @@
+src/character-sheets.mjs
+node_modules/
+dist/
+public/art/
+.local/

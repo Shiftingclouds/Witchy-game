@@ -1,0 +1,32 @@
+{
+  "name": "lanternmere-academy",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "python3 scripts/prepare_art.py && node scripts/dev.mjs",
+    "build": "python3 scripts/prepare_art.py && node scripts/check-characters.mjs && vite build && node scripts/build-sw.mjs",
+    "start": "node server.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:browser": "playwright test",
+    "count:words": "node scripts/count-story-words.mjs",
+    "check:story-length": "node scripts/count-story-words.mjs --check",
+    "sync:characters": "node scripts/sync-character-registry.mjs",
+    "check:characters": "node scripts/check-characters.mjs",
+    "ai:setup-code": "node scripts/ai-setup-code.mjs",
+    "format": "prettier --write \"src/**/*.{jsx,mjs,css}\" \"server/**/*.mjs\" \"tests/**/*.{mjs,js}\" \"scripts/*.mjs\" server.mjs vite.config.js playwright.config.js package.json",
+    "format:check": "prettier --check \"src/**/*.{jsx,mjs,css}\" \"server/**/*.mjs\" \"tests/**/*.{mjs,js}\" \"scripts/*.mjs\" server.mjs vite.config.js playwright.config.js package.json",
+    "check": "npm run format:check && npm run check:characters && npm test"
+  },
+  "dependencies": {
+    "lucide-react": "^0.468.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.0",
+    "@vitejs/plugin-react": "^4.4.1",
+    "prettier": "^3.9.10",
+    "vite": "^6.3.5"
+  }
+}

@@ -1,0 +1,140 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {
+  initialState,
+  transition,
+  canAdvance,
+  parseSave,
+  season,
+  sceneArt,
+  holiday,
+} from '../src/engine.mjs';
+import { spells, chapters, locations, characters, expressions } from '../src/content.mjs';
+import { readFile, stat } from 'node:fs/promises';
+const action = (s, type, rest = {}) => transition(s, { type, ...rest });
+function learn(s, id) {
+  const spell = spells.find((x) => x.id === id);
+  s = action(s, 'visit', { id: spell.location });
+  return action(s, 'learn', { id, answer: spell.correct });
+}
+function completeWorld(choice = 0) {
+  let s = initialState();
+  const next = () => {
+    assert.equal(canAdvance(s), true, `chapter ${s.chapter + 1} should be achievable`);
+    s = action(s, 'chapter', { choice: s.chapter === 7 ? choice : 0 });
+  };
+  s = action(s, 'talk', { id: 'rowan', topic: 'hello' });
+  next();
+  s = learn(s, 'kindle');
+  next();
+  s = action(s, 'visit', { id: 'library' });
+  s = action(s, 'talk', { id: 'imogen', topic: 'hello' });
+  s = action(s, 'inspect');
+  s = learn(s, 'echo');
+  next();
+  s = action(s, 'visit', { id: 'glasshouses' });
+  s = action(s, 'talk', { id: 'saoirse', topic: 'hello' });
+  s = action(s, 'tend');
+  next();
+  s = action(s, 'visit', { id: 'mere' });
+  s = action(s, 'cast', { id: 'echo' });
+  next();
+  s = action(s, 'visit', { id: 'candlestones' });
+  s = action(s, 'cast', { id: 'echo' });
+  s = learn(s, 'thread');
+  next();
+  next();
+  s = action(s, 'visit', { id: 'heartfire' });
+  s = action(s, 'cast', { id: 'thread' });
+  next();
+  return s;
+}
+test('world mode has a reachable climax and both endings without AI or grinding', () => {
+  for (const [choice, ending] of [
+    [0, 'shared'],
+    [1, 'keeper'],
+  ]) {
+    const s = completeWorld(choice);
+    assert.equal(s.ending, ending);
+    assert.equal(s.chapter, 7);
+    assert.deepEqual(s.spells, ['kindle', 'echo', 'thread']);
+    assert.ok(s.clues.includes('restored'));
+    assert.ok(s.points > 100);
+    assert.deepEqual(parseSave(JSON.stringify(s)), { ...s, feedback: '' });
+  }
+});
+test('book mode completes the entire story with choices alone', () => {
+  for (const choice of [0, 1]) {
+    let s = initialState('book');
+    for (let i = 0; i < 8; i++) {
+      assert.equal(s.chapter, i);
+      s = action(s, 'chapter', { choice });
+    }
+    assert.ok(s.ending);
+    assert.equal(s.spells.length, 3);
+    assert.ok(s.clues.includes('restored'));
+    assert.equal(s.date, '2027-06-21');
+  }
+});
+test('story and spells cannot skip requirements, and repeated actions do not farm rewards', () => {
+  let s = initialState();
+  assert.equal(action(s, 'chapter', { choice: 0 }).chapter, 0);
+  assert.equal(action(s, 'cast', { id: 'thread' }).clues.length, 0);
+  s = action(s, 'visit', { id: 'warding-hall' });
+  s = action(s, 'learn', { id: 'thread', answer: 0 });
+  assert.equal(s.spells.length, 0);
+  s = action(s, 'visit', { id: 'classroom' });
+  s = action(s, 'learn', { id: 'kindle', answer: 0 });
+  assert.equal(s.spells.length, 0);
+  s = action(s, 'learn', { id: 'kindle', answer: 1 });
+  const points = s.points;
+  s = action(s, 'learn', { id: 'kindle', answer: 1 });
+  assert.equal(s.points, points);
+  s = action(s, 'talk', { id: 'rowan', topic: 'hello' });
+  const bond = s.bonds.rowan;
+  const earned = s.points;
+  s = action(s, 'talk', { id: 'rowan', topic: 'hello' });
+  assert.equal(s.bonds.rowan, bond);
+  assert.equal(s.points, earned);
+});
+test('calendar handles month/year rollovers, leap days, festivals, and seasonal art', () => {
+  let s = { ...initialState(), date: '2026-12-31' };
+  s = action(s, 'rest');
+  assert.equal(s.date, '2027-01-01');
+  assert.equal(season(s.date), 'Winter');
+  assert.equal(sceneArt(s, 'mere'), 'mere-frozen');
+  s = { ...s, date: '2028-02-28' };
+  assert.equal(action(s, 'rest').date, '2028-02-29');
+  assert.equal(holiday('2026-10-31').name, 'Emberfall');
+  assert.equal(sceneArt({ ...s, date: '2026-10-31' }, 'lantern-hall'), 'lantern-hall-emberfall');
+  assert.equal(sceneArt({ ...s, date: '2026-12-21' }, 'lantern-hall'), 'lantern-hall-longnight');
+});
+test('save validation rejects broken or unsupported imports', () => {
+  const good = initialState();
+  for (const bad of [
+    null,
+    {},
+    { ...good, date: '2026-02-31' },
+    { ...good, spells: ['admin'] },
+    { ...good, bonds: { rowan: Infinity } },
+    { ...good, chapter: 99 },
+    { ...good, ending: 'shared' },
+    { ...good, mode: 'admin' },
+    { ...good, journal: [{}] },
+  ])
+    assert.throws(() => parseSave(bad));
+  assert.equal(parseSave({ ...good, unexpected: 'not retained' }).unexpected, undefined);
+});
+test('every game location, familiar, cast portrait and expression resolves to a prepared artwork', async () => {
+  const raw = JSON.parse(await readFile(new URL('../public/art/manifest.json', import.meta.url)));
+  const all = new Set(raw.map((a) => a.id));
+  for (const l of locations) assert.ok(all.has(l.id === 'mere' ? 'mere-day' : l.id), l.id);
+  for (const c of characters) {
+    for (const expression of expressions[c.id] || ['neutral'])
+      assert.ok(all.has(`${c.prefix}-${expression}`), `${c.id}: ${expression}`);
+  }
+  assert.equal(raw.filter((a) => !a.generated).length, 142);
+  assert.ok(all.has('academy-map'));
+  for (const a of raw)
+    assert.ok((await stat(new URL('../public' + a.src, import.meta.url))).size > 0, a.id);
+});

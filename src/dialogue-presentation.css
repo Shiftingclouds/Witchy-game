@@ -1,0 +1,404 @@
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.unrevealed-text {
+  visibility: hidden;
+}
+.animated-portrait {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.animated-portrait > .portrait {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom;
+}
+.expression-current {
+  opacity: 1;
+}
+.expression-current.changing {
+  animation: expression-dissolve 150ms ease-out;
+}
+.expression-previous {
+  pointer-events: none;
+}
+.conversation-portrait > .animated-portrait {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: portrait-arrive 220ms ease-out;
+}
+.conversation-portrait > .conversation-identity {
+  z-index: 2;
+  pointer-events: none;
+}
+.conversation-line {
+  position: relative;
+  padding-bottom: 22px;
+}
+.conversation-line blockquote {
+  margin-bottom: 4px;
+}
+.reveal-control {
+  font-size: 10px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.reading-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+  font-size: 11px;
+  color: #68765c;
+  margin-top: 16px;
+}
+.reading-controls select {
+  border: 1px solid #c9cdb9;
+  background: #f9f7ef;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 11px;
+}
+.reading-controls small {
+  font-size: 10px;
+  width: 100%;
+  color: #7a806b;
+}
+.scene-view-button {
+  margin: -5px 0 22px;
+  font-size: 11px;
+  background: #e4ead7;
+}
+.scene-reader {
+  max-width: 100%;
+}
+.performance-scene {
+  height: 350px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 7px 7px 0 0;
+  background: #253526;
+}
+.performance-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 45%;
+}
+.performance-scene:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(transparent 65%, #19291eaa);
+}
+.scene-light {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 35% 25%, #fff4b41a, transparent 60%);
+  animation: lantern-glow 6s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+.portrait-stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  gap: 3%;
+  padding: 0 5%;
+}
+.stage-actor {
+  position: relative;
+  height: 96%;
+  width: 44%;
+  max-width: 370px;
+  flex-shrink: 0;
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 180ms ease,
+    filter 180ms ease,
+    transform 220ms ease;
+  animation: portrait-arrive 220ms ease-out;
+  filter: brightness(1);
+  z-index: 1;
+}
+.stage-actor.listening {
+  filter: brightness(0.82) saturate(0.8);
+}
+.stage-actor.departed {
+  opacity: 0;
+  transform: translateY(9px);
+  pointer-events: none;
+}
+.stage-actor.speaking {
+  z-index: 2;
+}
+.actor-name {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #233b2ae8;
+  border: 1px solid #e3d2a966;
+  border-radius: 3px;
+  padding: 6px 10px;
+  color: #faf0d8;
+  font-size: 10px;
+  white-space: nowrap;
+}
+.stage-actor.listening .actor-name {
+  background: #394039e6;
+}
+.speech-box {
+  padding: 20px 24px 18px;
+  border: 1px solid #d7ceb5;
+  border-top: 2px solid #bba671;
+  background: #f9f5e9;
+  border-radius: 0 0 7px 7px;
+  box-shadow: 0 6px 19px #2531240b;
+  animation: speech-arrive 200ms ease-out;
+}
+.speaker-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 12px;
+  color: #4a6246;
+}
+.speaker-heading strong {
+  font-family: var(--serif);
+  font-size: 21px;
+  font-weight: 400;
+}
+.speaker-heading > span {
+  font-size: 10px;
+  color: #8c9076;
+}
+.speech-text {
+  display: block;
+  background: transparent;
+  padding: 0;
+  text-align: left;
+  width: 100%;
+  min-height: 100px;
+  font: 19px/1.7 var(--serif);
+  color: #45513d;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.speech-text:disabled {
+  opacity: 1;
+  color: #45513d;
+  cursor: default;
+}
+.speech-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 18px;
+}
+.speech-controls > .button {
+  font-size: 11px;
+  min-width: 130px;
+}
+.speech-controls > .text-button {
+  font-size: 11px;
+  min-height: 40px;
+}
+.scene-complete {
+  font-size: 11px;
+  color: #687b56;
+  margin-top: 12px;
+}
+@keyframes portrait-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes expression-dissolve {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes speech-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes lantern-glow {
+  from {
+    opacity: 0.35;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (max-width: 760px) {
+  .performance-scene {
+    height: 250px;
+  }
+  .portrait-stage {
+    padding: 0 1%;
+    gap: 0;
+  }
+  .stage-actor {
+    width: 50%;
+    height: 92%;
+  }
+  .stage-actor .animated-portrait > .portrait {
+    object-fit: cover;
+    object-position: top;
+  }
+  .portrait-stage.solo .stage-actor {
+    width: 75%;
+    height: 100%;
+  }
+  .actor-name {
+    font-size: 8px;
+    padding: 5px 6px;
+    bottom: 9px;
+  }
+  .speech-box {
+    padding: 17px 16px;
+  }
+  .speech-text {
+    font-size: 18px;
+    min-height: 150px;
+  }
+  .speech-controls {
+    gap: 10px;
+  }
+  .speech-controls > .button {
+    padding: 10px;
+    min-width: 120px;
+  }
+  .speaker-heading strong {
+    font-size: 21px;
+  }
+  .conversation-portrait > .animated-portrait {
+    height: 110%;
+    width: 65%;
+    left: 30%;
+  }
+  .reading-controls {
+    margin-top: 14px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scene-light {
+    animation: none;
+  }
+  .stage-actor,
+  .expression-current,
+  .speech-box,
+  .conversation-portrait > .animated-portrait {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+.scene-transcript {
+  margin-top: 16px;
+  border-top: 1px solid #d7d6c4;
+  padding: 14px 0 0;
+  color: #55664a;
+  font-size: 12px;
+}
+.scene-transcript summary {
+  cursor: pointer;
+  padding: 5px 0;
+  min-height: 36px;
+}
+.scene-transcript ol {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0;
+  max-height: 320px;
+  overflow: auto;
+}
+.scene-transcript li {
+  padding: 14px 10px;
+  border-bottom: 1px solid #dedccd;
+}
+.scene-transcript li strong {
+  font-size: 12px;
+}
+.scene-transcript li p {
+  font: 17px/1.7 var(--serif);
+  margin-top: 6px;
+}
+
+.conversation-memory {
+  border-top: 1px solid #d7d6c4;
+  margin-top: 20px;
+  padding-top: 14px;
+  color: #53664c;
+  font-size: 12px;
+}
+.conversation-memory summary {
+  cursor: pointer;
+  padding: 7px 0;
+  min-height: 40px;
+}
+.conversation-memory h4 {
+  font: 19px var(--serif);
+  margin: 18px 0 10px;
+}
+.conversation-memory > p {
+  font-size: 11px;
+}
+.conversation-memory ul,
+.conversation-memory ol {
+  padding-left: 19px;
+  max-height: 240px;
+  overflow: auto;
+}
+.conversation-memory li {
+  padding: 9px 4px;
+  line-height: 1.6;
+}
+.conversation-memory li p {
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+.conversation-memory li small {
+  display: block;
+  font-size: 10px;
+  color: #7d846e;
+}
