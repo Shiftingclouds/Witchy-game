@@ -1,0 +1,48 @@
+# Completion plan
+
+Owner: the development agent, following the user's art-led, cozy-mysterious academy brief. Updated 16 October 2026. This is a working sequence with acceptance gates, not a claim that outlined content is complete.
+
+## Professional review: questions that determine the work
+
+| Question | Decision / evidence to require |
+| --- | --- |
+| What does the player actually do in the first ten minutes? | Arrive, meet distinct people, make a small decision that receives a visible response, and discover a specific mystery. Explain controls in context; do not open with a lore lecture. |
+| Does each scene earn its length? | Give it an immediate want, obstacle, revealing action or decision, changed situation, and an exit. Cut repeated reassurance, explanations, and interchangeable banter. |
+| Are Book and Live the same story? | Both modes and both reading presentations must consume the same authored scene records and saved decisions. Exploration changes access and pacing, not required canon. |
+| Can choices matter without creating impossible writing scope? | Use short distinct branches with explicit rejoins and later callbacks. Record stable choice IDs. Do not promise an outcome that has no implemented response. |
+| Can a player get stuck by being offline, refusing romance, or missing a date? | No essential clue or ending may depend on those conditions. Provide catch-up scenes and visible next actions. Test the least advantaged valid route. |
+| Which art makes each scene possible? | Review its exact background and portraits first. Reuse compositions where their meaning changes. Commission only scene-linked gaps; preserve identities and transparency. |
+| Why is each character present? | Assign a role in a specific conflict or activity, a distinct voice, and relationships beyond the player. Introduce additions through their work and scenes, not profile counts. |
+| Who knows what, and when? | Keep evidence, inference, rumour, and private knowledge distinct. Stage gates and verified shared events control optional AI context. |
+| What survives an update? | Stable scene/choice/beat IDs, sequential migrations, import backups, and honest recovery when retired content cannot resume exactly. Never invent old choices. |
+| Can people comfortably read and navigate? | Keyboard/touch access, legible text, adjustable text size and motion, one action per advance, useful transcripts, responsive portraits, and no forced timing. |
+| How do we prove the length target? | Count unique, reachable authored prose and decisions. Exclude drafts, UI, sheets, duplicate branches, and AI responses. Measure actual route ranges separately. |
+| What is release-ready AI? | Optional setup and fallback remain useful without a key. Test a real chosen provider once credentials exist; mock tests alone do not establish character consistency or current model access. |
+| What will we call complete? | All eight acts and required character/house/community routes reachable, meaningful endings, reviewed art, >=250,000 eligible words, edited continuity, working offline saves, and release checks below. |
+
+## Ordered production steps
+
+1. **Preserve the foundation.** Save the working engine/provider build in Git. Record what passed and what is still compact or proposed. Never push or publish merely to make a checkpoint.
+2. **Unify story authoring and reading.** Introduce stable authored choices, conditional passages, explicit rejoins and scene sections. Use identical content in the book and staged reader. Save decisions without repeat rewards, retain existing saves, and make the word audit branch-aware.
+3. **Complete the opening package.** Build arrival through the first Kindle lesson into 10,000–15,000 purposeful words in several scene chapters. Introduce house life, a teacher with real classroom responsibility, a practical problem, the central trio, one character need, and a mystery observation with consequences. Review each part before expanding the next. Until this package exists, do not advertise the outline as a full-length game.
+4. **Polish reading and orientation.** Add text sizing and an in-game reduced-motion override; show section progress and a clear next action; preserve transcripts, choices, and stable bookmarks across both reading styles. Check the package on narrow phones, keyboard, and offline reloads.
+5. **Lock cause and effect for the full year.** Write a scene ledger for all eight acts: clue provenance, information gates, chapter windows, alternative access, choice callbacks, and two coherent ending policies. Establish adult peer ages and romance eligibility in active canon before romance ships.
+6. **Write and integrate acts II–VIII in order.** Each act package contains full scenes, meaningful decisions, verified consequences, catch-up opportunities, journal summaries, staging, and reachable exits. Keep a playable ending throughout development; retire prototype passages only when their replacements work.
+7. **Interleave character and academy life.** Complete the trio's six-scene arcs, eight supporting arcs, six community quest pairs, and four house stories. Introduce the proposed faculty, housemates, sports teams, and village roles as their scenes become playable. Every promoted character needs reviewed art, a sheet, a routine, introductions, and dialogue.
+8. **Add equally developed relationship paths.** Implement explicit opt-in adult romance and equivalent friendship alternatives, respectful refusal or route changes, persistent boundaries, and route-specific payoffs. Friendship scores alone never select romance or the best ending.
+9. **Finish the art and presentation packets.** Generate expressions, seasonal variants, clue details, and milestone images against named finished scenes. Visually review originals and additions side by side. Track missing art honestly; do not count fades as full character animation.
+10. **Expand bounded AI continuity.** Add durable, provenance-aware personal memories and correction controls as authored promises and quests require them. Test drift, spoiler boundaries, refusal of invented rewards, and graceful outages with a real configured provider. Retain deterministic offline play.
+11. **Editorial and accessibility pass.** Check every character's voice, pacing, knowledge, promises, chronology, repetition, and scene purpose. Audit focus, announcements, text size, reduced motion, controls, long transcripts, and mobile composition. Read representative routes as a player, not just as the author.
+12. **Release candidate.** Require >=250,000 integrated unique authored words, separately measured reachable routes, all essential endings without AI/romance/grinding, complete asset availability, old-save migrations, large-save exports/imports, production/offline tests, and a clean documented install. Public hosting requires player access controls and durable spending/rate limits before deployment. Publishing remains a separate user-directed action.
+
+## Checkpoints and test cadence
+
+- Make a local Git checkpoint after each coherent, reviewed package. Keep a readable entry in `PROGRESS.md`: content IDs, decisions, checks, known limits, and next work.
+- During writing, run the scene/choice validator and word audit. During engine or save work, run targeted engine/migration tests. During presentation work, run the affected browser tests and inspect screenshots.
+- Run the full checks and production/offline browser suite after a major system change, an act/package integration, or accumulated changes that could interact. Do not repeat every suite after each sentence edit.
+- On failure, fix or explicitly isolate the cause before the next dependent step. Preserve the failed case as a regression check when it represents a real behavior risk.
+- Use **outlined → drafted → edited → integrated → tested** as separate statuses. Only integrated, reachable text counts toward the story target. Do not silently lower scope or hide remaining work behind a percentage.
+
+## Current next checkpoint
+
+Step 1 is complete: `f96f697` preserves the engine, 60 character sheets, provider setup, and existing game. The previous verification passed 33 unit/API tests and 20 browser scenarios, plus build, clean installation, and development/production checks. The current corpus is 4,812 words. Work proceeds with step 2 and a reviewed first opening package. The 15 proposed cast additions, long-form year, romance, and art packets remain unfinished.
