@@ -14,53 +14,97 @@ import {
   choiceKey,
 } from './scene-beats.mjs';
 
-const preferenceKey = 'lanternmere.text-speed';
+const readPreference = (key, allowed, fallback) => {
+  try {
+    const value = localStorage.getItem('lanternmere.' + key);
+    return allowed.includes(value) ? value : fallback;
+  } catch {
+    return fallback;
+  }
+};
+const writePreference = (key, value) => {
+  try {
+    localStorage.setItem('lanternmere.' + key, value);
+  } catch {
+    /* Reading remains available without storage. */
+  }
+};
 export function useReadingPreferences() {
-  const [speed, setSpeedState] = useState(() => {
-    try {
-      const saved = localStorage.getItem(preferenceKey);
-      return Object.hasOwn(textSpeeds, saved) ? saved : 'normal';
-    } catch {
-      return 'normal';
-    }
-  });
-  const [reduced, setReduced] = useState(
+  const [speed, setSpeedState] = useState(() =>
+    readPreference('text-speed', Object.keys(textSpeeds), 'normal'),
+  );
+  const [size, setSizeState] = useState(() =>
+    readPreference('text-size', ['standard', 'large', 'largest'], 'standard'),
+  );
+  const [motion, setMotionState] = useState(() =>
+    readPreference('motion', ['system', 'reduce'], 'system'),
+  );
+  const [systemReduced, setSystemReduced] = useState(
     () => matchMedia('(prefers-reduced-motion: reduce)').matches,
   );
   useEffect(() => {
     const query = matchMedia('(prefers-reduced-motion: reduce)');
-    const update = () => setReduced(query.matches);
+    const update = () => setSystemReduced(query.matches);
     query.addEventListener('change', update);
     return () => query.removeEventListener('change', update);
   }, []);
-  function setSpeed(value) {
-    if (!Object.hasOwn(textSpeeds, value)) return;
-    setSpeedState(value);
-    try {
-      localStorage.setItem(preferenceKey, value);
-    } catch {
-      /* Reading still works without browser storage. */
-    }
-  }
-  return { speed, setSpeed, reduced };
+  const setter = (key, allowed, set) => (value) => {
+    if (!allowed.includes(value)) return;
+    set(value);
+    writePreference(key, value);
+  };
+  return {
+    speed,
+    size,
+    motion,
+    reduced: systemReduced || motion === 'reduce',
+    setSpeed: setter('text-speed', Object.keys(textSpeeds), setSpeedState),
+    setSize: setter('text-size', ['standard', 'large', 'largest'], setSizeState),
+    setMotion: setter('motion', ['system', 'reduce'], setMotionState),
+  };
 }
 
 export function ReadingControls({ reading }) {
   return (
-    <label className="reading-controls">
-      Text reveal{' '}
-      <select
-        aria-label="Text reveal speed"
-        value={reading.speed}
-        onChange={(e) => reading.setSpeed(e.target.value)}
-      >
-        <option value="slow">Slow</option>
-        <option value="normal">Normal</option>
-        <option value="fast">Fast</option>
-        <option value="instant">Instant</option>
-      </select>
+    <div className="reading-controls">
+      <label>
+        Text reveal{' '}
+        <select
+          aria-label="Text reveal speed"
+          value={reading.speed}
+          onChange={(e) => reading.setSpeed(e.target.value)}
+        >
+          <option value="slow">Slow</option>
+          <option value="normal">Normal</option>
+          <option value="fast">Fast</option>
+          <option value="instant">Instant</option>
+        </select>
+      </label>
+      <label>
+        Story text{' '}
+        <select
+          aria-label="Story text size"
+          value={reading.size}
+          onChange={(e) => reading.setSize(e.target.value)}
+        >
+          <option value="standard">Standard</option>
+          <option value="large">Large</option>
+          <option value="largest">Largest</option>
+        </select>
+      </label>
+      <label>
+        Motion{' '}
+        <select
+          aria-label="Reading motion"
+          value={reading.motion}
+          onChange={(e) => reading.setMotion(e.target.value)}
+        >
+          <option value="system">Follow device</option>
+          <option value="reduce">Reduce motion</option>
+        </select>
+      </label>
       {reading.reduced && <small>Reduced motion: text appears immediately.</small>}
-    </label>
+    </div>
   );
 }
 
@@ -163,6 +207,7 @@ function StageActor({ actor, speaking, visible, reduced }) {
         ' ' +
         (speaking ? 'speaking' : 'listening')
       }
+      style={{ '--actor-slot': actor.slot }}
       data-character={actor.id}
       aria-hidden={!visible}
     >
@@ -176,14 +221,26 @@ function StageActor({ actor, speaking, visible, reduced }) {
 }
 
 function PortraitStage({ actors, speaker, reduced }) {
-  const [slots, setSlots] = useState(actors);
+  const initial = () => actors.map((actor, slot) => ({ ...actor, slot }));
+  const [slots, setSlots] = useState(initial);
+  const active = useRef(slots);
   useEffect(() => {
-    // Keep departed actors for the exit fade. Matching ids retain their positions.
-    setSlots((previous) => [
-      ...previous.filter((actor) => !actors.some((next) => next.id === actor.id)),
-      ...actors,
-    ]);
-    const timer = setTimeout(() => setSlots(actors), reduced ? 0 : 220);
+    const previous = active.current;
+    const occupied = new Set(
+      previous
+        .filter((actor) => actors.some((next) => next.id === actor.id))
+        .map((actor) => actor.slot),
+    );
+    const next = actors.map((actor) => {
+      const kept = previous.find((old) => old.id === actor.id);
+      const slot = kept?.slot ?? [0, 1].find((value) => !occupied.has(value));
+      occupied.add(slot);
+      return { ...actor, slot };
+    });
+    const leaving = previous.filter((actor) => !actors.some((next) => next.id === actor.id));
+    active.current = next;
+    setSlots(reduced ? next : [...leaving, ...next]);
+    const timer = setTimeout(() => setSlots(next), reduced ? 0 : 220);
     return () => clearTimeout(timer);
   }, [actors, reduced]);
   return (
@@ -225,6 +282,14 @@ export function SceneReader({ game, reading, act, onClose }) {
   const chapter = chapters[game.chapter],
     beats = useMemo(() => chapterBeats(game.chapter, game), [game.chapter, game.storyChoices]);
   const sceneId = chapterSceneId(game.chapter);
+  const choiceMade = useRef(false),
+    speechRef = useRef(null);
+  useEffect(() => {
+    if (choiceMade.current) {
+      speechRef.current?.focus();
+      choiceMade.current = false;
+    }
+  }, [game.storyChoices]);
   const [position, setPosition] = useState(() =>
       game.bookmark?.scene === sceneId
         ? Math.max(
@@ -287,9 +352,7 @@ export function SceneReader({ game, reading, act, onClose }) {
         <div className="speech-box" data-beat={position} data-revealing={!reveal.complete}>
           <div className="speaker-heading">
             <strong>{current.speaker ? characterById[current.speaker].name : 'Your story'}</strong>
-            <span>
-              {position + 1} / {beats.length}
-            </span>
+            <span>Line {position + 1}</span>
           </div>
           {current.section && (
             <div className="scene-section-title">
@@ -298,6 +361,7 @@ export function SceneReader({ game, reading, act, onClose }) {
           )}
           <button
             className="speech-text"
+            ref={speechRef}
             aria-label={reveal.complete ? 'Continue scene' : 'Show full text'}
             onClick={next}
             disabled={finished || (pending && reveal.complete)}
@@ -314,6 +378,7 @@ export function SceneReader({ game, reading, act, onClose }) {
               sceneId={sceneId}
               game={game}
               onSelect={(key, option) => {
+                choiceMade.current = true;
                 act({ type: 'story-choice', key, option });
                 setPosition(position + 1);
                 setFinished(false);
@@ -363,6 +428,16 @@ export function SceneReader({ game, reading, act, onClose }) {
               <li key={entry.id}>
                 <strong>{entry.speaker ? characterById[entry.speaker].name : 'Narration'}</strong>
                 <p>{entry.text}</p>
+                {entry.choice && game.storyChoices[choiceKey(sceneId, entry.id)] && (
+                  <small>
+                    Your choice:{' '}
+                    {
+                      entry.choice.options.find(
+                        (option) => option.id === game.storyChoices[choiceKey(sceneId, entry.id)],
+                      ).label
+                    }
+                  </small>
+                )}
               </li>
             ))}
           </ol>

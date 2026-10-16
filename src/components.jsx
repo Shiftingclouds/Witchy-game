@@ -25,7 +25,7 @@ export function Modal({ title, children, onClose, wide = false }) {
       if (e.key === 'Tab') {
         const nodes = [
           ...ref.current.querySelectorAll(
-            'button:not([disabled]),input,select,textarea,a[href],[tabindex="0"]',
+            'button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),a[href],summary,[tabindex="0"]',
           ),
         ].filter((el) => el.getClientRects().length);
         const first = nodes[0],

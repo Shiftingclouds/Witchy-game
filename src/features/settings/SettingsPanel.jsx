@@ -26,7 +26,8 @@ export function SettingsPanel({
         <ReadingControls reading={reading} />
         <p>
           Tap the text or choose Show full text to finish a line immediately. Scene choices wait for
-          you. Your device’s reduced-motion preference turns off text and portrait animation.
+          you. Choose larger text or Reduce motion here. Your device’s reduced-motion preference is
+          also respected.
         </p>
       </div>
       <div className="settings-section">

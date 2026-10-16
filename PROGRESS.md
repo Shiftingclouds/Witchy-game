@@ -16,3 +16,10 @@ This log records completed packages and their limits. Local commits preserve wor
 - Targeted verification: 27 engine, migration, character-context, presentation-data, and life tests passed. The new story validator verified 32 opening combinations and old-save fallback passages. Formatting passed.
 - Audit: 10,090 eligible words across the game, including 5,922 opening scene words and local choice labels. Retired chapter summaries and migration-only prose are excluded. The 10,000–15,000-word opening package remains in progress.
 - Next gate: browser integration and visual review; then additional academy-life scenes and reading controls. No release-readiness claim is implied by this intermediate save.
+
+## 16 October 2026 — Reading and browser checkpoint
+
+- Story text can be enlarged, motion can be reduced independently of the device, and preferences survive reloads. Section navigation saves a reading place. Keyboard focus moves into the selected branch; transcripts retain decisions.
+- Portraits keep stable stage positions through speaker changes; departed actors no longer push the remaining cast sideways. Background controls become inert while a dialog is open.
+- Full checks passed: 37 unit/API tests, character/story validators, formatting, production build, and offline cache generation. All 23 browser scenarios passed across the full baseline run and affected-test rerun; one initial failure was an ambiguous test selector, corrected to target the dialog.
+- Next: add a common-room visit and Saoirse’s practical introduction to bring the opening closer to its planned length. The current 10,090-word whole-game count is not the opening-package count.

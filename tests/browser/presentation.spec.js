@@ -1,3 +1,4 @@
+import { chooseRemainingScenes } from './story-helpers.js';
 import { test, expect } from '@playwright/test';
 
 async function openScene(page) {
@@ -10,7 +11,7 @@ test('one keyboard action reveals the line; a second advances without choosing o
   page,
 }) => {
   await openScene(page);
-  await page.getByLabel('Text reveal speed').selectOption('slow');
+  await page.getByRole('dialog').getByLabel('Text reveal speed').selectOption('slow');
   const box = page.locator('.speech-box');
   await expect(box).toHaveAttribute('data-beat', '0');
   await expect(box).toHaveAttribute('data-revealing', 'true');
@@ -35,7 +36,7 @@ test('authored speaker turns retain the listener and use the correct expressions
   const errors = [];
   page.on('pageerror', (e) => errors.push(e.message));
   await openScene(page);
-  await page.getByLabel('Text reveal speed').selectOption('instant');
+  await page.getByRole('dialog').getByLabel('Text reveal speed').selectOption('instant');
   for (let i = 0; i < 4; i++)
     await page.getByRole('button', { name: 'Next line', exact: true }).click();
   await expect(page.locator('.stage-actor.present')).toHaveCount(2);
@@ -70,7 +71,7 @@ test('scene bookmarks and reading preference reload offline with the same line a
   context,
 }) => {
   await openScene(page);
-  await page.getByLabel('Text reveal speed').selectOption('instant');
+  await page.getByRole('dialog').getByLabel('Text reveal speed').selectOption('instant');
   for (let i = 0; i < 5; i++)
     await page.getByRole('button', { name: 'Next line', exact: true }).click();
   await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
@@ -80,7 +81,7 @@ test('scene bookmarks and reading preference reload offline with the same line a
   await page.getByRole('button', { name: 'Play scene', exact: true }).click();
   await expect(page.locator('.speech-box')).toHaveAttribute('data-beat', '5');
   await expect(page.locator('.speech-box')).toHaveAttribute('data-revealing', 'false');
-  await expect(page.getByLabel('Text reveal speed')).toHaveValue('instant');
+  await expect(page.getByRole('dialog').getByLabel('Text reveal speed')).toHaveValue('instant');
   await expect(page.getByAltText('Rowan, laugh expression')).toBeVisible();
   await page.waitForFunction(() =>
     [...document.querySelectorAll('.performance-scene img')].every(
@@ -100,7 +101,9 @@ test('reduced motion shows full text and disables ambient and portrait animation
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await openScene(page);
   await expect(page.locator('.speech-box')).toHaveAttribute('data-revealing', 'false');
-  await expect(page.getByText('Reduced motion: text appears immediately.')).toBeVisible();
+  await expect(
+    page.getByRole('dialog').getByText('Reduced motion: text appears immediately.'),
+  ).toBeVisible();
   expect(
     await page.locator('.scene-light').evaluate((el) => getComputedStyle(el).animationName),
   ).toBe('none');
@@ -114,7 +117,7 @@ test('reduced motion shows full text and disables ambient and portrait animation
 test('two-person scene remains readable and operable on narrow phones', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 740 });
   await openScene(page);
-  await page.getByLabel('Text reveal speed').selectOption('instant');
+  await page.getByRole('dialog').getByLabel('Text reveal speed').selectOption('instant');
   for (let i = 0; i < 4; i++)
     await page.getByRole('button', { name: 'Next line', exact: true }).click();
   await expect(page.locator('.stage-actor.present')).toHaveCount(2);
@@ -127,6 +130,7 @@ test('two-person scene remains readable and operable on narrow phones', async ({
     await page.getByRole('button', { name: 'Next line', exact: true }).click();
   }
   await page.getByRole('button', { name: 'Close dialog' }).click();
+  await chooseRemainingScenes(page);
   await page.locator('.story-choices button').first().click();
   expect(
     await page.evaluate(() => JSON.parse(localStorage.getItem('lanternmere.save.book')).chapter),

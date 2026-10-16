@@ -1,3 +1,4 @@
+import { chooseRemainingScenes } from './story-helpers.js';
 import { test, expect } from '@playwright/test';
 test('world navigation, expressions, lessons, journal, and save restore', async ({ page }) => {
   const errors = [];
@@ -33,10 +34,13 @@ test('world navigation, expressions, lessons, journal, and save restore', async 
   expect(errors).toEqual([]);
   await page.screenshot({ path: 'test-results/journal-desktop.png', fullPage: true });
 });
-test('book mode reaches a complete ending through eight authored choices', async ({ page }) => {
+test('book mode reaches a complete ending through all authored scenes and eight chapter decisions', async ({
+  page,
+}) => {
   await page.goto('/');
   await page.getByRole('button', { name: 'Read the book', exact: false }).click();
   for (let i = 0; i < 8; i++) {
+    await chooseRemainingScenes(page);
     await expect(page.locator('.story-choices button')).toHaveCount(2);
     await page.locator('.story-choices button').first().click();
   }

@@ -26,12 +26,44 @@ export function SceneDecision({ beat, sceneId, game, onSelect }) {
 }
 
 export function AuthoredChapter({ game, act }) {
+  const justChosen = useRef(null),
+    root = useRef(null);
   const beats = chapterBeats(game.chapter, game),
     sceneId = chapterSceneId(game.chapter);
+  useEffect(() => {
+    if (!justChosen.current) return;
+    const index = beats.findIndex((beat) => beat.id === justChosen.current);
+    const next = beats[index + 1];
+    if (next) root.current?.querySelector(`[data-story-beat="${next.id}"]`)?.focus();
+    justChosen.current = null;
+  }, [game.storyChoices]);
+  const sections = beats.filter(
+    (beat, index) => beat.section && beat.section.id !== beats[index - 1]?.section?.id,
+  );
+  function jump(beat) {
+    root.current?.querySelector(`[data-story-beat="${beat.id}"]`)?.focus();
+    act({ type: 'bookmark', scene: sceneId, beat: beat.id });
+  }
   return (
-    <div className="authored-chapter">
+    <div className="authored-chapter" ref={root}>
+      {sections.length > 0 && (
+        <nav className="chapter-contents" aria-label="Chapter sections">
+          {sections.map((beat) => (
+            <button key={beat.id} onClick={() => jump(beat)}>
+              {beat.section.title}
+            </button>
+          ))}
+          {game.bookmark?.scene === sceneId && (
+            <button
+              onClick={() => jump(beats.find((beat) => beat.id === game.bookmark.beat) || beats[0])}
+            >
+              Resume saved place
+            </button>
+          )}
+        </nav>
+      )}
       {beats.map((beat, index) => (
-        <div key={beat.id} data-story-beat={beat.id}>
+        <div key={beat.id} data-story-beat={beat.id} tabIndex={-1}>
           {beat.section && beat.section.id !== beats[index - 1]?.section?.id && (
             <header className="story-section-heading">
               <small>{locationById[beat.section.location]?.name}</small>
@@ -49,7 +81,10 @@ export function AuthoredChapter({ game, act }) {
               beat={beat}
               sceneId={sceneId}
               game={game}
-              onSelect={(key, option) => act({ type: 'story-choice', key, option })}
+              onSelect={(key, option) => {
+                justChosen.current = beat.id;
+                act({ type: 'story-choice', key, option });
+              }}
             />
           )}
         </div>
@@ -57,3 +92,4 @@ export function AuthoredChapter({ game, act }) {
     </div>
   );
 }
+import { useEffect, useRef } from 'react';

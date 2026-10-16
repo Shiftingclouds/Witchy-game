@@ -66,7 +66,7 @@ import { DailyCard, Gathering, CharacterProfile } from './daily-life.jsx';
 import { characterLocation } from './life.mjs';
 import World from './World.jsx';
 
-import { SceneReader, useReadingPreferences } from './dialogue-presentation.jsx';
+import { SceneReader, ReadingControls, useReadingPreferences } from './dialogue-presentation.jsx';
 import './styles.css';
 import './dialogue-presentation.css';
 
@@ -359,8 +359,12 @@ function App() {
   const house = houses.find((h) => h.id === game.house),
     chapter = chapters[game.chapter];
   return (
-    <div className="app-shell">
-      <aside className={'sidebar ' + (mobileNav ? 'open' : '')}>
+    <div
+      className="app-shell"
+      data-reading-size={reading.size}
+      data-reduced-motion={reading.reduced}
+    >
+      <aside className={'sidebar ' + (mobileNav ? 'open' : '')} inert={Boolean(modal)}>
         <button className="brand" onClick={() => setGame(null)} aria-label="Back to main menu">
           <img src="/crest.svg" alt="" />
           <span>
@@ -414,7 +418,7 @@ function App() {
           </div>
         </div>
       </aside>
-      <div className="workspace">
+      <div className="workspace" inert={Boolean(modal)}>
         <header className="topbar">
           <button
             className="icon-button mobile-menu"
@@ -456,7 +460,9 @@ function App() {
             />
           )}
           {view === 'map' && <Atlas game={game} visit={visit} />}
-          {view === 'book' && <Story game={game} act={act} visit={visit} open={setModal} />}
+          {view === 'book' && (
+            <Story game={game} act={act} visit={visit} open={setModal} reading={reading} />
+          )}
           {view === 'people' && <People game={game} open={setModal} />}
           {view === 'spells' && <Grimoire game={game} visit={visit} open={setModal} act={act} />}
           {view === 'calendar' && <Calendar game={game} act={act} visit={visit} open={setModal} />}
@@ -699,7 +705,7 @@ function Atlas({ game, visit }) {
   );
 }
 
-function Story({ game, act, visit, open }) {
+function Story({ game, act, visit, open, reading }) {
   const ch = chapters[game.chapter];
   return (
     <>
@@ -756,6 +762,7 @@ function Story({ game, act, visit, open }) {
             </>
           ) : (
             <>
+              <ReadingControls reading={reading} />
               <AuthoredChapter game={game} act={act} />
               {pendingStoryChoice(game) ? (
                 <p className="story-gate">Make your decision in the scene above to continue.</p>
