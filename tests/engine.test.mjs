@@ -1,3 +1,4 @@
+import { finishSceneChoices } from './helpers/story.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
@@ -20,6 +21,7 @@ function learn(s, id) {
 function completeWorld(choice = 0) {
   let s = initialState();
   const next = () => {
+    s = finishSceneChoices(s);
     assert.equal(canAdvance(s), true, `chapter ${s.chapter + 1} should be achievable`);
     s = action(s, 'chapter', { choice: s.chapter === 7 ? choice : 0 });
   };
@@ -68,7 +70,7 @@ test('book mode completes the entire story with choices alone', () => {
     let s = initialState('book');
     for (let i = 0; i < 8; i++) {
       assert.equal(s.chapter, i);
-      s = action(s, 'chapter', { choice });
+      s = action(finishSceneChoices(s), 'chapter', { choice });
     }
     assert.ok(s.ending);
     assert.equal(s.spells.length, 3);

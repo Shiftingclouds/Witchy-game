@@ -8,7 +8,14 @@ import {
   familiars,
 } from '../content.mjs';
 import { eventById } from '../life.mjs';
-import { chapterBeats, chapterSceneId } from '../scene-beats.mjs';
+import {
+  chapterBeats,
+  chapterSceneId,
+  choiceDefinition,
+  stagedScenes,
+  choiceKey,
+} from '../scene-beats.mjs';
+import { matchesCondition } from '../story/choices.mjs';
 import { isGameDate, validateCharacterState } from '../character-memory.mjs';
 import { initialState, SAVE_VERSION } from './state.mjs';
 import { migrateSave } from './migrations.mjs';
@@ -80,6 +87,33 @@ export function parseSave(value) {
     throw new Error('Invalid journal.');
   if (typeof s.notes !== 'string' || s.notes.length > 12000) throw new Error('Invalid notes.');
   if (
+    !s.storyChoices ||
+    typeof s.storyChoices !== 'object' ||
+    Array.isArray(s.storyChoices) ||
+    Object.keys(s.storyChoices).length > 500
+  )
+    throw new Error('Invalid story decisions.');
+  for (const [key, value] of Object.entries(s.storyChoices)) {
+    const definition = choiceDefinition(key);
+    if (
+      !definition ||
+      definition.scene.chapter > s.chapter ||
+      !definition.beat.choice.options.some((option) => option.id === value) ||
+      !matchesCondition(definition.beat, s.storyChoices)
+    )
+      throw new Error('Invalid story decision.');
+  }
+  // A later choice cannot exist after an unanswered earlier decision in its scene.
+  for (const scene of stagedScenes) {
+    let unanswered = false;
+    for (const beat of scene.beats) {
+      if (!beat.choice || !matchesCondition(beat, s.storyChoices)) continue;
+      const saved = s.storyChoices[choiceKey(scene.id, beat.id)];
+      if (saved && unanswered) throw new Error('Story decisions are out of order.');
+      if (!saved) unanswered = true;
+    }
+  }
+  if (
     !s.daily ||
     s.daily.date !== s.date ||
     !Array.isArray(s.daily.checkins) ||
@@ -111,7 +145,7 @@ export function parseSave(value) {
     // Content revisions can retire a beat. Keep the player's game and restart only that scene.
     if (
       s.bookmark.scene !== chapterSceneId(s.chapter) ||
-      !chapterBeats(s.chapter).some((beat) => beat.id === s.bookmark.beat)
+      !chapterBeats(s.chapter, s).some((beat) => beat.id === s.bookmark.beat)
     )
       s = { ...s, bookmark: null };
   }

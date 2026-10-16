@@ -5,7 +5,10 @@
  * Keep adapters in sync when new story formats are added. See docs/WORD_COUNT.md.
  */
 import { endingCommon, endingVariants } from '../src/features/story/epilogue.mjs';
-import { existsSync } from 'node:fs';
+import { stagedScenes } from '../src/scene-beats.mjs';
+import { enumerateStoryPaths } from '../src/story/choices.mjs';
+const storyPaths = enumerateStoryPaths(stagedScenes);
+const reachableBeats = new Set(storyPaths.flatMap((path) => path.beats));
 import {
   chapters,
   characters,
@@ -42,9 +45,10 @@ function add(category, source, text, eligible = true) {
 }
 
 for (const [index, chapter] of chapters.entries()) {
-  chapter.text.forEach((text, i) =>
-    add('Main story narration', `content.chapters[${index}].text[${i}]`, text),
-  );
+  if (!stagedScenes.some((scene) => scene.chapter === index))
+    chapter.text.forEach((text, i) =>
+      add('Main story narration', `content.chapters[${index}].text[${i}]`, text),
+    );
   chapter.choices.forEach((choice, i) =>
     add('Main story choices', `content.chapters[${index}].choices[${i}][0]`, choice[0]),
   );
@@ -180,32 +184,25 @@ if (fallbackCharacter) {
     );
 }
 
-// The scene reader can expand a chapter while retaining its original book text.
-// Count only authored staging data, never chapterBeats()'s derived fragments.
-const stagedModuleURL = new URL('../src/scene-beats.mjs', import.meta.url);
-let stagedScenes = [];
-if (existsSync(stagedModuleURL)) {
-  ({ stagedScenes } = await import(stagedModuleURL.href));
-  if (!Array.isArray(stagedScenes))
-    throw new Error('scene-beats.mjs must export an audited stagedScenes array.');
-  const stagedChapters = new Set();
-  for (const scene of stagedScenes) {
-    if (
-      !Number.isInteger(scene.chapter) ||
-      !chapters[scene.chapter] ||
-      stagedChapters.has(scene.chapter)
-    )
-      throw new Error(`Staged scene ${scene.id} has an invalid or shadowed chapter route.`);
-    stagedChapters.add(scene.chapter);
-    if (!Array.isArray(scene.beats)) throw new Error(`Missing beats in staged scene ${scene.id}`);
-    scene.beats.forEach((beat, i) =>
-      add(
-        'Expanded illustrated scenes',
-        `scene-beats.stagedScenes.${scene.id}.beats[${i}].text`,
-        beat.text,
-      ),
+// Book and staged reader now share authored paths. Retired compact summaries do
+// not count; migration-only fallback passages are catalogued outside the target.
+for (const scene of stagedScenes) {
+  scene.beats.forEach((beat) => {
+    const eligible = reachableBeats.has(beat);
+    add(
+      eligible ? 'Authored scene prose' : 'Legacy save fallback prose',
+      `story.${scene.id}.${beat.id}.text`,
+      beat.text,
+      eligible,
     );
-  }
+    for (const option of beat.choice?.options || [])
+      add(
+        'Authored scene choices',
+        `story.${scene.id}.${beat.id}.${option.id}.label`,
+        option.label,
+        eligible,
+      );
+  });
 }
 // Add future formats explicitly, after verifying an app route uses them. Never
 // walk arbitrary JS strings, docs, generated output, or archived art sidecars.
@@ -236,33 +233,52 @@ const eligibleWords = sum(uniqueNarrative, 'words');
 const categoryRows = [...categories.values()];
 const uniqueWordCount = (strings) =>
   [...new Set(strings.map(normalize))].reduce((total, text) => total + wordCount(text), 0);
-const bookBase = chapters.flatMap((chapter) => [
-  ...chapter.text,
+const unchangedProse = chapters.flatMap((chapter, index) => [
+  ...(stagedScenes.some((scene) => scene.chapter === index) ? [] : chapter.text),
   ...chapter.choices.map((choice) => choice[0]),
 ]);
+const routeStrings = (path) =>
+  path.beats.flatMap((beat) => [
+    beat.text,
+    ...(beat.choice?.options || []).map((option) => option.label),
+  ]);
 const bookRoutes = Object.fromEntries(
-  Object.entries(endingVariants).map(([ending, text]) => [
-    ending,
-    uniqueWordCount([...bookBase, ...endingCommon, text]),
-  ]),
+  Object.entries(endingVariants).map(([ending, text]) => {
+    const counts = storyPaths.map((path) =>
+      uniqueWordCount([...unchangedProse, ...routeStrings(path), ...endingCommon, text]),
+    );
+    return [
+      ending,
+      { minimum: Math.min(...counts), maximum: Math.max(...counts), authoredPaths: counts.length },
+    ];
+  }),
 );
-const illustratedBase = chapters.flatMap((chapter, index) => [
-  ...(stagedScenes.find((scene) => scene.chapter === index)?.beats.map((beat) => beat.text) ||
-    chapter.text),
-  ...chapter.choices.map((choice) => choice[0]),
-]);
-const illustratedRoutes = Object.fromEntries(
-  Object.entries(endingVariants).map(([ending, text]) => [
-    ending,
-    uniqueWordCount([...illustratedBase, ...endingCommon, text]),
-  ]),
-);
-const chapterRows = chapters.map((chapter, index) => ({
-  chapter: index + 1,
-  title: chapter.title,
-  narrationWords: uniqueWordCount(chapter.text),
-  choiceWords: uniqueWordCount(chapter.choices.map((choice) => choice[0])),
-}));
+const illustratedRoutes = bookRoutes;
+const chapterRows = chapters.map((chapter, index) => {
+  const scene = stagedScenes.find((scene) => scene.chapter === index);
+  const beats = scene?.beats.filter((beat) => reachableBeats.has(beat));
+  const counts = storyPaths.map((path) =>
+    uniqueWordCount(
+      scene
+        ? routeStrings({ beats: path.beats.filter((beat) => scene.beats.includes(beat)) })
+        : chapter.text,
+    ),
+  );
+  const finalLabels = chapter.choices.map((choice) => choice[0]);
+  return {
+    chapter: index + 1,
+    title: chapter.title,
+    narrationWords: uniqueWordCount(beats ? beats.map((beat) => beat.text) : chapter.text),
+    choiceWords: uniqueWordCount([
+      ...finalLabels,
+      ...(beats || []).flatMap((beat) =>
+        (beat.choice?.options || []).map((option) => option.label),
+      ),
+    ]),
+    routeMinimum: Math.min(...counts) + uniqueWordCount(finalLabels),
+    routeMaximum: Math.max(...counts) + uniqueWordCount(finalLabels),
+  };
+});
 const report = {
   definition:
     'Unique normalized authored story, dialogue, choices, lessons and fixed discoveries across shipping branches; excludes descriptive/reference copy and shared fallback templates.',
@@ -293,7 +309,7 @@ const report = {
   categories: categoryRows,
   chapters: chapterRows,
   limitations: [
-    'Route counts include both visible choice labels, one ending, and no optional character conversations. Illustrated routes replace chapter prose with staged scenes where available; they do not require reading both versions.',
+    'Book and staged reader share identical selected paths. Route ranges enumerate saved local choices, their later callbacks, both visible choice labels, and one ending. Optional chats and migration-only fallbacks are excluded.',
     'Route figures measure supplied prose, not player reading behavior. They exclude interface transitions and repeated visits.',
     'The full total spans mutually exclusive choices and recurring events; it is not a one-playthrough word count.',
     'Exact whole-field reuse is deduplicated after whitespace/NFC normalization. Near-duplicates, copied passages inside longer strings and filler still require editorial review.',
@@ -322,11 +338,11 @@ if (args.has('--json')) {
     `\nExact duplicate narrative words removed: ${report.exactDuplicateNarrativeWordsRemoved}`,
   );
   console.log(
-    `First-year book route: ${Math.min(...Object.values(bookRoutes))}–${Math.max(...Object.values(bookRoutes))} unique narrative/choice words, excluding optional chats.`,
+    `First-year book route: ${Math.min(...Object.values(bookRoutes).map((route) => route.minimum))}–${Math.max(...Object.values(bookRoutes).map((route) => route.maximum))} unique narrative/choice words, excluding optional chats.`,
   );
   if (stagedScenes.length)
     console.log(
-      `Illustrated route instead of original chapter prose: ${Math.min(...Object.values(illustratedRoutes))}–${Math.max(...Object.values(illustratedRoutes))} words, excluding optional chats.`,
+      `Illustrated reader uses the same routes as the book (${storyPaths.length} authored opening combinations).`,
     );
   console.table(chapterRows);
   console.log(

@@ -3,6 +3,7 @@ import { ArrowRight, ChevronLeft } from 'lucide-react';
 import { art, chapters, characterById, portrait, locationById } from './content.mjs';
 import { sceneArt } from './engine.mjs';
 import { Button, Modal } from './components.jsx';
+import { SceneDecision } from './features/story/AuthoredChapter.jsx';
 import {
   chapterBeats,
   chapterSceneId,
@@ -10,6 +11,7 @@ import {
   textCharacters,
   textSpeeds,
   letterDelay,
+  choiceKey,
 } from './scene-beats.mjs';
 
 const preferenceKey = 'lanternmere.text-speed';
@@ -221,7 +223,7 @@ export function ConversationLine({ text, reading, speaker }) {
 
 export function SceneReader({ game, reading, act, onClose }) {
   const chapter = chapters[game.chapter],
-    beats = useMemo(() => chapterBeats(game.chapter), [game.chapter]);
+    beats = useMemo(() => chapterBeats(game.chapter, game), [game.chapter, game.storyChoices]);
   const sceneId = chapterSceneId(game.chapter);
   const [position, setPosition] = useState(() =>
       game.bookmark?.scene === sceneId
@@ -233,13 +235,15 @@ export function SceneReader({ game, reading, act, onClose }) {
     ),
     [finished, setFinished] = useState(false),
     [transcriptOpen, setTranscriptOpen] = useState(false);
-  const current = beats[position],
+  const current = beats[Math.min(position, beats.length - 1)],
     reveal = useTextReveal(
       current.text,
       { ...reading, paused: transcriptOpen },
       Boolean(game.bookmark),
     );
   const final = position === beats.length - 1;
+  const pending = Boolean(current.choice && !game.storyChoices?.[choiceKey(sceneId, current.id)]);
+  const location = current.section?.location || chapter.scene;
   function go(index) {
     setPosition(index);
     setFinished(false);
@@ -250,6 +254,7 @@ export function SceneReader({ game, reading, act, onClose }) {
       reveal.reveal();
       return;
     }
+    if (pending) return;
     if (final) {
       setFinished(true);
       return;
@@ -259,11 +264,18 @@ export function SceneReader({ game, reading, act, onClose }) {
   return (
     <Modal title={chapter.title} wide onClose={onClose}>
       <div className="scene-reader">
-        <div className="performance-scene" aria-label={locationById[chapter.scene].name}>
+        <div className="performance-scene" aria-label={locationById[location].name}>
           <img
             className="performance-background"
-            src={art(sceneArt({ ...game, location: chapter.scene }))}
-            alt={locationById[chapter.scene].description}
+            src={art(
+              sceneArt({
+                ...game,
+                location,
+                date: chapter.date,
+                period: current.section?.period ?? 0,
+              }),
+            )}
+            alt={locationById[location].description}
           />
           <div className="scene-light" aria-hidden="true" />
           <PortraitStage
@@ -279,11 +291,16 @@ export function SceneReader({ game, reading, act, onClose }) {
               {position + 1} / {beats.length}
             </span>
           </div>
+          {current.section && (
+            <div className="scene-section-title">
+              {current.section.title} · {locationById[location].name}
+            </div>
+          )}
           <button
             className="speech-text"
             aria-label={reveal.complete ? 'Continue scene' : 'Show full text'}
             onClick={next}
-            disabled={finished}
+            disabled={finished || (pending && reveal.complete)}
           >
             <RevealedText
               text={current.text}
@@ -291,6 +308,18 @@ export function SceneReader({ game, reading, act, onClose }) {
               announcement={`${current.speaker ? characterById[current.speaker].name : 'Narration'}: ${current.text}`}
             />
           </button>
+          {current.choice && reveal.complete && (
+            <SceneDecision
+              beat={current}
+              sceneId={sceneId}
+              game={game}
+              onSelect={(key, option) => {
+                act({ type: 'story-choice', key, option });
+                setPosition(position + 1);
+                setFinished(false);
+              }}
+            />
+          )}
           <div className="speech-controls">
             <button
               className="text-button"
@@ -305,8 +334,14 @@ export function SceneReader({ game, reading, act, onClose }) {
                 Return to your choices <ArrowRight size={15} />
               </Button>
             ) : (
-              <Button className="primary" onClick={next}>
-                {!reveal.complete ? 'Show full text' : final ? 'Finish scene' : 'Next line'}
+              <Button className="primary" onClick={next} disabled={pending && reveal.complete}>
+                {!reveal.complete
+                  ? 'Show full text'
+                  : pending
+                    ? 'Choose above to continue'
+                    : final
+                      ? 'Finish scene'
+                      : 'Next line'}
                 <ArrowRight size={15} />
               </Button>
             )}

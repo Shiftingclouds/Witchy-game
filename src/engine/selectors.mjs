@@ -1,6 +1,7 @@
 import { chapters, dialogues } from '../content.mjs';
 import { castDetails, supportingDialogues } from '../cast.mjs';
 import { season, holiday } from './time.mjs';
+import { pendingStoryChoice } from '../scene-beats.mjs';
 export function sceneArt(state, id = state.location) {
   if (id === 'mere')
     return season(state.date) === 'Winter'
@@ -46,7 +47,11 @@ export function requirementMet(s, id) {
   return s.clues.includes(id);
 }
 export function canAdvance(s) {
-  return !s.ending && (s.mode === 'book' || requirements(s).every((r) => r.done));
+  return (
+    !s.ending &&
+    !pendingStoryChoice(s) &&
+    (s.mode === 'book' || requirements(s).every((r) => r.done))
+  );
 }
 export function talkLine(id, topic, state) {
   const authored = supportingDialogues[id];

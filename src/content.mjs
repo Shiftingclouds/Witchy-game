@@ -373,6 +373,7 @@ const names = [
   'kit',
   'hester',
   'honoria',
+  'elian-vale',
 ];
 export const characters = names.flatMap((id, i) =>
   id

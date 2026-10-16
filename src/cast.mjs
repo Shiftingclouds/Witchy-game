@@ -2,6 +2,13 @@
 // The abandoned project's documents are not a source of canon.
 const rows = [
   [
+    'elian-vale',
+    'Firecraft and introductory charms teacher',
+    ['classroom', 'classroom', 'heartfire', 'library'],
+    'Elian teaches repeatable methods for small, useful spells and asks learners what they noticed.',
+    'Set the lantern on the mat first. Then tell me what you want it to do. We can make the instructions more elegant after we have made them useful.',
+  ],
+  [
     'rowan',
     'A warm-hearted firecraft student',
     ['lantern-hall', 'classroom', 'heartfire', 'rookhallow'],

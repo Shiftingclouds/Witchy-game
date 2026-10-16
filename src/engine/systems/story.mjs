@@ -1,5 +1,11 @@
 import { chapters } from '../../content.mjs';
-import { chapterBeats, chapterSceneId } from '../../scene-beats.mjs';
+import {
+  chapterBeats,
+  chapterSceneId,
+  choiceDefinition,
+  pendingStoryChoice,
+  choiceKey,
+} from '../../scene-beats.mjs';
 import { rememberCharacter } from '../../character-memory.mjs';
 import { reward, bond, entry } from '../effects.mjs';
 import { refreshDay } from '../time.mjs';
@@ -8,10 +14,31 @@ import { canAdvance } from '../selectors.mjs';
 export const storySystem = {
   id: 'story',
   commands: {
+    'story-choice': (s, action) => {
+      const definition = choiceDefinition(action.key);
+      if (
+        !definition ||
+        definition.scene.chapter !== s.chapter ||
+        s.ending ||
+        Object.hasOwn(s.storyChoices, action.key)
+      )
+        return false;
+      const pending = pendingStoryChoice(s);
+      const option = definition.beat.choice.options.find((option) => option.id === action.option);
+      if (!pending || choiceKey(definition.scene.id, pending.id) !== action.key || !option)
+        return false;
+      s.storyChoices[action.key] = option.id;
+      const path = chapterBeats(s.chapter, s);
+      const index = path.findIndex((beat) => beat.id === definition.beat.id);
+      s.bookmark = { scene: definition.scene.id, beat: path[index + 1]?.id || definition.beat.id };
+      for (const id of option.remember || [])
+        rememberCharacter(s, id, `scene:${action.key}:${option.id}`);
+      entry(s, option.journal);
+    },
     bookmark: (s, action) => {
       if (
         action.scene !== chapterSceneId(s.chapter) ||
-        !chapterBeats(s.chapter).some((beat) => beat.id === action.beat)
+        !chapterBeats(s.chapter, s).some((beat) => beat.id === action.beat)
       )
         return false;
       s.bookmark = { scene: action.scene, beat: action.beat };

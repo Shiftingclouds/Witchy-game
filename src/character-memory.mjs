@@ -1,5 +1,6 @@
 import { characterById, chapters, topics, expressions } from './content.mjs';
 import { eventById } from './life.mjs';
+import { choiceDefinition } from './scene-beats.mjs';
 
 export const MEMORY_LIMIT = 16;
 export const TURNS_PER_CHARACTER = 4;
@@ -20,8 +21,23 @@ export const isGameDate = (value) =>
   !Number.isNaN(Date.parse(value + 'T12:00:00Z')) &&
   new Date(value + 'T12:00:00Z').toISOString().slice(0, 10) === value;
 
+export function sceneMemoryMatches(key, choices) {
+  if (!key?.startsWith('scene:')) return true;
+  const [, scene, beat, option] = key.split(':');
+  return choices?.[`${scene}:${beat}`] === option;
+}
+
 export function memoryDefinition(characterId, key) {
   if (typeof key !== 'string' || !Object.hasOwn(characterById, characterId)) return null;
+  if (key.startsWith('scene:')) {
+    const parts = key.split(':');
+    if (parts.length !== 4) return null;
+    const definition = choiceDefinition(`${parts[1]}:${parts[2]}`);
+    const option = definition?.beat.choice.options.find((option) => option.id === parts[3]);
+    return option?.remember?.includes(characterId)
+      ? { text: option.journal, minimumChapter: definition.scene.chapter }
+      : null;
+  }
   if (key === 'checkin')
     return { text: 'We spent a quiet part of the day together.', minimumChapter: 0 };
   if (key.startsWith('talk:')) {
@@ -160,6 +176,7 @@ export function validateCharacterState(state) {
       const definition = memoryDefinition(id, memory?.key);
       if (
         !definition ||
+        !sceneMemoryMatches(memory.key, state.storyChoices) ||
         definition.minimumChapter > state.chapter + (state.ending ? 1 : 0) ||
         (memory.date !== null && (!isGameDate(memory.date) || memory.date > state.date))
       )

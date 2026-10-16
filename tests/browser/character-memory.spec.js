@@ -96,7 +96,7 @@ test('a version-two save upgrades its relationships without inventing old conver
   await page.reload();
   await page.getByRole('button', { name: 'Continue your life' }).click();
   const save = await page.evaluate(() => JSON.parse(localStorage.getItem('lanternmere.save.live')));
-  expect(save.version).toBe(3);
+  expect(save.version).toBe(4);
   expect(save.bonds.rowan).toBe(5);
   expect(save.notes).toBe('An older save.');
   expect(save.characterMemories.rowan).toEqual([{ key: 'talk:hello', date: null }]);

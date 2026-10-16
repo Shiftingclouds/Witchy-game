@@ -27,7 +27,7 @@ test('every playable identity has its own sheet and proposed identities cannot b
   assert.equal(Object.keys(characterSheets).length, characters.length);
   assert.equal(
     new Set(Object.values(characterSheets).map((sheet) => sheet.voice.cadence)).size,
-    45,
+    characters.length,
   );
   for (const c of characters) {
     const context = buildCharacterContext(c.id, {});
@@ -36,8 +36,7 @@ test('every playable identity has its own sheet and proposed identities cannot b
     assert.equal(context.relationship.level, 'Not yet met');
     assert.equal(context.relationship.romanceEnabled, false);
   }
-  for (const id of ['elian-vale', 'iona-reed', '__proto__'])
-    assert.throws(() => buildCharacterContext(id, {}));
+  for (const id of ['iona-reed', '__proto__']) assert.throws(() => buildCharacterContext(id, {}));
 });
 
 test('context filters future facts, private reactions, drafting notes, and forged memory prose', () => {
@@ -174,7 +173,7 @@ test('old saves retain bonds and recover only known topic events without inventi
     delete old.conversationSequence;
     if (version === 1) delete old.daily;
     const migrated = parseSave(old);
-    assert.equal(migrated.version, 3);
+    assert.equal(migrated.version, 4);
     assert.equal(migrated.bonds.rowan, 32);
     assert.equal(migrated.notes, old.notes);
     assert.deepEqual(migrated.characterMemories.rowan, [{ key: 'talk:hello', date: null }]);

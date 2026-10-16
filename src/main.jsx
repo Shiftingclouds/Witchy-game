@@ -1,3 +1,5 @@
+import { AuthoredChapter } from './features/story/AuthoredChapter.jsx';
+import { pendingStoryChoice } from './scene-beats.mjs';
 import { Conversation } from './features/dialogue/Conversation.jsx';
 import { SettingsPanel } from './features/settings/SettingsPanel.jsx';
 import { endingCommon, endingVariants } from './features/story/epilogue.mjs';
@@ -754,10 +756,10 @@ function Story({ game, act, visit, open }) {
             </>
           ) : (
             <>
-              {ch.text.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-              {game.mode === 'live' && !canAdvance(game) ? (
+              <AuthoredChapter game={game} act={act} />
+              {pendingStoryChoice(game) ? (
+                <p className="story-gate">Make your decision in the scene above to continue.</p>
+              ) : game.mode === 'live' && !canAdvance(game) ? (
                 <div className="story-gate">
                   <strong>
                     <Compass size={16} /> Before the next page

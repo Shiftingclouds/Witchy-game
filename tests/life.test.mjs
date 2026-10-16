@@ -1,3 +1,4 @@
+import { finishSceneChoices } from './helpers/story.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { characters, locationById, festivals } from '../src/content.mjs';
@@ -27,8 +28,8 @@ test('every character has a valid unique presence through weekday, weekend, and 
       const placements = [];
       for (const id of Object.keys(locationById))
         placements.push(...peopleHere(s, id).map((c) => c.id));
-      assert.equal(placements.length, 45);
-      assert.equal(new Set(placements).size, 45);
+      assert.equal(placements.length, characters.length);
+      assert.equal(new Set(placements).size, characters.length);
       for (const c of characters) {
         assert.ok(locationById[characterLocation(s, c.id)]);
         assert.equal(routineFor(s, c.id)[period], characterLocation(s, c.id));
@@ -143,7 +144,7 @@ test('old saves migrate without losing notes, progress, relationships, or reward
 test('waiting and crossing midnight reset daily limits, and story time jumps do the same', () => {
   let s = initialState();
   s = transition(s, { type: 'event', id: 'arrival-day', choice: 0 });
-  s = transition(s, { type: 'chapter', choice: 0 });
+  s = transition(finishSceneChoices(s), { type: 'chapter', choice: 0 });
   assert.equal(s.date, '2026-09-04');
   assert.equal(s.daily.date, s.date);
   assert.equal(s.daily.event, null);

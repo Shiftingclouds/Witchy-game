@@ -3,6 +3,7 @@ import { SAVE_VERSION } from './state.mjs';
 
 // Every migration advances one version. Keep prior migrations for exported saves.
 const migrations = new Map([
+  [3, (state) => ({ ...state, version: 4, storyChoices: {} })],
   [
     1,
     (state) => ({ ...state, version: 2, daily: { date: state.date, checkins: [], event: null } }),

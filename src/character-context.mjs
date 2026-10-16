@@ -13,6 +13,7 @@ import {
   isGameDate,
   MEMORY_LIMIT,
   TURNS_PER_CHARACTER,
+  sceneMemoryMatches,
 } from './character-memory.mjs';
 
 const publicFacts = [
@@ -40,6 +41,15 @@ export function characterInput(game, id) {
     player: { name: game.name, house: game.house, familiar: game.familiar },
     bond: game.bonds[id] || 0,
     memories: game.characterMemories?.[id] || [],
+    storyChoices: Object.fromEntries(
+      (game.characterMemories?.[id] || [])
+        .filter((memory) => memory.key.startsWith('scene:'))
+        .map((memory) => {
+          const [, scene, beat] = memory.key.split(':');
+          const key = `${scene}:${beat}`;
+          return [key, game.storyChoices?.[key]];
+        }),
+    ),
     turns: game.conversations?.[id] || [],
   };
 }
@@ -57,7 +67,12 @@ export function normalizeCharacterInput(id, input = {}) {
     seen = new Set();
   for (const memory of (Array.isArray(input.memories) ? input.memories : []).slice(-MEMORY_LIMIT)) {
     const definition = memoryDefinition(id, memory?.key);
-    if (!definition || definition.minimumChapter > achievedChapter || seen.has(memory.key))
+    if (
+      !definition ||
+      definition.minimumChapter > achievedChapter ||
+      seen.has(memory.key) ||
+      !sceneMemoryMatches(memory.key, input.storyChoices)
+    )
       continue;
     if (
       memory.date !== null &&

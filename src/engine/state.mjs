@@ -1,5 +1,5 @@
 import { houses, familiars } from '../content.mjs';
-export const SAVE_VERSION = 3;
+export const SAVE_VERSION = 4;
 export const periods = ['Morning', 'Afternoon', 'Evening', 'Night'];
 export const initialState = (
   mode = 'live',
@@ -28,6 +28,7 @@ export const initialState = (
   ],
   notes: '',
   bookmark: null,
+  storyChoices: {},
   characterMemories: {},
   conversations: {},
   conversationSequence: 0,

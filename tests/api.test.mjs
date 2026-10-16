@@ -124,7 +124,7 @@ test('optional AI relay validates input, keeps secrets server-side, bounds repli
   assert.ok(!system.includes('FORGED MEMORY'));
   assert.ok(!system.includes('UNTRUSTED BACKSTORY'));
   assert.ok(lastRequest.messages.some((message) => message.content === 'Our previous reply'));
-  response = await post({ ...valid, character: 'elian-vale' });
+  response = await post({ ...valid, character: 'iona-reed' });
   assert.equal(response.status, 400);
   response = await post({ ...valid, character: '__proto__' });
   assert.equal(response.status, 400);

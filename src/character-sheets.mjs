@@ -8,42 +8,43 @@ import sheet5 from '../characters/active/crook.json' with {type:'json'};
 import sheet6 from '../characters/active/delphine.json' with {type:'json'};
 import sheet7 from '../characters/active/dev.json' with {type:'json'};
 import sheet8 from '../characters/active/dunne.json' with {type:'json'};
-import sheet9 from '../characters/active/fitch.json' with {type:'json'};
-import sheet10 from '../characters/active/flick.json' with {type:'json'};
-import sheet11 from '../characters/active/grey.json' with {type:'json'};
-import sheet12 from '../characters/active/hamish.json' with {type:'json'};
-import sheet13 from '../characters/active/hask.json' with {type:'json'};
-import sheet14 from '../characters/active/hester.json' with {type:'json'};
-import sheet15 from '../characters/active/holloway.json' with {type:'json'};
-import sheet16 from '../characters/active/honoria.json' with {type:'json'};
-import sheet17 from '../characters/active/idris.json' with {type:'json'};
-import sheet18 from '../characters/active/imogen.json' with {type:'json'};
-import sheet19 from '../characters/active/jonty.json' with {type:'json'};
-import sheet20 from '../characters/active/jory.json' with {type:'json'};
-import sheet21 from '../characters/active/kestrel.json' with {type:'json'};
-import sheet22 from '../characters/active/kit.json' with {type:'json'};
-import sheet23 from '../characters/active/kovac.json' with {type:'json'};
-import sheet24 from '../characters/active/lettice.json' with {type:'json'};
-import sheet25 from '../characters/active/maisie.json' with {type:'json'};
-import sheet26 from '../characters/active/marcus.json' with {type:'json'};
-import sheet27 from '../characters/active/mina.json' with {type:'json'};
-import sheet28 from '../characters/active/moll.json' with {type:'json'};
-import sheet29 from '../characters/active/morrow.json' with {type:'json'};
-import sheet30 from '../characters/active/moth.json' with {type:'json'};
-import sheet31 from '../characters/active/nana.json' with {type:'json'};
-import sheet32 from '../characters/active/noor.json' with {type:'json'};
-import sheet33 from '../characters/active/odile.json' with {type:'json'};
-import sheet34 from '../characters/active/okoro.json' with {type:'json'};
-import sheet35 from '../characters/active/ombree.json' with {type:'json'};
-import sheet36 from '../characters/active/petra.json' with {type:'json'};
-import sheet37 from '../characters/active/priya.json' with {type:'json'};
-import sheet38 from '../characters/active/rhys.json' with {type:'json'};
-import sheet39 from '../characters/active/rowan.json' with {type:'json'};
-import sheet40 from '../characters/active/saoirse.json' with {type:'json'};
-import sheet41 from '../characters/active/solano.json' with {type:'json'};
-import sheet42 from '../characters/active/tick.json' with {type:'json'};
-import sheet43 from '../characters/active/toby.json' with {type:'json'};
-import sheet44 from '../characters/active/tully.json' with {type:'json'};
+import sheet9 from '../characters/active/elian-vale.json' with {type:'json'};
+import sheet10 from '../characters/active/fitch.json' with {type:'json'};
+import sheet11 from '../characters/active/flick.json' with {type:'json'};
+import sheet12 from '../characters/active/grey.json' with {type:'json'};
+import sheet13 from '../characters/active/hamish.json' with {type:'json'};
+import sheet14 from '../characters/active/hask.json' with {type:'json'};
+import sheet15 from '../characters/active/hester.json' with {type:'json'};
+import sheet16 from '../characters/active/holloway.json' with {type:'json'};
+import sheet17 from '../characters/active/honoria.json' with {type:'json'};
+import sheet18 from '../characters/active/idris.json' with {type:'json'};
+import sheet19 from '../characters/active/imogen.json' with {type:'json'};
+import sheet20 from '../characters/active/jonty.json' with {type:'json'};
+import sheet21 from '../characters/active/jory.json' with {type:'json'};
+import sheet22 from '../characters/active/kestrel.json' with {type:'json'};
+import sheet23 from '../characters/active/kit.json' with {type:'json'};
+import sheet24 from '../characters/active/kovac.json' with {type:'json'};
+import sheet25 from '../characters/active/lettice.json' with {type:'json'};
+import sheet26 from '../characters/active/maisie.json' with {type:'json'};
+import sheet27 from '../characters/active/marcus.json' with {type:'json'};
+import sheet28 from '../characters/active/mina.json' with {type:'json'};
+import sheet29 from '../characters/active/moll.json' with {type:'json'};
+import sheet30 from '../characters/active/morrow.json' with {type:'json'};
+import sheet31 from '../characters/active/moth.json' with {type:'json'};
+import sheet32 from '../characters/active/nana.json' with {type:'json'};
+import sheet33 from '../characters/active/noor.json' with {type:'json'};
+import sheet34 from '../characters/active/odile.json' with {type:'json'};
+import sheet35 from '../characters/active/okoro.json' with {type:'json'};
+import sheet36 from '../characters/active/ombree.json' with {type:'json'};
+import sheet37 from '../characters/active/petra.json' with {type:'json'};
+import sheet38 from '../characters/active/priya.json' with {type:'json'};
+import sheet39 from '../characters/active/rhys.json' with {type:'json'};
+import sheet40 from '../characters/active/rowan.json' with {type:'json'};
+import sheet41 from '../characters/active/saoirse.json' with {type:'json'};
+import sheet42 from '../characters/active/solano.json' with {type:'json'};
+import sheet43 from '../characters/active/tick.json' with {type:'json'};
+import sheet44 from '../characters/active/toby.json' with {type:'json'};
+import sheet45 from '../characters/active/tully.json' with {type:'json'};
 export const characterSheets={
   "arkwright":sheet0,
   "bassani":sheet1,
@@ -54,40 +55,41 @@ export const characterSheets={
   "delphine":sheet6,
   "dev":sheet7,
   "dunne":sheet8,
-  "fitch":sheet9,
-  "flick":sheet10,
-  "grey":sheet11,
-  "hamish":sheet12,
-  "hask":sheet13,
-  "hester":sheet14,
-  "holloway":sheet15,
-  "honoria":sheet16,
-  "idris":sheet17,
-  "imogen":sheet18,
-  "jonty":sheet19,
-  "jory":sheet20,
-  "kestrel":sheet21,
-  "kit":sheet22,
-  "kovac":sheet23,
-  "lettice":sheet24,
-  "maisie":sheet25,
-  "marcus":sheet26,
-  "mina":sheet27,
-  "moll":sheet28,
-  "morrow":sheet29,
-  "moth":sheet30,
-  "nana":sheet31,
-  "noor":sheet32,
-  "odile":sheet33,
-  "okoro":sheet34,
-  "ombree":sheet35,
-  "petra":sheet36,
-  "priya":sheet37,
-  "rhys":sheet38,
-  "rowan":sheet39,
-  "saoirse":sheet40,
-  "solano":sheet41,
-  "tick":sheet42,
-  "toby":sheet43,
-  "tully":sheet44,
+  "elian-vale":sheet9,
+  "fitch":sheet10,
+  "flick":sheet11,
+  "grey":sheet12,
+  "hamish":sheet13,
+  "hask":sheet14,
+  "hester":sheet15,
+  "holloway":sheet16,
+  "honoria":sheet17,
+  "idris":sheet18,
+  "imogen":sheet19,
+  "jonty":sheet20,
+  "jory":sheet21,
+  "kestrel":sheet22,
+  "kit":sheet23,
+  "kovac":sheet24,
+  "lettice":sheet25,
+  "maisie":sheet26,
+  "marcus":sheet27,
+  "mina":sheet28,
+  "moll":sheet29,
+  "morrow":sheet30,
+  "moth":sheet31,
+  "nana":sheet32,
+  "noor":sheet33,
+  "odile":sheet34,
+  "okoro":sheet35,
+  "ombree":sheet36,
+  "petra":sheet37,
+  "priya":sheet38,
+  "rhys":sheet39,
+  "rowan":sheet40,
+  "saoirse":sheet41,
+  "solano":sheet42,
+  "tick":sheet43,
+  "toby":sheet44,
+  "tully":sheet45,
 };
