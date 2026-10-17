@@ -14,14 +14,8 @@
   },
   "canon": {
     "summary": "Grey repairs the academy’s older stonework and knows which echoes are friendly. He always knocks before entering an empty room.",
-    "traits": [
-      "reserved",
-      "patient",
-      "observant"
-    ],
-    "values": [
-      "lasting repairs"
-    ],
+    "traits": ["reserved", "patient", "observant"],
+    "values": ["lasting repairs"],
     "motivation": "Care for old stonework and the people who use it.",
     "fear": "A familiar fault ignored until someone gets hurt.",
     "boundaries": [
@@ -34,6 +28,12 @@
         "minimumChapter": 0,
         "minimumBond": 0,
         "text": "Grey repairs the academy’s older stonework and knows which echoes are friendly. He always knocks before entering an empty room."
+      },
+      {
+        "id": "bloomtide-rehearsal",
+        "minimumChapter": 7,
+        "minimumBond": 0,
+        "text": "At Bloomtide I asked for rehearsal arrangements that allowed me to finish maintenance and hand over my work. The corrected arrangement let me attend. Ordinary repairs and lamps still need tending while the shared magical welcome is being restored."
       }
     ],
     "privateReactions": [
@@ -74,9 +74,7 @@
   },
   "presentation": {
     "portraitPrefix": "c13-grey",
-    "availableExpressions": [
-      "neutral"
-    ],
+    "availableExpressions": ["neutral", "attentive"],
     "missingArt": false,
     "direction": "Use only available expressions; neutral is the fallback. Do not invent an unseen gesture or additional portrait."
   },

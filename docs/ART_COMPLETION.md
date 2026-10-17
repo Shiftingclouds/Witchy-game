@@ -97,7 +97,7 @@ Do not commission a separate romantic illustration for every character. Use exis
 - **Gesture pilot:** `c01-rowan-offer-lantern.png`, `c02-imogen-open-book.png`, `c03-saoirse-hold-moonflower.png` — three new upper-body poses for specific actions. They are not walking sprites or lip-sync frames.
 - **Environment layer pilot:** `lantern-hall-{cleanplate,foreground,lamplight-mask}.png`, with equivalent trios for `glasshouses`, `mere-night`, and `heartfire` — twelve derived production layers. Separating foreground elements requires retouching the area behind them; the original cannot supply hidden pixels automatically. These need a layer manifest rather than appearing as new destinations.
 
-These 21 optional production assets are separate from the **132 new story images** in the original-cast queue: 110 portraits + 12 backgrounds + 6 clues + 4 milestone illustrations. These are the original planning budgets, not a current remaining-file total. Two clue slots are fulfilled by `register-study.png` and `moonflower-study.png`; the archive comparison does not justify an erasure painting. The browser collection now contains 159 images, including the new-character packet produced so far and the additional Dunne attentive expression. Produce the opening's teacher and housemates alongside the existing P1 packet as their scenes are written, in small reviewed batches. This document records asset requirements; generation order follows the user's authorized story work.
+These 21 optional production assets are separate from the **132 new story images** in the original-cast queue: 110 portraits + 12 backgrounds + 6 clues + 4 milestone illustrations. These are the original planning budgets, not a current remaining-file total. Two clue slots are fulfilled by `register-study.png` and `moonflower-study.png`; the archive comparison does not justify an erasure painting. The browser collection now contains 161 images, including the new-character packet produced so far and the additional Dunne attentive expression. Produce the opening's teacher and housemates alongside the existing P1 packet as their scenes are written, in small reviewed batches. This document records asset requirements; generation order follows the user's authorized story work.
 
 ## Acceptance criteria
 
@@ -105,7 +105,7 @@ These 21 optional production assets are separate from the **132 new story images
 2. Run rapid neutral → new expression → neutral swaps at the actual game size. Reject eye/shoulder jumps and unexplained accessory changes. Keep the original source files untouched.
 3. Associate every new image with named scene IDs and a fallback before adding it to the build. No orphan assets created just to fill a target count.
 4. Check two-person placement and a narrow phone viewport. Faces and meaningful props must remain visible above the dialogue panel.
-5. Verify cache size and offline loads. The present browser collection is about 29.9 MiB; a 132-image expansion requires measuring the new download and choosing transparent chapter packs or a clearly labelled complete offline download before assuming the existing all-at-once cache remains appropriate.
+5. Verify cache size and offline loads. The present browser collection is about 30.0 MiB; a 132-image expansion requires measuring the new download and choosing transparent chapter packs or a clearly labelled complete offline download before assuming the existing all-at-once cache remains appropriate.
 
 ## Opening packet review — 16 October 2026
 
@@ -135,3 +135,7 @@ Eight further source files are integrated: the night glasshouse, moonflower comp
 Reviewed captures: [Emberfall cast](emberfall-cast.png), [petals](emberfall-evidence.png), [petals on phone](emberfall-mobile.png), [lake](longnight-evidence.png), [lake on phone](longnight-mobile.png). Both seasonal reader tests verify offline image access and saved decisions. The browser collection is 156 images / 29.0 MiB.
 
 First Thaw now integrates daylight Candlestones, the source-consistent inscription detail and Kestrel's warm expression. The inscription lighting was corrected to match the daytime scene. Reviewed captures: [desktop](thaw-evidence.png), [phone](thaw-mobile.png). Current collection: 159 images / 29.9 MiB. Opening expression gaps and the other planned images remain in the queue.
+
+## Bloomtide packet — source review completed; browser review pending
+
+Grey attentive and Okoro warm were generated from their original portraits and used in the rehearsal. Both retain transparency and their existing identity, clothes and props. Source images were inspected; asset/scene validation and the build passed. The new browser scenario is written but unrun because automatic approval review reached the account usage limit. The collection is now 161 images / 30.0 MiB. A dim Heartfire concept exists outside the repository, unintegrated; Midsummer work is paused at the user's request.

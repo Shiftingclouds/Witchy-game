@@ -40,3 +40,10 @@ Generated with the image-generation tool and reviewed. Both portraits and the wi
 - `c08-kestrel-warm.png`: expression edit from Kestrel's original neutral portrait, with the same identity, clothing, silhouette and true transparency. Used for the supervised practical and its feedback.
 
 All three images load offline. The stone detail and largest-text phone presentation were reviewed in `docs/thaw-*.png`. Original files remain unchanged.
+
+## Bloomtide package — 16 October 2026
+
+- `c13-grey-attentive.png`: expression edit from Grey's supplied neutral portrait; preserves grey hair/stubble, dark clothing, identity and transparent silhouette.
+- `c16-okoro-warm.png`: expression edit from Okoro's supplied neutral portrait; preserves face, goggles, fleece collar, leather, whistle and transparency.
+
+Both generated source images were visually inspected and integrated into the rehearsal. Asset and scene validation and the production build passed. Browser loading/staging coverage is written but remains unrun because automatic approval review reached the account usage limit. Do not claim a completed browser visual review for this packet.

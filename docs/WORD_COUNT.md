@@ -18,22 +18,22 @@ The counter uses the actual application data and fixed engine outcomes. It does 
 
 ## Current measured length
 
-Measured on 16 October 2026, after the integrated First Thaw chapter:
+Measured on 16 October 2026, after the integrated Bloomtide chapter:
 
 | Measure                                                                                                               |         Words |
 | --------------------------------------------------------------------------------------------------------------------- | ------------: |
-| Eligible unique story, dialogue, choices, lessons, discoveries                                                        |        32,163 |
-| Progress toward 250,000                                                                                               |        12.87% |
-| Remaining to the minimum                                                                                              |       217,837 |
-| Catalogued reference copy, generic fallbacks, and migration-only prose, excluded                                      |         2,975 |
-| Expanded scenes and local decisions, across branches                                                                  |        28,033 |
-| Longnight alone, including local choices                                                                              |         4,284 |
+| Eligible unique story, dialogue, choices, lessons, discoveries                                                        |        35,379 |
+| Progress toward 250,000                                                                                               |        14.15% |
+| Remaining to the minimum                                                                                              |       214,621 |
+| Catalogued reference copy, generic fallbacks, and migration-only prose, excluded                                      |         3,127 |
+| Expanded scenes and local decisions, across branches                                                                  |        31,328 |
+| Bloomtide alone, including local choices                                                                              |         3,295 |
 | One opening path, excluding the two chapter-exit choice pairs                                                         |   8,960–9,034 |
-| Complete current Book / illustrated route, including visible choices and one ending, excluding optional conversations | 24,102–24,308 |
+| Complete current Book / illustrated route, including visible choices and one ending, excluding optional conversations | 26,897–27,125 |
 
-Both reading presentations consume **the same selected path**. Retired compact summaries for chapters 1–6 no longer count. Nineteen local decisions produce 524,288 combinations with explicit rejoins and later callbacks. Exact dependency-state auditing currently needs at most 32 simultaneous states; it does not add mutually exclusive outcomes to a single-playthrough figure.
+Both reading presentations consume **the same selected path**. Retired compact summaries for chapters 1–7 no longer count. Twenty-two local decisions produce 4,194,304 combinations with explicit rejoins and later callbacks. Exact dependency-state auditing currently needs at most 32 simultaneous states; it does not add mutually exclusive outcomes to a single-playthrough figure.
 
-The opening contains 13 sections; register, Emberfall, Longnight and First Thaw add six each, for 37 total. Chapters 7–8 still have compact prototype narration (79–90 words each) and require full expansion. The prior Longnight checkpoint contained 28,448 eligible whole-game words. Completing these packages does not complete the first-year manuscript.
+The opening contains 13 sections; register, Emberfall, Longnight, First Thaw and Bloomtide add six each, for 43 total. Chapter 8 still has compact prototype narration (90 words) and requires full expansion. The prior First Thaw checkpoint contained 32,163 eligible whole-game words. Completing these packages does not complete the first-year manuscript.
 
 ## What qualifies toward 250,000
 

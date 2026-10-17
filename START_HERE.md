@@ -2,6 +2,10 @@
 
 A web game built around the uploaded artwork. The new story and implementation do not depend on the abandoned project's README, JSON sidecars, rules, or lore. Lanternmere is a working title.
 
+## Find the story and development handoff
+
+Read **[CLAUDE_START_HERE.md](CLAUDE_START_HERE.md)** for the exact stopping point. **[STORY.md](STORY.md)** links the actual prose, exported from the playable sources into [story/](story/). The canonical chapters live in `src/story/`; they are substantially longer than the retired summaries in `src/content.mjs`.
+
 ## Run
 
 Requirements: Node 22.6+ (tested with Node 24.19), npm, Python 3, and Pillow. The cloud environment already has these.
@@ -28,7 +32,7 @@ The production server uses port 4173, configurable through `PORT`. Run behind HT
 
 - **Live the world:** visit 37 illustrated locations, meet the cast, learn and cast three spells, uncover clues, gain house points, and complete an eight-chapter first-year mystery with two endings.
 - **Read the book:** the same complete arc told through illustrated scenes and choices, with progression handled by the story. It has a separate save.
-- **Play scene:** open a chapter's scene view from The story. The opening and register investigation have 19 scene sections, ten saved local decisions, and later callbacks. Book and scene views share the same text. The remaining five chapters currently reuse the compact prototype prose. Previous, transcript, and saved bookmarks support returning to a line without replaying rewards.
+- **Play scene:** open a chapter's scene view from The story. Chapters 1–7 have 43 scene sections, 22 saved local decisions, and later callbacks. Book and scene views share the same text. Chapter 8 still uses compact prototype prose. Previous, transcript, and saved bookmarks support returning to a line without replaying rewards.
 - Prepared and optional AI conversations also use text reveal and expression transitions. Set reveal speed, story text size, and motion preferences in Settings, the book, or the scene reader. Tap Show full text to reveal immediately. Both device and in-game reduced-motion preferences are respected.
 - All 47 characters have distinct profiles, introductions, and daily routines. Rowan, Imogen, and Saoirse have authored conversations and matching expression changes using the supplied art; 14 supporting characters also have fuller conversations, with more personal replies as trust grows. Individual character arcs remain future content.
 - Find people through their profiles and the People page as they move between four periods of the day. Some routines change at weekends, and gathering hosts stay at their event. Spend time with each friend once per day to keep building the relationship beyond the introductory conversations.
@@ -38,9 +42,9 @@ The production server uses port 4173, configurable through `PORT`. Run behind HT
 - The register chapter includes a new evidence close-up, Dunne’s attentive expression, and Maelin’s neutral/reflective portraits, derived from the supplied visual style. All four work offline.
 - All 142 originals are accessible through Settings → Art collection, including variants and the contemporary environments that are not part of the academy route.
 
-The map is clickable; exploration travels between illustrated scenes rather than using a walking avatar. Character routines follow game time in four daily periods. Minigames, romance routes, procedural quests, and multiple years are not implemented. The opening and register investigation are expanded; the remaining five chapters retain the compact playable arc while production continues.
+The map is clickable; exploration travels between illustrated scenes rather than using a walking avatar. Character routines follow game time in four daily periods. Minigames, romance routes, procedural quests, and multiple years are not implemented. Chapters 1–7 are expanded; chapter 8 and the epilogues retain compact playable prose while production continues.
 
-The current brief is [OBJECTIVES.md](OBJECTIVES.md). The new production target is at least **250,000 unique authored story words**, with a 270,000-word scene/quest budget. The current measured corpus is **20,004 words**, not a full novel-length game. The roadmap, cast roles, and proposed art queue are in `docs/STORY_EXPANSION.md`, `docs/ART_COMPLETION.md`, and `docs/PRESENTATION_DIRECTION.md`. Use `npm run count:words` for a reproducible audit; the methodology and playthrough-length distinction are in `docs/WORD_COUNT.md`.
+The current brief is [OBJECTIVES.md](OBJECTIVES.md). The new production target is at least **250,000 unique authored story words**, with a 270,000-word scene/quest budget. The current measured corpus is **35,379 words**, not a full novel-length game. The roadmap, cast roles, and proposed art queue are in `docs/STORY_EXPANSION.md`, `docs/ART_COMPLETION.md`, and `docs/PRESENTATION_DIRECTION.md`. Use `npm run count:words` for a reproducible audit; the methodology and playthrough-length distinction are in `docs/WORD_COUNT.md`.
 
 The original 45 characters are a starting cast. `docs/CAST_EXPANSION.md` proposes 15 additions and maps faculty, classes, house companions, complete Glimmer squads, shopkeepers, and further relationship candidates. Elian Vale and Maelin Quill are now playable, with portraits, teaching scenes, dialogue, and routines. The other 13 additions remain planned.
 
@@ -48,7 +52,7 @@ All 60 identities now have individual [character sheets](characters/README.md). 
 
 ## Offline and saves
 
-On the first production visit, the service worker caches the entire app and approximately 27 MiB of artwork. Wait for **Saved for offline** before disconnecting. Both modes then reload and play without network access. Offline caching is intentionally disabled during Vite development.
+On the first production visit, the service worker caches the entire app and approximately 30 MiB of artwork. Wait for **Saved for offline** before disconnecting. Both modes then reload and play without network access. Offline caching is intentionally disabled during Vite development.
 
 Progress is automatically stored in this browser. Export it in Settings or Journal to move devices or keep a backup. Browser storage eviction, clearing site data, or private browsing can remove local progress. Imported saves are validated; the current save is backed up to `lanternmere.import-backup` before replacement. Version-one, version-two, and version-three saves automatically upgrade to version four, preserving progress, friendship scores, and notes. Recoverable topic memories carry an unknown date; missing old conversation history and story decisions stay unknown. Scene decisions and confirmed introductions persist into character context. No account or cloud sync is configured.
 

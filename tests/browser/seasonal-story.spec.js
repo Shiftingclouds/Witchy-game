@@ -207,3 +207,43 @@ test('First Thaw pays off winter research, presents the inscription offline, and
   expect(save.storyChoices['thaw:rejoining']).toBe('space');
   await context.setOffline(false);
 });
+
+test('Bloomtide stages the rehearsal and saves a private conversation and a concrete lantern plan', async ({
+  page,
+}) => {
+  await reachBookChapter(page, 6, 1);
+  await playSection(page, 'An invitation that can be accepted');
+  const dialog = page.getByRole('dialog');
+  for (let step = 0; step < 5; step++)
+    await dialog.getByRole('button', { name: 'Next line', exact: true }).click();
+  await expect(dialog.getByAltText('Okoro, warm expression')).toBeVisible();
+  await expect(dialog.getByAltText('Grey, attentive expression')).toBeVisible();
+  await page.waitForFunction(() =>
+    [...document.querySelectorAll('.performance-scene img')].every(
+      (img) => img.complete && img.naturalWidth > 0,
+    ),
+  );
+  await expect(page.locator('.toast')).toHaveCount(0, { timeout: 8000 });
+  await page.screenshot({
+    path: '/tmp/lanternmere-review/bloom-rehearsal.png',
+    animations: 'disabled',
+  });
+  await dialog.getByRole('button', { name: 'Close dialog', exact: true }).click();
+  await page.locator('[data-choice="bloom:rehearsal-plan"] button').nth(1).click();
+  await expect(page.locator('[data-story-beat="relay-payoff"]')).toBeVisible();
+  await page.locator('[data-choice="bloom:rowan-support"] button').nth(1).click();
+  await expect(page.locator('[data-story-beat="stay-company"]')).toBeVisible();
+  await page.locator('[data-choice="bloom:lantern-use"] button').first().click();
+  const save = await page.evaluate(() => JSON.parse(localStorage.getItem('lanternmere.save.book')));
+  expect(save.storyChoices['bloom:lantern-use']).toBe('welcome');
+  expect(save.characterMemories.rowan.map((memory) => memory.key)).toContain(
+    'scene:bloom:rowan-support:stay',
+  );
+  expect(save.characterMemories.saoirse.map((memory) => memory.key)).not.toContain(
+    'scene:bloom:rowan-support:stay',
+  );
+  await page.locator('.story-choices button').first().click();
+  await expect(
+    page.getByRole('heading', { name: 'A home made of light', exact: true }),
+  ).toBeVisible();
+});

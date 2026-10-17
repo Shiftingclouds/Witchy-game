@@ -2,6 +2,10 @@ export const choiceKey = (scene, beat) => `${scene}:${beat}`;
 
 // Explicit story introductions; stage positions and portrait presence grant nothing.
 export const introductions = {
+  'bloom:rehearsal-plan': {
+    people: ['okoro', 'grey', 'noor'],
+    text: 'We met while arranging the Bloomtide rehearsal around the people who wished to attend and the work they needed to finish.',
+  },
   'thaw:reading-method': {
     people: ['kestrel', 'imogen'],
     text: 'We compared the spring approach and weathered surface at the Candlestones before a supervised reading.',

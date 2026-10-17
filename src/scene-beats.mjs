@@ -6,6 +6,7 @@ import { registerScene } from './story/register.mjs';
 import { emberfallScene } from './story/emberfall.mjs';
 import { longnightScene } from './story/longnight.mjs';
 import { thawScene } from './story/thaw.mjs';
+import { bloomScene } from './story/bloom.mjs';
 import { resolveBeats, choiceKey } from './story/choices.mjs';
 const beat = (text, speaker = null, actors = []) => ({ text, speaker, actors });
 export const stagedScenes = [
@@ -15,6 +16,7 @@ export const stagedScenes = [
   emberfallScene,
   longnightScene,
   thawScene,
+  bloomScene,
 ];
 export { choiceKey } from './story/choices.mjs';
 export const chapterSceneId = (index) =>

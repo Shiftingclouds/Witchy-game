@@ -333,3 +333,31 @@ test('First Thaw pays off both winter tasks and keeps practical outcomes and lat
   assert.ok(chapterBeats(5, old).some((beat) => beat.id === 'winter-task-legacy'));
   assert.equal(transition(finishSceneChoices(old), { type: 'chapter', choice: 0 }).chapter, 6);
 });
+
+test('Bloomtide keeps private support private and records the actual rehearsal and lantern plans', () => {
+  let state = initialState('book');
+  for (let chapter = 0; chapter < 6; chapter++)
+    state = transition(finishSceneChoices(state, 1), { type: 'chapter', choice: 0 });
+  state = choose(state, 'bloom:rehearsal-plan', 'relay');
+  assert.equal(state.bonds.okoro, 1);
+  state = choose(state, 'bloom:rowan-support', 'stay');
+  state = choose(state, 'bloom:lantern-use', 'welcome');
+  state = parseSave(state);
+  assert.ok(chapterBeats(6, state).some((beat) => beat.id === 'relay-payoff'));
+  assert.ok(!chapterBeats(6, state).some((beat) => beat.id === 'earlier-payoff'));
+  for (const id of ['imogen', 'saoirse', 'okoro', 'grey']) {
+    const context = buildCharacterContext(id, characterInput(state, id));
+    assert.ok(
+      !context.relationship.sharedMemories.some((memory) => memory.key.includes('rowan-support')),
+    );
+  }
+  const rowan = buildCharacterContext('rowan', characterInput(state, 'rowan'));
+  assert.ok(
+    rowan.relationship.sharedMemories.some(
+      (memory) => memory.key === 'scene:bloom:rowan-support:stay',
+    ),
+  );
+  state = transition(state, { type: 'chapter', choice: 0 });
+  assert.equal(state.chapter, 7);
+  assert.ok(['rowan', 'imogen', 'saoirse'].every((id) => state.bonds[id] >= 10));
+});
