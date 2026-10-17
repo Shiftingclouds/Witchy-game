@@ -1,0 +1,23 @@
+/* Lamplight base layer: element defaults drawn only from --lm-* tokens (set by applyReadingMode). */
+html[data-reading-mode] {
+  color-scheme: dark;
+  background: var(--lm-bg);
+  color: var(--lm-ink);
+}
+html[data-reading-mode='parchment'] {
+  color-scheme: light;
+}
+html[data-reading-mode] body {
+  background: var(--lm-bg);
+  color: var(--lm-ink);
+  font-family: var(--lm-read);
+}
+html[data-reading-mode] :is(h1, h2, h3, h4) {
+  font-family: var(--lm-display);
+  font-weight: 500;
+  color: var(--lm-ink);
+}
+html[data-reading-mode] :focus-visible {
+  outline: 2px solid var(--lm-focus);
+  outline-offset: 2px;
+}

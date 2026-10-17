@@ -68,8 +68,11 @@ import { characterLocation } from './life.mjs';
 import World from './World.jsx';
 
 import { SceneReader, ReadingControls, useReadingPreferences } from './dialogue-presentation.jsx';
+import './theme/fonts.mjs';
 import './styles.css';
 import './dialogue-presentation.css';
+import './theme/lamplight.css';
+import { applyReadingMode } from './theme/apply.mjs';
 
 const saves = createSaveRepository(platformStorage());
 function load(mode) {
@@ -209,6 +212,7 @@ function Landing({ onStart }) {
 
 function App() {
   const reading = useReadingPreferences();
+  useEffect(() => applyReadingMode(reading.mode), [reading.mode]);
   const [game, setGame] = useState(null),
     [view, setView] = useState('world'),
     [modal, setModal] = useState(null),

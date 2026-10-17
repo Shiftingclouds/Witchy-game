@@ -1,0 +1,125 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          ".superpowers/brainstorm/535-1792221575/content/opening-mood.html"
+        ],
+        "createdAt": "2026-10-17T07:20:47.398Z",
+        "reason": "Owner explicitly asked this session for glowing very warm gold accents and sparkles; throwaway brainstorm mockup"
+      },
+      {
+        "rule": "radial-halo",
+        "value": "*",
+        "files": [
+          ".superpowers/brainstorm/535-1792221575/content/opening-live.html"
+        ],
+        "createdAt": "2026-10-17T07:33:49.657Z",
+        "reason": "Gradients depict literal scene light: drifting lake mist and the lantern's glow over the painting; owner asked for warm gold lighting"
+      },
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          ".superpowers/brainstorm/535-1792221575/content/opening-live.html"
+        ],
+        "createdAt": "2026-10-17T07:33:49.843Z",
+        "reason": "Owner explicitly asked this session for glowing warm gold sparkles; glow is the lantern light source in the painting"
+      },
+      {
+        "rule": "wide-tracking",
+        "value": "*",
+        "files": [
+          ".superpowers/brainstorm/535-1792221575/content/opening-live.html"
+        ],
+        "createdAt": "2026-10-17T07:33:50.001Z",
+        "reason": "Only applied to short small-caps labels (kicker, press-any-key), the sanctioned use"
+      },
+      {
+        "rule": "radial-halo",
+        "value": "*",
+        "files": [
+          ".superpowers/brainstorm/535-1792221575/content/opening-live-v6.html"
+        ],
+        "createdAt": "2026-10-17T07:46:02.008Z",
+        "reason": "Same sanctioned exceptions as opening-live.html: lantern light, lake mist and owner-requested sunset backlight/gold glow; wide tracking only on short small-caps labels"
+      },
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          ".superpowers/brainstorm/535-1792221575/content/opening-live-v6.html"
+        ],
+        "createdAt": "2026-10-17T07:46:02.173Z",
+        "reason": "Same sanctioned exceptions as opening-live.html: lantern light, lake mist and owner-requested sunset backlight/gold glow; wide tracking only on short small-caps labels"
+      },
+      {
+        "rule": "wide-tracking",
+        "value": "*",
+        "files": [
+          ".superpowers/brainstorm/535-1792221575/content/opening-live-v6.html"
+        ],
+        "createdAt": "2026-10-17T07:46:02.350Z",
+        "reason": "Same sanctioned exceptions as opening-live.html: lantern light, lake mist and owner-requested sunset backlight/gold glow; wide tracking only on short small-caps labels"
+      },
+      {
+        "rule": "radial-halo",
+        "value": "*",
+        "files": [
+          ".superpowers/brainstorm/535-1792221575/content/opening-live-v8.html"
+        ],
+        "createdAt": "2026-10-17T07:47:52.748Z",
+        "reason": "Same sanctioned exceptions as opening-live.html: lantern light, mist and owner-requested sunset/gold glow; tracking only on short small-caps labels"
+      },
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          ".superpowers/brainstorm/535-1792221575/content/opening-live-v8.html"
+        ],
+        "createdAt": "2026-10-17T07:47:52.910Z",
+        "reason": "Same sanctioned exceptions as opening-live.html: lantern light, mist and owner-requested sunset/gold glow; tracking only on short small-caps labels"
+      },
+      {
+        "rule": "wide-tracking",
+        "value": "*",
+        "files": [
+          ".superpowers/brainstorm/535-1792221575/content/opening-live-v8.html"
+        ],
+        "createdAt": "2026-10-17T07:47:53.077Z",
+        "reason": "Same sanctioned exceptions as opening-live.html: lantern light, mist and owner-requested sunset/gold glow; tracking only on short small-caps labels"
+      },
+      {
+        "rule": "radial-halo",
+        "value": "*",
+        "files": [
+          ".superpowers/brainstorm/535-1792221575/content/opening-live-v20.html"
+        ],
+        "createdAt": "2026-10-17T08:09:40.885Z",
+        "reason": "Owner explicitly asked for glow behind the whole title and a softly glowing line; lantern light and mist are scene light; tracking only on short small-caps labels"
+      },
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          ".superpowers/brainstorm/535-1792221575/content/opening-live-v20.html"
+        ],
+        "createdAt": "2026-10-17T08:09:41.070Z",
+        "reason": "Owner explicitly asked for glow behind the whole title and a softly glowing line; lantern light and mist are scene light; tracking only on short small-caps labels"
+      },
+      {
+        "rule": "wide-tracking",
+        "value": "*",
+        "files": [
+          ".superpowers/brainstorm/535-1792221575/content/opening-live-v20.html"
+        ],
+        "createdAt": "2026-10-17T08:09:41.243Z",
+        "reason": "Owner explicitly asked for glow behind the whole title and a softly glowing line; lantern light and mist are scene light; tracking only on short small-caps labels"
+      }
+    ]
+  }
+}

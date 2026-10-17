@@ -13,6 +13,7 @@ import {
   letterDelay,
   choiceKey,
 } from './scene-beats.mjs';
+import { READING_MODES } from './theme/tokens.mjs';
 
 const readPreference = (key, allowed, fallback) => {
   try {
@@ -39,6 +40,9 @@ export function useReadingPreferences() {
   const [motion, setMotionState] = useState(() =>
     readPreference('motion', ['system', 'reduce'], 'system'),
   );
+  const [mode, setModeState] = useState(() =>
+    readPreference('reading-mode', READING_MODES, 'lamplight'),
+  );
   const [systemReduced, setSystemReduced] = useState(
     () => matchMedia('(prefers-reduced-motion: reduce)').matches,
   );
@@ -57,16 +61,30 @@ export function useReadingPreferences() {
     speed,
     size,
     motion,
+    mode,
     reduced: systemReduced || motion === 'reduce',
     setSpeed: setter('text-speed', Object.keys(textSpeeds), setSpeedState),
     setSize: setter('text-size', ['standard', 'large', 'largest'], setSizeState),
     setMotion: setter('motion', ['system', 'reduce'], setMotionState),
+    setMode: setter('reading-mode', READING_MODES, setModeState),
   };
 }
 
 export function ReadingControls({ reading }) {
   return (
     <div className="reading-controls">
+      <label>
+        Reading mode{' '}
+        <select
+          aria-label="Reading mode"
+          value={reading.mode}
+          onChange={(e) => reading.setMode(e.target.value)}
+        >
+          <option value="lamplight">Lamplight</option>
+          <option value="parchment">Parchment</option>
+          <option value="night">Night</option>
+        </select>
+      </label>
       <label>
         Text reveal{' '}
         <select

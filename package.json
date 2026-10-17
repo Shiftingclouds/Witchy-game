@@ -25,6 +25,9 @@
     "test:electron": "npm run build && playwright test -c playwright.electron.config.js"
   },
   "dependencies": {
+    "@fontsource/cormorant-garamond": "^5.3.0",
+    "@fontsource/cormorant-sc": "^5.3.0",
+    "@fontsource/eb-garamond": "^5.3.0",
     "lucide-react": "^0.468.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
@@ -34,6 +37,7 @@
     "@vitejs/plugin-react": "^4.4.1",
     "electron": "^44.9.0",
     "electron-builder": "^26.15.3",
+    "pngjs": "^7.0.0",
     "prettier": "^3.9.10",
     "vite": "^6.3.5"
   },
