@@ -33,13 +33,13 @@ export function SceneDecision({ beat, sceneId, game, onSelect }) {
 }
 
 /** Guided Tale: answer an authored decision in your own words; Claude maps it to an authored option. */
-function OwnWords(props) {
+export function OwnWords(props) {
   // Once the decision is made there is nothing to answer, and no turn should stay alive.
   if (props.game.storyChoices?.[choiceKey(props.sceneId, props.beat.id)]) return null;
   return <OwnWordsInput {...props} />;
 }
 
-function OwnWordsInput({ game, act, beat, sceneId, sceneText, reduced }) {
+function OwnWordsInput({ game, act, beat, sceneId, sceneText, reduced, onBridge }) {
   const [text, setText] = useState('');
   const turn = useTurn({ game, act, mode: 'guided' });
   const key = choiceKey(sceneId, beat.id);
@@ -51,7 +51,10 @@ function OwnWordsInput({ game, act, beat, sceneId, sceneText, reduced }) {
     const reply = await turn.send(words, {
       focus: { sectionId: beat.section?.id, sceneText },
       decision,
-      onReply: (r) => act({ type: 'story-choice', key, option: r.mappedOption }),
+      onReply: (r) => {
+        onBridge?.(r);
+        act({ type: 'story-choice', key, option: r.mappedOption });
+      },
     });
     if (reply) setText('');
   };

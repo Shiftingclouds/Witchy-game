@@ -37,7 +37,7 @@
   position: relative;
   height: 230px;
   padding: 26px 40px 46px;
-  background: color-mix(in srgb, var(--lm-backing) 88%, transparent);
+  background: rgb(from var(--lm-backing) r g b / 0.92);
   border: 1px solid color-mix(in srgb, var(--lm-gold) 55%, transparent);
   border-radius: 2px;
   outline: 1px solid color-mix(in srgb, var(--lm-gold) 22%, transparent);
@@ -62,7 +62,7 @@
   padding: 0;
   text-align: left;
   font-family: var(--lm-read);
-  font-size: 21px;
+  font-size: var(--reading-font-size, 21px);
   line-height: 1.55;
   color: var(--lm-ink);
   background: none;
@@ -109,15 +109,23 @@
 .scene-next:focus-visible {
   color: var(--lm-gold-bright);
 }
-.dialogue-box .scene-decision {
+.scene-choice-panel {
   position: absolute;
   left: 40px;
   right: 40px;
-  bottom: 230px;
-  margin: 0 0 12px;
+  bottom: calc(100% + 12px);
+  z-index: 3;
+  display: grid;
+  gap: 10px;
   padding: 14px 16px;
-  background: color-mix(in srgb, var(--lm-backing) 92%, transparent);
+  background: color-mix(in srgb, var(--lm-backing) 95%, transparent);
   border: 1px solid color-mix(in srgb, var(--lm-gold) 45%, transparent);
+  outline: 1px solid color-mix(in srgb, var(--lm-gold) 18%, transparent);
+  outline-offset: -5px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+}
+.scene-choice-panel .scene-decision {
+  margin: 0;
 }
 
 /* Portrait frames: gold double hairline, the place inside, a name plate beneath the window. */
@@ -226,9 +234,6 @@
   .dialogue-box {
     height: 200px;
     padding-top: 20px;
-  }
-  .dialogue-box .scene-decision {
-    bottom: 200px;
   }
   .portrait-frame.box {
     width: 160px;
@@ -349,4 +354,36 @@
 .portrait-frame.conversation {
   width: 100%;
   box-shadow: none;
+}
+
+/* Guided Tale: linger between sections, and answer decisions in your own words. */
+.scene-interlude {
+  position: absolute;
+  bottom: calc(100% + 14px);
+  left: 0;
+  right: 0;
+  max-height: 58vh;
+  overflow-y: auto;
+  z-index: 2;
+}
+.scene-interlude .interlude {
+  margin: 0;
+}
+.scene-interlude .interlude-invite {
+  border: 0;
+  justify-items: end;
+}
+.scene-interlude .ai-scene {
+  background: color-mix(in srgb, var(--lm-backing) 96%, transparent);
+}
+
+.scene-history .history-choice {
+  font-style: italic;
+  color: var(--lm-gold);
+}
+
+/* A close-up (a clue, a page of evidence) is shown whole, like a document on the table. */
+.scene-painting.detail {
+  object-fit: contain;
+  background: radial-gradient(ellipse at center, #2a1810, #120905);
 }

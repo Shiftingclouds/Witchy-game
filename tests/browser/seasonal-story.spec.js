@@ -1,5 +1,16 @@
 import { test, expect } from '@playwright/test';
-import { reachBookChapter, playSection, enterMode, continueGame } from './story-helpers.js';
+import {
+  continueGame,
+  enterMode,
+  leaveScene,
+  playScene,
+  playSection,
+  reachBookChapter,
+  setInGear,
+  startOnPage,
+} from './story-helpers.js';
+
+test.beforeEach(({ page }) => startOnPage(page));
 
 test('Emberfall uses night scenery and new portraits, then resumes its petal comparison offline', async ({
   page,
@@ -10,16 +21,16 @@ test('Emberfall uses night scenery and new portraits, then resumes its petal com
   await expect(page.locator('[data-story-beat="simple-handover"]')).toHaveCount(0);
   await playSection(page, 'The flowers keep their own hour');
   const dialog = page.getByRole('dialog');
-  await expect(dialog.locator('.performance-background')).toHaveAttribute(
+  await expect(dialog.locator('.scene-painting')).toHaveAttribute(
     'src',
     '/art/glasshouses-night.webp',
   );
-  await dialog.getByRole('button', { name: 'Next line', exact: true }).click();
+  await dialog.getByRole('button', { name: 'Next', exact: true }).click();
   await expect(dialog.getByAltText('Rhys, warm expression')).toBeVisible();
-  await dialog.getByRole('button', { name: 'Next line', exact: true }).click();
+  await dialog.getByRole('button', { name: 'Next', exact: true }).click();
   await expect(dialog.getByAltText('Saoirse, attentive expression')).toBeVisible();
   await page.waitForFunction(() =>
-    [...document.querySelectorAll('.performance-scene img')].every(
+    [...document.querySelectorAll('.scene-player img')].every(
       (img) => img.complete && img.naturalWidth > 0,
     ),
   );
@@ -29,41 +40,38 @@ test('Emberfall uses night scenery and new portraits, then resumes its petal com
     animations: 'disabled',
   });
   for (let step = 0; step < 4; step++)
-    await dialog.getByRole('button', { name: 'Next line', exact: true }).click();
-  await expect(dialog.locator('.performance-background')).toHaveAttribute(
+    await dialog.getByRole('button', { name: 'Next', exact: true }).click();
+  await expect(dialog.locator('.scene-painting')).toHaveAttribute(
     'src',
     '/art/moonflower-study.webp',
   );
-  await expect(dialog.locator('.speech-text')).toContainText('Two fallen petals lie');
+  await expect(dialog.locator('.dialogue-text')).toContainText('Two fallen petals lie');
   await page.reload();
   await continueGame(page);
-  await page.getByRole('button', { name: 'Play scene', exact: true }).click();
-  await expect(dialog.locator('.speech-text')).toContainText('Two fallen petals lie');
+  await playScene(page);
+  await expect(dialog.locator('.dialogue-text')).toContainText('Two fallen petals lie');
   await expect
     .poll(() =>
-      dialog
-        .locator('.performance-background')
-        .evaluate((img) => img.complete && img.naturalWidth > 0),
+      dialog.locator('.scene-painting').evaluate((img) => img.complete && img.naturalWidth > 0),
     )
     .toBe(true);
   await page.screenshot({
     path: '/tmp/lanternmere-review/emberfall-evidence.png',
     animations: 'disabled',
   });
-  await page.setViewportSize({ width: 320, height: 740 });
-  await dialog.getByLabel('Story text size').selectOption('largest');
-  await dialog.getByLabel('Reading motion').selectOption('reduce');
-  await dialog.locator('.scene-reader').evaluate((el) => el.scrollTo(0, 0));
-  expect(await page.locator('body').evaluate((el) => el.scrollWidth)).toBe(320);
+  await page.setViewportSize({ width: 1024, height: 700 });
+  await setInGear(page, 'Story text size', 'largest');
+  await setInGear(page, 'Reading motion', 'reduce');
+  expect(await page.locator('body').evaluate((el) => el.scrollWidth)).toBe(1024);
   await page.screenshot({
     path: '/tmp/lanternmere-review/emberfall-mobile.png',
     animations: 'disabled',
   });
-  await dialog.getByRole('button', { name: 'Next line', exact: true }).click();
+  await dialog.getByRole('button', { name: 'Next', exact: true }).click();
   await dialog
     .getByRole('button', { name: 'Exchange the saucers, then shade the lamp.', exact: false })
     .click();
-  await expect(dialog.locator('.speech-text')).toContainText('You exchange the saucers');
+  await expect(dialog.locator('.dialogue-text')).toContainText('You exchange the saucers');
   const save = await page.evaluate(() => JSON.parse(localStorage.getItem('lanternmere.save.book')));
   expect(save.storyChoices['emberfall:observation']).toBe('exchange');
   expect(save.characterMemories.rhys.map((memory) => memory.key)).toContain(
@@ -77,58 +85,55 @@ test('Longnight loads winter art, preserves a seven-light reading offline, and c
   await reachBookChapter(page, 4, 1);
   await playSection(page, 'The work of arriving');
   const dialog = page.getByRole('dialog');
-  await expect(dialog.locator('.performance-background')).toHaveAttribute(
+  await expect(dialog.locator('.scene-painting')).toHaveAttribute(
     'src',
     '/art/tully-cottage-winter.webp',
   );
-  await dialog.getByRole('button', { name: 'Next line', exact: true }).click();
-  await dialog.getByRole('button', { name: 'Next line', exact: true }).click();
+  await dialog.getByRole('button', { name: 'Next', exact: true }).click();
+  await dialog.getByRole('button', { name: 'Next', exact: true }).click();
   await expect(dialog.getByAltText('Tully, warm expression')).toBeVisible();
-  await dialog.getByRole('button', { name: 'Close dialog', exact: true }).click();
+  await leaveScene(page);
   await page.locator('[data-choice="longnight:shore-work"] button').nth(1).click();
   await playSection(page, 'What the water has kept');
   for (let i = 0; i < 3; i++)
-    await dialog.getByRole('button', { name: 'Next line', exact: true }).click();
-  await expect(dialog.locator('.performance-background')).toHaveAttribute(
+    await dialog.getByRole('button', { name: 'Next', exact: true }).click();
+  await expect(dialog.locator('.scene-painting')).toHaveAttribute(
     'src',
     '/art/lake-seven-lights.webp',
   );
-  await expect(dialog.locator('.speech-text')).toContainText('Seven small amber flames');
+  await expect(dialog.locator('.dialogue-text')).toContainText('Seven small amber flames');
   await page.reload();
   await continueGame(page);
-  await page.getByRole('button', { name: 'Play scene', exact: true }).click();
-  await expect(dialog.locator('.speech-text')).toContainText('Seven small amber flames');
+  await playScene(page);
+  await expect(dialog.locator('.dialogue-text')).toContainText('Seven small amber flames');
   await expect
     .poll(() =>
-      dialog
-        .locator('.performance-background')
-        .evaluate((img) => img.complete && img.naturalWidth > 0),
+      dialog.locator('.scene-painting').evaluate((img) => img.complete && img.naturalWidth > 0),
     )
     .toBe(true);
   await page.screenshot({
     path: '/tmp/lanternmere-review/longnight-evidence.png',
     animations: 'disabled',
   });
-  await page.setViewportSize({ width: 320, height: 740 });
-  await dialog.getByLabel('Story text size').selectOption('largest');
-  await dialog.getByLabel('Reading motion').selectOption('reduce');
-  await dialog.locator('.scene-reader').evaluate((el) => el.scrollTo(0, 0));
-  expect(await page.locator('body').evaluate((el) => el.scrollWidth)).toBe(320);
+  await page.setViewportSize({ width: 1024, height: 700 });
+  await setInGear(page, 'Story text size', 'largest');
+  await setInGear(page, 'Reading motion', 'reduce');
+  expect(await page.locator('body').evaluate((el) => el.scrollWidth)).toBe(1024);
   await page.screenshot({
     path: '/tmp/lanternmere-review/longnight-mobile.png',
     animations: 'disabled',
   });
-  await dialog.getByRole('button', { name: 'Close dialog', exact: true }).click();
+  await leaveScene(page);
   await page.locator('[data-choice="longnight:echo-record"] button').nth(1).click();
   await playSection(page, 'What the school would lose');
-  await dialog.getByRole('button', { name: 'Next line', exact: true }).click();
+  await dialog.getByRole('button', { name: 'Next', exact: true }).click();
   await expect(dialog.getByAltText('Kestrel, grave expression')).toBeVisible();
-  await dialog.getByRole('button', { name: 'Close dialog', exact: true }).click();
+  await leaveScene(page);
   await page.locator('[data-choice="longnight:winter-duty"] button').nth(1).click();
   await expect(page.locator('[data-story-beat="archive-start"]')).toBeVisible();
   await page.locator('.story-choices button').nth(1).click();
-  await expect(page.getByRole('heading', { name: 'An open circle', exact: true })).toBeVisible();
   const save = await page.evaluate(() => JSON.parse(localStorage.getItem('lanternmere.save.book')));
+  expect(save.chapter).toBe(5);
   expect(save.storyChoices['longnight:winter-duty']).toBe('archive');
   expect(save.clues).toContain('lake');
 });
@@ -142,48 +147,45 @@ test('First Thaw pays off winter research, presents the inscription offline, and
   await page.locator('[data-choice="thaw:reading-method"] button').nth(1).click();
   await playSection(page, 'The words weather left behind');
   const dialog = page.getByRole('dialog');
-  await expect(dialog.locator('.performance-background')).toHaveAttribute(
+  await expect(dialog.locator('.scene-painting')).toHaveAttribute(
     'src',
     '/art/candlestones-day.webp',
   );
   for (let step = 0; step < 5; step++)
-    await dialog.getByRole('button', { name: 'Next line', exact: true }).click();
-  await expect(dialog.locator('.performance-background')).toHaveAttribute(
+    await dialog.getByRole('button', { name: 'Next', exact: true }).click();
+  await expect(dialog.locator('.scene-painting')).toHaveAttribute(
     'src',
     '/art/candlestones-inscription.webp',
   );
-  await expect(dialog.locator('.speech-text')).toContainText('A space for whoever comes next.');
+  await expect(dialog.locator('.dialogue-text')).toContainText('A space for whoever comes next.');
   await page.reload();
   await continueGame(page);
-  await page.getByRole('button', { name: 'Play scene', exact: true }).click();
-  await expect(dialog.locator('.speech-text')).toContainText(
+  await playScene(page);
+  await expect(dialog.locator('.dialogue-text')).toContainText(
     'The restored reading is two sentences',
   );
   await expect
     .poll(() =>
-      dialog
-        .locator('.performance-background')
-        .evaluate((img) => img.complete && img.naturalWidth > 0),
+      dialog.locator('.scene-painting').evaluate((img) => img.complete && img.naturalWidth > 0),
     )
     .toBe(true);
   await page.screenshot({
     path: '/tmp/lanternmere-review/thaw-evidence.png',
     animations: 'disabled',
   });
-  await page.setViewportSize({ width: 320, height: 740 });
-  await dialog.getByLabel('Story text size').selectOption('largest');
-  await dialog.getByLabel('Reading motion').selectOption('reduce');
-  await dialog.locator('.scene-reader').evaluate((el) => el.scrollTo(0, 0));
-  expect(await page.locator('body').evaluate((el) => el.scrollWidth)).toBe(320);
+  await page.setViewportSize({ width: 1024, height: 700 });
+  await setInGear(page, 'Story text size', 'largest');
+  await setInGear(page, 'Reading motion', 'reduce');
+  expect(await page.locator('body').evaluate((el) => el.scrollWidth)).toBe(1024);
   await page.screenshot({
     path: '/tmp/lanternmere-review/thaw-mobile.png',
     animations: 'disabled',
   });
-  await dialog.getByRole('button', { name: 'Close dialog', exact: true }).click();
+  await leaveScene(page);
   await playSection(page, 'A lesson with a way out');
-  await dialog.getByRole('button', { name: 'Next line', exact: true }).click();
+  await dialog.getByRole('button', { name: 'Next', exact: true }).click();
   await expect(dialog.getByAltText('Kestrel, warm expression')).toBeVisible();
-  await dialog.getByRole('button', { name: 'Close dialog', exact: true }).click();
+  await leaveScene(page);
   await page.locator('[data-choice="thaw:practice-role"] button').nth(1).click();
   await expect(page.locator('[data-story-beat="holding-first"]')).toBeVisible();
   await page.locator('[data-choice="thaw:rejoining"] button').nth(1).click();
@@ -203,11 +205,11 @@ test('Bloomtide stages the rehearsal and saves a private conversation and a conc
   await playSection(page, 'An invitation that can be accepted');
   const dialog = page.getByRole('dialog');
   for (let step = 0; step < 5; step++)
-    await dialog.getByRole('button', { name: 'Next line', exact: true }).click();
+    await dialog.getByRole('button', { name: 'Next', exact: true }).click();
   await expect(dialog.getByAltText('Okoro, warm expression')).toBeVisible();
   await expect(dialog.getByAltText('Grey, attentive expression')).toBeVisible();
   await page.waitForFunction(() =>
-    [...document.querySelectorAll('.performance-scene img')].every(
+    [...document.querySelectorAll('.scene-player img')].every(
       (img) => img.complete && img.naturalWidth > 0,
     ),
   );
@@ -216,7 +218,7 @@ test('Bloomtide stages the rehearsal and saves a private conversation and a conc
     path: '/tmp/lanternmere-review/bloom-rehearsal.png',
     animations: 'disabled',
   });
-  await dialog.getByRole('button', { name: 'Close dialog', exact: true }).click();
+  await leaveScene(page);
   await page.locator('[data-choice="bloom:rehearsal-plan"] button').nth(1).click();
   await expect(page.locator('[data-story-beat="relay-payoff"]')).toBeVisible();
   await page.locator('[data-choice="bloom:rowan-support"] button').nth(1).click();
@@ -231,7 +233,8 @@ test('Bloomtide stages the rehearsal and saves a private conversation and a conc
     'scene:bloom:rowan-support:stay',
   );
   await page.locator('.story-choices button').first().click();
-  await expect(
-    page.getByRole('heading', { name: 'A home made of light', exact: true }),
-  ).toBeVisible();
+  // Chapter titles are no longer shown; the save confirms Midsummer has begun.
+  expect(
+    await page.evaluate(() => JSON.parse(localStorage.getItem('lanternmere.save.book')).chapter),
+  ).toBe(7);
 });

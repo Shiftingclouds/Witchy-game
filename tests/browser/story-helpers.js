@@ -38,11 +38,60 @@ export async function reachBookChapter(page, chapter, optionIndex = 0) {
   }
 }
 
+/** Start every test in this file on the book page rather than the full-screen scene. */
+export const startOnPage = (page) =>
+  page.addInitScript(() => {
+    if (!sessionStorage.getItem('lanternmere.test-page-set')) {
+      localStorage.setItem('lanternmere.scene-view', 'page');
+      sessionStorage.setItem('lanternmere.test-page-set', '1');
+    }
+  });
+
+/** From the book page: play the current chapter as a full-screen scene, text appearing at once. */
+export async function playScene(page) {
+  const back = page.getByRole('button', { name: /Return to the scene/ });
+  if (await back.count()) await back.click();
+  else if (!(await page.locator('.scene-player').count())) {
+    await page.getByRole('button', { name: 'Scene settings' }).click();
+    await page.getByRole('button', { name: 'Play as a scene' }).click();
+  }
+  await page.locator('.scene-player').waitFor();
+  await page.getByRole('button', { name: 'Scene settings' }).click();
+  await page.getByLabel('Text reveal speed').selectOption('instant');
+  await page.getByRole('button', { name: 'Scene settings' }).click();
+}
+
+/** Leave the scene for the book page. */
+export async function leaveScene(page) {
+  await page.getByRole('button', { name: 'Leave the scene' }).click();
+  await page.locator('.scene-player').waitFor({ state: 'detached' });
+}
+
+/** Open the scene at the first line of the section with this title (as a saved place would). */
 export async function playSection(page, title) {
-  await page
-    .getByRole('navigation', { name: 'Chapter sections' })
-    .getByRole('button', { name: title, exact: true })
-    .click();
-  await page.getByRole('button', { name: 'Play scene', exact: true }).click();
-  await page.getByRole('dialog').getByLabel('Text reveal speed').selectOption('instant');
+  const { chapterBeats, chapterSceneId } = await import('../../src/scene-beats.mjs');
+  const save = await page.evaluate(() => {
+    const mode = localStorage.getItem('lanternmere.last-mode') || 'book';
+    return { mode, game: JSON.parse(localStorage.getItem('lanternmere.save.' + mode)) };
+  });
+  const beat = chapterBeats(save.game.chapter, save.game).find((b) => b.section?.title === title);
+  if (!beat) throw new Error('No section titled ' + title);
+  await page.evaluate(
+    ({ mode, bookmark }) => {
+      const game = JSON.parse(localStorage.getItem('lanternmere.save.' + mode));
+      game.bookmark = bookmark;
+      localStorage.setItem('lanternmere.save.' + mode, JSON.stringify(game));
+    },
+    { mode: save.mode, bookmark: { scene: chapterSceneId(save.game.chapter), beat: beat.id } },
+  );
+  await page.reload();
+  await continueGame(page);
+  await playScene(page);
+}
+
+/** Change a reading setting through the gear (in the scene or on the page). */
+export async function setInGear(page, label, value) {
+  await page.getByRole('button', { name: 'Scene settings' }).click();
+  await page.getByLabel(label).selectOption(value);
+  await page.getByRole('button', { name: 'Scene settings' }).click();
 }

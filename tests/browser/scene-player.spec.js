@@ -47,9 +47,13 @@ test('the first press finishes a line, the second moves on, and no line is ever 
 
 test('mashing Enter never skips past a decision', async ({ page }) => {
   await openScene(page);
-  for (let i = 0; i < 120 && !(await page.locator('.dialogue-box .scene-decision').count()); i++)
+  for (
+    let i = 0;
+    i < 120 && !(await page.locator('.scene-choice-panel .scene-decision').count());
+    i++
+  )
     await page.keyboard.press('Enter');
-  await expect(page.locator('.dialogue-box .scene-decision')).toBeVisible();
+  await expect(page.locator('.scene-choice-panel .scene-decision')).toBeVisible();
   const at = await lineId(page);
   for (let i = 0; i < 6; i++) await page.keyboard.press('Enter');
   expect(await lineId(page)).toBe(at);

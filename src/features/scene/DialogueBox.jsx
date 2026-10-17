@@ -14,6 +14,7 @@ export function DialogueBox({
   canBack,
   nextDisabled,
   framed = false,
+  textRef,
   children,
 }) {
   return (
@@ -25,6 +26,7 @@ export function DialogueBox({
       {speakerName && <div className="name-plate">{speakerName}</div>}
       <button
         type="button"
+        ref={textRef}
         className="dialogue-text"
         onClick={onNext}
         aria-label={reveal.complete ? 'Continue' : 'Show the whole line'}

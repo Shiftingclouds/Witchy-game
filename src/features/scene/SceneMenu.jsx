@@ -49,6 +49,7 @@ export function SceneMenu({ reading, lines = null, view = 'play', onSwitchView }
               <li key={line.id}>
                 {line.speaker && <strong>{characterById[line.speaker].name}</strong>}
                 <p>{line.speaker ? spoken(line.text) : line.text}</p>
+                {line.chosen && <p className="history-choice">Your choice: {line.chosen}</p>}
               </li>
             ))}
           </ol>

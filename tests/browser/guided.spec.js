@@ -60,15 +60,28 @@ async function startGuided(page) {
   await page.keyboard.press('Enter');
   await page.getByRole('button', { name: /The Guided Tale/ }).click();
   await page.getByRole('button', { name: /Begin your story/ }).click();
-  await page.locator('.app-shell').waitFor();
+  await page.locator('.app-shell, .scene-player').first().waitFor();
 }
 const authored = (page) => page.locator('[data-story-beat] > p').allTextContents();
+const asPage = (page) =>
+  page.addInitScript(() => localStorage.setItem('lanternmere.scene-view', 'page'));
+/** In the scene player, press on until a decision is offered (choosing the first option at others). */
+async function toDecision(page) {
+  for (let i = 0; i < 150; i++) {
+    if (await page.locator('.scene-choice-panel textarea, .scene-choice-panel input').count())
+      return;
+    await page.keyboard.press('Enter');
+  }
+  throw new Error('no decision reached');
+}
 
 test('the authored story reads word for word as it does in the Book', async ({ page, browser }) => {
   await withBridge(page);
+  await asPage(page);
   await startGuided(page);
   const guidedText = (await authored(page)).slice(0, 8);
   const other = await browser.newPage();
+  await asPage(other);
   await other.goto('/');
   await enterMode(other, 'book');
   expect((await authored(other)).slice(0, 8)).toEqual(guidedText);
@@ -79,39 +92,41 @@ test('answering in your own words chooses an authored option and bridges to it',
   page,
 }) => {
   await withBridge(page);
+  await page.addInitScript(() => localStorage.setItem('lanternmere.text-speed', 'instant'));
   await startGuided(page);
-  const decision = page.locator('.scene-decision').first();
+  await toDecision(page);
+  const decision = page.locator('.scene-choice-panel .scene-decision');
   const key = await decision.getAttribute('data-choice');
-  const firstOption = decision.locator('button').first();
-  await page
-    .getByRole('textbox', { name: 'Or answer in your own words' })
-    .fill('I sit with Rowan and listen.');
-  await page.getByRole('textbox', { name: 'Or answer in your own words' }).press('Enter');
-  await expect(firstOption).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.getByText('You make your choice in your own way.')).toBeVisible();
+  const box = page.getByRole('textbox', { name: 'Or answer in your own words' });
+  await box.fill('I sit with Rowan and listen.');
+  await box.press('Enter');
+  await expect(page.locator('.dialogue-text')).toContainText(
+    'You make your choice in your own way.',
+  );
   const save = await page.evaluate(() =>
     JSON.parse(localStorage.getItem('lanternmere.save.guided')),
   );
   expect(save.storyChoices[key]).toBeTruthy();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('.dialogue-text')).not.toContainText('You make your choice');
 });
 
 test('between sections there is room to linger, and the story always continues', async ({
   page,
 }) => {
   await withBridge(page);
+  await page.addInitScript(() => localStorage.setItem('lanternmere.text-speed', 'instant'));
   await startGuided(page);
-  for (let i = 0; i < 12 && !(await page.locator('.interlude').count()); i++) {
-    const pending = page.locator('.authored-chapter .scene-decision button:not([disabled])');
-    if (!(await pending.count())) break;
-    await pending.first().click();
+  for (let i = 0; i < 200 && !(await page.locator('.scene-interlude').count()); i++) {
+    const option = page.locator('.scene-choice-panel .scene-decision button:not([disabled])');
+    if (await option.count()) await option.first().click();
+    else await page.keyboard.press('Enter');
   }
-  const interlude = page.locator('.interlude').first();
-  await expect(interlude).toBeVisible();
+  const interlude = page.locator('.scene-interlude');
   await interlude.getByRole('button', { name: /Linger here a while/ }).click();
-  await interlude
-    .getByRole('textbox', { name: 'What do you do?' })
-    .fill('I stay by the fire a little longer.');
-  await interlude.getByRole('textbox', { name: 'What do you do?' }).press('Enter');
+  const box = interlude.getByRole('textbox', { name: 'What do you do?' });
+  await box.fill('I stay by the fire a little longer.');
+  await box.press('Enter');
   await expect(interlude.getByText('Stay a minute. The story will keep.')).toBeVisible();
   await interlude.getByRole('button', { name: 'Continue the story' }).click();
   await expect(interlude.getByRole('textbox')).toHaveCount(0);
@@ -128,6 +143,7 @@ test('the "make your decision" hint is plain text, not a drop-capped paragraph',
   page,
 }) => {
   await withBridge(page);
+  await asPage(page);
   await startGuided(page);
   const sizes = await page
     .locator('.story-gate')

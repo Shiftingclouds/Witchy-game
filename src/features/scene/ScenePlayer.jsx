@@ -2,13 +2,14 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { chapters, characterById, locationById, art } from '../../content.mjs';
 import { sceneArt } from '../../engine.mjs';
 import { chapterBeats, chapterSceneId, choiceKey, spoken } from '../../scene-beats.mjs';
-import { SceneDecision } from '../story/AuthoredChapter.jsx';
+import { SceneDecision, OwnWords } from '../story/AuthoredChapter.jsx';
+import { Interlude } from '../ai/Interlude.jsx';
 import { DialogueBox } from './DialogueBox.jsx';
 import { useLineReveal } from './useLineReveal.mjs';
 import { PortraitFrame } from './PortraitFrame.jsx';
 import { SceneMenu } from './SceneMenu.jsx';
 import { X } from 'lucide-react';
-import { emotionOf, sectionCast, staging, timeOfDay } from './stage.mjs';
+import { emotionOf, endsSection, sectionCast, sectionText, staging, timeOfDay } from './stage.mjs';
 import './scene.css';
 
 /** The story, played full screen one line at a time over the place it happens in. */
@@ -23,8 +24,12 @@ export function ScenePlayer({ game, act, reading, onExit, onReadAsPage }) {
   });
   const index = Math.min(position, beats.length - 1);
   const current = beats[index];
-  const text = current.speaker ? spoken(current.text) : current.text;
-  const reveal = useLineReveal(current.id, text, reading);
+  // After a typed answer, Claude's short bridge into the chosen option plays before the story goes on.
+  const [bridge, setBridge] = useState(null);
+  const bridgeLine = bridge?.lines[bridge.at];
+  const lineId = bridgeLine ? `bridge-${current.id}-${bridge.at}` : current.id;
+  const text = bridgeLine ? bridgeLine.text : current.speaker ? spoken(current.text) : current.text;
+  const reveal = useLineReveal(lineId, text, reading);
   const pending = Boolean(current.choice && !game.storyChoices?.[choiceKey(sceneId, current.id)]);
   const location = current.section?.location || chapter.scene;
   const period = current.section?.period ?? 0;
@@ -36,7 +41,8 @@ export function ScenePlayer({ game, act, reading, onExit, onReadAsPage }) {
     sceneArt({ ...game, location, date: current.section?.date || chapter.date, period }),
   );
   const cast = sectionCast(beats, index);
-  const stage = staging(cast);
+  // A close-up illustration (a clue, a page of evidence) is shown on its own, without frames over it.
+  const stage = current.illustration ? 'none' : staging(cast);
   const time = timeOfDay(period);
   const frame = (id, size) => (
     <PortraitFrame
@@ -53,7 +59,14 @@ export function ScenePlayer({ game, act, reading, onExit, onReadAsPage }) {
 
   // Each key press acts on the newest state exactly once, however fast the presses come.
   const live = useRef(null);
-  live.current = { index, reveal, pending, last: index >= beats.length - 1 };
+  const textRef = useRef(null);
+  const choiceMade = useRef(false);
+  useEffect(() => {
+    if (!choiceMade.current) return;
+    choiceMade.current = false;
+    textRef.current?.focus();
+  }, [game.storyChoices]);
+  live.current = { index, reveal, pending, last: index >= beats.length - 1, bridge };
   function go(to) {
     setPosition(to);
     act({ type: 'bookmark', scene: sceneId, beat: beats[to].id });
@@ -61,6 +74,15 @@ export function ScenePlayer({ game, act, reading, onExit, onReadAsPage }) {
   function next() {
     const s = live.current;
     if (!s.reveal.complete) return s.reveal.reveal();
+    if (s.bridge) {
+      if (s.bridge.at < s.bridge.lines.length - 1) setBridge({ ...s.bridge, at: s.bridge.at + 1 });
+      else {
+        setBridge(null);
+        if (!s.last) go(s.index + 1);
+      }
+      live.current = { ...s, bridge: null, reveal: { complete: false, reveal() {} } };
+      return;
+    }
     if (s.pending) return;
     if (s.last) return onExit?.();
     live.current = { ...s, index: s.index + 1, reveal: { complete: false, reveal() {} } };
@@ -93,7 +115,7 @@ export function ScenePlayer({ game, act, reading, onExit, onReadAsPage }) {
       aria-label={locationById[location].name}
     >
       <img
-        className="scene-painting"
+        className={'scene-painting' + (current.illustration ? ' detail' : '')}
         src={painting}
         alt={current.illustration?.alt || locationById[location].description}
       />
@@ -108,19 +130,41 @@ export function ScenePlayer({ game, act, reading, onExit, onReadAsPage }) {
       </button>
       <SceneMenu
         reading={reading}
-        lines={beats.slice(0, index + 1)}
+        lines={beats.slice(0, index + 1).map((b) => {
+          const picked = b.choice && game.storyChoices?.[choiceKey(sceneId, b.id)];
+          return picked
+            ? { ...b, chosen: b.choice.options.find((o) => o.id === picked)?.label }
+            : b;
+        })}
         view="play"
         onSwitchView={onReadAsPage}
       />
       <div className={`scene-stage ${stage}`}>
+        {game.mode === 'guided' && reveal.complete && endsSection(beats, index) && (
+          <div className="scene-interlude">
+            <Interlude
+              key={current.section.id}
+              game={game}
+              act={act}
+              reduced={reading.reduced}
+              sectionId={current.section.id}
+              sceneText={sectionText(beats, current.section.id, (id) => characterById[id].name)}
+            />
+          </div>
+        )}
         {stage === 'group' && (
           <div className="stage-row">{cast.map((id) => frame(id, 'stage'))}</div>
         )}
         <DialogueBox
           framed={stage === 'single'}
-          lineId={current.id}
+          lineId={lineId}
+          textRef={textRef}
           speakerName={
-            current.speaker && stage !== 'group' ? characterById[current.speaker].name : null
+            bridgeLine
+              ? bridgeLine.name
+              : current.speaker && stage !== 'group'
+                ? characterById[current.speaker].name
+                : null
           }
           text={text}
           reveal={reveal}
@@ -130,16 +174,42 @@ export function ScenePlayer({ game, act, reading, onExit, onReadAsPage }) {
           nextDisabled={pending && reveal.complete}
         >
           {stage === 'single' && frame(cast[0], 'box')}
-          {current.choice && reveal.complete && (
-            <SceneDecision
-              beat={current}
-              sceneId={sceneId}
-              game={game}
-              onSelect={(key, option) => {
-                act({ type: 'story-choice', key, option });
-                setPosition(index + 1);
-              }}
-            />
+          {current.choice && reveal.complete && !bridge && (
+            <div className="scene-choice-panel">
+              <SceneDecision
+                beat={current}
+                sceneId={sceneId}
+                game={game}
+                onSelect={(key, option) => {
+                  choiceMade.current = true;
+                  act({ type: 'story-choice', key, option });
+                  setPosition(index + 1);
+                }}
+              />
+              {pending && game.mode === 'guided' && (
+                <OwnWords
+                  game={game}
+                  act={act}
+                  beat={current}
+                  sceneId={sceneId}
+                  sceneText={sectionText(
+                    beats,
+                    current.section?.id,
+                    (id) => characterById[id].name,
+                  )}
+                  reduced={reading.reduced}
+                  onBridge={(reply) =>
+                    setBridge({
+                      at: 0,
+                      lines: reply.beats.map((b) => ({
+                        name: b.speaker ? characterById[b.speaker]?.name || null : null,
+                        text: b.speaker ? spoken(b.text) : b.text,
+                      })),
+                    })
+                  }
+                />
+              )}
+            </div>
           )}
         </DialogueBox>
       </div>

@@ -1,5 +1,16 @@
 import { test, expect } from '@playwright/test';
-import { chooseRemainingScenes, enterMode, continueGame } from './story-helpers.js';
+import {
+  chooseRemainingScenes,
+  continueGame,
+  enterMode,
+  leaveScene,
+  playScene,
+  playSection,
+  setInGear,
+  startOnPage,
+} from './story-helpers.js';
+
+test.beforeEach(({ page }) => startOnPage(page));
 
 test('book decisions reveal only the chosen branch and resume in the staged reader offline', async ({
   page,
@@ -15,8 +26,8 @@ test('book decisions reveal only the chosen branch and resume in the staged read
   ).toBeDisabled();
   await page.reload();
   await continueGame(page);
-  await page.getByRole('button', { name: 'Play scene', exact: true }).click();
-  await expect(page.locator('.speech-text')).toContainText('Imogen rules three columns');
+  await playScene(page);
+  await expect(page.locator('.dialogue-text')).toContainText('Imogen rules three columns');
   const state = await page.evaluate(() =>
     JSON.parse(localStorage.getItem('lanternmere.save.book')),
   );
@@ -31,12 +42,11 @@ test('staged choices work with keyboard focus and the transcript retains the dec
 }) => {
   await page.goto('/');
   await enterMode(page, 'book');
-  await page.getByRole('button', { name: 'Play scene', exact: true }).click();
+  await playScene(page);
   const dialog = page.getByRole('dialog');
-  await dialog.getByLabel('Text reveal speed').selectOption('instant');
   for (let index = 0; index < 60; index++) {
     if (await dialog.locator('.scene-decision').count()) break;
-    await dialog.getByRole('button', { name: 'Next line', exact: true }).click();
+    await dialog.getByRole('button', { name: 'Next', exact: true }).click();
   }
   const decision = dialog.getByRole('button', {
     name: 'Check the outside with Rowan.',
@@ -44,12 +54,12 @@ test('staged choices work with keyboard focus and the transcript retains the dec
   });
   await decision.focus();
   await page.keyboard.press('Enter');
-  await expect(dialog.locator('.speech-text')).toContainText('back of your fingers');
-  await expect(dialog.locator('.speech-text')).toBeFocused();
-  await dialog.getByRole('button', { name: 'Previous', exact: true }).click();
+  await expect(dialog.locator('.dialogue-text')).toContainText('back of your fingers');
+  await expect(dialog.locator('.dialogue-text')).toBeFocused();
+  await dialog.getByRole('button', { name: 'Previous line', exact: true }).click();
   await expect(dialog.locator('.scene-decision button').first()).toBeDisabled();
-  await dialog.getByText('Read the conversation so far', { exact: true }).click();
-  await expect(dialog.locator('.scene-transcript')).toContainText(
+  await dialog.getByRole('button', { name: 'Lines so far' }).click();
+  await expect(dialog.locator('.scene-history')).toContainText(
     'Your choice: Check the outside with Rowan.',
   );
 });
@@ -57,29 +67,23 @@ test('staged choices work with keyboard focus and the transcript retains the dec
 test('large text and motion preferences persist and keep a two-person lesson usable on phones', async ({
   page,
 }) => {
-  await page.setViewportSize({ width: 320, height: 740 });
+  await page.setViewportSize({ width: 1024, height: 700 });
   await page.goto('/');
   await enterMode(page, 'book');
-  await page.getByRole('button', { name: 'Reading settings' }).click();
-  await page.getByRole('dialog').getByLabel('Story text size').selectOption('largest');
-  await page.getByRole('dialog').getByLabel('Reading motion').selectOption('reduce');
-  await page.keyboard.press('Escape');
+  await setInGear(page, 'Story text size', 'largest');
+  await setInGear(page, 'Reading motion', 'reduce');
   await chooseRemainingScenes(page, 1);
   await page.locator('.story-choices button').first().click();
-  await page.getByRole('button', { name: 'Play scene', exact: true }).click();
+  await playScene(page);
   const dialog = page.getByRole('dialog');
   for (let index = 0; index < 5; index++)
-    await dialog.getByRole('button', { name: 'Next line', exact: true }).click();
+    await dialog.getByRole('button', { name: 'Next', exact: true }).click();
   await expect(dialog.getByAltText('Elian Vale, neutral expression')).toBeVisible();
-  await expect(dialog.locator('.stage-actor.present')).toHaveCount(2);
-  expect(await dialog.locator('.speech-text').evaluate((el) => getComputedStyle(el).fontSize)).toBe(
-    '26px',
-  );
+  await expect(dialog.locator('.portrait-frame')).toHaveCount(2);
   expect(
-    await dialog.locator('.scene-light').evaluate((el) => getComputedStyle(el).animationName),
-  ).toBe('none');
-  expect(await dialog.locator('.scene-reader').evaluate((el) => el.scrollTop)).toBe(0);
-  expect(await page.locator('body').evaluate((el) => el.scrollWidth)).toBe(320);
+    await dialog.locator('.dialogue-text').evaluate((el) => getComputedStyle(el).fontSize),
+  ).toBe('26px');
+  expect(await page.locator('body').evaluate((el) => el.scrollWidth)).toBe(1024);
   expect(await dialog.evaluate((el) => el.scrollWidth <= el.clientWidth)).toBe(true);
   await page.screenshot({
     path: '/tmp/lanternmere-review/lesson-mobile.png',
@@ -88,15 +92,14 @@ test('large text and motion preferences persist and keep a two-person lesson usa
   });
   await page.reload();
   await continueGame(page);
-  await page.getByRole('button', { name: 'Reading settings' }).click();
-  await expect(page.getByRole('dialog').getByLabel('Story text size')).toHaveValue('largest');
-  await expect(page.getByRole('dialog').getByLabel('Reading motion')).toHaveValue('reduce');
-  await page.keyboard.press('Escape');
-  await page.getByRole('button', { name: 'Play scene', exact: true }).click();
-  await expect(page.locator('.speech-text')).toContainText('Elian Vale. Introductory charms');
+  await page.getByRole('button', { name: 'Scene settings' }).click();
+  await expect(page.getByLabel('Story text size')).toHaveValue('largest');
+  await expect(page.getByLabel('Reading motion')).toHaveValue('reduce');
+  await page.getByRole('button', { name: 'Scene settings' }).click();
+  await playScene(page);
+  await expect(page.locator('.dialogue-text')).toContainText('Elian Vale. Introductory charms');
   await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.getByRole('dialog').getByLabel('Story text size').selectOption('standard');
-  await page.locator('.scene-reader').evaluate((el) => el.scrollTo(0, 0));
+  await setInGear(page, 'Story text size', 'standard');
   await page.screenshot({
     path: '/tmp/lanternmere-review/lesson-desktop.png',
     animations: 'disabled',

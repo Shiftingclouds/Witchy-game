@@ -1,5 +1,14 @@
-import { chooseRemainingScenes, enterMode, continueGame } from './story-helpers.js';
+import {
+  chooseRemainingScenes,
+  continueGame,
+  enterMode,
+  leaveScene,
+  playScene,
+  startOnPage,
+} from './story-helpers.js';
 import { test, expect } from '@playwright/test';
+
+test.beforeEach(({ page }) => startOnPage(page));
 test('world navigation, expressions, lessons, journal, and save restore', async ({ page }) => {
   const errors = [];
   page.on('pageerror', (e) => errors.push(e.message));
