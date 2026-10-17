@@ -159,6 +159,10 @@ export const aiSystem = {
         section: typeof action.section === 'string' ? str(action.section, 100) : null,
       });
       s.ai.turns = s.ai.turns.slice(-AI_LIMITS.turns);
+      s.ai.lastSuggestions = (Array.isArray(reply.suggestions) ? reply.suggestions : [])
+        .map((x) => str(x, 120))
+        .filter(Boolean)
+        .slice(0, 4);
       const used = {};
       for (const proposal of (Array.isArray(reply.proposals) ? reply.proposals : []).slice(0, 8))
         apply(s, proposal, used);

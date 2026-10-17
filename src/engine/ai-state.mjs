@@ -26,6 +26,7 @@ export const emptyAi = (timeMode = null) => ({
   memories: {},
   sequence: 0,
   pendingTimed: false,
+  lastSuggestions: [],
 });
 
 const str = (value, max) => (typeof value === 'string' ? value.trim().slice(0, max) : '');
@@ -44,6 +45,10 @@ export function sanitizeAi(value, mode) {
   );
   ai.sequence = Number.isInteger(v.sequence) && v.sequence >= 0 ? v.sequence : 0;
   ai.pendingTimed = v.pendingTimed === true && ai.timeMode === 'timeless';
+  ai.lastSuggestions = (Array.isArray(v.lastSuggestions) ? v.lastSuggestions : [])
+    .map((x) => str(x, 120))
+    .filter(Boolean)
+    .slice(0, 4);
   ai.people = (Array.isArray(v.people) ? v.people : [])
     .filter(
       (p) =>

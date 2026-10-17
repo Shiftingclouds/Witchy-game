@@ -20,7 +20,7 @@ import { peopleHere } from './life.mjs';
 import { Button, Eyebrow, Portrait } from './components.jsx';
 import { DailyCard, Residents } from './daily-life.jsx';
 
-export default function World({ game, act, visit, navigate, open, quest }) {
+export default function World({ game, act, visit, navigate, open, quest, aiScene }) {
   const location = locationById[game.location],
     here = peopleHere(game),
     person = here[0];
@@ -129,6 +129,7 @@ export default function World({ game, act, visit, navigate, open, quest }) {
               </div>
             )}
           </div>
+          {aiScene}
           <Residents game={game} open={open} />
           <DailyCard game={game} visit={visit} open={open} />
           <div className="nearby-heading">

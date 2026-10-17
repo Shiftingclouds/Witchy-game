@@ -46,6 +46,7 @@ test('new AI games start with empty playthrough memory', () => {
       memories: {},
       sequence: 0,
       pendingTimed: false,
+      lastSuggestions: [],
     },
   );
   assert.equal(initialState('guided').ai.timeMode, null);

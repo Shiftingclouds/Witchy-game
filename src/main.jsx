@@ -76,6 +76,8 @@ import { applyReadingMode } from './theme/apply.mjs';
 import { OpeningScene } from './features/opening/OpeningScene.jsx';
 import { TitleScreen } from './features/opening/TitleScreen.jsx';
 import { VineButton } from './features/opening/VineButton.jsx';
+import { AiScene } from './features/ai/AiScene.jsx';
+import { AiStory, ThreadsCard } from './features/ai/AiStory.jsx';
 import { useSidebarState } from './features/shell/sidebar.mjs';
 import { PatternShowcase } from './features/patterns/PatternShowcase.jsx';
 import './features/shell/shell.css';
@@ -321,11 +323,13 @@ function App() {
                 key={id}
                 className={'nav-item ' + (view === id ? 'active' : '')}
                 onClick={() => navigate(id)}
-                aria-label={label}
+                aria-label={id === 'book' && game.mode === 'sandbox' ? 'Your story' : label}
                 title={sidebar.state === 'rail' ? label : undefined}
               >
                 <Icon size={19} />
-                <span className="nav-label">{label}</span>
+                <span className="nav-label">
+                  {id === 'book' && game.mode === 'sandbox' ? 'Your story' : label}
+                </span>
                 {view === id && <span className="nav-dot" />}
               </button>
             ))}
@@ -407,11 +411,23 @@ function App() {
               visit={visit}
               navigate={navigate}
               open={setModal}
-              quest={<QuestCard game={game} visit={visit} navigate={navigate} />}
+              quest={
+                game.mode === 'sandbox' ? (
+                  <ThreadsCard game={game} navigate={navigate} />
+                ) : (
+                  <QuestCard game={game} visit={visit} navigate={navigate} />
+                )
+              }
+              aiScene={
+                game.mode === 'sandbox' ? (
+                  <AiScene game={game} act={act} reduced={reading.reduced} />
+                ) : null
+              }
             />
           )}
           {view === 'map' && <Atlas game={game} visit={visit} />}
-          {view === 'book' && (
+          {view === 'book' && game.mode === 'sandbox' && <AiStory game={game} act={act} />}
+          {view === 'book' && game.mode !== 'sandbox' && (
             <Story
               game={game}
               act={act}
