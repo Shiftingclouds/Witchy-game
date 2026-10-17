@@ -8,7 +8,9 @@ Read **[CLAUDE_START_HERE.md](CLAUDE_START_HERE.md)** for the exact stopping poi
 
 ## Run
 
-Requirements: Node 22.6+ (tested with Node 24.19), npm, Python 3, and Pillow. The cloud environment already has these.
+Requirements: Node 22.6+ (tested with Node 24.19 and 24.22), npm, Python 3, and Pillow (`python3 -m pip install -r requirements-art.txt`).
+
+On Windows (tested on Windows 11, Python 3.15, Pillow 12.3): run `npx playwright install chromium` once for browser tests; Playwright uses its bundled Chromium unless `CHROMIUM_PATH` is set. `.gitattributes` keeps text files LF so formatting and story-export checks pass.
 
 ```sh
 cd /workspace/Witchy-game
