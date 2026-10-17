@@ -3,7 +3,8 @@ from pathlib import Path
 import json, re
 
 ROOT = Path(__file__).resolve().parent.parent
-DOCS = [ROOT / 'docs/design/ART_REQUESTS.md', ROOT / 'docs/design/WORLD_ART_REQUESTS.md']
+DOCS = [ROOT / 'docs/design/ART_REQUESTS.md', ROOT / 'docs/design/WORLD_ART_REQUESTS.md',
+        ROOT / 'docs/design/CHARACTER_ART_REQUESTS.md']
 # Files named in the requests only as references to attach, never as new art.
 REFERENCES = {'c01-rowan-neutral.png', 'c02-imogen-neutral.png', 'lantern-hall.png', 'mere-day.png', 'mere-night.png',
               'thimble-cross.png', 'whispering-wood.png', 'boathouse.png', 'rookery.png', 'classroom.png',

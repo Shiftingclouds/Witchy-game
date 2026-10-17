@@ -47,7 +47,7 @@ Live smoke test, 17 October 2026: one Open World turn on `sonnet` through the re
 - Expanded scenes: **31,328 words**, **43 sections**, **22 saved local decisions**.
 - One current complete Book/staged path: **26,897–27,125 words**, excluding optional chats.
 - Exact route audit: **4,194,304 combinations**, at most **32 simultaneous dependency states**. These are choice combinations, not millions of separately written stories.
-- **47 active / 13 proposed characters**, **161 browser images / about 30.0 MiB**.
+- **47 active / 27 proposed characters** (proposed sheets expanded and 14 added in October 2026; portraits requested in `docs/design/CHARACTER_ART_REQUESTS.md`), **161 browser images / about 30.0 MiB**.
 - Full personal arcs, house/community stories, adult romance, minigames, proposed cast and much of the art queue remain unfinished. Do not claim the game or manuscript is complete.
 
 ## Verification

@@ -41,7 +41,7 @@ The current brief is [OBJECTIVES.md](OBJECTIVES.md). The new production target i
 
 The original 45 characters are a starting cast. `docs/CAST_EXPANSION.md` proposes 15 additions and maps faculty, classes, house companions, complete Glimmer squads, shopkeepers, and further relationship candidates. Elian Vale and Maelin Quill are now playable, with portraits, teaching scenes, dialogue, and routines. The other 13 additions remain planned.
 
-All 60 identities now have individual [character sheets](characters/README.md). The 47 active sheets supply names, profiles, personality, voice, boundaries, NPC connections, and gated story knowledge. The 13 proposed sheets remain outside gameplay. Each save separately tracks friendship scores and shared moments. Open “Your history with…” in a conversation to review shared events.
+All 74 identities now have individual [character sheets](characters/README.md): 47 active and 27 proposed. The proposed sheets (the 13 from the cast expansion plus 14 village, staff and prefect characters) are fully written, with portraits requested in [CHARACTER_ART_REQUESTS.md](docs/design/CHARACTER_ART_REQUESTS.md). The 47 active sheets supply names, profiles, personality, voice, boundaries, NPC connections, and gated story knowledge. Proposed sheets remain outside gameplay until promoted. Each save separately tracks friendship scores and shared moments. Open “Your history with…” in a conversation to review shared events.
 
 ## Desktop app (Windows)
 

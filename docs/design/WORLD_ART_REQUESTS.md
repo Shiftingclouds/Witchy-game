@@ -32,27 +32,9 @@ Save each file with the exact filename listed. Portraits are PNG with transparen
 
 ---
 
-## Batch 1 — Already designed, never painted (13 people) — wanted
+## Batch 1 — People (moved)
 
-These have character sheets in `characters/proposed/` and story roles in `docs/CAST_EXPANSION.md`. Paint the neutral first; once approved, request **warm, amused, grave, tense** (4 more each).
-
-Expression files, once each neutral is approved: `c49-vesper-sen-{warm,amused,grave,tense}.png`, `c50-edda-moss-{warm,amused,grave,tense}.png`, `c51-soren-bell-{warm,amused,grave,tense}.png`, `c52-nessa-flint-{warm,amused,grave,tense}.png`, `c53-ari-fen-{warm,amused,grave,tense}.png`, `c54-iona-reed-{warm,amused,grave,tense}.png`, `c55-milo-wick-{warm,amused,grave,tense}.png`, `c56-tamsin-wren-{warm,amused,grave,tense}.png`, `c57-esme-brook-{warm,amused,grave,tense}.png`, `c58-perrin-ash-{warm,amused,grave,tense}.png`, `c59-merrin-thorne-{warm,amused,grave,tense}.png`, `c60-beatrix-kettle-{warm,amused,grave,tense}.png`, `c61-oren-voss-{warm,amused,grave,tense}.png`.
-
-| File (neutral)                   | Who                                   | Brief to paste                                                                                                                                         |
-| -------------------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `c49-vesper-sen-neutral.png`     | Familiar-studies teacher, 38, she/her | Woman with tied-back dark hair, green field coat, repaired leather gloves, a tiny feed pouch at her belt; patient, observant face; no animal attached. |
-| `c50-edda-moss-neutral.png`      | Owlcombe student, 21, she/her         | Compact young woman with short curls, ink-stained cuffs, holding a moss-coloured notebook; thoughtful, slightly restless look.                         |
-| `c51-soren-bell-neutral.png`     | Owlcombe captain, 24, he/him          | Tall young man, dark braids tied back, worn flight gloves, quiet violet accents on his coat; steady and tired-but-kind.                                |
-| `c52-nessa-flint-neutral.png`    | Rookhallow student, 22, she/her       | Cropped auburn hair, copper pin, sturdy boots, warm russet jacket; energetic, competitive grin held in check.                                          |
-| `c53-ari-fen-neutral.png`        | Rookhallow brewer, 20, they/them      | Long dark fringe, patched cardigan, a few carefully labelled specimen tins; gentle, shy, clever.                                                       |
-| `c54-iona-reed-neutral.png`      | Heronmere captain, 23, she/her        | Strong shoulders, dark curls gathered high, coat with teal lining, annotated play cards; calm face with a competitive glint.                           |
-| `c55-milo-wick-neutral.png`      | Heronmere reserve, 21, he/him         | Round, soft light-brown hair, oversized scarf, mismatched buttons; warm, sociable, a little sheepish.                                                  |
-| `c56-tamsin-wren-neutral.png`    | Larkspire captain, 22, they/them      | Angular, undercut with loose curls, yellow-gold thread in their clothes, folded diagrams in a pocket; inventive, lively.                               |
-| `c57-esme-brook-neutral.png`     | Larkspire student, 20, she/her        | Long dark plait, round spectacles, muted blue shawl, pressed-flower bookmark; quiet and content.                                                       |
-| `c58-perrin-ash-neutral.png`     | Transfer student, 22, he/him          | Narrow build, swept-back sandy hair, an old team patch still on his jacket, an immaculate notebook; proud, guarded.                                    |
-| `c59-merrin-thorne-neutral.png`  | Village apothecary, 34, they/them     | Broad apron, tightly curled hair, amber glass bottles, stained but tidy sleeves; precise, a little stubborn.                                           |
-| `c60-beatrix-kettle-neutral.png` | Village baker, 46, she/her            | Dark skin dusted with flour, grey-streaked hair wrap, warm striped apron, pencil and order slate; brisk and motherly.                                  |
-| `c61-oren-voss-neutral.png`      | Broom repairer, 28, he/him            | Wavy black hair, leather work apron, metal ferrules and a measuring rule, a crooked sleeve repair; earnest, proud of his craft.                        |
+The 13 proposed people now have full character sheets and their own request list: see **[CHARACTER_ART_REQUESTS.md](CHARACTER_ART_REQUESTS.md)**.
 
 ## Batch 2 — Expressions for the people you meet most — wanted
 
@@ -71,26 +53,9 @@ Most of the cast has only a neutral face, so in conversations they can't react. 
 
 Later (only once they speak a lot): `warm` and `grave` for the remaining 27 supporting characters listed in `docs/ART_COMPLETION.md` (P3).
 
-## Batch 3 — More people for a living world (new, proposed) — wanted
+## Batch 3 — More people (moved)
 
-The Open World needs people who aren't the main cast: the ones you pass in corridors, buy bread from, and get to know over time. These are **new proposals** (not yet in any document); each needs a character sheet before entering the game. Neutral portrait first; warm and grave follow if they become regulars.
-
-| File (neutral)                     | Who                                              | Brief to paste                                                                                                      |
-| ---------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
-| `c62-hollis-tarrant-neutral.png`   | **Hollis Tarrant**, Owlcombe prefect, 26         | Upper-year student, neat dark-blue coat with an owl-feather pin, ledger under arm; dry humour, fair.                |
-| `c63-juno-ashdown-neutral.png`     | **Juno Ashdown**, Rookhallow prefect, 25         | Upper-year, rolled sleeves, ember-red scarf, soot on one cheek; loud, protective.                                   |
-| `c64-caspian-lowe-neutral.png`     | **Caspian Lowe**, Heronmere prefect, 26          | Upper-year, silver-grey hair tied back, teal cloak, calm watery eyes; diplomatic.                                   |
-| `c65-wren-okafor-hale-neutral.png` | **Wren Okafor-Hale**, Larkspire prefect, 25      | Upper-year, bright yellow ribbon in a cloud of curls, ink on fingers, quick smile; mischievous but responsible.     |
-| `c66-abernathy-neutral.png`        | **Old Abernathy**, gate porter, 70s              | Elderly man in a long brass-buttoned coat, ring of keys, lantern at his belt; knows everyone's comings and goings.  |
-| `c67-senna-mire-neutral.png`       | **Senna Mire**, groundskeeper, 40s               | Weathered woman, waxed coat, pruning shears, leaves in her hair; few words, kind hands.                             |
-| `c68-ilse-varrow-neutral.png`      | **Ilse Varrow**, night warden, 50s               | Tall, hooded dark coat, small moon-lantern; patrols the halls after curfew; stern but secretly soft.                |
-| `c69-dorrit-pell-neutral.png`      | **Dorrit Pell**, village postmistress, 60s       | Round spectacles on a chain, satchel of letters, pencil behind ear; gossip-adjacent, warm.                          |
-| `c70-tobias-hearn-neutral.png`     | **Tobias Hearn**, village smith, 30s             | Broad, leather apron, forge-reddened forearms, short beard; gentle giant.                                           |
-| `c71-maren-coyle-neutral.png`      | **Maren Coyle**, lake fisher, 40s                | Oilskin coat, knitted cap, net over shoulder, wind-burnt cheeks; tells lake legends.                                |
-| `c72-fennick-lark-neutral.png`     | **Fennick Lark**, inn musician, 30s              | Lute on his back, patched velvet jacket, mischievous eyes; plays at the inn most evenings.                          |
-| `c73-agnes-rowe-neutral.png`       | **Agnes Rowe**, market farmer, 50s               | Straw hat, basket of autumn apples and pumpkins, rosy cheeks; there on market days.                                 |
-| `c74-pedlar-neutral.png`           | **The Pedlar**, travelling merchant, age unclear | Hooded, layered colourful scarves, a cart-pack hung with charms and tiny bottles; appears at festivals; mysterious. |
-| `c75-pim-hollow-neutral.png`       | **Pim Hollow**, library assistant, 20s           | Small, enormous spectacles, cardigan full of bookmarks, stack of books to the chin; anxious and helpful.            |
+The 14 new people for a living world now have full character sheets and their own request list (some renamed): see **[CHARACTER_ART_REQUESTS.md](CHARACTER_ART_REQUESTS.md)**.
 
 ## Batch 4 — Places (seasonal variants from the existing plan) — wanted
 

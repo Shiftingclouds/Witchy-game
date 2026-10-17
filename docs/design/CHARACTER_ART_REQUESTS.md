@@ -1,0 +1,82 @@
+# Character art requests for ChatGPT
+
+Portraits for all **27 proposed characters**: the 13 from `docs/CAST_EXPANSION.md` and 14 new people for a living world. Every one has a full character sheet in `characters/proposed/<id>.json`, and each brief below is copied from that sheet’s `presentation.visualBrief`, so the art and the writing describe the same person.
+
+This replaces Batch 1 and Batch 3 of `WORLD_ART_REQUESTS.md`. Status per item: **wanted**, **received**, **placed**.
+
+**Renamed from the earlier Batch 3 list**, to avoid clashing with the existing cast: Wren Okafor-Hale → **Nell Okafor-Hale** (Wren’s Nest, Tamsin Wren), Tobias Hearn → **Bastian Hearn** (Toby), Pim Hollow → **Pim Ashby** (Holloway). Senna Mire is now the academy **beekeeper**, because Arkwright already tends the grounds. Use the new filenames below.
+
+**Easiest way:** give ChatGPT [CHATGPT_CHARACTER_PORTRAITS.md](CHATGPT_CHARACTER_PORTRAITS.md) plus the two reference portraits. That one file contains every instruction, brief and filename.
+
+## How it works
+
+1. **Three images per person, in this order:** `neutral`, then `warm`, then one **signature** expression that suits them (listed per person). Paint every neutral in a group before any expressions, so you can approve the faces first.
+2. Every filename here has a placeholder in the game (**ART NEEDED · filename**). Save ChatGPT’s image as `art/<exact filename>`, transparent PNG, and the next build swaps it in.
+3. More expressions (grave, tense, amused and so on) can follow for whoever becomes a regular.
+
+## Prompts to paste
+
+**First portrait (neutral)** — attach `c01-rowan-neutral.png` and `c02-imogen-neutral.png` as style references, then paste:
+
+> Create ONE new character portrait in exactly the same style as the attached reference portraits: the same dense painterly pixel texture, warm lighting, three-quarter upper-body pose, scale and canvas framing (1122×1402), with a true transparent background. No text, no frame, no collage. Character: **[brief]**. Adult. Neutral, calm expression. Keep the full head, hair and shoulders inside the canvas.
+
+**Expressions (warm, signature)** — attach that person’s approved neutral portrait, then paste:
+
+> Edit the attached portrait to create ONE expression variant: **[expression]**. Keep EXACTLY the same person, face, age, hair, clothing, accessories, lighting, pose, scale, canvas framing and transparent background. Change only the facial expression and the small head or eye movement it needs. No text, no collage.
+
+Expression words to use: **warm** (a soft, friendly smile), **amused**, **laugh**, **grave**, **tense**, **tired**, **hurt**, **shy**, **surprised**, **scared**, **attentive** (listening closely), **reflective** (thoughtful, looking slightly away), **guarded**.
+
+## Group A — Housemates and Glimmer players
+
+They live on the player’s floor and fill out the four Glimmer squads, so they are on screen most. Paint the two residents of the house you play first.
+
+| Files                                                                                        | Who                                                                                        | Brief to paste (neutral)                                                                                                                                                                                |
+| -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `c50-edda-moss-neutral.png`<br>`c50-edda-moss-warm.png`<br>`c50-edda-moss-surprised.png`     | **Edda Moss** — Owlcombe floor companion and Glimmer keeper, 21, she/her (Owlcombe)        | Young woman of 21, compact build, short brown curls, olive skin, ink on her cuffs, deep-blue Owlcombe jumper, holding a moss-green notebook full of timetables.                                         |
+| `c51-soren-bell-neutral.png`<br>`c51-soren-bell-warm.png`<br>`c51-soren-bell-tired.png`      | **Soren Bell** — Owlcombe floor companion and Glimmer captain, 24, he/him (Owlcombe)       | Tall young man of 24, deep brown skin, long dark braids tied back, worn flight gloves, Owlcombe blue jacket with quiet violet accents, a scholarship pin on his collar.                                 |
+| `c58-perrin-ash-neutral.png`<br>`c58-perrin-ash-warm.png`<br>`c58-perrin-ash-guarded.png`    | **Perrin Ash** — Owlcombe transfer student and reserve player, 22, he/him (Owlcombe)       | Narrow young man of 22, fair skin, swept-back sandy hair, Owlcombe blue jacket with an old team patch from another school still sewn on, an immaculate notebook with one page rubbed thin from erasing. |
+| `c52-nessa-flint-neutral.png`<br>`c52-nessa-flint-warm.png`<br>`c52-nessa-flint-laugh.png`   | **Nessa Flint** — Rookhallow floor companion and Glimmer runner, 22, she/her (Rookhallow)  | Athletic young woman of 22, pale freckled skin, cropped auburn hair, copper house pin, sturdy boots, russet Rookhallow jacket with the sleeves pushed up, grinning.                                     |
+| `c53-ari-fen-neutral.png`<br>`c53-ari-fen-warm.png`<br>`c53-ari-fen-shy.png`                 | **Ari Fen** — Rookhallow floor companion and reserve player, 20, they/them (Rookhallow)    | Slight young person of 20, light tan skin, long dark fringe over one eye, patched oatmeal cardigan over a russet shirt, a belt of carefully labelled specimen tins.                                     |
+| `c54-iona-reed-neutral.png`<br>`c54-iona-reed-warm.png`<br>`c54-iona-reed-grave.png`         | **Iona Reed** — Heronmere floor companion and Glimmer captain, 23, she/her (Heronmere)     | Strong-shouldered young woman of 23, dark brown skin, dark curls gathered high on her head, teal-lined Heronmere coat, a fan of annotated play cards in one hand, composed expression.                  |
+| `c55-milo-wick-neutral.png`<br>`c55-milo-wick-warm.png`<br>`c55-milo-wick-hurt.png`          | **Milo Wick** — Heronmere floor companion and novice brewer, 21, he/him (Heronmere)        | Round, cheerful young man of 21, pale skin with rosy cheeks, soft light-brown hair, an oversized teal scarf, a cardigan with mismatched buttons, a slightly singed sleeve.                              |
+| `c56-tamsin-wren-neutral.png`<br>`c56-tamsin-wren-warm.png`<br>`c56-tamsin-wren-amused.png`  | **Tamsin Wren** — Larkspire floor companion and Glimmer captain, 22, they/them (Larkspire) | Angular young person of 22, light olive skin, undercut with loose dark curls on top, yellow-gold thread stitched through a Larkspire jacket, folded diagrams sticking out of every pocket.              |
+| `c57-esme-brook-neutral.png`<br>`c57-esme-brook-warm.png`<br>`c57-esme-brook-reflective.png` | **Esme Brook** — Larkspire floor companion and rune student, 20, she/her (Larkspire)       | Young woman of 20, light brown skin, long dark plait over one shoulder, round spectacles, muted blue shawl over a Larkspire cardigan, a pressed-flower bookmark in an old rune primer.                  |
+
+## Group B — The academy’s people
+
+Faculty, prefects and staff you meet in corridors, at the gate and after curfew.
+
+| Files                                                                                                      | Who                                                               | Brief to paste (neutral)                                                                                                                                                                                                      |
+| ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `c49-vesper-sen-neutral.png`<br>`c49-vesper-sen-warm.png`<br>`c49-vesper-sen-attentive.png`                | **Vesper Sen** — Familiar studies teacher, 38, she/her            | Woman of 38, warm light-brown skin, dark hair tied back with a few loose strands, green field coat with patched elbows, repaired leather gloves tucked in a pocket, a tiny feed pouch at her belt. No animal attached to her. |
+| `c62-hollis-tarrant-neutral.png`<br>`c62-hollis-tarrant-warm.png`<br>`c62-hollis-tarrant-amused.png`       | **Hollis Tarrant** — Owlcombe prefect, 26, he/him (Owlcombe)      | Upper-year man of 26, pale skin, neat dark hair, a fitted dark-blue Owlcombe coat with an owl-feather pin, a ledger tucked under one arm, a faint knowing smile.                                                              |
+| `c63-juno-ashdown-neutral.png`<br>`c63-juno-ashdown-warm.png`<br>`c63-juno-ashdown-laugh.png`              | **Juno Ashdown** — Rookhallow prefect, 25, she/her (Rookhallow)   | Upper-year woman of 25, warm medium-brown skin, dark hair in a thick bun, sleeves rolled up, an ember-red scarf, a smudge of soot on one cheek, hands on hips.                                                                |
+| `c64-caspian-lowe-neutral.png`<br>`c64-caspian-lowe-warm.png`<br>`c64-caspian-lowe-reflective.png`         | **Caspian Lowe** — Heronmere prefect, 26, he/him (Heronmere)      | Upper-year man of 26, light brown skin, prematurely silver-grey hair tied back at the nape, a teal Heronmere cloak, calm grey eyes, hands clasped.                                                                            |
+| `c65-nell-okafor-hale-neutral.png`<br>`c65-nell-okafor-hale-warm.png`<br>`c65-nell-okafor-hale-amused.png` | **Nell Okafor-Hale** — Larkspire prefect, 25, she/her (Larkspire) | Upper-year woman of 25, dark brown skin, a big cloud of curls with a bright yellow ribbon, ink-stained fingers, Larkspire jacket, a quick mischievous smile.                                                                  |
+| `c66-abernathy-neutral.png`<br>`c66-abernathy-warm.png`<br>`c66-abernathy-attentive.png`                   | **Old Abernathy** — Gate porter, 74, he/him                       | Elderly man in his seventies, weathered pale skin, white whiskers, a long brass-buttoned porter’s coat, a heavy ring of keys and a small lantern at his belt, kind sharp eyes.                                                |
+| `c68-ilse-varrow-neutral.png`<br>`c68-ilse-varrow-warm.png`<br>`c68-ilse-varrow-grave.png`                 | **Ilse Varrow** — Night warden, 53, she/her                       | Tall woman of 53, pale skin, iron-grey hair under a deep hood, a long dark warden’s coat, a small silver moon-lantern in one hand, stern face with tired kind eyes.                                                           |
+| `c67-senna-mire-neutral.png`<br>`c67-senna-mire-warm.png`<br>`c67-senna-mire-reflective.png`               | **Senna Mire** — Academy beekeeper, 44, she/her                   | Weathered woman of 44, tanned freckled skin, sandy hair with leaves caught in it, a waxed field coat, a wide-brimmed hat with a beekeeper’s veil pushed back, a smoker tin at her hip.                                        |
+| `c75-pim-ashby-neutral.png`<br>`c75-pim-ashby-warm.png`<br>`c75-pim-ashby-scared.png`                      | **Pim Ashby** — Library assistant, 23, he/him                     | Small young man of 23, light skin, messy brown hair, enormous round spectacles, a long cardigan bristling with bookmarks, a stack of books up to his chin.                                                                    |
+
+## Group C — Thimble Cross and the valley
+
+Trades and regulars who make the village feel lived in, especially in the Open World.
+
+| Files                                                                                                | Who                                                             | Brief to paste (neutral)                                                                                                                                                                |
+| ---------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `c59-merrin-thorne-neutral.png`<br>`c59-merrin-thorne-warm.png`<br>`c59-merrin-thorne-attentive.png` | **Merrin Thorne** — Village apothecary, 34, they/them           | Person of 34, dark brown skin, tightly curled black hair cropped short, a broad canvas apron, stained but tidy rolled sleeves, a tray of amber glass bottles.                           |
+| `c60-beatrix-kettle-neutral.png`<br>`c60-beatrix-kettle-warm.png`<br>`c60-beatrix-kettle-laugh.png`  | **Beatrix Kettle** — Village baker, 46, she/her                 | Woman of 46, dark skin dusted with flour, grey-streaked hair in a patterned wrap, warm striped apron, a pencil behind her ear and a small order slate in hand, broad smile.             |
+| `c61-oren-voss-neutral.png`<br>`c61-oren-voss-warm.png`<br>`c61-oren-voss-tense.png`                 | **Oren Voss** — Broom repairer and flight outfitter, 28, he/him | Man of 28, light brown skin, wavy black hair, leather work apron studded with metal ferrules, a measuring rule tucked behind one ear, a crooked repair on one shirt sleeve.             |
+| `c69-dorrit-pell-neutral.png`<br>`c69-dorrit-pell-warm.png`<br>`c69-dorrit-pell-surprised.png`       | **Dorrit Pell** — Village postmistress, 63, she/her             | Plump woman of 63, rosy pale skin, silver curls, round spectacles on a beaded chain, a satchel of letters over one shoulder, a pencil behind her ear, a bright cardigan.                |
+| `c70-bastian-hearn-neutral.png`<br>`c70-bastian-hearn-warm.png`<br>`c70-bastian-hearn-shy.png`       | **Bastian Hearn** — Village smith, 34, he/him                   | Broad, tall man of 34, deep brown skin, short black beard, a heavy leather apron, forge-reddened forearms, gentle shy expression, a small hammer in one large hand.                     |
+| `c73-agnes-rowe-neutral.png`<br>`c73-agnes-rowe-warm.png`<br>`c73-agnes-rowe-tired.png`              | **Agnes Rowe** — Market farmer, 55, she/her                     | Sturdy woman of 55, sun-browned skin, rosy cheeks, a battered straw hat, a dark green work dress with an apron, a big basket of autumn apples and small pumpkins on one arm.            |
+| `c72-fennick-lark-neutral.png`<br>`c72-fennick-lark-warm.png`<br>`c72-fennick-lark-laugh.png`        | **Fennick Lark** — Inn musician, 33, he/him                     | Lean man of 33, light brown skin, tousled dark hair, a patched plum-velvet jacket, a lute slung across his back, mischievous bright eyes and an easy grin.                              |
+| `c71-maren-coyle-neutral.png`<br>`c71-maren-coyle-warm.png`<br>`c71-maren-coyle-amused.png`          | **Maren Coyle** — Lake fisher, 45, they/them                    | Person of 45, wind-burnt pale skin, salt-and-pepper hair under a knitted cap, an oilskin coat, a fishing net over one shoulder, weathered hands, a storyteller’s half-smile.            |
+| `c74-pedlar-neutral.png`<br>`c74-pedlar-warm.png`<br>`c74-pedlar-attentive.png`                      | **The Pedlar** — Travelling merchant, they/them                 | Figure of unclear age, warm brown skin glimpsed under a deep hood, layers of colourful patterned scarves, a tall cart-pack hung with charms, tiny bottles and ribbons, a knowing smile. |
+
+## Once a portrait arrives (for me)
+
+1. Put the file in `art/` and run `npm run build`; the placeholder disappears.
+2. When a person enters play: move the sheet from `characters/proposed/` to `characters/active/`, set `status` to `active`, list the received expressions in `presentation.availableExpressions`, set `missingArt` to false, add their routine in `src/cast.mjs` and their playable entry in `src/content.mjs`, then run `npm run sync:characters` and `npm run check:characters`.
+
+Total: **81 images** (27 people × 3).

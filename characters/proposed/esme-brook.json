@@ -13,19 +13,20 @@
     "house": "larkspire"
   },
   "canon": {
-    "summary": "Esme Brook is a proposed larkspire floor companion and rune student. Build friendship that allows comfortable silence and time alone.",
+    "summary": "Esme Brook studies runes, keeps goal for Larkspire, and needs time alone to be happy. She is quiet, observant and a better friend than most people realise.",
     "traits": [
       "quiet",
       "steady",
-      "perceptive"
+      "observant"
     ],
     "values": [
-      "Build friendship that allows comfortable silence and time alone."
+      "Comfortable silence.",
+      "A boundary kept is a kindness, not a rejection."
     ],
-    "motivation": "Build friendship that allows comfortable silence and time alone.",
+    "motivation": "To have friends who understand that wanting solitude is not the same as being sad.",
     "fear": "Having a boundary treated as an insult.",
     "boundaries": [
-      "Respect professional and personal boundaries; proposed relationships are not established events.",
+      "Will decline company without apology, and expects the player to accept that.",
       "Respect the player’s stated choices and do not narrate their unspoken feelings."
     ],
     "knowledge": [
@@ -33,7 +34,13 @@
         "id": "own-life",
         "minimumChapter": 0,
         "minimumBond": 0,
-        "text": "Esme Brook is a proposed larkspire floor companion and rune student. Build friendship that allows comfortable silence and time alone."
+        "text": "Esme Brook studies runes, keeps goal for Larkspire, and needs time alone to be happy. She is quiet, observant and a better friend than most people realise."
+      },
+      {
+        "id": "chapter-3",
+        "minimumChapter": 3,
+        "minimumBond": 0,
+        "text": "Maelin let me help with rune transcriptions. Some names in the working registers are written in a hand I didn’t recognise. I only copied them; I didn’t guess why."
       }
     ],
     "privateReactions": [
@@ -41,23 +48,42 @@
         "id": "trust",
         "minimumChapter": 0,
         "minimumBond": 20,
-        "text": "With earned trust, may discuss this concern without claiming it has been resolved: Having a boundary treated as an insult."
+        "text": "Writes small poems in rune script in the margins of her primer and has never shown anyone."
+      },
+      {
+        "id": "close",
+        "minimumChapter": 0,
+        "minimumBond": 50,
+        "text": "Admits she was called cold at her last school and still worries people think it."
       }
     ]
   },
   "voice": {
-    "cadence": "Short attentive answers; comfortable pauses; never forced mystical riddles.",
-    "humour": "Use the character’s individual cadence; humour should not erase the consequence of a mistake.",
+    "cadence": "Few words, chosen carefully; long pauses that are not unfriendly.",
+    "humour": "Dry, rare, perfectly timed.",
     "avoid": [
       "Interchangeable inspirational speeches.",
-      "Claiming certainty about something outside this character’s knowledge."
+      "Claiming certainty about something outside this character’s knowledge.",
+      "Writing her silences as sulking."
     ],
-    "example": null
+    "example": "I’m all right. I just like the library better when it’s quiet. You can sit, if you don’t need to talk."
   },
   "connections": [
     {
       "characterId": "tamsin-wren",
-      "description": "Proposed housemate and teammate with a much louder pace.",
+      "description": "Housemate and captain with a much louder pace.",
+      "status": "proposed",
+      "minimumChapter": 0
+    },
+    {
+      "characterId": "petra",
+      "description": "Fellow language student; they trade translations.",
+      "status": "proposed",
+      "minimumChapter": 0
+    },
+    {
+      "characterId": "maelin-quill",
+      "description": "Helps Maelin with rune transcription.",
       "status": "proposed",
       "minimumChapter": 0
     }
@@ -76,6 +102,8 @@
     "portraitPrefix": "c57-esme-brook",
     "availableExpressions": [],
     "missingArt": true,
+    "visualBrief": "Young woman of 20, light brown skin, long dark plait over one shoulder, round spectacles, muted blue shawl over a Larkspire cardigan, a pressed-flower bookmark in an old rune primer.",
+    "signatureExpression": "reflective",
     "direction": "Use only available expressions; neutral is the fallback. Do not invent an unseen gesture or additional portrait."
   },
   "runtime": {
@@ -85,8 +113,8 @@
     "routineSource": "Not implemented"
   },
   "authoring": {
-    "futureArc": "Proposed housemate and teammate with a much louder pace.",
-    "canonNotes": "Draft only: not selectable in the running game, not loaded into AI dialogue.",
-    "source": "docs/CAST_EXPANSION.md"
+    "futureArc": "A friendship that grows through shared reading and respecting an agreed boundary.",
+    "canonNotes": "Draft only: not selectable in the running game, not loaded into AI dialogue. Ages and roles are proposed canon; nothing here reveals or resolves the mystery.",
+    "source": "docs/CAST_EXPANSION.md (expanded October 2026)"
   }
 }

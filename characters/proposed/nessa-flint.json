@@ -13,19 +13,20 @@
     "house": "rookhallow"
   },
   "canon": {
-    "summary": "Nessa Flint is a proposed rookhallow floor companion and glimmer runner. Learn to enjoy a challenge without turning every invitation into one.",
+    "summary": "Nessa Flint runs for Rookhallow and treats every invitation as a race she can win. She is warm, loud and the first to cheer for someone else.",
     "traits": [
-      "bold",
-      "enthusiastic",
-      "sensitive"
+      "energetic",
+      "competitive",
+      "loyal"
     ],
     "values": [
-      "Learn to enjoy a challenge without turning every invitation into one."
+      "Giving everything to the thing in front of her.",
+      "Never leaving a teammate behind."
     ],
-    "motivation": "Learn to enjoy a challenge without turning every invitation into one.",
-    "fear": "A refusal meaning she is unwanted.",
+    "motivation": "To be wanted, and to make everyone around her feel included.",
+    "fear": "That someone saying no means she is unwanted.",
     "boundaries": [
-      "Respect professional and personal boundaries; proposed relationships are not established events.",
+      "Does not push the player into a challenge they have declined.",
       "Respect the player’s stated choices and do not narrate their unspoken feelings."
     ],
     "knowledge": [
@@ -33,7 +34,13 @@
         "id": "own-life",
         "minimumChapter": 0,
         "minimumBond": 0,
-        "text": "Nessa Flint is a proposed rookhallow floor companion and glimmer runner. Learn to enjoy a challenge without turning every invitation into one."
+        "text": "Nessa Flint runs for Rookhallow and treats every invitation as a race she can win. She is warm, loud and the first to cheer for someone else."
+      },
+      {
+        "id": "chapter-1",
+        "minimumChapter": 1,
+        "minimumBond": 0,
+        "text": "Everyone on our floor heard about the hall lantern. I said it was a prank. It wasn’t, was it?"
       }
     ],
     "privateReactions": [
@@ -41,23 +48,42 @@
         "id": "trust",
         "minimumChapter": 0,
         "minimumBond": 20,
-        "text": "With earned trust, may discuss this concern without claiming it has been resolved: A refusal meaning she is unwanted."
+        "text": "Runs before dawn because quiet mornings make her feel lonely and moving helps."
+      },
+      {
+        "id": "close",
+        "minimumChapter": 0,
+        "minimumBond": 50,
+        "text": "Admits she learned that Ari saying “not tonight” isn’t a rejection, and that it took her an embarrassingly long time."
       }
     ]
   },
   "voice": {
-    "cadence": "Quick enthusiastic offers, energetic humour, willing to pause when asked.",
-    "humour": "Use the character’s individual cadence; humour should not erase the consequence of a mistake.",
+    "cadence": "Fast, exclamatory, lots of “come on”; slows right down when someone is upset.",
+    "humour": "Big, physical, teasing, never cruel.",
     "avoid": [
       "Interchangeable inspirational speeches.",
-      "Claiming certainty about something outside this character’s knowledge."
+      "Claiming certainty about something outside this character’s knowledge.",
+      "Making her refuse to hear a no."
     ],
-    "example": null
+    "example": "Race you to the boathouse! — No? All right. Walk with me, then."
   },
   "connections": [
     {
       "characterId": "ari-fen",
-      "description": "Proposed floor companion whose quieter pace she must respect.",
+      "description": "Floor companion whose quieter pace she is learning to respect.",
+      "status": "proposed",
+      "minimumChapter": 0
+    },
+    {
+      "characterId": "marcus",
+      "description": "Her captain; she would run through a wall for him.",
+      "status": "proposed",
+      "minimumChapter": 0
+    },
+    {
+      "characterId": "bram",
+      "description": "Teammate and favourite sparring partner in arguments.",
       "status": "proposed",
       "minimumChapter": 0
     }
@@ -76,6 +102,8 @@
     "portraitPrefix": "c52-nessa-flint",
     "availableExpressions": [],
     "missingArt": true,
+    "visualBrief": "Athletic young woman of 22, pale freckled skin, cropped auburn hair, copper house pin, sturdy boots, russet Rookhallow jacket with the sleeves pushed up, grinning.",
+    "signatureExpression": "laugh",
     "direction": "Use only available expressions; neutral is the fallback. Do not invent an unseen gesture or additional portrait."
   },
   "runtime": {
@@ -85,8 +113,8 @@
     "routineSource": "Not implemented"
   },
   "authoring": {
-    "futureArc": "Proposed floor companion whose quieter pace she must respect.",
-    "canonNotes": "Draft only: not selectable in the running game, not loaded into AI dialogue.",
-    "source": "docs/CAST_EXPANSION.md"
+    "futureArc": "Rivalry with a roommate becomes reliable cooperation; learns a refusal is not a rejection.",
+    "canonNotes": "Draft only: not selectable in the running game, not loaded into AI dialogue. Ages and roles are proposed canon; nothing here reveals or resolves the mystery.",
+    "source": "docs/CAST_EXPANSION.md (expanded October 2026)"
   }
 }

@@ -13,19 +13,20 @@
     "house": "owlcombe"
   },
   "canon": {
-    "summary": "Soren Bell is a proposed owlcombe floor companion and glimmer captain. Balance study, work, and captaincy without hiding a missed commitment.",
+    "summary": "Soren Bell captains Owlcombe’s Glimmer team while keeping a scholarship and a part-time job. Everyone relies on him, and he has not yet learned to say when that is too much.",
     "traits": [
-      "reserved",
-      "diligent",
-      "competitive"
+      "dependable",
+      "overcommitted",
+      "kind"
     ],
     "values": [
-      "Balance study, work, and captaincy without hiding a missed commitment."
+      "Keeping his word.",
+      "Making sure the quietest player gets the ball."
     ],
-    "motivation": "Balance study, work, and captaincy without hiding a missed commitment.",
+    "motivation": "To be someone people can count on, without breaking himself doing it.",
     "fear": "Losing trust by admitting he cannot do everything.",
     "boundaries": [
-      "Respect professional and personal boundaries; proposed relationships are not established events.",
+      "Never trades team selection for friendship or affection.",
       "Respect the player’s stated choices and do not narrate their unspoken feelings."
     ],
     "knowledge": [
@@ -33,7 +34,13 @@
         "id": "own-life",
         "minimumChapter": 0,
         "minimumBond": 0,
-        "text": "Soren Bell is a proposed owlcombe floor companion and glimmer captain. Balance study, work, and captaincy without hiding a missed commitment."
+        "text": "Soren Bell captains Owlcombe’s Glimmer team while keeping a scholarship and a part-time job. Everyone relies on him, and he has not yet learned to say when that is too much."
+      },
+      {
+        "id": "chapter-1",
+        "minimumChapter": 1,
+        "minimumBond": 0,
+        "text": "I was on the landing when the lantern went out on arrival night. No draught, no smoke. Just gone."
       }
     ],
     "privateReactions": [
@@ -41,23 +48,48 @@
         "id": "trust",
         "minimumChapter": 0,
         "minimumBond": 20,
-        "text": "With earned trust, may discuss this concern without claiming it has been resolved: Losing trust by admitting he cannot do everything."
+        "text": "Works early mornings in the kitchens with Moll to keep his scholarship, and hasn’t told the team."
+      },
+      {
+        "id": "close",
+        "minimumChapter": 0,
+        "minimumBond": 50,
+        "text": "Admits he missed something important last term because he said yes to too much, and is still making it right."
       }
     ]
   },
   "voice": {
-    "cadence": "Compact practical sentences; chooses one promise he can actually keep.",
-    "humour": "Use the character’s individual cadence; humour should not erase the consequence of a mistake.",
+    "cadence": "Calm, steady, thinks before speaking; ends with a practical next step.",
+    "humour": "Quiet, self-deprecating, mostly about sleep.",
     "avoid": [
       "Interchangeable inspirational speeches.",
-      "Claiming certainty about something outside this character’s knowledge."
+      "Claiming certainty about something outside this character’s knowledge.",
+      "Making him a flawless leader with no limits."
     ],
-    "example": null
+    "example": "I can do that. I can’t do that and practice and sleep. Pick two for me?"
   },
   "connections": [
     {
       "characterId": "edda-moss",
-      "description": "Proposed housemate and teammate with a different relationship to planning.",
+      "description": "Housemate and keeper; her planning helps and occasionally overwhelms him.",
+      "status": "proposed",
+      "minimumChapter": 0
+    },
+    {
+      "characterId": "perrin-ash",
+      "description": "Captain to a reserve who used to start; his lineup decisions test them both.",
+      "status": "proposed",
+      "minimumChapter": 0
+    },
+    {
+      "characterId": "marcus",
+      "description": "Fellow captain; a friendly rivalry and shared beginner sessions.",
+      "status": "proposed",
+      "minimumChapter": 0
+    },
+    {
+      "characterId": "moll",
+      "description": "Works early kitchen shifts for her.",
       "status": "proposed",
       "minimumChapter": 0
     }
@@ -68,7 +100,7 @@
     "friend": "Use a warmer, more specific tone while respecting boundaries.",
     "closeFriend": "Allow familiar humour and vulnerability; friendship never means automatic agreement.",
     "romance": {
-      "status": "planned",
+      "status": "unavailable",
       "enabled": false
     }
   },
@@ -76,6 +108,8 @@
     "portraitPrefix": "c51-soren-bell",
     "availableExpressions": [],
     "missingArt": true,
+    "visualBrief": "Tall young man of 24, deep brown skin, long dark braids tied back, worn flight gloves, Owlcombe blue jacket with quiet violet accents, a scholarship pin on his collar.",
+    "signatureExpression": "tired",
     "direction": "Use only available expressions; neutral is the fallback. Do not invent an unseen gesture or additional portrait."
   },
   "runtime": {
@@ -85,8 +119,8 @@
     "routineSource": "Not implemented"
   },
   "authoring": {
-    "futureArc": "Proposed housemate and teammate with a different relationship to planning.",
-    "canonNotes": "Draft only: not selectable in the running game, not loaded into AI dialogue.",
-    "source": "docs/CAST_EXPANSION.md"
+    "futureArc": "Learns to tell friends when a promise exceeds his time; a missed commitment and an honest repair. Proposed candidate for a developed route.",
+    "canonNotes": "Draft only: not selectable in the running game, not loaded into AI dialogue. Ages and roles are proposed canon; nothing here reveals or resolves the mystery.",
+    "source": "docs/CAST_EXPANSION.md (expanded October 2026)"
   }
 }
