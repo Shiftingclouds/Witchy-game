@@ -51,7 +51,7 @@ npm run dist:win   # build release/Lanternmere <version>.exe (portable, unsigned
 npm run test:electron  # desktop smoke tests: restart persistence, art protocol, single instance
 ```
 
-Double-click the `.exe` to play; no terminal or server is needed. Desktop saves are JSON files in `%APPDATA%\Lanternmere\saves\` (when run from source with `npm run app`, `%APPDATA%\lanternmere-academy\saves\`). They are never written inside the repository. `release/` and `*.exe` are ignored by Git. Opening the app twice focuses the existing window.
+Double-click the `.exe` to play; no terminal or server is needed. Desktop saves are JSON files in `%APPDATA%\Lanternmere\saves\`, both for the `.exe` and when run from source with `npm run app`. They are never written inside the repository. `release/` and `*.exe` are ignored by Git. Opening the app twice focuses the existing window.
 
 ## Saves
 

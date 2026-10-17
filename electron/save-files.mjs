@@ -1,18 +1,11 @@
-import {
-  copyFileSync,
-  existsSync,
-  mkdirSync,
-  readFileSync,
-  renameSync,
-  writeFileSync,
-} from 'node:fs';
+import * as nodeFs from 'node:fs';
 import path from 'node:path';
 
 const KEY = /^lanternmere\.[a-z.-]+$/;
 
 /** A synchronous Storage-like store: one JSON file per key, atomic writes, one backup. */
-export function createFileStorage(directory) {
-  mkdirSync(directory, { recursive: true });
+export function createFileStorage(directory, fs = nodeFs) {
+  fs.mkdirSync(directory, { recursive: true });
   const file = (key) => {
     if (typeof key !== 'string' || !KEY.test(key) || key.includes('..'))
       throw new Error('Unknown save key.');
@@ -21,14 +14,21 @@ export function createFileStorage(directory) {
   return {
     getItem(key) {
       const target = file(key);
-      return existsSync(target) ? readFileSync(target, 'utf8') : null;
+      return fs.existsSync(target) ? fs.readFileSync(target, 'utf8') : null;
     },
     setItem(key, value) {
       const target = file(key);
       const temporary = target + '.tmp';
-      writeFileSync(temporary, String(value));
-      if (existsSync(target)) copyFileSync(target, target + '.bak');
-      renameSync(temporary, target);
+      // Flush before renaming so a power cut cannot leave an empty save behind the new name.
+      const fd = fs.openSync(temporary, 'w');
+      try {
+        fs.writeSync(fd, String(value));
+        fs.fsyncSync(fd);
+      } finally {
+        fs.closeSync(fd);
+      }
+      if (fs.existsSync(target)) fs.copyFileSync(target, target + '.bak');
+      fs.renameSync(temporary, target);
     },
   };
 }

@@ -45,3 +45,9 @@ test('a second instance exits instead of opening another window', async () => {
   expect(first.windows()).toHaveLength(1);
   await first.close();
 });
+
+test('the app name, and so the save folder, is Lanternmere in dev and the exe', async () => {
+  const app = await launch(tmp);
+  expect(await app.evaluate(({ app }) => app.getName())).toBe('Lanternmere');
+  await app.close();
+});

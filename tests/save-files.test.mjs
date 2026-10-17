@@ -1,5 +1,6 @@
 import test, { beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
+import * as fs from 'node:fs';
 import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import os from 'node:os';
 import { join } from 'node:path';
@@ -45,4 +46,16 @@ test('save directory is outside the repo', () => {
   assert.doesNotThrow(() => assertOutsideRepo(saveDirectory(os.tmpdir()), process.cwd()));
   const userData = join(os.tmpdir(), 'AppData');
   assert.equal(saveDirectory(userData), join(userData, 'saves'));
+});
+
+test('flushes the temporary file to disk before it replaces the save', () => {
+  const calls = [];
+  const spy = {
+    ...fs,
+    fsyncSync: (fd) => (calls.push('fsync'), fs.fsyncSync(fd)),
+    renameSync: (a, b) => (calls.push('rename'), fs.renameSync(a, b)),
+  };
+  createFileStorage(dir, spy).setItem('lanternmere.save.book', '{"a":1}');
+  assert.deepEqual(calls, ['fsync', 'rename']);
+  assert.equal(readFileSync(join(dir, 'lanternmere.save.book.json'), 'utf8'), '{"a":1}');
 });
