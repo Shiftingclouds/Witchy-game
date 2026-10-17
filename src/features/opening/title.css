@@ -8,6 +8,8 @@
   --lm-surface: #26150d;
   --lm-bg: #1a0f0a;
   --lm-wine: #5b2433;
+  --lm-focus: #f6d48e;
+  --lm-line: #7a5631;
 }
 .title-ui {
   position: absolute;
@@ -250,7 +252,10 @@ html[data-reading-mode] .title-name {
   gap: 8px;
   margin-top: 26px;
 }
-.opening.still :is(.title-block, .title-block::before, .title-press, .title-menu, .title-corner) {
+.opening.still .title-block::before {
+  animation: none !important;
+}
+.opening.still :is(.title-block, .title-press, .title-menu, .title-corner) {
   animation: none !important;
   transition: none !important;
 }

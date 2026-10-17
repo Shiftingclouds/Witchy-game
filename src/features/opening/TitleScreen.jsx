@@ -25,9 +25,14 @@ function Title() {
  * The opening: "Press any key", then the menu over the living scene.
  * Menu states: 'title' → 'menu' → 'story' (Read the book / Live the world).
  */
+const slotLine = (status, saved, empty) =>
+  status === 'unreadable' ? 'This save could not be read' : status === 'ok' ? saved : empty;
+
+/** `slots` holds each save slot's status: 'empty', 'ok' or 'unreadable'. */
 export function TitleScreen({
   reduced,
   saves,
+  slots,
   lastMode,
   onContinue,
   onChooseMode,
@@ -44,6 +49,8 @@ export function TitleScreen({
   useEffect(() => {
     if (stage !== 'title') return;
     const wake = (event) => {
+      // Leave browser and app shortcuts (Ctrl/Alt/Meta combinations, F-keys) alone.
+      if (event.ctrlKey || event.metaKey || event.altKey || /^F\d+$/.test(event.key)) return;
       if (['Shift', 'Control', 'Alt', 'Meta', 'Tab'].includes(event.key)) return;
       event.preventDefault?.();
       setStage('menu');
@@ -92,14 +99,16 @@ export function TitleScreen({
               <>
                 <VineButton
                   title={MODE_LABELS.book}
-                  subline={
-                    saves.book ? 'Continue your book' : 'An illustrated story, one page at a time'
-                  }
+                  subline={slotLine(
+                    slots.book,
+                    'Continue your book',
+                    'An illustrated story, one page at a time',
+                  )}
                   onClick={() => onChooseMode('book')}
                 />
                 <VineButton
                   title={MODE_LABELS.live}
-                  subline={saves.live ? 'Continue your life' : 'Explore at your own pace'}
+                  subline={slotLine(slots.live, 'Continue your life', 'Explore at your own pace')}
                   onClick={() => onChooseMode('live')}
                 />
                 <button className="title-quiet" onClick={() => setStage('menu')}>

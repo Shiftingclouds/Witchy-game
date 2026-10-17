@@ -91,6 +91,14 @@ const lastMode = () => {
     return null;
   }
 };
+/** 'empty', 'ok' or 'unreadable' — an unreadable save must never look like an empty slot. */
+function slotStatus(mode) {
+  try {
+    return saves.read(mode) ? 'ok' : 'empty';
+  } catch {
+    return 'unreadable';
+  }
+}
 function load(mode) {
   try {
     return saves.read(mode);
@@ -184,7 +192,12 @@ function App() {
     navigate('world');
   }
   function chooseMode(mode) {
-    if (load(mode)) start(mode);
+    const status = slotStatus(mode);
+    if (status === 'unreadable')
+      setToast(
+        'This save could not be read. Nothing was changed — you can restore an exported copy with Restore a save.',
+      );
+    else if (status === 'ok') start(mode);
     else setCreating(mode);
   }
   function start(mode, name, house, familiar) {
@@ -225,6 +238,7 @@ function App() {
         <TitleScreen
           reduced={reading.reduced}
           saves={{ book: load('book'), live: load('live') }}
+          slots={{ book: slotStatus('book'), live: slotStatus('live') }}
           lastMode={lastMode()}
           onContinue={(mode) => start(mode)}
           onChooseMode={chooseMode}

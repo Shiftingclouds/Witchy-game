@@ -57,3 +57,13 @@ test('the app name, and so the save folder, is Lanternmere in dev and the exe', 
   expect(await app.evaluate(({ app }) => app.getName())).toBe('Lanternmere');
   await app.close();
 });
+
+test('the window opens on the dark opening colour, not a pale flash', async () => {
+  const app = await launch(tmp);
+  await app.firstWindow();
+  const colour = await app.evaluate(({ BrowserWindow }) =>
+    BrowserWindow.getAllWindows()[0].getBackgroundColor(),
+  );
+  expect(colour.toLowerCase()).toBe('#140b06');
+  await app.close();
+});

@@ -57,7 +57,7 @@ function start() {
     minWidth: 1024,
     minHeight: 700,
     title: 'Lanternmere',
-    backgroundColor: '#f3efe6',
+    backgroundColor: '#140b06',
     autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(here, 'preload.cjs'),
