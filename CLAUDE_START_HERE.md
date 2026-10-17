@@ -37,7 +37,11 @@ Bloomtide is implemented in six sections. It has:
 
 A dim Heartfire variant was generated and inspected at `/workspace/generated_images/exec-c7bf6731-6a3b-4f7a-85d5-da9eb31f0811.png`. It is **not integrated, not committed, and not guaranteed to exist in a different environment**. No Midsummer scene file has been written. Use the original `heartfire.png` cavern as the visual reference if this pending source must be regenerated. The previous build warned that the main JS chunk exceeded 500 kB; content chunking is a future improvement, not a runtime failure.
 
-## Actual size and completion limits
+## AI modes (October 2026)
+
+The Guided Tale and the Open World are implemented on Claude Code (`claude -p`) per [the spec](docs/superpowers/specs/2026-10-16-desktop-and-ai-modes-design.md) and [plan](docs/superpowers/plans/2026-10-17-ai-modes.md). Saves are version 5 (`game.ai`). Tests use a stand-in bridge in the browser and `tests/fixtures/fake-claude.mjs` in Electron; neither spends subscription usage.
+
+Live smoke test, 17 October 2026: one Open World turn on `sonnet` through the real bridge returned a schema-valid reply in 8.9 s (context about 21k of the 60k budget), in voice, with sensible proposals (time advance, a "dark lantern" thread).
 
 - **35,379 / 250,000** eligible whole-game words; **214,621 remain**.
 - Expanded scenes: **31,328 words**, **43 sections**, **22 saved local decisions**.

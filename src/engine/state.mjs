@@ -1,11 +1,14 @@
 import { houses, familiars } from '../content.mjs';
-export const SAVE_VERSION = 4;
+import { emptyAi } from './ai-state.mjs';
+import { isAiMode } from './modes.mjs';
+export const SAVE_VERSION = 5;
 export const periods = ['Morning', 'Afternoon', 'Evening', 'Night'];
 export const initialState = (
   mode = 'live',
   name = 'Avery',
   house = 'owlcombe',
   familiar = 'cat',
+  { timeMode = null } = {},
 ) => ({
   version: SAVE_VERSION,
   mode,
@@ -34,4 +37,8 @@ export const initialState = (
   conversationSequence: 0,
   daily: { date: '2026-09-01', checkins: [], event: null },
   feedback: '',
+  // Playthrough memory, AI modes only (Guided: no time mode; Open World: timeless or timed).
+  ai: isAiMode(mode)
+    ? emptyAi(mode === 'sandbox' ? (timeMode === 'timed' ? 'timed' : 'timeless') : null)
+    : null,
 });

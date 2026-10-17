@@ -1,3 +1,4 @@
+import { isLiveLike } from './engine/modes.mjs';
 import {
   ArrowRight,
   CalendarDays,
@@ -15,6 +16,8 @@ import { Button, Eyebrow, Modal, Portrait } from './components.jsx';
 
 export function Residents({ game, open }) {
   const here = peopleHere(game);
+  // People invented in the Open World have no portrait; they appear by name where they usually are.
+  const invented = (game.ai?.people || []).filter((p) => p.home === game.location);
   return (
     <section className="residents" aria-label="People here now">
       <div className="section-label">
@@ -34,7 +37,17 @@ export function Residents({ game, open }) {
             </button>
           ))}
         </div>
-      ) : (
+      ) : null}
+      {invented.length > 0 && (
+        <div className="resident-list invented">
+          {invented.map((p) => (
+            <span key={p.id} className="invented-person" title={p.description}>
+              <strong>{p.name}</strong> <small>{p.role}</small>
+            </span>
+          ))}
+        </div>
+      )}
+      {!here.length && !invented.length && (
         <p>
           A quiet moment to yourself. People move between lessons, the village, and their common
           rooms as the day turns.
@@ -169,7 +182,7 @@ export function CharacterProfile({ id, game, visit, open, onClose }) {
           <div className="friendship-meter">
             <i style={{ width: (game.bonds[id] || 0) + '%' }} />
           </div>
-          {game.mode === 'live' ? (
+          {isLiveLike(game.mode) ? (
             <>
               <div className="routine-heading">
                 <Clock size={14} /> Where to find them today

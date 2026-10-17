@@ -4,6 +4,8 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { resolveAppPath } from './protocol.mjs';
 import { createFileStorage } from './save-files.mjs';
 import { assertOutsideRepo, saveDirectory } from './paths.mjs';
+import { appendFileSync, mkdirSync } from 'node:fs';
+import { createClaudeBridge } from './claude-bridge.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const APP_URL = 'app://lanternmere/';
@@ -50,6 +52,34 @@ function start() {
   });
   ipcMain.on('storage:get', (event, key) => reply(event, () => storage.getItem(key)));
   ipcMain.on('storage:set', (event, key, value) => reply(event, () => storage.setItem(key, value)));
+
+  // Claude for the AI modes. Prompts and replies stay under userData; the debug log is opt-in.
+  const userData = app.getPath('userData');
+  if (!app.isPackaged) assertOutsideRepo(userData, app.getAppPath());
+  const logDir = path.join(userData, 'logs');
+  let debugLog = false;
+  const claude = createClaudeBridge({
+    workDir: path.join(userData, 'claude-work'),
+    log: (entry) => {
+      if (!debugLog) return;
+      mkdirSync(logDir, { recursive: true });
+      appendFileSync(path.join(logDir, 'claude.jsonl'), JSON.stringify(entry) + '\n');
+    },
+  });
+  ipcMain.handle('ai:status', () => claude.status());
+  ipcMain.handle('ai:request', (_event, options) => {
+    debugLog = Boolean(options?.debug);
+    return claude.request({
+      id: typeof options.id === 'string' ? options.id.slice(0, 80) : null,
+      system: String(options.system),
+      prompt: String(options.prompt),
+      schema: options.schema,
+      model: String(options.model || 'opus'),
+      timeoutMs: Math.min(Number(options.timeoutMs) || 240_000, 600_000),
+    });
+  });
+  ipcMain.handle('ai:cancel', (_event, id) => claude.cancel(typeof id === 'string' ? id : null));
+  app.on('before-quit', () => claude.dispose());
 
   win = new BrowserWindow({
     width: 1440,

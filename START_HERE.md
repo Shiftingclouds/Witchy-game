@@ -59,7 +59,12 @@ Progress is automatically stored in this browser. Export it in Settings or Journ
 
 ## AI
 
-AI play is being rebuilt on Claude Code (`claude -p`); Prebuilt modes use prepared dialogue only. See [the design](docs/superpowers/specs/2026-10-16-desktop-and-ai-modes-design.md).
+Two AI ways to play run in the desktop app through Claude Code (`claude -p`) on your own Claude subscription. No API key is used or stored. Install Claude Code and run `claude` once to sign in; Settings → Claude connection shows the status and has a Test button.
+
+- **The Guided Tale:** the authored story, word for word, with room to breathe. After each section, _Linger here a while_ opens a small Claude-written moment; at decisions you can _answer in your own words_, and Claude maps your answer to one of the authored choices so the story stays on its rails.
+- **The Open World:** your own life at Lanternmere. Write what you do on Your day, or talk freely with anyone. Claude may invent people (described in words, no portraits) but never new places. Choose **Timeless** (the mystery waits for you) or **Timed** (the year and the mystery move with the calendar) at the start; Timeless can switch to Timed once, from Your story or when the world asks.
+
+The prebuilt modes (Read the book, Live the world) never call AI. Writing uses the model chosen in Settings (Opus by default); quiet record-keeping uses Sonnet. Each AI mode has its own save. Prompts and replies are never written to disk unless you turn on the debug log, which goes to `%APPDATA%\Lanternmere\logs\`. The full design is in [the spec](docs/superpowers/specs/2026-10-16-desktop-and-ai-modes-design.md).
 
 ## Development and verification
 

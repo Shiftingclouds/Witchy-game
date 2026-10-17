@@ -1,0 +1,256 @@
+/* The living scene in the AI modes. */
+.ai-scene {
+  position: relative;
+  display: grid;
+  gap: 16px;
+  margin: 22px 0 8px;
+  padding: 22px 24px 20px;
+  color: var(--lm-ink);
+  background: var(--lm-backing);
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 35%, transparent);
+  border-radius: 1px;
+}
+.ai-transcript {
+  display: grid;
+  gap: 18px;
+  max-height: 46vh;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+.ai-moment {
+  display: grid;
+  gap: 10px;
+}
+.ai-player {
+  margin: 0;
+  font-family: var(--lm-display);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--lm-ink-soft);
+}
+.ai-narration {
+  margin: 0;
+  font-family: var(--lm-read);
+  font-size: 19px;
+  line-height: 1.6;
+  max-width: 68ch;
+}
+.ai-line {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: start;
+  margin: 0;
+  font-family: var(--lm-read);
+  font-size: 19px;
+  line-height: 1.55;
+  max-width: 72ch;
+}
+.ai-speaker {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  min-width: 64px;
+  text-align: center;
+}
+.ai-speaker strong {
+  font-family: var(--lm-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--lm-ink);
+}
+.ai-speaker-portrait {
+  width: 56px;
+  height: 64px;
+  object-fit: cover;
+  object-position: top;
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 35%, transparent);
+  background: var(--lm-surface);
+}
+.ai-speaker.invented {
+  justify-items: start;
+  min-width: 0;
+  max-width: 180px;
+  text-align: left;
+}
+.ai-introduction {
+  font-family: var(--lm-read);
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--lm-ink-soft);
+}
+.ai-empty {
+  margin: 0;
+  font-style: italic;
+  color: var(--lm-ink-soft);
+}
+.ai-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+}
+.ai-suggestions .text-button {
+  font-family: var(--lm-display);
+  font-size: 17px;
+  font-style: italic;
+  color: var(--lm-ink);
+  border-bottom: 1px solid color-mix(in srgb, var(--lm-gold) 40%, transparent);
+  padding: 2px 0;
+}
+.ai-suggestions .text-button:hover,
+.ai-suggestions .text-button:focus-visible {
+  border-bottom-color: var(--lm-gold-bright);
+}
+.ai-error {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+  padding: 12px 16px;
+  background: color-mix(in srgb, var(--lm-wine) 30%, var(--lm-surface));
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 35%, transparent);
+}
+.ai-error p {
+  margin: 0;
+  flex: 1 1 300px;
+}
+.ai-scene .thinking-veil {
+  border-radius: 1px;
+}
+/* Conversations in the AI modes */
+.conversation .ai-scene {
+  margin: 14px 0 0;
+  padding: 16px;
+}
+.conversation .ai-transcript {
+  max-height: 34vh;
+}
+/* "Your story" in the Open World */
+.ai-story {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 28px;
+}
+.ai-story section {
+  padding: 22px 24px;
+  background: var(--lm-backing);
+  border-top: 1px solid color-mix(in srgb, var(--lm-gold) 45%, transparent);
+}
+.ai-story h2 {
+  margin: 0 0 12px;
+  font-size: 28px;
+}
+.ai-story ol,
+.ai-story ul {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding-left: 18px;
+  font-family: var(--lm-read);
+  font-size: 17px;
+  line-height: 1.55;
+}
+.ai-story small {
+  display: block;
+  color: var(--lm-ink-soft);
+  font-size: 15px;
+}
+.ai-story .resolved {
+  color: var(--lm-ink-soft);
+  text-decoration: line-through;
+  text-decoration-color: color-mix(in srgb, var(--lm-gold) 50%, transparent);
+}
+.ai-time {
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+}
+@media (max-width: 1000px) {
+  .ai-story {
+    grid-template-columns: 1fr;
+  }
+}
+.resident-list.invented {
+  margin-top: 8px;
+}
+.invented-person {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 7px 12px;
+  font-family: var(--lm-read);
+  font-size: 15px;
+  color: var(--lm-ink);
+  border: 1px dashed color-mix(in srgb, var(--lm-gold) 40%, transparent);
+  border-radius: 1px;
+}
+.invented-person small {
+  color: var(--lm-ink-soft);
+  font-style: italic;
+}
+
+.ai-story-sub {
+  margin: 14px 0 8px;
+  font-family: var(--lm-label);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--lm-gold);
+}
+
+/* Guided Tale */
+.interlude {
+  position: relative;
+  margin: 26px 0;
+}
+.interlude-invite {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  padding: 14px 0;
+  border-top: 1px solid color-mix(in srgb, var(--lm-gold) 22%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--lm-gold) 22%, transparent);
+}
+.interlude-recall {
+  margin: 0;
+  max-width: 60ch;
+  font-family: var(--lm-display);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--lm-ink-soft);
+  text-align: center;
+}
+.interlude .ai-scene {
+  margin: 0;
+}
+.interlude-continue {
+  margin-top: 10px;
+  font-family: var(--lm-display);
+  font-size: 17px;
+}
+.own-words {
+  position: relative;
+  margin: 12px 0 4px;
+}
+.own-words .thinking-veil {
+  align-items: center;
+  padding: 0;
+}
+.ai-error-inline {
+  margin: 8px 0 0;
+  font-size: 15px;
+  color: var(--lm-ink);
+}
+
+/* Stop sits above the thinking veil, which lets clicks through. */
+.ai-stop {
+  position: relative;
+  z-index: 3;
+  justify-self: end;
+  font-family: var(--lm-display);
+  font-size: 17px;
+}
+.own-words .ai-stop {
+  display: block;
+  margin: 6px 0 0 auto;
+}

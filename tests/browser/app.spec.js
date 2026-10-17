@@ -126,7 +126,7 @@ test('a version-one save resumes in the browser with its progress preserved', as
     'A memory from before the update.',
   );
   const save = await page.evaluate(() => JSON.parse(localStorage.getItem('lanternmere.save.live')));
-  expect(save.version).toBe(4);
+  expect(save.version).toBe(5);
   expect(save.points).toBe(3);
   expect(save.daily.date).toBe(save.date);
 });

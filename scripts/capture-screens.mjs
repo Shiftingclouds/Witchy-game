@@ -20,6 +20,58 @@ const enter = async (p, mode = 'live') => {
   await p.getByRole('button', { name: /Begin your story/ }).click();
   await p.locator('.app-shell').waitFor();
 };
+// AI screens use a stand-in bridge: `bridge` is the reply every request gets ({ ok:false, error } for errors).
+const MOMENT = {
+  ok: true,
+  data: {
+    beats: [
+      {
+        speaker: null,
+        text: 'Supper noise rolls through Lantern Hall: cutlery, laughter, a kettle insisting on attention.',
+        expression: 'neutral',
+      },
+      {
+        speaker: 'rowan',
+        text: 'There you are. I saved you a seat — and half a plum cake.',
+        expression: 'warm',
+      },
+      {
+        speaker: 'Bettany Crisp',
+        text: 'Mind the crumbs. Grey sweeps at nine.',
+        expression: 'warm',
+      },
+    ],
+    location: 'lantern-hall',
+    present: ['rowan'],
+    suggestions: ['Ask about the dark lantern', 'Eat the plum cake'],
+    proposals: [
+      {
+        type: 'person',
+        name: 'Bettany Crisp',
+        description: 'A tall woman with flour to her elbows.',
+        role: 'kitchen baker',
+        home: 'lantern-hall',
+      },
+    ],
+    memoryNotes: '',
+    interludeComplete: false,
+  },
+};
+// The Guided Tale has no invented people, so its moment keeps to the cast.
+const GUIDED_MOMENT = {
+  ok: true,
+  data: {
+    ...MOMENT.data,
+    beats: MOMENT.data.beats.slice(0, 2),
+    proposals: [],
+  },
+};
+const enterAi = async (p, label) => {
+  await wake(p);
+  await p.getByRole('button', { name: label }).click();
+  await p.getByRole('button', { name: /Begin your story/ }).click();
+  await p.locator('.app-shell').waitFor();
+};
 const nav = (p, label) => p.getByRole('button', { name: label, exact: true }).first().click();
 
 export const SCREENS = [
@@ -111,6 +163,49 @@ export const SCREENS = [
     },
   },
   { id: 'patterns', path: '/?patterns', go: async () => {} },
+  {
+    id: 'open-world',
+    bridge: MOMENT,
+    go: async (p) => {
+      await enterAi(p, /The Open World/);
+      const box = p.getByRole('textbox', { name: 'What do you do?' });
+      await box.fill('I look for Rowan at supper.');
+      await box.press('Enter');
+      await p.getByText('Mind the crumbs.', { exact: false }).waitFor();
+      await p.locator('.ai-scene').scrollIntoViewIfNeeded();
+    },
+  },
+  {
+    id: 'ai-error',
+    bridge: { ok: false, error: 'usage-limit' },
+    go: async (p) => {
+      await enterAi(p, /The Open World/);
+      const box = p.getByRole('textbox', { name: 'What do you do?' });
+      await box.fill('I walk to the lake.');
+      await box.press('Enter');
+      await p.getByRole('alert').waitFor();
+      await p.locator('.ai-scene').scrollIntoViewIfNeeded();
+    },
+  },
+  {
+    id: 'guided-interlude',
+    bridge: GUIDED_MOMENT,
+    go: async (p) => {
+      await enterAi(p, /The Guided Tale/);
+      for (let i = 0; i < 12 && !(await p.locator('.interlude').count()); i++) {
+        const pending = p.locator('.authored-chapter .scene-decision button:not([disabled])');
+        if (!(await pending.count())) break;
+        await pending.first().click();
+      }
+      const interlude = p.locator('.interlude').first();
+      await interlude.getByRole('button', { name: /Linger here a while/ }).click();
+      const box = interlude.getByRole('textbox');
+      await box.fill('I stay by the fire.');
+      await box.press('Enter');
+      await interlude.getByText('half a plum cake', { exact: false }).waitFor();
+      await interlude.scrollIntoViewIfNeeded();
+    },
+  },
 ];
 
 async function main() {
@@ -132,6 +227,16 @@ async function main() {
             (m) => localStorage.setItem('lanternmere.reading-mode', m),
             mode,
           );
+          if (screen.bridge)
+            await page.addInitScript((reply) => {
+              window.lanternmere = {
+                ai: {
+                  status: async () => ({ available: true, version: 'review' }),
+                  cancel: async () => {},
+                  request: async () => reply,
+                },
+              };
+            }, screen.bridge);
           await page.goto('http://127.0.0.1:4174' + (screen.path || '/'));
           await page.waitForTimeout(700);
           try {

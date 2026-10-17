@@ -1,8 +1,9 @@
 import { parseSave } from '../engine/save.mjs';
+import { MODES } from '../engine/modes.mjs';
 
 export const MAX_SAVE_BYTES = 1_048_576;
 export const saveSlot = (mode) => {
-  if (!['book', 'live'].includes(mode)) throw new Error('Unknown save slot.');
+  if (!MODES.includes(mode)) throw new Error('Unknown save slot.');
   return 'lanternmere.save.' + mode;
 };
 

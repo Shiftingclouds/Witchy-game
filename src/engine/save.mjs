@@ -19,6 +19,8 @@ import {
 import { matchesCondition } from '../story/choices.mjs';
 import { isGameDate, validateCharacterState } from '../character-memory.mjs';
 import { initialState, SAVE_VERSION } from './state.mjs';
+import { MODES } from './modes.mjs';
+import { sanitizeAi } from './ai-state.mjs';
 import { migrateSave } from './migrations.mjs';
 export function parseSave(value) {
   let s = migrateSave(typeof value === 'string' ? JSON.parse(value) : value);
@@ -26,7 +28,7 @@ export function parseSave(value) {
   if (
     !s ||
     s.version !== SAVE_VERSION ||
-    !['live', 'book'].includes(s.mode) ||
+    !MODES.includes(s.mode) ||
     typeof s.name !== 'string' ||
     !s.name.trim() ||
     s.name.length > 24 ||
@@ -152,9 +154,12 @@ export function parseSave(value) {
       s = { ...s, bookmark: null };
   }
   const characterState = validateCharacterState(s);
-  const clean = initialState(s.mode, s.name, s.house, s.familiar);
+  const clean = initialState(s.mode, s.name, s.house, s.familiar, {
+    timeMode: s.ai?.timeMode,
+  });
   for (const key of Object.keys(clean))
     if (key !== 'feedback') clean[key] = structuredClone(s[key]);
   Object.assign(clean, characterState);
+  clean.ai = sanitizeAi(s.ai, s.mode);
   return clean;
 }

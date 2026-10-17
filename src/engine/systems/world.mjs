@@ -1,3 +1,4 @@
+import { isLiveLike } from '../modes.mjs';
 import { locationById } from '../../content.mjs';
 import { periods } from '../state.mjs';
 import { advanceTime, dateLabel, holiday } from '../time.mjs';
@@ -38,7 +39,7 @@ export const worldSystem = {
       return;
     },
     wait: (s, action) => {
-      if (s.mode !== 'live') return false;
+      if (!isLiveLike(s.mode)) return false;
       advanceTime(s);
       s.feedback = `${periods[s.period]} at Lanternmere. ${dateLabel(s.date)}.`;
       return;

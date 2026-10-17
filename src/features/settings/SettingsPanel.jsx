@@ -4,6 +4,7 @@ import { Modal, Button, Eyebrow } from '../../components.jsx';
 import { ReadingControls } from '../../dialogue-presentation.jsx';
 import { initialState } from '../../engine.mjs';
 import { downloadSave } from '../../storage/saves.mjs';
+import { ClaudeConnection } from '../ai/ClaudeConnection.jsx';
 export function SettingsPanel({
   reading,
   game,
@@ -32,8 +33,8 @@ export function SettingsPanel({
         <Eyebrow>YOUR PROGRESS</Eyebrow>
         <h3>One life. Safely kept.</h3>
         <p>
-          Your {game.mode === 'book' ? 'book' : 'world'} save stays on this computer. Export a copy
-          to keep a backup. The two modes have separate saves.
+          Your {game.mode === 'book' || game.mode === 'guided' ? 'book' : 'world'} save stays on
+          this computer. Export a copy to keep a backup. The two modes have separate saves.
         </p>
         <div className="button-row">
           <Button icon={Download} onClick={() => downloadSave(game)}>
@@ -51,6 +52,7 @@ export function SettingsPanel({
           />
         </div>
       </div>
+      <ClaudeConnection />
       <div className="settings-section">
         <Eyebrow>THE WORLD IN PICTURES</Eyebrow>
         <p>

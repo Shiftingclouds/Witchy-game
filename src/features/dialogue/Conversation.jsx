@@ -1,3 +1,5 @@
+import { isLiveLike, isAiMode } from '../../engine/modes.mjs';
+import { AiScene } from '../ai/AiScene.jsx';
 import { useState } from 'react';
 import { Heart, MessageCircle, Check } from 'lucide-react';
 import { characterById, expressions, topics, art } from '../../content.mjs';
@@ -40,16 +42,28 @@ export function Conversation({ id, game, act, onClose, reading }) {
           <Eyebrow>{c.role}</Eyebrow>
           <ConversationLine key={line} text={line} reading={reading} speaker={c.name} />
           <span className="dialogue-source">{source}</span>
-          <div className="topic-grid">
-            {topics.map((t) => (
-              <button key={t.id} onClick={() => prepared(t.id)}>
-                <MessageCircle size={14} />
-                {t.label}
-                {game.rewards.includes(`talk:${id}:${t.id}`) && <Check size={13} />}
-              </button>
-            ))}
-          </div>
-          {game.mode === 'live' && (
+          {isAiMode(game.mode) ? (
+            <AiScene
+              game={game}
+              act={act}
+              reduced={reading.reduced}
+              focus={{ characterId: id }}
+              placeholder="Say something…"
+              turnsShown={3}
+              filter={(t) => t.beats.some((b) => b.speaker === id)}
+            />
+          ) : (
+            <div className="topic-grid">
+              {topics.map((t) => (
+                <button key={t.id} onClick={() => prepared(t.id)}>
+                  <MessageCircle size={14} />
+                  {t.label}
+                  {game.rewards.includes(`talk:${id}:${t.id}`) && <Check size={13} />}
+                </button>
+              ))}
+            </div>
+          )}
+          {isLiveLike(game.mode) && (
             <div className="daily-checkin">
               <button
                 disabled={!(game.bonds[id] > 0) || game.daily.checkins.includes(id)}

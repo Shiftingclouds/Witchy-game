@@ -76,11 +76,15 @@ import { applyReadingMode } from './theme/apply.mjs';
 import { OpeningScene } from './features/opening/OpeningScene.jsx';
 import { TitleScreen } from './features/opening/TitleScreen.jsx';
 import { VineButton } from './features/opening/VineButton.jsx';
+import { AiScene } from './features/ai/AiScene.jsx';
+import { useChronicle } from './features/ai/useTurn.mjs';
+import { AiStory, ThreadsCard } from './features/ai/AiStory.jsx';
 import { useSidebarState } from './features/shell/sidebar.mjs';
 import { PatternShowcase } from './features/patterns/PatternShowcase.jsx';
 import './features/shell/shell.css';
 import { CharacterCreation } from './features/opening/CharacterCreation.jsx';
-import { LAST_MODE_KEY } from './features/opening/menu-model.mjs';
+import { LAST_MODE_KEY, MODE_LABELS } from './features/opening/menu-model.mjs';
+import { isBookLike, isLiveLike, MODES } from './engine/modes.mjs';
 
 const storage = platformStorage();
 const saves = createSaveRepository(storage);
@@ -151,6 +155,8 @@ function App() {
     [mobileNav, setMobileNav] = useState(false),
     [manifest, setManifest] = useState([]),
     [saveError, setSaveError] = useState('');
+  // One chronicle keeper per playthrough (AI modes only; it does nothing for Book and Live).
+  useChronicle(game, act);
   useEffect(() => {
     fetch('/art/manifest.json')
       .then((r) => r.json())
@@ -200,10 +206,10 @@ function App() {
     else if (status === 'ok') start(mode);
     else setCreating(mode);
   }
-  function start(mode, name, house, familiar) {
+  function start(mode, name, house, familiar, timeMode) {
     try {
-      setGame(saves.read(mode) || initialState(mode, name, house, familiar));
-      setView(mode === 'book' ? 'book' : 'world');
+      setGame(saves.read(mode) || initialState(mode, name, house, familiar, { timeMode }));
+      setView(isBookLike(mode) ? 'book' : 'world');
     } catch (error) {
       setToast(error.message);
     }
@@ -219,7 +225,7 @@ function App() {
       .then((raw) => {
         const imported = saves.import(raw, game);
         setGame(imported);
-        navigate(imported.mode === 'book' ? 'book' : 'world');
+        navigate(isBookLike(imported.mode) ? 'book' : 'world');
         setModal(null);
         setToast('Your saved life is restored.');
       })
@@ -237,8 +243,8 @@ function App() {
       <>
         <TitleScreen
           reduced={reading.reduced}
-          saves={{ book: load('book'), live: load('live') }}
-          slots={{ book: slotStatus('book'), live: slotStatus('live') }}
+          saves={Object.fromEntries(MODES.map((m) => [m, load(m)]))}
+          slots={Object.fromEntries(MODES.map((m) => [m, slotStatus(m)]))}
           lastMode={lastMode()}
           onContinue={(mode) => start(mode)}
           onChooseMode={chooseMode}
@@ -249,8 +255,8 @@ function App() {
             <CharacterCreation
               mode={creating}
               onBack={() => setCreating(null)}
-              onBegin={(name, house, familiar) => {
-                start(creating, name, house, familiar);
+              onBegin={(name, house, familiar, timeMode) => {
+                start(creating, name, house, familiar, timeMode);
                 setCreating(null);
               }}
             />
@@ -314,17 +320,19 @@ function App() {
         <Eyebrow>YOUR LITTLE WORLD</Eyebrow>
         <nav aria-label="Main navigation">
           {navItems
-            .filter(([id]) => game.mode === 'live' || !['world', 'map'].includes(id))
+            .filter(([id]) => isLiveLike(game.mode) || !['world', 'map'].includes(id))
             .map(([id, label, Icon]) => (
               <button
                 key={id}
                 className={'nav-item ' + (view === id ? 'active' : '')}
                 onClick={() => navigate(id)}
-                aria-label={label}
+                aria-label={id === 'book' && game.mode === 'sandbox' ? 'Your story' : label}
                 title={sidebar.state === 'rail' ? label : undefined}
               >
                 <Icon size={19} />
-                <span className="nav-label">{label}</span>
+                <span className="nav-label">
+                  {id === 'book' && game.mode === 'sandbox' ? 'Your story' : label}
+                </span>
                 {view === id && <span className="nav-dot" />}
               </button>
             ))}
@@ -379,8 +387,7 @@ function App() {
             <Menu size={20} />
           </button>
           <div className="breadcrumb">
-            LANTERNMERE ACADEMY <span>/</span>{' '}
-            <strong>{game.mode === 'book' ? 'Read the book' : 'Live the world'}</strong>
+            LANTERNMERE ACADEMY <span>/</span> <strong>{MODE_LABELS[game.mode]}</strong>
           </div>
           <div className="header-status">
             <span className="connection">
@@ -407,18 +414,30 @@ function App() {
               visit={visit}
               navigate={navigate}
               open={setModal}
-              quest={<QuestCard game={game} visit={visit} navigate={navigate} />}
+              quest={
+                game.mode === 'sandbox' ? (
+                  <ThreadsCard game={game} navigate={navigate} />
+                ) : (
+                  <QuestCard game={game} visit={visit} navigate={navigate} />
+                )
+              }
+              aiScene={
+                game.mode === 'sandbox' ? (
+                  <AiScene game={game} act={act} reduced={reading.reduced} />
+                ) : null
+              }
             />
           )}
           {view === 'map' && <Atlas game={game} visit={visit} />}
-          {view === 'book' && (
+          {view === 'book' && game.mode === 'sandbox' && <AiStory game={game} act={act} />}
+          {view === 'book' && game.mode !== 'sandbox' && (
             <Story
               game={game}
               act={act}
               visit={visit}
               open={setModal}
               reading={reading}
-              leave={() => (game.mode === 'live' ? navigate('world') : setGame(null))}
+              leave={() => (isLiveLike(game.mode) ? navigate('world') : setGame(null))}
             />
           )}
           {view === 'people' && <People game={game} open={setModal} />}
@@ -687,7 +706,7 @@ function Epilogue({ game, leave }) {
         <VineButton
           lead
           title="Your life at Lanternmere continues"
-          subline={game.mode === 'live' ? 'Return to your day' : 'Close the book for now'}
+          subline={isLiveLike(game.mode) ? 'Return to your day' : 'Close the book for now'}
           onClick={leave}
         />
       </div>
@@ -701,10 +720,10 @@ function Story({ game, act, visit, open, reading, leave }) {
   return (
     <>
       <PageHeading
-        eyebrow={game.mode === 'book' ? 'READ THE BOOK · AN ILLUSTRATED YEAR' : 'THE STORY SO FAR'}
+        eyebrow={isBookLike(game.mode) ? 'READ THE BOOK · AN ILLUSTRATED YEAR' : 'THE STORY SO FAR'}
         title="The light we leave behind."
         description={
-          game.mode === 'book'
+          isBookLike(game.mode)
             ? 'Settle in. The world can wait while you turn the page.'
             : 'Your days become a story. Your choices give it meaning.'
         }
@@ -758,10 +777,10 @@ function Story({ game, act, visit, open, reading, leave }) {
             </>
           ) : (
             <>
-              <AuthoredChapter game={game} act={act} />
+              <AuthoredChapter game={game} act={act} reduced={reading.reduced} />
               {pendingStoryChoice(game) ? (
                 <p className="story-gate">Make your decision in the scene above to continue.</p>
-              ) : game.mode === 'live' && !canAdvance(game) ? (
+              ) : isLiveLike(game.mode) && !canAdvance(game) ? (
                 <div className="story-gate">
                   <strong>
                     <Compass size={16} /> Before the next page
@@ -858,7 +877,7 @@ function People({ game, open }) {
               <div className="friendship-meter">
                 <i style={{ width: (game.bonds[c.id] || 0) + '%' }} />
               </div>
-              {game.mode === 'live' && (
+              {isLiveLike(game.mode) && (
                 <div className="person-where">
                   <MapPin size={12} />
                   {locationById[characterLocation(game, c.id)].name}
@@ -973,13 +992,13 @@ function Grimoire({ game, visit, open, act }) {
                 <span className="learned-label">
                   <CheckCircle2 size={14} /> In your grimoire
                 </span>
-                {game.mode === 'live' && (
+                {isLiveLike(game.mode) && (
                   <Button onClick={() => act({ type: 'cast', id: s.id })}>
                     Cast at {locationById[game.location].name}
                   </Button>
                 )}
               </>
-            ) : game.mode === 'book' ? (
+            ) : isBookLike(game.mode) ? (
               <span className="muted">Learned as your story unfolds</span>
             ) : (
               <Button
@@ -1023,7 +1042,7 @@ function Calendar({ game, act, visit, open }) {
         title="A season for everything."
         description="Lessons, festivals, and ordinary days that turn out to matter."
       />
-      <>{game.mode === 'live' && <DailyCard game={game} visit={visit} open={open} />}</>
+      <>{isLiveLike(game.mode) && <DailyCard game={game} visit={visit} open={open} />}</>
       <div className="calendar-layout">
         <section className="calendar-card">
           <div className="calendar-heading">
@@ -1096,7 +1115,7 @@ function Calendar({ game, act, visit, open }) {
               It’s {dateLabel(game.date)}, {periods[game.period].toLowerCase()}. Conversations and
               lessons move the day along; story milestones turn the season.
             </p>
-            {game.mode === 'live' && (
+            {isLiveLike(game.mode) && (
               <Button icon={Moon} onClick={() => act({ type: 'rest' })}>
                 Rest until tomorrow
               </Button>
