@@ -4,6 +4,7 @@ import { Conversation } from './features/dialogue/Conversation.jsx';
 import { SettingsPanel } from './features/settings/SettingsPanel.jsx';
 import { endingCommon, endingVariants } from './features/story/epilogue.mjs';
 import { createSaveRepository, downloadSave } from './storage/saves.mjs';
+import { platformStorage } from './storage/platform.mjs';
 import { ErrorBoundary } from './ErrorBoundary.jsx';
 import { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -70,10 +71,7 @@ import { SceneReader, ReadingControls, useReadingPreferences } from './dialogue-
 import './styles.css';
 import './dialogue-presentation.css';
 
-const saves = createSaveRepository({
-  getItem: (key) => localStorage.getItem(key),
-  setItem: (key, value) => localStorage.setItem(key, value),
-});
+const saves = createSaveRepository(platformStorage());
 function load(mode) {
   try {
     return saves.read(mode);

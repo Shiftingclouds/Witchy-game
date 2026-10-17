@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "main": "electron/main.mjs",
   "scripts": {
     "dev": "python3 scripts/prepare_art.py && vite",
     "build": "python3 scripts/prepare_art.py && node scripts/check-characters.mjs && node scripts/check-story.mjs && vite build",
@@ -17,7 +18,8 @@
     "format": "prettier --write \"src/**/*.{jsx,mjs,css}\" \"tests/**/*.{mjs,js}\" \"scripts/*.mjs\" \"electron/**/*.{mjs,cjs}\" vite.config.js playwright.config.js package.json",
     "format:check": "prettier --check \"src/**/*.{jsx,mjs,css}\" \"tests/**/*.{mjs,js}\" \"scripts/*.mjs\" \"electron/**/*.{mjs,cjs}\" vite.config.js playwright.config.js package.json",
     "check": "npm run format:check && npm run check:characters && npm run check:story && npm run check:story-export && npm test",
-    "check:story": "node scripts/check-story.mjs"
+    "check:story": "node scripts/check-story.mjs",
+    "app": "npm run build && electron ."
   },
   "dependencies": {
     "lucide-react": "^0.468.0",
@@ -27,7 +29,12 @@
   "devDependencies": {
     "@playwright/test": "^1.56.0",
     "@vitejs/plugin-react": "^4.4.1",
+    "electron": "^44.9.0",
     "prettier": "^3.9.10",
     "vite": "^6.3.5"
+  },
+  "allowScripts": {
+    "electron@44.9.0": true,
+    "esbuild@0.25.12": true
   }
 }
