@@ -10,3 +10,4 @@ public/art/
 release/
 *.exe
 *.blockmap
+.superpowers/
