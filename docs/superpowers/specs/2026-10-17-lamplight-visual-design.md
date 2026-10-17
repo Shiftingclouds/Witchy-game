@@ -1,6 +1,6 @@
 # Lanternmere visual design ("Lamplight") — design
 
-Date: 17 October 2026. Status: draft for owner approval (builder check done; its questions settled as calls below).
+Date: 17 October 2026. Status: approved by owner, 17 October 2026.
 
 Companion to `2026-10-16-desktop-and-ai-modes-design.md`. That spec covers how the game runs (desktop app, Claude modes). This one covers how every screen looks and feels.
 
