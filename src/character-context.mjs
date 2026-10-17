@@ -20,7 +20,7 @@ const publicFacts = [
   'Lanternmere is a magical academy beside a lake. The village and academy share daily work and traditions.',
   'A lantern above the new arrival’s place in Lantern Hall went dark.',
   'A voice was heard beneath a newly kindled flame: Remember the way home.',
-  'The investigation found that memories of belonging sustain the lights; names of ordinary keepers were omitted from the register.',
+  'The register comparison found ordinary workers omitted from three formal entries. A keeper instruction and a limited echo connect the lights with remembered care and belonging. The cause of the failure, the reason for the omissions, and a method of repair remain unproven at this point.',
   'Moonflower petals can hold an echo of warmth. These echoes are not living or resurrected people.',
   'The first keepers freely offered their lights together. The school’s buildings will remain if the welcoming magic fails; midsummer is the restoration deadline.',
   'The original circle left an opening for newcomers. Threadbind joins willing lights rather than compelling them.',

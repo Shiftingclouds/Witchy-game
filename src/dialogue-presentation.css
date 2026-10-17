@@ -135,6 +135,26 @@
   pointer-events: none;
   background: linear-gradient(transparent 65%, #19291eaa);
 }
+.performance-detail {
+  background: #201a13;
+}
+.performance-detail .performance-background {
+  object-fit: contain;
+  object-position: center;
+}
+.performance-detail:after {
+  display: none;
+}
+.story-illustration {
+  margin: 22px 0;
+}
+.story-illustration img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 7px;
+  border: 1px solid #c7b78e;
+}
 .scene-light {
   position: absolute;
   inset: 0;

@@ -374,6 +374,7 @@ const names = [
   'hester',
   'honoria',
   'elian-vale',
+  'maelin-quill',
 ];
 export const characters = names.flatMap((id, i) =>
   id
@@ -417,6 +418,8 @@ for (const character of characters) {
 }
 export const characterById = Object.fromEntries(characters.map((c) => [c.id, c]));
 export const expressions = {
+  dunne: ['neutral', 'attentive'],
+  'maelin-quill': ['neutral', 'reflective'],
   rowan: [
     'neutral',
     'warm',
@@ -606,7 +609,7 @@ export const chapters = [
     requirements: ['imogen', 'archive', 'echo'],
     text: [
       'Imogen has been waiting for someone to ask the right question. She lays an atlas between you and opens it to a map of the lake, crowded with tiny handwritten names.',
-      'The academy’s lights are not fed by power. They are kept by memories of belonging. Over the years, the names of the people who tended them have been rubbed from the register. Without those stories, the heartfire is slowly forgetting who it warms.',
+      'Three pairs of records preserve the work of tending the lights while omitting the workers from the formal register. A keeper’s instruction and a supervised echo connect the lights with care and return. The group has evidence of a pattern, but the cause of the failure and a method of repair remain unproven.',
       '“A mistake repeated long enough looks like a tradition,” Imogen says. “We can choose not to repeat it.”',
     ],
     choices: [
@@ -742,7 +745,7 @@ export const dialogues = {
     ],
     mystery: [
       'grave',
-      'There are names missing from the old register. Not torn out—rubbed away. I think someone decided that ordinary kindness was not important enough to record.',
+      'A catalogue tells you what somebody thought worth finding. I want to compare the lantern index with the working records before deciding what its gaps mean.',
     ],
     care: [
       'warm',

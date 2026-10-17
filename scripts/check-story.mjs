@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { existsSync } from 'node:fs';
 import { isGameDate } from '../src/character-memory.mjs';
 import { chapters, characterById, expressions, locationById } from '../src/content.mjs';
 import { stagedScenes } from '../src/scene-beats.mjs';
@@ -11,6 +12,8 @@ const identifiers = new Set(),
 const id = (value) => assert.match(value, /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/);
 const text = (value) =>
   assert.ok(typeof value === 'string' && value.trim(), 'Missing authored text');
+const imageExists = (name) =>
+  ['../art/', '../'].some((folder) => existsSync(new URL(`${folder}${name}.png`, import.meta.url)));
 for (const scene of [...stagedScenes].sort((a, b) => a.chapter - b.chapter)) {
   id(scene.id);
   assert.ok(
@@ -27,6 +30,11 @@ for (const scene of [...stagedScenes].sort((a, b) => a.chapter - b.chapter)) {
     text(beat.text);
     assert.ok(!beats.has(beat.id), `Duplicate beat ${scene.id}:${beat.id}`);
     beats.add(beat.id);
+    if (beat.illustration) {
+      id(beat.illustration.art);
+      text(beat.illustration.alt);
+      assert.ok(imageExists(beat.illustration.art), `Missing illustration ${beat.id}`);
+    }
     assert.ok(
       beat.actors.length <= 2 && new Set(beat.actors.map((a) => a.id)).size === beat.actors.length,
     );
@@ -35,6 +43,10 @@ for (const scene of [...stagedScenes].sort((a, b) => a.chapter - b.chapter)) {
       assert.ok(
         (expressions[actor.id] || ['neutral']).includes(actor.emotion),
         `Missing expression ${actor.id}:${actor.emotion}`,
+      );
+      assert.ok(
+        imageExists(`${characterById[actor.id].prefix}-${actor.emotion}`),
+        `Missing portrait file ${actor.id}:${actor.emotion}`,
       );
     }
     if (beat.speaker)

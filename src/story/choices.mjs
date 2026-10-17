@@ -22,6 +22,14 @@ export const introductions = {
     people: ['elian-vale'],
     text: 'We met in the first supervised Kindle practical.',
   },
+  'register:search-method': {
+    people: ['dunne', 'maelin-quill'],
+    text: 'We met at the library reading table and began a supervised comparison of the lantern records.',
+  },
+  'register:worker-question': {
+    people: ['grey'],
+    text: 'We spoke in the old cloisters about a keeper’s handover and how to record that work accurately.',
+  },
 };
 
 export function matchesCondition(beat, choices) {

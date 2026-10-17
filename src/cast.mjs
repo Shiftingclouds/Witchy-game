@@ -2,6 +2,13 @@
 // The abandoned project's documents are not a source of canon.
 const rows = [
   [
+    'maelin-quill',
+    'History and rune languages lecturer',
+    ['classroom', 'library', 'library', 'owlcombe'],
+    'Maelin Quill teaches history and rune languages. They compare formal records with working documents and expect a useful explanation to leave room for correction.',
+    'Keep the reference beside the quotation. Then a reader can check your argument without first deciding whether they like you.',
+  ],
+  [
     'elian-vale',
     'Firecraft and introductory charms teacher',
     ['classroom', 'classroom', 'heartfire', 'library'],
@@ -323,6 +330,15 @@ export const castDetails = Object.fromEntries(
 
 // Four authored topics plus a more personal reply at 20 friendship.
 export const supportingDialogues = {
+  'maelin-quill': {
+    mystery:
+      'Begin with the question a record was made to answer. An account of money spent may be accurate and still tell you almost nothing about the person who stayed to finish the work.',
+    care: 'I am revising a teaching sheet. The margins were quite spacious until I began to explain the parts I had left out.',
+    laugh:
+      'My latest index has a cross-reference to a cross-reference. I am choosing to regard it as an invitation to take a walk.',
+    trust:
+      'I sometimes hesitate before correcting a published explanation. I hear my own old confidence in it. That is a poor reason to let somebody else learn the same mistake.',
+  },
   'elian-vale': {
     mystery:
       'If a charm behaves unexpectedly, write down what happened before explaining why. The explanation can wait for a second observation.',
@@ -439,6 +455,10 @@ export const supportingDialogues = {
 };
 
 export const dailyLines = {
+  'maelin-quill': [
+    'A student asked who made the copy we were reading. We spent the rest of the hour following that question. I have had to move the rest of the lesson, which seems a reasonable price.',
+    'This heading can mean a duty or a title. Before we choose, tell me what the people on this page were doing.',
+  ],
   'elian-vale': [
     'I am testing a new instruction card. Read the first line and tell me what you think it asks you to do. If we disagree, the card needs work.',
     'The practice lantern has a dent because I dropped it while explaining how carefully it should be handled. I have kept the dent in the lesson.',

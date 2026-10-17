@@ -160,3 +160,51 @@ test('authored introductions satisfy meeting requirements and enter only the sel
   );
   assert.equal(choose(state, 'arrival:common-room-rule', 'quiet'), state);
 });
+
+test('register decisions preserve private support, new faculty memories, and evidence knowledge gates', () => {
+  let state = initialState('book');
+  for (let chapter = 0; chapter < 2; chapter++)
+    state = transition(finishSceneChoices(state), { type: 'chapter', choice: 0 });
+  const early = buildCharacterContext('maelin-quill', characterInput(state, 'maelin-quill'));
+  assert.equal(early.relationship.level, 'Not yet met');
+  assert.ok(!early.character.knownFacts.some((fact) => fact.includes('three working entries')));
+  assert.ok(!early.world.knownPublicEvents.some((fact) => fact.includes('three formal entries')));
+  state = choose(state, 'register:search-method', 'makers');
+  assert.equal(state.bonds['maelin-quill'], 1);
+  assert.equal(state.bonds.dunne, 1);
+  assert.equal(choose(state, 'register:correction', 'private'), state);
+  state = choose(state, 'register:worker-question', 'record');
+  state = choose(state, 'register:correction', 'private');
+  state = parseSave(JSON.stringify(state));
+  const imogen = buildCharacterContext('imogen', characterInput(state, 'imogen'));
+  const maelin = buildCharacterContext('maelin-quill', characterInput(state, 'maelin-quill'));
+  assert.ok(
+    imogen.relationship.sharedMemories.some(
+      (memory) => memory.key === 'scene:register:correction:private',
+    ),
+  );
+  assert.ok(
+    !maelin.relationship.sharedMemories.some((memory) => memory.key.includes('correction')),
+  );
+  assert.ok(
+    maelin.relationship.sharedMemories.some(
+      (memory) => memory.key === 'scene:register:search-method:makers',
+    ),
+  );
+  const beats = chapterBeats(2, state);
+  assert.ok(beats.some((beat) => beat.id === 'maker-payoff'));
+  assert.ok(!beats.some((beat) => beat.id === 'date-payoff'));
+  state = transition(state, { type: 'chapter', choice: 0 });
+  const later = buildCharacterContext('maelin-quill', characterInput(state, 'maelin-quill'));
+  assert.ok(later.character.knownFacts.some((fact) => fact.includes('three working entries')));
+  assert.ok(later.world.knownPublicEvents.some((fact) => fact.includes('remain unproven')));
+  assert.deepEqual(later.character.allowedExpressions, ['neutral', 'reflective']);
+  const legacy = parseSave({
+    ...initialState('book'),
+    chapter: 2,
+    date: '2026-09-18',
+    daily: { date: '2026-09-18', checkins: [], event: null },
+  });
+  assert.ok(chapterBeats(2, legacy).some((beat) => beat.id === 'record-legacy'));
+  assert.equal(transition(finishSceneChoices(legacy), { type: 'chapter', choice: 0 }).chapter, 3);
+});

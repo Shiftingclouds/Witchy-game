@@ -1,0 +1,16 @@
+# Added artwork
+
+The original uploaded PNGs at the repository root are preserved. Added sources live here; `scripts/prepare_art.py` makes the browser WebP derivatives without changing the sources.
+
+## Register package — 16 October 2026
+
+Generated with the image-generation tool and inspected before integration:
+
+- `register-study.png`: visual reference `library.png` (its prepared browser derivative). Uses the same wood, green lamp, cushion and amber palette. Its handwriting is illustrative; `register:register-detail` supplies the authoritative observation in selectable prose. It depicts omissions on intact pages, not proven erasure.
+- `c17-dunne-attentive.png`: expression edit referenced Dunne’s original neutral portrait. Keeps the silver hair, pencils, plum robe, hanging spectacles and transparent background. Registered only as `attentive`.
+- `c48-maelin-quill-neutral.png`: new character design using Kestrel’s portrait as a rendering/lighting reference. Maelin has a distinct face, short curls, copper spectacles and moss/ink clothing, matching the active character sheet.
+- `c48-maelin-quill-reflective.png`: expression edit referenced the new neutral portrait. Same source dimensions and costume; registered only as `reflective`.
+
+All three new portraits have RGBA transparency. The register is an opaque landscape illustration. All four are used in the authored register chapter, included in offline caching, and covered by file-existence and browser-loading checks. See [packet review](../docs/ART_COMPLETION.md) for captures and remaining requirements.
+
+The previously integrated `academy-map.png` and `c47-elian-vale-neutral.png` belong to the earlier map/opening packages.

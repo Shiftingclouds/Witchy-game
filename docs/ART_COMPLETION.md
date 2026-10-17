@@ -4,7 +4,7 @@ This is an art production plan, not a claim that these assets exist. It is based
 
 The scope is one complete academy year, the existing 45-person cast and 37 destinations as a foundation, additional characters as academy life needs them, a substantial authored story with character quests and optional relationships, and both offline reading and world modes. A 250,000-word manuscript needs many distinct scenes; it does not need a new painting for every scene. Different participants, discoveries, weather, time, framing and consequences can make the same room meaningful again.
 
-The tables below are the **original-cast art budget**, not a limit on the finished game. [CAST_EXPANSION.md](CAST_EXPANSION.md) adds a first proposed group of 15 new identities: three faculty, eight dorm companions, one additional athlete, and three tradespeople. Plan 75 additional baseline portraits (neutral, warm, amused, grave, tense), then scene-specific expressions. New house dorm variants and shop interiors are additional where needed. Elian’s neutral portrait is now produced and integrated; the other designs and files remain planned; use the linked role and visual briefs to commission them in story packages.
+The tables below are the **original-cast art budget**, not a limit on the finished game. [CAST_EXPANSION.md](CAST_EXPANSION.md) adds a first proposed group of 15 new identities: three faculty, eight dorm companions, one additional athlete, and three tradespeople. Plan 75 additional baseline portraits (neutral, warm, amused, grave, tense), then scene-specific expressions. New house dorm variants and shop interiors are additional where needed. Elian’s neutral portrait and Maelin’s neutral/reflective pair are now produced and integrated; the other designs and files remain planned; use the linked role and visual briefs to commission them in story packages.
 
 ## What already works
 
@@ -17,7 +17,7 @@ The tables below are the **original-cast art budget**, not a limit on the finish
 | Generated overview map | 1 | Existing `art/academy-map.png` |
 | New teacher portrait | 1 | `art/c47-elian-vale-neutral.png`, reviewed transparent portrait used in the first practical |
 
-Rowan has 13 canonical expressions, Imogen 13 and Saoirse 11. The other 42 original characters and Elian currently have one neutral portrait each. The six `-v1` files are alternatives, not six extra emotions or people. There is no character 39; preserve the uploaded numbering.
+Rowan has 13 canonical expressions, Imogen 13 and Saoirse 11. Dunne now has neutral and attentive expressions; the other 41 original supporting characters and Elian have one neutral portrait each. Maelin has neutral and reflective expressions. The six `-v1` files are alternatives, not six extra emotions or people. There is no character 39; preserve the uploaded numbering.
 
 The portraits have transparent backgrounds and useful, consistent upper-body framing. Their restrained differences suit dialogue. Their dense painted pixel texture should remain intact; neither vector-style redraws nor smooth 3D characters would fit. Architectural detail, glass, candles and water already give the environments depth without additional decorations.
 
@@ -81,7 +81,7 @@ Six evidence closeups make exploration concrete rather than requiring every clue
 | Proposed filename | Story use |
 | --- | --- |
 | `clue-lantern-nameplate.png` | A worn maker's name discovered under a handle |
-| `clue-register-erasure.png` | A visibly removed record; important text also exists as selectable HTML |
+| `register-study.png` — integrated | Intact pages with omitted name cells, not visible erasure. The evidence and its limits are supplied in selectable prose in both readers. |
 | `clue-atlas-shore-path.png` | Compare the old route with the current map |
 | `clue-moonflower-echo.png` | Observe a flower holding an echo after a lesson |
 | `clue-station-ticket.png` | Priya's undated ticket links an arrival to a missing person |
@@ -97,7 +97,7 @@ Do not commission a separate romantic illustration for every character. Use exis
 - **Gesture pilot:** `c01-rowan-offer-lantern.png`, `c02-imogen-open-book.png`, `c03-saoirse-hold-moonflower.png` — three new upper-body poses for specific actions. They are not walking sprites or lip-sync frames.
 - **Environment layer pilot:** `lantern-hall-{cleanplate,foreground,lamplight-mask}.png`, with equivalent trios for `glasshouses`, `mere-night`, and `heartfire` — twelve derived production layers. Separating foreground elements requires retouching the area behind them; the original cannot supply hidden pixels automatically. These need a layer manifest rather than appearing as new destinations.
 
-These 21 optional production assets are separate from the **132 new story images** in the original-cast queue: 110 portraits + 12 backgrounds + 6 clues + 4 milestone illustrations. Neither number includes the 144 images already present or the new-character packet above. Produce the opening's teacher and housemates alongside the existing P1 packet as their scenes are written, in small reviewed batches. This document records asset requirements; generation order follows the user's authorized story work.
+These 21 optional production assets are separate from the **132 new story images** in the original-cast queue: 110 portraits + 12 backgrounds + 6 clues + 4 milestone illustrations. These are the original planning budgets, not a current remaining-file total. One clue slot is now fulfilled by `register-study.png`; the archive comparison does not justify an erasure painting. The browser collection now contains 148 images, including the new-character packet produced so far and the additional Dunne attentive expression. Produce the opening's teacher and housemates alongside the existing P1 packet as their scenes are written, in small reviewed batches. This document records asset requirements; generation order follows the user's authorized story work.
 
 ## Acceptance criteria
 
@@ -105,7 +105,7 @@ These 21 optional production assets are separate from the **132 new story images
 2. Run rapid neutral → new expression → neutral swaps at the actual game size. Reject eye/shoulder jumps and unexplained accessory changes. Keep the original source files untouched.
 3. Associate every new image with named scene IDs and a fallback before adding it to the build. No orphan assets created just to fill a target count.
 4. Check two-person placement and a narrow phone viewport. Faces and meaningful props must remain visible above the dialogue panel.
-5. Verify cache size and offline loads. The present browser collection is about 26.6 MiB; a 132-image expansion requires measuring the new download and choosing transparent chapter packs or a clearly labelled complete offline download before assuming the existing all-at-once cache remains appropriate.
+5. Verify cache size and offline loads. The present browser collection is about 27.2 MiB; a 132-image expansion requires measuring the new download and choosing transparent chapter packs or a clearly labelled complete offline download before assuming the existing all-at-once cache remains appropriate.
 
 ## Opening packet review — 16 October 2026
 
@@ -114,3 +114,18 @@ The opening uses Lantern Hall, the night corridor, Heronmere’s underwater comm
 Next scene-linked gaps: Elian `{warm,attentive,grave}` for the repeated demonstration, student uncertainty, and voice report; Noor `{warm,attentive}` for the invitation and study hour; Idris `{warm,amused}` for the timetable/model exchange; Cas and Toby `{warm,shy}` for the arrival problem; Grey `{attentive,grave}` for the repair report; Rhys `{attentive,warm}` for the safe trial. These are queued, not generated. Neutral currently remains their truthful available expression.
 
 The first-night section is framed as a corridor/landing establishing view. A private dormitory background is still needed before staging bedroom actions as a distinct location. Mobile reading now keeps the scene visible while longer text scrolls and restarts each line at its beginning.
+
+## Register packet review — 16 October 2026
+
+Four new source PNGs were generated from the existing library and portrait style, reviewed, and integrated in `src/story/register.mjs`:
+
+| Image | Actual scene use |
+| --- | --- |
+| `art/register-study.png` | `register-detail`: blank name cells on intact paper. Both readers show the image; the prose gives the full observation without requiring image-text recognition. |
+| `art/c17-dunne-attentive.png` | Careful explanations and the accepted correction; transparent expression derived from Dunne’s original portrait. |
+| `art/c48-maelin-quill-neutral.png` | Introduction and supervised Echosight lesson; new character designed to match the existing art. |
+| `art/c48-maelin-quill-reflective.png` | Reviewing the printed teaching sheet and acknowledging its error; derived from the neutral portrait. |
+
+The original library composition supplies the setting, lighting and desk details. The close-up does not replace a campus destination. Maelin’s pair has identical source dimensions; all new portrait files have real transparency. Desktop and 320px phone views were inspected, and browser tests verify decoded images, stable listener placement, offline illustration access and saved bookmarks. Reference captures: [register](register-desktop.png), [phone](register-mobile.png), [cast](register-portraits.png). The browser image collection is 27.2 MiB.
+
+Next artwork belongs to the Emberfall expansion: review the supplied Glasshouses and festival hall first, then generate a moonflower close-up and any necessary evening variant after the observation scene is written. Existing opening expression gaps remain in the queue above.

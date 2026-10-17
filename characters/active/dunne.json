@@ -34,6 +34,12 @@
         "minimumChapter": 0,
         "minimumBond": 0,
         "text": "Dunne remembers where every book belongs, including the ones that disagree. She keeps a small shelf of books nobody has borrowed yet."
+      },
+      {
+        "id": "register-comparison",
+        "minimumChapter": 3,
+        "minimumBond": 0,
+        "text": "Dunne supervised the register comparison and accepted a correction distinguishing omitted names from proven erasure. Working records, a keeper instruction and a limited Echosight observation link welcoming lights with care and return; the cause of the failure is still unproven."
       }
     ],
     "privateReactions": [
@@ -75,7 +81,8 @@
   "presentation": {
     "portraitPrefix": "c17-dunne",
     "availableExpressions": [
-      "neutral"
+      "neutral",
+      "attentive"
     ],
     "missingArt": false,
     "direction": "Use only available expressions; neutral is the fallback. Do not invent an unseen gesture or additional portrait."

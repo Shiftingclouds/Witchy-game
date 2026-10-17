@@ -1,6 +1,6 @@
 # First-year continuity ledger
 
-This ledger distinguishes implemented evidence from the next writing work. It is an authoring document and never enters AI context or the word count. The long-form opening is integrated; later chapters retain the existing short playable arc. The outlined expansions below are not completed scenes.
+This ledger distinguishes implemented evidence from the next writing work. It is an authoring document and never enters AI context or the word count. The long-form opening and register investigation are integrated; chapters 4–8 retain the existing short playable arc.
 
 ## Evidence and information order
 
@@ -8,10 +8,10 @@ This ledger distinguishes implemented evidence from the next writing work. It is
 | --- | --- | --- | --- |
 | Arrival, 1–3 September | Player, Rowan, and Imogen see the hall light go out. Exterior is cold, seal intact, no smoke. Grey logs it, finds no broken fitting, fails to relight it normally, and requests warding review. | No vanished person, deliberate attack, or chosen-one status is established. The mark on the repair tag is only a mark. | Form relationships through practical help; learn how the academy handles a problem. **Integrated.** |
 | First Kindle, 4 September | Player and Rowan independently record “Remember the way home.” Elian reproduces the light but not the voice; reports can be linked by number without declaring a common cause. | Speaker, source, intention, and connection to the hall failure. | Acquire a repeatable small skill and choose an investigation partner. **Integrated.** |
-| Register, 18 September | Imogen’s catalogue search and an inspected register connect welcoming magic with belonging; ordinary keepers’ names were omitted. | Whether omission was deliberate, who benefited, and exactly how restoration works. | Turn a suggestive phrase into corroborated documentary evidence. **Compact implementation; expansion next.** |
+| Register, 18 September | Three working/formal record pairs show omitted workers. Grey supplies present practice and an independently archived keeper instruction. A supervised echo is consistent with care and return. | Motive for omission, whether it caused the failure, and how restoration works. | Corroborate the link between light, memory and belonging; correct claims of proven erasure. **Integrated in six sections.** |
 | Moonflowers, 31 October | Saoirse/Rhys and a tended specimen show that petals can carry an echo of warmth. | An echo is not a living person and cannot supply every missing fact. | Learn a method for preserving evidence without claiming resurrection. **Compact implementation.** |
 | Lake, 21 December | Echosight reveals seven willing lights in an open circle. The buildings will remain if the welcoming magic fails; midsummer is the restoration deadline. | Complete participants’ identities and how the opening in the circle works. | Give the investigation a bounded deadline and a credible cost. **Compact implementation.** |
-| Candlestones, 2 February | Inscription confirms freely offered light and space for newcomers. Threadbind must connect willing people rather than compel them. | Which practical restoration arrangements the current academy will choose. | Replace a vague rescue with an achievable plan. **Compact implementation.** |
+| Candlestones, 20 March | Inscription confirms freely offered light and space for newcomers. Threadbind must connect willing people rather than compel them. | Which practical restoration arrangements the current academy will choose. | Replace a vague rescue with an achievable plan. **Compact implementation.** |
 | Preparation, 1 May | Recovered names, a register, willing participants, learned spells, and repaired relationships can be gathered. | No single person is required to sacrifice their place or accept romance. | Test the plan, invite consent, and handle ordinary logistics. **Compact implementation.** |
 | Heartfire, 21 June | The player has three spells, four discoveries, and sufficient friendship with the trio. Willing lights restore the Heartfire. | The academy’s future is an ongoing responsibility, not a magically finished society. | Choose shared stewardship or the keeper role; both remain viable, non-romantic endings. **Compact implementation.** |
 
@@ -30,9 +30,9 @@ The dates are chapter windows in the game calendar, not real-world appointments.
 | Observe Rowan / trade turns | Different successful partner exercise and Rowan’s shared memory. |
 | Report uncertainty / describe a feeling | Different teacher response and recorded account; neither choice changes the mystery’s truth. |
 
-## Next package: Notes in the margins
+## Integrated package: Notes in the margins
 
-Write in this order, using existing library, corridor, classroom, and old-cloister art where the scene really takes place:
+Implemented in `src/story/register.mjs`, using the reviewed library and old-cloister art, a new register close-up, Dunne’s attentive expression, and Maelin’s neutral/reflective pair:
 
 1. **The catalogue request:** Imogen must ask Dunne for access and articulate a question. The player chooses search terms or follows the maker’s stamp. Both find the same relevant record through different work. Introduce Maelin only after their portrait, sheet, routine, and dialogue are ready.
 2. **A page with names missing:** distinguish damage, deliberate omission, and an incomplete index. The group finds a repeatable discrepancy across records; a single blank space is insufficient. Preserve the first-night restraint about the repair tag.
@@ -41,7 +41,20 @@ Write in this order, using existing library, corridor, classroom, and old-cloist
 5. **Correct the claim:** Imogen must revise an attractive early explanation. The player can help privately or support a public correction; both preserve her agency and leave a later callback.
 6. **The first supported conclusion:** combine sources to establish the chapter’s existing canon fact. Record provenance, uncertainty, and the next practical test. The next objective points to Rhys/Saoirse’s moonflowers without unlocking later lake or ritual revelations.
 
-Each scene needs full prose, a distinct obstacle, relevant choices, explicit rejoin/callback, art directions, save-safe IDs, and a tested exit. The package stays below the route-audit dependency budget or first introduces bounded per-act analysis. Do not count this list as story content.
+The six sections contain 4,808 eligible scene words across branches. `register:search-method` chooses dates or a maker’s mark; each receives a conclusion callback. `register:worker-question` chooses practical testimony or a working record and changes Grey’s return copy. `register:correction` chooses private drafting or support at the table; only witnesses receive the corresponding shared memory. The common outcome stays evidence-based. Maelin and Dunne become acquaintances at the request; Grey’s meeting also supports older saves without an opening introduction. AI knowledge of the conclusion unlocks after this chapter, while actual choices enter the relevant character’s memory immediately.
+
+The old compact summary implied physical erasure and a proven cause. It is retired from both readers and the word count. The detailed investigation and updated AI public fact deliberately leave those claims unresolved. Do not reintroduce certainty through later incidental dialogue.
+
+## Next package: Emberfall
+
+1. **A request with a deadline:** Rhys needs festival frames and flowers prepared, while Saoirse has an unfinished prototype and too many promises. Connect the request to the register’s botanical reference. Review the existing Glasshouses and festival hall before writing staging.
+2. **Work divided fairly:** give the player a useful task and Saoirse a reason to accept help or reduce scope. Let a peer have a need beyond delivering a clue; complete any promised task within this package or track a specific later payoff.
+3. **The moonflower observation:** teach how the flower retains warmth, with a comparison and a stopping point. Generate a close-up from the actual plant/scenery design. Echoes are fragments, not restored people or reliable accounts of motive.
+4. **A festival with other lives in it:** use the existing Emberfall hall, a shared meal, and workers’ preparations. Resolve the practical task and make the returning record matter to Grey. Preserve both versions of Imogen’s correction in an appropriate later response.
+5. **A voluntary promise:** write substantial friendship alternatives to the lantern inscription; no automatic romance. Confirm adult peer canon before any romance mechanics are introduced.
+6. **The next question:** connect the flower’s warmth to the shore without revealing the seven-light circle or midsummer deadline, which belong to Longnight. Essential progress remains reachable after the festival date in Live mode.
+
+Each section needs full prose, a distinct obstacle or emotional turn, truthful expression cues, and a tested exit. Generate a night Glasshouses variant only if the written observation requires it; use the supplied scenery first. Scene evidence must remain understandable in text when an illustration cannot convey exact details. This outline is excluded from the word count.
 
 ## Release continuity gates
 

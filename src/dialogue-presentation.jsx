@@ -333,20 +333,24 @@ export function SceneReader({ game, reading, act, onClose }) {
   return (
     <Modal title={chapter.title} wide className="scene-modal" onClose={onClose}>
       <div className="scene-reader" ref={readerRef}>
-        <div className="performance-scene" aria-label={locationById[location].name}>
+        <div
+          className={`performance-scene${current.illustration ? ' performance-detail' : ''}`}
+          aria-label={locationById[location].name}
+        >
           <img
             className="performance-background"
             src={art(
-              sceneArt({
-                ...game,
-                location,
-                date: current.section?.date || chapter.date,
-                period: current.section?.period ?? 0,
-              }),
+              current.illustration?.art ||
+                sceneArt({
+                  ...game,
+                  location,
+                  date: current.section?.date || chapter.date,
+                  period: current.section?.period ?? 0,
+                }),
             )}
-            alt={locationById[location].description}
+            alt={current.illustration?.alt || locationById[location].description}
           />
-          <div className="scene-light" aria-hidden="true" />
+          {!current.illustration && <div className="scene-light" aria-hidden="true" />}
           <PortraitStage
             actors={current.actors}
             speaker={current.speaker}

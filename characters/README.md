@@ -1,6 +1,6 @@
 # Character sheets and player relationships
 
-Every named character has one editable JSON sheet: `active/` contains the 46 playable identities, and `proposed/` contains the 14 planned additions. Proposed people have no art or game entry yet and are deliberately excluded from the AI and browser registry.
+Every named character has one editable JSON sheet: `active/` contains the 47 playable identities, and `proposed/` contains the 13 planned additions. Proposed people have no art or game entry yet and are deliberately excluded from the AI and browser registry.
 
 These files define characters. **They never contain a real player's save, private notes, friendship score, or conversation transcript.** Each Book/Live save stores those separately. Exporting a save carries its relationships and memories; a fresh game starts without another player's history.
 

@@ -18,21 +18,22 @@ The counter uses the actual application data and fixed engine outcomes. It does 
 
 ## Current measured length
 
-Measured on 16 October 2026, after the integrated opening package:
+Measured on 16 October 2026, after the integrated register investigation:
 
 | Measure | Words |
 | --- | ---: |
-| Eligible unique story, dialogue, choices, lessons, discoveries | 15,105 |
-| Progress toward 250,000 | 6.04% |
-| Remaining to the minimum | 234,895 |
-| Catalogued reference copy, generic fallbacks, and migration-only prose, excluded | 2,627 |
-| Opening authored scenes and local decisions, across branches | 10,795 |
+| Eligible unique story, dialogue, choices, lessons, discoveries | 20,004 |
+| Progress toward 250,000 | 8.00% |
+| Remaining to the minimum | 229,996 |
+| Catalogued reference copy, generic fallbacks, and migration-only prose, excluded | 2,710 |
+| Opening and register scenes and local decisions, across branches | 15,603 |
+| Register investigation alone, including local choices | 4,808 |
 | One opening path, excluding the two chapter-exit choice pairs | 8,960–9,034 |
-| Complete current Book / illustrated route, including visible choices and one ending, excluding optional conversations | 9,698–9,774 |
+| Complete current Book / illustrated route, including visible choices and one ending, excluding optional conversations | 13,868–14,004 |
 
-The prior checkpoint contained 4,812 eligible words. Both reading presentations now consume **the same selected path**. Retired compact summaries for chapters 1 and 2 no longer count. Seven local decisions produce 128 opening combinations with explicit rejoins and later callbacks. The counter enumerates those paths; it does not add mutually exclusive outcomes to a single-playthrough figure.
+The prior integrated opening checkpoint contained 15,105 eligible words. Both reading presentations now consume **the same selected path**. Retired compact summaries for chapters 1–3 no longer count. Ten local decisions produce 1,024 combinations through the register with explicit rejoins and later callbacks. The counter computes exact counts and length ranges by merging histories after their last future use, while retaining repeated text until its final occurrence; it does not add mutually exclusive outcomes to a single-playthrough figure.
 
-The opening contains 13 scene sections across the arrival/orientation and first-practical chapters. Chapters 3–8 still have compact prototype narration (79–99 words each) and require full expansion. Reaching the opening package budget does not complete the first-year manuscript.
+The opening contains 13 scene sections across the arrival/orientation and first-practical chapters. The register adds six sections and a 4,261–4,349-word selected chapter route including its exit labels. Chapters 4–8 still have compact prototype narration (79–99 words each) and require full expansion. Reaching the opening package budget does not complete the first-year manuscript.
 
 ## What qualifies toward 250,000
 
@@ -42,7 +43,7 @@ Do not count bios, location descriptions, role labels, titles, objective text, c
 
 Tokenization counts words containing letters or numbers; internal apostrophes and hyphens stay within a word, while em dashes separate words. Exact deduplication normalizes Unicode and whitespace. It does not detect paraphrased filler, copied paragraphs inside larger strings, or cosmetic name substitutions. Those require editorial review, and they must not qualify simply because the program sees different strings.
 
-The current source adapters cover `content.mjs`, `cast.mjs`, `life.mjs`, selected authored discoveries through the public `engine.mjs` API, epilogue data in `features/story/epilogue.mjs`, and the registered `src/story/` scenes exposed through `stagedScenes` in `scene-beats.mjs`, including selected decision labels. New-game route enumeration checks eligibility; migration-only fallbacks are reported separately. Derived `chapterBeats()` fragments render existing chapter prose and are not counted again. The story UI and counter import the same epilogue data; formatting or moving JSX does not change the count. Setup instructions, character sheets, and engine documentation remain excluded.
+The current source adapters cover `content.mjs`, `cast.mjs`, `life.mjs`, selected authored discoveries through the public `engine.mjs` API, epilogue data in `features/story/epilogue.mjs`, and the registered `src/story/` scenes exposed through `stagedScenes` in `scene-beats.mjs`, including selected decision labels. Exact new-game dependency-state analysis checks eligibility; migration-only fallbacks are reported separately. Derived `chapterBeats()` fragments render existing chapter prose and are not counted again. The story UI and counter import the same epilogue data; formatting or moving JSX does not change the count. Setup instructions, character sheets, and engine documentation remain excluded.
 
 ## Acceptance criteria beyond arithmetic
 

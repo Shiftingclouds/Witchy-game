@@ -1,6 +1,6 @@
 import { dateLabel } from '../../engine.mjs';
 import { chapterBeats, chapterSceneId, choiceKey } from '../../scene-beats.mjs';
-import { characterById, locationById } from '../../content.mjs';
+import { art, characterById, locationById } from '../../content.mjs';
 
 export function SceneDecision({ beat, sceneId, game, onSelect }) {
   const key = choiceKey(sceneId, beat.id),
@@ -73,6 +73,11 @@ export function AuthoredChapter({ game, act }) {
               </small>
               <h3>{beat.section.title}</h3>
             </header>
+          )}
+          {beat.illustration && (
+            <figure className="story-illustration">
+              <img src={art(beat.illustration.art)} alt={beat.illustration.alt} loading="lazy" />
+            </figure>
           )}
           <p className={beat.speaker ? 'authored-dialogue' : ''}>
             {beat.speaker && (

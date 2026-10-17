@@ -27,12 +27,12 @@ Dunne offers research workshops and library appointments; Hask maintains records
 
 ## New faculty
 
-Elian is now active, aged 47, with a reviewed neutral portrait, a full teaching scene, dialogue, and routine. The other names, ages, and visual notes remain proposals.
+Elian is now active, aged 47, with a reviewed neutral portrait, a full teaching scene, dialogue, and routine. Maelin is also active, aged 56, with neutral/reflective portraits, the register investigation, dialogue, and a routine. The other 13 additions remain proposals.
 
 | Character | Role and dramatic purpose | Visual brief |
 | --- | --- | --- |
 | **Elian Vale**, 47, he/him (`elian-vale`) | Firecraft teacher. A gifted demonstrator who struggles to explain an intuitive skill. The first Kindle lesson makes him learn how the player learns; later he must accept an experiment that challenges his explanation of the failing lamps. | Implemented: medium-brown skin, short dark curls with grey temples, salt-and-pepper beard, olive coat, oxblood waistcoat, cream shirt, and brass flame pin. No permanent hand prop; neutral upper-body portrait. |
-| **Maelin Quill**, 56, they/them (`maelin-quill`) | History and rune lecturer. Publicly confident in a published translation that the missing names call into question. They must correct a specific scholarly mistake; Petra and Imogen contribute evidence without replacing the teacher's expertise. | Broad silhouette, close-cropped grey curls, copper spectacles, weathered document case, layered moss and ink fabrics. |
+| **Maelin Quill**, 56, they/them (`maelin-quill`) | History and rune lecturer. Publicly confident in a published translation that the missing names call into question. They must correct a specific scholarly mistake; Petra and Imogen contribute evidence without replacing the teacher's expertise. | Implemented: medium-brown skin, short salt-and-pepper curls, copper spectacles, moss coat with geometric woven edging, ink waistcoat and ivory shirt. Neutral/reflective upper-body portraits; no permanent hand prop. The register scene corrects a specific source-selection error; Petra’s later challenge remains planned. |
 | **Vesper Sen**, 38, she/her (`vesper-sen`) | Familiar-studies teacher. Excellent at patient observation and sometimes too cautious about students making independent judgements. Toby and Jonty help solve a practical migration problem, while Vesper remains responsible for the class. | Tied-back dark hair, green field coat, repaired gloves, tiny feed pouch; avoid a permanently attached animal that would need to appear in every scene. |
 
 ## Dorm companions and classmates
