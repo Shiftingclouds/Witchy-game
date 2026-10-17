@@ -20,7 +20,7 @@ test('book save survives a restart and lands in the user data folder', async () 
   await win.getByRole('button', { name: /The Story/ }).click();
   await win.getByRole('button', { name: /Read the book/ }).click();
   await win.getByRole('button', { name: /Begin your story/ }).click();
-  await expect(win.getByRole('button', { name: 'Play scene', exact: true })).toBeVisible();
+  await expect(win.locator('.scene-player')).toBeVisible();
   await app.close();
   expect(existsSync(join(tmp, 'saves', 'lanternmere.save.book.json'))).toBe(true);
   app = await launch(tmp);

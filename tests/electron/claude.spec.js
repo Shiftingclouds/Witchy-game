@@ -21,6 +21,7 @@ async function openSettings(win) {
   await win.getByRole('button', { name: /The Story/ }).click();
   await win.getByRole('button', { name: /Read the book/ }).click();
   await win.getByRole('button', { name: /Begin your story/ }).click();
+  await win.getByRole('button', { name: 'Leave the scene' }).click();
   await win.getByRole('button', { name: 'Settings & saves' }).click();
 }
 
