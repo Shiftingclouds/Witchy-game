@@ -5,6 +5,8 @@ import { chapterBeats, chapterSceneId, choiceKey, spoken } from '../../scene-bea
 import { SceneDecision } from '../story/AuthoredChapter.jsx';
 import { DialogueBox } from './DialogueBox.jsx';
 import { useLineReveal } from './useLineReveal.mjs';
+import { PortraitFrame } from './PortraitFrame.jsx';
+import { emotionOf, sectionCast, staging, timeOfDay } from './stage.mjs';
 import './scene.css';
 
 /** The story, played full screen one line at a time over the place it happens in. */
@@ -24,6 +26,28 @@ export function ScenePlayer({ game, act, reading, onExit }) {
   const pending = Boolean(current.choice && !game.storyChoices?.[choiceKey(sceneId, current.id)]);
   const location = current.section?.location || chapter.scene;
   const period = current.section?.period ?? 0;
+  const painting = art(
+    current.illustration?.art ||
+      sceneArt({ ...game, location, date: current.section?.date || chapter.date, period }),
+  );
+  const backdrop = art(
+    sceneArt({ ...game, location, date: current.section?.date || chapter.date, period }),
+  );
+  const cast = sectionCast(beats, index);
+  const stage = staging(cast);
+  const time = timeOfDay(period);
+  const frame = (id, size) => (
+    <PortraitFrame
+      key={id}
+      id={id}
+      size={size}
+      emotion={emotionOf(current, id)}
+      backdrop={backdrop}
+      time={time}
+      speaking={size === 'stage' && current.speaker === id}
+      shadowed={size === 'stage' && current.speaker !== id}
+    />
+  );
 
   // Each key press acts on the newest state exactly once, however fast the presses come.
   const live = useRef(null);
@@ -68,17 +92,20 @@ export function ScenePlayer({ game, act, reading, onExit }) {
     >
       <img
         className="scene-painting"
-        src={art(
-          current.illustration?.art ||
-            sceneArt({ ...game, location, date: current.section?.date || chapter.date, period }),
-        )}
+        src={painting}
         alt={current.illustration?.alt || locationById[location].description}
       />
       <div className="scene-shade" aria-hidden="true" />
-      <div className="scene-stage">
+      <div className={`scene-stage ${stage}`}>
+        {stage === 'group' && (
+          <div className="stage-row">{cast.map((id) => frame(id, 'stage'))}</div>
+        )}
         <DialogueBox
+          framed={stage === 'single'}
           lineId={current.id}
-          speakerName={current.speaker ? characterById[current.speaker].name : null}
+          speakerName={
+            current.speaker && stage !== 'group' ? characterById[current.speaker].name : null
+          }
           text={text}
           reveal={reveal}
           onNext={next}
@@ -86,6 +113,7 @@ export function ScenePlayer({ game, act, reading, onExit }) {
           canBack={index > 0}
           nextDisabled={pending && reveal.complete}
         >
+          {stage === 'single' && frame(cast[0], 'box')}
           {current.choice && reveal.complete && (
             <SceneDecision
               beat={current}

@@ -119,3 +119,127 @@
   background: color-mix(in srgb, var(--lm-backing) 92%, transparent);
   border: 1px solid color-mix(in srgb, var(--lm-gold) 45%, transparent);
 }
+
+/* Portrait frames: gold double hairline, the place inside, a name plate beneath the window. */
+.portrait-frame {
+  margin: 0;
+  display: grid;
+  background: color-mix(in srgb, var(--lm-backing) 94%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 60%, transparent);
+  outline: 1px solid color-mix(in srgb, var(--lm-gold) 24%, transparent);
+  outline-offset: -5px;
+  border-radius: 2px;
+  padding: 7px 7px 0;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+  transform-origin: bottom center;
+  transition:
+    transform 0.35s ease,
+    filter 0.35s ease,
+    box-shadow 0.35s ease;
+}
+.frame-window {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 30%, transparent);
+}
+.frame-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.4);
+  filter: blur(1.5px) saturate(0.9);
+}
+.frame-tint {
+  position: absolute;
+  inset: 0;
+}
+.frame-tint[data-time='morning'] {
+  background: rgba(240, 214, 150, 0.18);
+}
+.frame-tint[data-time='afternoon'] {
+  background: rgba(255, 196, 120, 0.14);
+}
+.frame-tint[data-time='evening'] {
+  background: rgba(196, 104, 92, 0.3);
+  mix-blend-mode: multiply;
+}
+.frame-tint[data-time='night'] {
+  background: rgba(30, 36, 72, 0.48);
+  mix-blend-mode: multiply;
+}
+.portrait-frame .frame-portrait {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transform: scale(1.06);
+  transform-origin: bottom center;
+}
+.portrait-frame .name-plate {
+  margin: 0;
+  padding: 5px 4px 6px;
+  text-align: center;
+  font-family: var(--lm-display);
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--lm-ink);
+}
+
+/* Group staging: frames stand in a row seated on the dialogue box. */
+.stage-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 18px;
+  margin-bottom: -1px;
+}
+.stage-row .portrait-frame {
+  width: clamp(130px, min(14vw, 24vh), 200px);
+}
+.stage-row .portrait-frame.speaking {
+  transform: scale(1.06);
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.45),
+    0 0 22px rgba(246, 212, 142, 0.28);
+  border-color: color-mix(in srgb, var(--lm-gold-bright) 85%, transparent);
+  z-index: 1;
+}
+.stage-row .portrait-frame.shadowed {
+  filter: brightness(0.62) saturate(0.85);
+}
+
+/* Single staging: one frame inside the left of the box, rising above its top edge. */
+.portrait-frame.box {
+  position: absolute;
+  left: 22px;
+  bottom: 14px;
+  width: 190px;
+}
+@media (max-height: 760px) {
+  .dialogue-box {
+    height: 200px;
+    padding-top: 20px;
+  }
+  .dialogue-box .scene-decision {
+    bottom: 200px;
+  }
+  .portrait-frame.box {
+    width: 160px;
+  }
+  .dialogue-box.framed {
+    padding-left: 214px;
+  }
+  .dialogue-box.framed .scene-back {
+    left: 198px;
+  }
+}
+[data-reduced-motion='true'] .portrait-frame {
+  transition: none;
+}
