@@ -7,7 +7,8 @@ const byName = Object.fromEntries(
   Object.entries(characterSheets).map(([id, sheet]) => [sheet.identity.name, id]),
 );
 const files = readdirSync('story')
-  .filter((f) => /^0[1-8]-.*\.md$/.test(f))
+  // Early chapters only: the voice and quality without spoiling later plot.
+  .filter((f) => /^0[1-3]-.*\.md$/.test(f))
   .sort();
 const narration = [];
 const voices = {};
