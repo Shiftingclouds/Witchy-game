@@ -1,0 +1,185 @@
+/* Lamplight polish for shared surfaces: dialogs, buttons, fields and the reading surfaces
+   (book page, scene reader, conversation). Loaded after the legacy stylesheets. */
+
+/* Dialogs */
+html[data-reading-mode] .modal-backdrop {
+  background: color-mix(in srgb, var(--lm-bg) 74%, transparent);
+  backdrop-filter: blur(6px);
+}
+html[data-reading-mode] .modal {
+  color: var(--lm-ink);
+  background: linear-gradient(180deg, var(--lm-surface), var(--lm-bg));
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 45%, transparent);
+  outline: 1px solid color-mix(in srgb, var(--lm-gold) 16%, transparent);
+  outline-offset: -6px;
+  border-radius: 1px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+}
+html[data-reading-mode] .modal-heading {
+  border-bottom-color: color-mix(in srgb, var(--lm-gold) 30%, transparent);
+}
+html[data-reading-mode] .modal-heading h2 {
+  font-family: var(--lm-display);
+  font-weight: 500;
+}
+
+/* Buttons: hairline gold frames instead of filled blocks; the primary action is the warmest. */
+html[data-reading-mode] .button {
+  font-family: var(--lm-read);
+  color: var(--lm-ink);
+  background: color-mix(in srgb, var(--lm-surface) 85%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 42%, transparent);
+  border-radius: 1px;
+}
+html[data-reading-mode] .button:hover:not(:disabled) {
+  border-color: var(--lm-gold);
+  background: color-mix(in srgb, var(--lm-wine) 40%, var(--lm-surface));
+}
+html[data-reading-mode] :is(.button.primary, .button.gold) {
+  color: var(--lm-ink);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--lm-wine) 70%, var(--lm-surface)),
+    var(--lm-surface-strong)
+  );
+  border-color: color-mix(in srgb, var(--lm-gold) 80%, transparent);
+  outline: 1px solid color-mix(in srgb, var(--lm-gold) 22%, transparent);
+  outline-offset: -4px;
+}
+html[data-reading-mode] :is(.button.primary, .button.gold):hover:not(:disabled) {
+  border-color: var(--lm-gold-bright);
+}
+html[data-reading-mode] .button svg,
+html[data-reading-mode] .text-button svg {
+  color: var(--lm-gold);
+}
+html[data-reading-mode] .text-button {
+  color: var(--lm-ink-soft);
+}
+html[data-reading-mode] .text-button:hover {
+  color: var(--lm-ink);
+}
+
+/* Fields */
+html[data-reading-mode] :is(select, input[type='text'], input:not([type]), textarea) {
+  font-family: var(--lm-read);
+  color: var(--lm-ink);
+  background-color: color-mix(in srgb, var(--lm-bg) 70%, var(--lm-surface));
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 38%, transparent);
+  border-radius: 1px;
+}
+html[data-reading-mode] .reading-controls label {
+  color: var(--lm-ink-soft);
+}
+
+/* Eyebrow labels */
+html[data-reading-mode] .eyebrow {
+  font-family: var(--lm-label);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--lm-gold);
+}
+
+/* The book page: story text on solid backing, a gold drop cap, comfortable measure. */
+html[data-reading-mode] .book-layout {
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 35%, transparent);
+  border-radius: 1px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+html[data-reading-mode] .book-page {
+  background: var(--lm-backing);
+}
+html[data-reading-mode] :is(.book-page, .authored-chapter) p {
+  font-family: var(--lm-read);
+  color: var(--lm-ink);
+  max-width: 68ch;
+}
+html[data-reading-mode] .book-page > p:first-of-type::first-letter,
+html[data-reading-mode] .authored-chapter p:first-of-type::first-letter {
+  font-family: var(--lm-display);
+  color: var(--lm-gold);
+}
+html[data-reading-mode] .book-ornament {
+  color: var(--lm-gold);
+}
+html[data-reading-mode] :is(.story-choices, .scene-decision) button {
+  font-family: var(--lm-read);
+  font-size: 17px;
+  color: var(--lm-ink);
+  background: color-mix(in srgb, var(--lm-surface) 90%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 40%, transparent);
+  border-radius: 1px;
+}
+html[data-reading-mode] :is(.story-choices, .scene-decision) button:hover:not(:disabled),
+html[data-reading-mode] :is(.story-choices, .scene-decision) button:focus-visible {
+  border-color: var(--lm-gold-bright);
+  background: color-mix(in srgb, var(--lm-wine) 45%, var(--lm-surface));
+}
+html[data-reading-mode] .chapter-trail .current {
+  color: var(--lm-ink);
+  background: var(--lm-wine);
+  border-color: var(--lm-gold);
+}
+
+/* Scene reader: the speech box is solid story backing; speaker names in the display face. */
+html[data-reading-mode] .speech-box {
+  background: var(--lm-backing);
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 40%, transparent);
+  border-radius: 1px;
+}
+html[data-reading-mode] .speech-text {
+  font-family: var(--lm-read);
+  color: var(--lm-ink);
+}
+html[data-reading-mode] .speaker-heading {
+  font-family: var(--lm-display);
+  color: var(--lm-ink);
+}
+html[data-reading-mode] .actor-name {
+  font-family: var(--lm-display);
+  color: #fbf0d6;
+  background: color-mix(in srgb, #1a0f0a 80%, transparent);
+  border: 1px solid color-mix(in srgb, #e8bf6e 40%, transparent);
+}
+
+/* Conversation */
+html[data-reading-mode] .conversation blockquote {
+  font-family: var(--lm-display);
+  color: var(--lm-ink);
+}
+html[data-reading-mode] .topic-grid button {
+  font-family: var(--lm-read);
+  color: var(--lm-ink);
+  background: color-mix(in srgb, var(--lm-surface) 90%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 38%, transparent);
+  border-radius: 1px;
+}
+html[data-reading-mode] .topic-grid button:hover {
+  border-color: var(--lm-gold);
+  background: color-mix(in srgb, var(--lm-wine) 40%, var(--lm-surface));
+}
+html[data-reading-mode] .topic-grid button svg {
+  color: var(--lm-gold);
+}
+
+/* Toasts */
+html[data-reading-mode] .toast {
+  color: var(--lm-ink);
+  background: var(--lm-surface-strong);
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 45%, transparent);
+  border-radius: 1px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+html[data-reading-mode] .toast svg {
+  color: var(--lm-gold);
+}
+
+/* Text laid over paintings stays light in every reading mode. */
+html[data-reading-mode]
+  :is(.scene-caption, .book-art, .conversation-portrait)
+  :is(.eyebrow, h2, h3, p, span) {
+  color: #fbf0d6;
+}
+html[data-reading-mode] :is(.scene-caption, .book-art, .conversation-portrait) .eyebrow {
+  color: #f0d49c;
+}

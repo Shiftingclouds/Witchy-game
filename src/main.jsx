@@ -71,6 +71,7 @@ import './theme/fonts.mjs';
 import './styles.css';
 import './dialogue-presentation.css';
 import './theme/lamplight.css';
+import './theme/surfaces.css';
 import { applyReadingMode } from './theme/apply.mjs';
 import { OpeningScene } from './features/opening/OpeningScene.jsx';
 import { TitleScreen } from './features/opening/TitleScreen.jsx';

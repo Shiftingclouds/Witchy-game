@@ -55,7 +55,7 @@
   margin-bottom: 4px;
 }
 .reveal-control {
-  font-size: 10px;
+  font-size: 13px;
   position: absolute;
   right: 0;
   bottom: 0;
@@ -65,26 +65,26 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 9px;
-  font-size: 11px;
-  color: #68765c;
+  font-size: 13px;
+  color: var(--lm-ink-soft);
   margin-top: 16px;
 }
 .reading-controls select {
-  border: 1px solid #c9cdb9;
-  background: #f9f7ef;
+  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  background: var(--lm-surface);
   border-radius: 4px;
   padding: 8px 12px;
-  font-size: 11px;
+  font-size: 13px;
 }
 .reading-controls small {
-  font-size: 10px;
+  font-size: 13px;
   width: 100%;
-  color: #7a806b;
+  color: var(--lm-ink-soft);
 }
 .scene-view-button {
   margin: -5px 0 22px;
-  font-size: 11px;
-  background: #e4ead7;
+  font-size: 13px;
+  background: var(--lm-surface);
 }
 .scene-reader {
   max-width: 100%;
@@ -153,12 +153,16 @@
   width: 100%;
   height: auto;
   border-radius: 7px;
-  border: 1px solid #c7b78e;
+  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
 }
 .scene-light {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 35% 25%, #fff4b41a, transparent 60%);
+  background: radial-gradient(
+    ellipse at 35% 25%,
+    color-mix(in srgb, var(--lm-surface) 10%, transparent),
+    transparent 60%
+  );
   animation: lantern-glow 6s ease-in-out infinite alternate;
   pointer-events: none;
 }
@@ -209,11 +213,11 @@
   left: 50%;
   transform: translateX(-50%);
   background: #233b2ae8;
-  border: 1px solid #e3d2a966;
+  border: 1px solid color-mix(in srgb, var(--lm-line) 40%, transparent);
   border-radius: 3px;
   padding: 6px 10px;
   color: #faf0d8;
-  font-size: 10px;
+  font-size: 13px;
   white-space: nowrap;
 }
 .stage-actor.listening .actor-name {
@@ -221,9 +225,9 @@
 }
 .speech-box {
   padding: 20px 24px 18px;
-  border: 1px solid #d7ceb5;
-  border-top: 2px solid #bba671;
-  background: #f9f5e9;
+  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border-top: 2px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  background: var(--lm-surface);
   border-radius: 0 0 7px 7px;
   box-shadow: 0 6px 19px #2531240b;
   animation: speech-arrive 200ms ease-out;
@@ -234,16 +238,16 @@
   justify-content: space-between;
   gap: 15px;
   margin-bottom: 12px;
-  color: #4a6246;
+  color: var(--lm-gold);
 }
 .speaker-heading strong {
   font-family: var(--serif);
-  font-size: 21px;
+  font-size: 23px;
   font-weight: 400;
 }
 .speaker-heading > span {
-  font-size: 10px;
-  color: #8c9076;
+  font-size: 13px;
+  color: var(--lm-ink-soft);
 }
 .speech-text {
   display: block;
@@ -252,14 +256,14 @@
   text-align: left;
   width: 100%;
   min-height: 100px;
-  font: 19px/1.7 var(--serif);
-  color: #45513d;
+  font: 23px/1.7 var(--serif);
+  color: var(--lm-ink-soft);
   cursor: pointer;
   border-radius: 3px;
 }
 .speech-text:disabled {
   opacity: 1;
-  color: #45513d;
+  color: var(--lm-ink-soft);
   cursor: default;
 }
 .speech-controls {
@@ -270,16 +274,16 @@
   margin-top: 18px;
 }
 .speech-controls > .button {
-  font-size: 11px;
+  font-size: 13px;
   min-width: 130px;
 }
 .speech-controls > .text-button {
-  font-size: 11px;
+  font-size: 13px;
   min-height: 40px;
 }
 .scene-complete {
-  font-size: 11px;
-  color: #687b56;
+  font-size: 13px;
+  color: var(--lm-gold);
   margin-top: 12px;
 }
 @keyframes portrait-arrive {
@@ -344,7 +348,7 @@
     left: 12.5%;
   }
   .actor-name {
-    font-size: 8px;
+    font-size: 13px;
     padding: 5px 6px;
     bottom: 9px;
   }
@@ -352,7 +356,7 @@
     padding: 17px 16px;
   }
   .speech-text {
-    font-size: 18px;
+    font-size: 19px;
     min-height: 150px;
   }
   .speech-controls {
@@ -363,7 +367,7 @@
     min-width: 120px;
   }
   .speaker-heading strong {
-    font-size: 21px;
+    font-size: 23px;
   }
   .conversation-portrait > .animated-portrait {
     height: 110%;
@@ -389,10 +393,10 @@
 
 .scene-transcript {
   margin-top: 16px;
-  border-top: 1px solid #d7d6c4;
+  border-top: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
   padding: 14px 0 0;
-  color: #55664a;
-  font-size: 12px;
+  color: var(--lm-gold);
+  font-size: 13px;
 }
 .scene-transcript summary {
   cursor: pointer;
@@ -408,22 +412,22 @@
 }
 .scene-transcript li {
   padding: 14px 10px;
-  border-bottom: 1px solid #dedccd;
+  border-bottom: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
 }
 .scene-transcript li strong {
-  font-size: 12px;
+  font-size: 13px;
 }
 .scene-transcript li p {
-  font: 17px/1.7 var(--serif);
+  font: 19px/1.7 var(--serif);
   margin-top: 6px;
 }
 
 .conversation-memory {
-  border-top: 1px solid #d7d6c4;
+  border-top: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
   margin-top: 20px;
   padding-top: 14px;
-  color: #53664c;
-  font-size: 12px;
+  color: var(--lm-ink-soft);
+  font-size: 13px;
 }
 .conversation-memory summary {
   cursor: pointer;
@@ -431,11 +435,11 @@
   min-height: 40px;
 }
 .conversation-memory h4 {
-  font: 19px var(--serif);
+  font: 23px var(--serif);
   margin: 18px 0 10px;
 }
 .conversation-memory > p {
-  font-size: 11px;
+  font-size: 13px;
 }
 .conversation-memory ul,
 .conversation-memory ol {
@@ -448,24 +452,24 @@
   line-height: 1.6;
 }
 .conversation-memory li p {
-  font-size: 12px;
+  font-size: 13px;
   margin-bottom: 6px;
 }
 .conversation-memory li small {
   display: block;
-  font-size: 10px;
-  color: #7d846e;
+  font-size: 13px;
+  color: var(--lm-ink-soft);
 }
 .story-section-heading {
   margin: 34px 0 20px;
-  border-top: 1px solid #d9d2bf;
+  border-top: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
   padding-top: 22px;
 }
 .story-section-heading small {
   text-transform: uppercase;
   letter-spacing: 1.3px;
-  color: #526a5a;
-  font-size: 11px;
+  color: var(--lm-ink-soft);
+  font-size: 13px;
 }
 .story-section-heading h3 {
   font-size: 1.5rem;
@@ -475,20 +479,20 @@
 .story-speaker {
   display: block;
   font-family: var(--font-body, sans-serif);
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #516f5c;
+  color: var(--lm-gold);
   margin-bottom: 5px;
 }
 .scene-section-title {
-  font-size: 12px;
-  color: #526657;
+  font-size: 13px;
+  color: var(--lm-ink-soft);
   margin: 0 0 12px;
 }
 .scene-decision {
-  border: 1px solid #cbd4c2;
-  background: #f3f4ea;
+  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  background: var(--lm-surface);
   border-radius: 12px;
   padding: 18px;
   margin: 22px 0;
@@ -499,9 +503,9 @@
 }
 .scene-decision legend {
   font-weight: 600;
-  color: #34543e;
+  color: var(--lm-gold);
   padding: 0 8px;
-  font-size: 14px;
+  font-size: 15px;
 }
 .scene-decision button {
   display: flex;
@@ -512,28 +516,28 @@
   line-height: 1.55;
   min-height: 48px;
   padding: 13px 16px;
-  border: 1px solid #bbc8b2;
-  background: #fffdf7;
+  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  background: var(--lm-surface);
   border-radius: 8px;
-  color: #263d30;
+  color: var(--lm-gold);
   font: inherit;
-  font-size: 14px;
+  font-size: 15px;
 }
 .scene-decision button small {
-  font-size: 11px;
-  color: #53664e;
+  font-size: 13px;
+  color: var(--lm-ink-soft);
   line-height: 1.5;
 }
 .scene-decision button.selected {
-  border-color: #577247;
-  background: #e3eadb;
+  border-color: var(--lm-gold);
+  background: var(--lm-surface);
   opacity: 1;
 }
 .scene-decision button:disabled:not(.selected) {
   opacity: 0.55;
 }
 .scene-decision button:focus-visible {
-  outline: 3px solid #a38138;
+  outline: 3px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
   outline-offset: 3px;
 }
 .speech-text:disabled {
@@ -555,7 +559,7 @@
 .speech-text,
 .scene-transcript li p,
 .conversation-line blockquote {
-  font-size: var(--reading-font-size, 19px);
+  font-size: var(--reading-font-size, 23px);
   line-height: 1.75;
 }
 [data-reduced-motion='true'] .scene-light,
@@ -574,17 +578,17 @@
   gap: 9px;
   margin: 22px 0;
   padding: 12px 0;
-  border-block: 1px solid #d9d2bf;
+  border-block: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
 }
 .chapter-contents a,
 .chapter-contents button {
-  font: 12px/1.5 var(--sans, sans-serif);
-  color: #40583c;
+  font: 13px/1.5 var(--sans, sans-serif);
+  color: var(--lm-gold);
   padding: 8px 10px;
-  background: #e8edde;
+  background: var(--lm-surface);
   border-radius: 5px;
 }
 .authored-chapter [data-story-beat]:focus-visible {
-  outline: 2px solid #a38138;
+  outline: 2px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
   outline-offset: 6px;
 }
