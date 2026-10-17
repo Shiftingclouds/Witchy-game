@@ -243,3 +243,110 @@
 [data-reduced-motion='true'] .portrait-frame {
   transition: none;
 }
+
+/* Corner controls: exit top left; history and gear top right. */
+.scene-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  color: var(--lm-gold);
+  background: color-mix(in srgb, var(--lm-backing) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 45%, transparent);
+  border-radius: 2px;
+  cursor: pointer;
+}
+.scene-icon:hover,
+.scene-icon:focus-visible,
+.scene-icon[aria-expanded='true'] {
+  color: var(--lm-gold-bright);
+  border-color: color-mix(in srgb, var(--lm-gold-bright) 80%, transparent);
+}
+.scene-exit {
+  position: absolute;
+  top: 22px;
+  left: 22px;
+  z-index: 2;
+}
+.scene-corner {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  z-index: 3;
+  display: flex;
+  gap: 10px;
+}
+.scene-menu {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: min(340px, calc(100vw - 44px));
+  max-height: min(70vh, 560px);
+  overflow-y: auto;
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+  color: var(--lm-ink);
+  background: color-mix(in srgb, var(--lm-backing) 96%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 50%, transparent);
+  outline: 1px solid color-mix(in srgb, var(--lm-gold) 20%, transparent);
+  outline-offset: -5px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+}
+.scene-menu .reading-controls {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+.scene-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-self: start;
+  padding: 6px 0;
+  font-family: var(--lm-display);
+  font-size: 17px;
+  color: var(--lm-ink);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--lm-gold) 45%, transparent);
+  cursor: pointer;
+}
+.scene-history {
+  width: min(460px, calc(100vw - 44px));
+}
+.scene-history ol {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.scene-history strong {
+  font-family: var(--lm-display);
+  font-size: 15px;
+  color: var(--lm-gold);
+}
+.scene-history p {
+  margin: 2px 0 0;
+  font-family: var(--lm-read);
+  font-size: 16px;
+  line-height: 1.5;
+}
+/* The page view keeps the same small gear, in its corner. */
+.book-page-corner {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  align-items: center;
+}
+.book-page-corner .scene-corner {
+  position: relative;
+  top: 0;
+  right: 0;
+}
+.portrait-frame.conversation {
+  width: 100%;
+  box-shadow: none;
+}

@@ -7,7 +7,9 @@ import { talkLine, relationshipLabel, sceneArt } from '../../engine.mjs';
 import { dailyConversation } from '../../life.mjs';
 import { Modal, Eyebrow } from '../../components.jsx';
 import { ConversationMemory } from '../../conversation-memory.jsx';
-import { AnimatedPortrait, ConversationLine } from '../../dialogue-presentation.jsx';
+import { ConversationLine } from '../../dialogue-presentation.jsx';
+import { PortraitFrame } from '../scene/PortraitFrame.jsx';
+import { timeOfDay } from '../scene/stage.mjs';
 export function Conversation({ id, game, act, onClose, reading }) {
   const c = characterById[id];
   const [emotion, setEmotion] = useState(talkLine(id, 'hello', game)[0]),
@@ -29,7 +31,13 @@ export function Conversation({ id, game, act, onClose, reading }) {
             backgroundImage: `linear-gradient(0deg,#232b2bbb,#232b2b20),url(${art(sceneArt(game))})`,
           }}
         >
-          <AnimatedPortrait id={id} emotion={emotion} reduced={reading.reduced} />
+          <PortraitFrame
+            id={id}
+            emotion={emotion}
+            size="conversation"
+            backdrop={art(sceneArt(game))}
+            time={timeOfDay(game.period)}
+          />
           <div className="conversation-identity">
             <h3>{c.name}</h3>
             <span>

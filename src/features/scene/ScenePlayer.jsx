@@ -6,11 +6,13 @@ import { SceneDecision } from '../story/AuthoredChapter.jsx';
 import { DialogueBox } from './DialogueBox.jsx';
 import { useLineReveal } from './useLineReveal.mjs';
 import { PortraitFrame } from './PortraitFrame.jsx';
+import { SceneMenu } from './SceneMenu.jsx';
+import { X } from 'lucide-react';
 import { emotionOf, sectionCast, staging, timeOfDay } from './stage.mjs';
 import './scene.css';
 
 /** The story, played full screen one line at a time over the place it happens in. */
-export function ScenePlayer({ game, act, reading, onExit }) {
+export function ScenePlayer({ game, act, reading, onExit, onReadAsPage }) {
   const chapter = chapters[game.chapter];
   const beats = useMemo(() => chapterBeats(game.chapter, game), [game.chapter, game.storyChoices]);
   const sceneId = chapterSceneId(game.chapter);
@@ -71,7 +73,7 @@ export function ScenePlayer({ game, act, reading, onExit }) {
     const onKey = (e) => {
       if (e.target.closest?.('input, select, textarea')) return;
       if (e.key === 'Enter' || e.key === ' ') {
-        if (e.target.closest?.('.scene-decision, .scene-menu')) return;
+        if (e.target.closest?.('.scene-decision, .scene-menu, .scene-corner, .scene-exit')) return;
         e.preventDefault();
         next();
       } else if (e.key === 'Backspace') {
@@ -96,6 +98,20 @@ export function ScenePlayer({ game, act, reading, onExit }) {
         alt={current.illustration?.alt || locationById[location].description}
       />
       <div className="scene-shade" aria-hidden="true" />
+      <button
+        type="button"
+        className="scene-icon scene-exit"
+        aria-label="Leave the scene"
+        onClick={onExit}
+      >
+        <X size={18} />
+      </button>
+      <SceneMenu
+        reading={reading}
+        lines={beats.slice(0, index + 1)}
+        view="play"
+        onSwitchView={onReadAsPage}
+      />
       <div className={`scene-stage ${stage}`}>
         {stage === 'group' && (
           <div className="stage-row">{cast.map((id) => frame(id, 'stage'))}</div>

@@ -4,6 +4,8 @@ Hello! You are writing the story of **Lanternmere**, a cosy, mysterious witch-ac
 
 The owner chose you because they love your prose. Make it yours.
 
+**Where this lives:** the public GitHub repository [Shiftingclouds/Witchy-game](https://github.com/Shiftingclouds/Witchy-game), on the branch **`scene-player`**: [docs/design/CHATGPT_STORY_REWRITE.md](https://github.com/Shiftingclouds/Witchy-game/blob/scene-player/docs/design/CHATGPT_STORY_REWRITE.md). The game's own story files are in [`src/story/`](https://github.com/Shiftingclouds/Witchy-game/tree/scene-player/src/story) and readable chapter exports in [`story/`](https://github.com/Shiftingclouds/Witchy-game/tree/scene-player/story) on the same branch.
+
 ## How to write
 
 1. **Slow, grounded, concrete.** Let moments breathe. Show where we are and what it looks, sounds and smells like before things happen. Never rush from one event to the next.

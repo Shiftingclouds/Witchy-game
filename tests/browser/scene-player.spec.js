@@ -66,7 +66,11 @@ test('the scene shows no meta labels', async ({ page }) => {
 
 test('speech in the dialogue box is set in quotation marks', async ({ page }) => {
   await openScene(page);
-  for (let i = 0; i < 20 && !(await page.locator('.dialogue-box .name-plate, .stage-row .speaking').count()); i++)
+  for (
+    let i = 0;
+    i < 20 && !(await page.locator('.dialogue-box .name-plate, .stage-row .speaking').count());
+    i++
+  )
     await finishAndAdvance(page);
   await expect(page.locator('.dialogue-text')).toContainText('“');
 });
@@ -142,4 +146,52 @@ test('narration-only scenes show no frames and a full-width box', async ({ page 
   await page.locator('.scene-player').waitFor();
   await expect(page.locator('.portrait-frame')).toHaveCount(0);
   await expect(page.locator('.dialogue-box.framed')).toHaveCount(0);
+});
+
+test('the story opens as a full-screen scene by default', async ({ page }) => {
+  await page.goto('/');
+  await enterMode(page, 'book');
+  await expect(page.locator('.scene-player')).toBeVisible();
+  await expect(page.getByRole('button', { name: /Play scene/ })).toHaveCount(0);
+});
+
+test('the gear switches to reading as a page, and that choice is remembered', async ({ page }) => {
+  await openScene(page);
+  await expect(page.locator('.scene-player .reading-controls')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Scene settings' }).click();
+  await expect(page.locator('.scene-menu .reading-controls')).toBeVisible();
+  await page.getByRole('button', { name: 'Read as a page' }).click();
+  await expect(page.locator('.scene-player')).toHaveCount(0);
+  await expect(page.locator('.book-page')).toBeVisible();
+  await page.reload();
+  await page.keyboard.press('Enter');
+  await page.getByRole('button', { name: /^Continue/ }).click();
+  await expect(page.locator('.book-page')).toBeVisible();
+  await expect(page.locator('.scene-player')).toHaveCount(0);
+});
+
+test('Esc leaves the scene for the page, and history lists the lines so far', async ({ page }) => {
+  await openScene(page);
+  await finishAndAdvance(page);
+  await page.getByRole('button', { name: 'Lines so far' }).click();
+  await expect(page.locator('.scene-history li')).toHaveCount(2);
+  await page.getByRole('button', { name: 'Lines so far' }).click();
+  await page.keyboard.press('Escape');
+  await expect(page.locator('.scene-player')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: /Return to the scene/ })).toBeVisible();
+});
+
+test('no chapter names on the page or in the footer', async ({ page }) => {
+  await openScene(page);
+  await page.keyboard.press('Escape');
+  await expect(page.locator('.book-layout')).not.toContainText(/Chapter/);
+  await expect(page.locator('.app-footer')).not.toContainText(/Chapter|Arrival/);
+  await expect(page.locator('.page-heading')).not.toContainText(/Chapter/);
+});
+
+test('a conversation shows the person in a framed portrait over the place', async ({ page }) => {
+  await page.goto('/');
+  await enterMode(page, 'live');
+  await page.getByRole('button', { name: 'Talk to Rowan', exact: true }).first().click();
+  await expect(page.getByRole('dialog').locator('.portrait-frame')).toBeVisible();
 });

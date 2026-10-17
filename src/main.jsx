@@ -78,6 +78,7 @@ import { VineButton } from './features/opening/VineButton.jsx';
 import { metCharacters } from './engine/selectors.mjs';
 import { AiScene } from './features/ai/AiScene.jsx';
 import { ScenePlayer } from './features/scene/ScenePlayer.jsx';
+import { SceneMenu } from './features/scene/SceneMenu.jsx';
 import { useChronicle } from './features/ai/useTurn.mjs';
 import { AiStory, ThreadsCard } from './features/ai/AiStory.jsx';
 import { useSidebarState } from './features/shell/sidebar.mjs';
@@ -156,6 +157,25 @@ function App() {
     [mobileNav, setMobileNav] = useState(false),
     [manifest, setManifest] = useState([]),
     [saveError, setSaveError] = useState('');
+  // The story plays as a full-screen scene unless the player chose to read it as a page.
+  const [sceneView, setSceneViewState] = useState(() => {
+    try {
+      return localStorage.getItem('lanternmere.scene-view') === 'page' ? 'page' : 'play';
+    } catch {
+      return 'play';
+    }
+  });
+  const setSceneView = (value) => {
+    setSceneViewState(value);
+    try {
+      localStorage.setItem('lanternmere.scene-view', value);
+    } catch {
+      /* the choice just won't be remembered */
+    }
+  };
+  const [sceneDismissed, setSceneDismissed] = useState(false);
+  const scenePlaying = Boolean(game) && !game.ending && sceneView === 'play' && !sceneDismissed;
+  useEffect(() => setSceneDismissed(false), [game?.chapter, game?.mode]);
   // One chronicle keeper per playthrough (AI modes only; it does nothing for Book and Live).
   useChronicle(game, act);
   useEffect(() => {
@@ -421,8 +441,23 @@ function App() {
           )}
           {view === 'map' && <Atlas game={game} visit={visit} />}
           {view === 'book' && game.mode === 'sandbox' && <AiStory game={game} act={act} />}
-          {view === 'book' && game.mode !== 'sandbox' && (
+          {view === 'book' && game.mode !== 'sandbox' && scenePlaying && (
+            <ScenePlayer
+              key={game.chapter}
+              game={game}
+              act={act}
+              reading={reading}
+              onExit={() => (isLiveLike(game.mode) ? navigate('world') : setSceneDismissed(true))}
+              onReadAsPage={() => setSceneView('page')}
+            />
+          )}
+          {view === 'book' && game.mode !== 'sandbox' && !scenePlaying && (
             <Story
+              sceneView={sceneView}
+              onPlayScene={() => {
+                setSceneView('play');
+                setSceneDismissed(false);
+              }}
               game={game}
               act={act}
               visit={visit}
@@ -441,8 +476,12 @@ function App() {
             <Flame size={13} /> A little magic. A place to belong.
           </span>
           <span>
-            {game.ending ? 'First year complete' : chapter.kicker}{' '}
-            <span className="footer-separator">·</span> Progress saved on this device
+            {game.ending && (
+              <>
+                First year complete <span className="footer-separator">·</span>{' '}
+              </>
+            )}
+            Progress saved on this device
           </span>
         </footer>
       </div>
@@ -454,15 +493,6 @@ function App() {
           game={game}
           act={act}
           onClose={() => setModal(null)}
-        />
-      )}
-      {modal?.type === 'performance' && (
-        <ScenePlayer
-          key={game.chapter}
-          game={game}
-          reading={reading}
-          act={act}
-          onExit={() => setModal(null)}
         />
       )}
       {modal?.type === 'profile' && (
@@ -705,7 +735,7 @@ function Epilogue({ game, leave }) {
   );
 }
 
-function Story({ game, act, visit, open, reading, leave }) {
+function Story({ game, act, visit, open, reading, leave, sceneView, onPlayScene }) {
   const ch = chapters[game.chapter];
   if (game.ending) return <Epilogue game={game} leave={leave} />;
   return (
@@ -718,11 +748,7 @@ function Story({ game, act, visit, open, reading, leave }) {
             ? 'Settle in. The world can wait while you turn the page.'
             : 'Your days become a story. Your choices give it meaning.'
         }
-      >
-        <span className="page-count">
-          {game.ending ? 'The end of the beginning' : `Chapter ${game.chapter + 1} of 8`}
-        </span>
-      </PageHeading>
+      />
       <div className="book-layout">
         <div className="book-art">
           <img
@@ -733,21 +759,19 @@ function Story({ game, act, visit, open, reading, leave }) {
           <span>{locationById[ch.scene].name}</span>
         </div>
         <article className="book-page">
-          <Eyebrow>
-            {ch.kicker} <span>✦</span> {dateLabel(ch.date)}
-          </Eyebrow>
-          <h2>{game.ending ? 'A home made of light' : ch.title}</h2>
-          <div className="book-ornament">— ✧ —</div>
           {!game.ending && (
-            <div className="book-actions">
-              <Button className="scene-view-button" onClick={() => open({ type: 'performance' })}>
-                Play scene <MessageCircle size={15} />
-              </Button>
-              <button className="text-button" onClick={() => open({ type: 'reading' })}>
-                Reading settings
-              </button>
+            <div className="book-page-corner">
+              <Eyebrow>{dateLabel(ch.date)}</Eyebrow>
+              {sceneView === 'play' && (
+                <Button className="primary" onClick={onPlayScene}>
+                  Return to the scene
+                </Button>
+              )}
+              <SceneMenu reading={reading} view="page" onSwitchView={onPlayScene} />
             </div>
           )}
+          {game.ending && <h2>A home made of light</h2>}
+          <div className="book-ornament">— ✧ —</div>
           {game.ending ? (
             <>
               <p>{endingCommon[0]}</p>

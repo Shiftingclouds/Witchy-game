@@ -1,0 +1,26 @@
+Tweaks and Fixes for Lanternmere:
+
+The opening page shows "Story Mode" and the frills that come off the buttons when you hover over them is permanent on the story but works as an animation on the other two as it should. fix that. 
+
+The character choice screen should be changed: Choosing your familiar and your house should be happening WITHIN the story. Thats some of the most exciting stuff. You'll have to write a new beginning. The houses should have crests and symbols too if they don't already. 
+
+Under the "People" tab, you shouldn't be able to see them before you meet them. They shouldn't even appear there until you've come across them. 
+
+The opening scene did not start with a big image like I asked. It immediately opens to UI and Rowan on the first page. Every new place should bring its image to full screen and then the next click on it shrinks it down. 
+
+There are no quotes when people talk, so actions and speech aren't separated in the prose. 
+
+"Play the scene" should be the DEFAULT mode. Right now All the text is showing on the right with just a main portrait or image on the left. Maybe you are waiting for art? I don't know but it looks bad. Text should pop up and show as a typing moving animation in a chat box, with characters floating above them OR text box with moving text and a portrait box that changes as they speak, just like Stardew Valley does it. You can utilize both. But there shouldn't just be static images of characters on a screen to cover them. Imogen is in the first scene and you don't even show her there? Same with Cas and Toby, they show up on the page but no images come. The default mode now being the "play the scene" should now fill the whole screen instead of being a small pop-up window. Having the reading settings just sitting at the bottom looks bad. There should just be a small settings symbol people can click to bring up those options. The "Imogen speaking" and "Rowan listening" is unnecessary. Remove them. The "line 40" or similar is unnecessary, remove that. The "your story" is unnecessary remove that. The chapter names and the subtitles with them are tacky and spoilers, remove them. Same with the titles at the top of the play the scene pop-up window (which we are getting rid of) can also be removed. Because the portraits chat-gpt gave us have their shoulders and sides cut off, we will need to use portraits with borders instead of having them over the image, instead we can place the image of the scene as the background of their portraits, so it changes based on location. Or, we can do time of day/weather backgrounds instead. We can brainstorm this. 
+
+There are times when running through the "play the scene" when i click next, it just shows a blank screen, with the location and "show full text" button, which when i click doesn't do what it says and it just moves to the next text. Also the button to go next moves up and down based on the length of text in the box making me have to chase the button, put it in one spot and don't have it move. 
+
+We have no introduction to the characters, you just throw me in. Theres no walk to the castle or travel across the lake, it all moves wayyyy too fast. You introduce Rowan and Imogen as if they have always known me? Thats strange. There should be WAYYY slower and more thought out writing. I don't even get to see the hall I'm in? 
+
+The writing is weird and random and seemingly has no groundedness to it. The lines are random as fuck they're actually hard to follow. 
+
+On dates to look forward to in the calander, the first day shouldn't be there because we start on day one so that isn't in the future. There should be a lot more events, fill each month with at least 3-4 events. And build scenes and art request file for chatgpt to fill in the art gaps for those events/scenes. 
+
+Add to art request file the need for a exe icon. 
+Should add more spells, as we have more classes, and the spells also shouldn't be showing at all in the spells panel until we have taken the class to learn it. 
+
+There is a user logo on the bottom left? For me it just shows a T with a pink grey solid background. It's tacky and ruins the vibe, remove it. It doesn't even do anything when I click on it so it's useless. 

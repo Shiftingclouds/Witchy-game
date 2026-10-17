@@ -92,9 +92,6 @@ export function AuthoredChapter({ game, act, reduced = false }) {
     if (next) root.current?.querySelector(`[data-story-beat="${next.id}"]`)?.focus();
     justChosen.current = null;
   }, [game.storyChoices]);
-  const sections = beats.filter(
-    (beat, index) => beat.section && beat.section.id !== beats[index - 1]?.section?.id,
-  );
   // The authored text of one section, handed to Claude as verbatim canon for interludes.
   const sectionText = (id) =>
     beats
@@ -108,20 +105,13 @@ export function AuthoredChapter({ game, act, reduced = false }) {
   }
   return (
     <div className="authored-chapter" ref={root}>
-      {sections.length > 0 && (
-        <nav className="chapter-contents" aria-label="Chapter sections">
-          {sections.map((beat) => (
-            <button key={beat.id} onClick={() => jump(beat)}>
-              {beat.section.title}
-            </button>
-          ))}
-          {game.bookmark?.scene === sceneId && (
-            <button
-              onClick={() => jump(beats.find((beat) => beat.id === game.bookmark.beat) || beats[0])}
-            >
-              Resume saved place
-            </button>
-          )}
+      {game.bookmark?.scene === sceneId && (
+        <nav className="chapter-contents" aria-label="Your place in the chapter">
+          <button
+            onClick={() => jump(beats.find((beat) => beat.id === game.bookmark.beat) || beats[0])}
+          >
+            Resume saved place
+          </button>
         </nav>
       )}
       {beats.map((beat, index) => {
@@ -137,7 +127,6 @@ export function AuthoredChapter({ game, act, reduced = false }) {
                   {locationById[beat.section.location]?.name}
                   {beat.section.date && ` · ${dateLabel(beat.section.date)}`}
                 </small>
-                <h3>{beat.section.title}</h3>
               </header>
             )}
             {beat.illustration && (
