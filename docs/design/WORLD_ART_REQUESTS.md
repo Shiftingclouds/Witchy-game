@@ -4,6 +4,10 @@ The cast and places Lanternmere needs to feel like a living world, especially fo
 
 Work in small batches, top to bottom. Status per item: **wanted**, **received**, **placed**.
 
+## Placeholders in the game
+
+Every file in these lists has a slot in `art/slots.json` (generated from these documents by `python3 scripts/make_art_slots.py`). Until the real file exists, the build paints a clearly marked **ART NEEDED · filename** placeholder wherever the game would show it, and the Art collection in Settings lists it. To fill one: save ChatGPT's image as `art/<exact filename>` (portraits as transparent PNG), then run `npm run build` (or `npm run app`). The placeholder disappears and the real art takes its place everywhere. Portrait expressions also need registering on the character sheet (each slot's `placement` says where).
+
 ## How to ask ChatGPT
 
 **For a new character's first portrait** — attach `c01-rowan-neutral.png` and `c02-imogen-neutral.png` as style references, then paste:
@@ -27,6 +31,8 @@ Save each file with the exact filename listed. Portraits are PNG with transparen
 ## Batch 1 — Already designed, never painted (13 people) — wanted
 
 These have character sheets in `characters/proposed/` and story roles in `docs/CAST_EXPANSION.md`. Paint the neutral first; once approved, request **warm, amused, grave, tense** (4 more each).
+
+Expression files, once each neutral is approved: `c49-vesper-sen-{warm,amused,grave,tense}.png`, `c50-edda-moss-{warm,amused,grave,tense}.png`, `c51-soren-bell-{warm,amused,grave,tense}.png`, `c52-nessa-flint-{warm,amused,grave,tense}.png`, `c53-ari-fen-{warm,amused,grave,tense}.png`, `c54-iona-reed-{warm,amused,grave,tense}.png`, `c55-milo-wick-{warm,amused,grave,tense}.png`, `c56-tamsin-wren-{warm,amused,grave,tense}.png`, `c57-esme-brook-{warm,amused,grave,tense}.png`, `c58-perrin-ash-{warm,amused,grave,tense}.png`, `c59-merrin-thorne-{warm,amused,grave,tense}.png`, `c60-beatrix-kettle-{warm,amused,grave,tense}.png`, `c61-oren-voss-{warm,amused,grave,tense}.png`.
 
 | File (neutral) | Who | Brief to paste |
 | --- | --- | --- |
@@ -67,20 +73,20 @@ The Open World needs people who aren't the main cast: the ones you pass in corri
 
 | File (neutral) | Who | Brief to paste |
 | --- | --- | --- |
-| `c62-prefect-owlcombe-neutral.png` | **Hollis Tarrant**, Owlcombe prefect, 26 | Upper-year student, neat dark-blue coat with an owl-feather pin, ledger under arm; dry humour, fair. |
-| `c63-prefect-rookhallow-neutral.png` | **Juno Ashdown**, Rookhallow prefect, 25 | Upper-year, rolled sleeves, ember-red scarf, soot on one cheek; loud, protective. |
-| `c64-prefect-heronmere-neutral.png` | **Caspian Lowe**, Heronmere prefect, 26 | Upper-year, silver-grey hair tied back, teal cloak, calm watery eyes; diplomatic. |
-| `c65-prefect-larkspire-neutral.png` | **Wren Okafor-Hale**, Larkspire prefect, 25 | Upper-year, bright yellow ribbon in a cloud of curls, ink on fingers, quick smile; mischievous but responsible. |
-| `c66-porter-neutral.png` | **Old Abernathy**, gate porter, 70s | Elderly man in a long brass-buttoned coat, ring of keys, lantern at his belt; knows everyone's comings and goings. |
-| `c67-groundskeeper-neutral.png` | **Senna Mire**, groundskeeper, 40s | Weathered woman, waxed coat, pruning shears, leaves in her hair; few words, kind hands. |
-| `c68-night-warden-neutral.png` | **Ilse Varrow**, night warden, 50s | Tall, hooded dark coat, small moon-lantern; patrols the halls after curfew; stern but secretly soft. |
-| `c69-postmistress-neutral.png` | **Dorrit Pell**, village postmistress, 60s | Round spectacles on a chain, satchel of letters, pencil behind ear; gossip-adjacent, warm. |
-| `c70-blacksmith-neutral.png` | **Tobias Hearn**, village smith, 30s | Broad, leather apron, forge-reddened forearms, short beard; gentle giant. |
-| `c71-fisher-neutral.png` | **Maren Coyle**, lake fisher, 40s | Oilskin coat, knitted cap, net over shoulder, wind-burnt cheeks; tells lake legends. |
-| `c72-musician-neutral.png` | **Fennick Lark**, inn musician, 30s | Lute on his back, patched velvet jacket, mischievous eyes; plays at the inn most evenings. |
-| `c73-market-farmer-neutral.png` | **Agnes Rowe**, market farmer, 50s | Straw hat, basket of autumn apples and pumpkins, rosy cheeks; there on market days. |
-| `c74-traveller-neutral.png` | **The Pedlar**, travelling merchant, age unclear | Hooded, layered colourful scarves, a cart-pack hung with charms and tiny bottles; appears at festivals; mysterious. |
-| `c75-librarian-assistant-neutral.png` | **Pim Hollow**, library assistant, 20s | Small, enormous spectacles, cardigan full of bookmarks, stack of books to the chin; anxious and helpful. |
+| `c62-hollis-tarrant-neutral.png` | **Hollis Tarrant**, Owlcombe prefect, 26 | Upper-year student, neat dark-blue coat with an owl-feather pin, ledger under arm; dry humour, fair. |
+| `c63-juno-ashdown-neutral.png` | **Juno Ashdown**, Rookhallow prefect, 25 | Upper-year, rolled sleeves, ember-red scarf, soot on one cheek; loud, protective. |
+| `c64-caspian-lowe-neutral.png` | **Caspian Lowe**, Heronmere prefect, 26 | Upper-year, silver-grey hair tied back, teal cloak, calm watery eyes; diplomatic. |
+| `c65-wren-okafor-hale-neutral.png` | **Wren Okafor-Hale**, Larkspire prefect, 25 | Upper-year, bright yellow ribbon in a cloud of curls, ink on fingers, quick smile; mischievous but responsible. |
+| `c66-abernathy-neutral.png` | **Old Abernathy**, gate porter, 70s | Elderly man in a long brass-buttoned coat, ring of keys, lantern at his belt; knows everyone's comings and goings. |
+| `c67-senna-mire-neutral.png` | **Senna Mire**, groundskeeper, 40s | Weathered woman, waxed coat, pruning shears, leaves in her hair; few words, kind hands. |
+| `c68-ilse-varrow-neutral.png` | **Ilse Varrow**, night warden, 50s | Tall, hooded dark coat, small moon-lantern; patrols the halls after curfew; stern but secretly soft. |
+| `c69-dorrit-pell-neutral.png` | **Dorrit Pell**, village postmistress, 60s | Round spectacles on a chain, satchel of letters, pencil behind ear; gossip-adjacent, warm. |
+| `c70-tobias-hearn-neutral.png` | **Tobias Hearn**, village smith, 30s | Broad, leather apron, forge-reddened forearms, short beard; gentle giant. |
+| `c71-maren-coyle-neutral.png` | **Maren Coyle**, lake fisher, 40s | Oilskin coat, knitted cap, net over shoulder, wind-burnt cheeks; tells lake legends. |
+| `c72-fennick-lark-neutral.png` | **Fennick Lark**, inn musician, 30s | Lute on his back, patched velvet jacket, mischievous eyes; plays at the inn most evenings. |
+| `c73-agnes-rowe-neutral.png` | **Agnes Rowe**, market farmer, 50s | Straw hat, basket of autumn apples and pumpkins, rosy cheeks; there on market days. |
+| `c74-pedlar-neutral.png` | **The Pedlar**, travelling merchant, age unclear | Hooded, layered colourful scarves, a cart-pack hung with charms and tiny bottles; appears at festivals; mysterious. |
+| `c75-pim-hollow-neutral.png` | **Pim Hollow**, library assistant, 20s | Small, enormous spectacles, cardigan full of bookmarks, stack of books to the chin; anxious and helpful. |
 
 ## Batch 4 — Places (seasonal variants from the existing plan) — wanted
 

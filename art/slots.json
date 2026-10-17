@@ -1,0 +1,908 @@
+[
+  {
+    "file": "lantern-icon.png",
+    "kind": "icon",
+    "request": "ART_REQUESTS.md \u2014 1. App icon \u2014 wanted",
+    "placement": "build/icon.png (electron-builder win.icon) and the hidden-sidebar button"
+  },
+  {
+    "file": "opening-lantern.png",
+    "kind": "layer",
+    "request": "ART_REQUESTS.md \u2014 2. The lantern on its own + the lake without it \u2014 nice to have",
+    "placement": "art/; opening scene layers (lantern bob) \u2014 see ART_REQUESTS.md entry"
+  },
+  {
+    "file": "opening-lake-empty.png",
+    "kind": "layer",
+    "request": "ART_REQUESTS.md \u2014 2. The lantern on its own + the lake without it \u2014 nice to have",
+    "placement": "art/; opening scene layers (lantern bob) \u2014 see ART_REQUESTS.md entry"
+  },
+  {
+    "file": "c49-vesper-sen-warm.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c49-vesper-sen-warm.png; register \"warm\" in characters/*/vesper-sen.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c49-vesper-sen-amused.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c49-vesper-sen-amused.png; register \"amused\" in characters/*/vesper-sen.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c49-vesper-sen-grave.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c49-vesper-sen-grave.png; register \"grave\" in characters/*/vesper-sen.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c49-vesper-sen-tense.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c49-vesper-sen-tense.png; register \"tense\" in characters/*/vesper-sen.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c50-edda-moss-warm.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c50-edda-moss-warm.png; register \"warm\" in characters/*/edda-moss.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c50-edda-moss-amused.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c50-edda-moss-amused.png; register \"amused\" in characters/*/edda-moss.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c50-edda-moss-grave.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c50-edda-moss-grave.png; register \"grave\" in characters/*/edda-moss.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c50-edda-moss-tense.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c50-edda-moss-tense.png; register \"tense\" in characters/*/edda-moss.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c51-soren-bell-warm.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c51-soren-bell-warm.png; register \"warm\" in characters/*/soren-bell.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c51-soren-bell-amused.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c51-soren-bell-amused.png; register \"amused\" in characters/*/soren-bell.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c51-soren-bell-grave.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c51-soren-bell-grave.png; register \"grave\" in characters/*/soren-bell.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c51-soren-bell-tense.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c51-soren-bell-tense.png; register \"tense\" in characters/*/soren-bell.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c52-nessa-flint-warm.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c52-nessa-flint-warm.png; register \"warm\" in characters/*/nessa-flint.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c52-nessa-flint-amused.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c52-nessa-flint-amused.png; register \"amused\" in characters/*/nessa-flint.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c52-nessa-flint-grave.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c52-nessa-flint-grave.png; register \"grave\" in characters/*/nessa-flint.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c52-nessa-flint-tense.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c52-nessa-flint-tense.png; register \"tense\" in characters/*/nessa-flint.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c53-ari-fen-warm.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c53-ari-fen-warm.png; register \"warm\" in characters/*/ari-fen.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c53-ari-fen-amused.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c53-ari-fen-amused.png; register \"amused\" in characters/*/ari-fen.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c53-ari-fen-grave.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c53-ari-fen-grave.png; register \"grave\" in characters/*/ari-fen.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c53-ari-fen-tense.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c53-ari-fen-tense.png; register \"tense\" in characters/*/ari-fen.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c54-iona-reed-warm.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c54-iona-reed-warm.png; register \"warm\" in characters/*/iona-reed.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c54-iona-reed-amused.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c54-iona-reed-amused.png; register \"amused\" in characters/*/iona-reed.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c54-iona-reed-grave.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c54-iona-reed-grave.png; register \"grave\" in characters/*/iona-reed.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c54-iona-reed-tense.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c54-iona-reed-tense.png; register \"tense\" in characters/*/iona-reed.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c55-milo-wick-warm.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c55-milo-wick-warm.png; register \"warm\" in characters/*/milo-wick.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c55-milo-wick-amused.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c55-milo-wick-amused.png; register \"amused\" in characters/*/milo-wick.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c55-milo-wick-grave.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c55-milo-wick-grave.png; register \"grave\" in characters/*/milo-wick.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c55-milo-wick-tense.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c55-milo-wick-tense.png; register \"tense\" in characters/*/milo-wick.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c56-tamsin-wren-warm.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c56-tamsin-wren-warm.png; register \"warm\" in characters/*/tamsin-wren.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c56-tamsin-wren-amused.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c56-tamsin-wren-amused.png; register \"amused\" in characters/*/tamsin-wren.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c56-tamsin-wren-grave.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c56-tamsin-wren-grave.png; register \"grave\" in characters/*/tamsin-wren.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c56-tamsin-wren-tense.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c56-tamsin-wren-tense.png; register \"tense\" in characters/*/tamsin-wren.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c57-esme-brook-warm.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c57-esme-brook-warm.png; register \"warm\" in characters/*/esme-brook.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c57-esme-brook-amused.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c57-esme-brook-amused.png; register \"amused\" in characters/*/esme-brook.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c57-esme-brook-grave.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c57-esme-brook-grave.png; register \"grave\" in characters/*/esme-brook.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c57-esme-brook-tense.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c57-esme-brook-tense.png; register \"tense\" in characters/*/esme-brook.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c58-perrin-ash-warm.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c58-perrin-ash-warm.png; register \"warm\" in characters/*/perrin-ash.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c58-perrin-ash-amused.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c58-perrin-ash-amused.png; register \"amused\" in characters/*/perrin-ash.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c58-perrin-ash-grave.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c58-perrin-ash-grave.png; register \"grave\" in characters/*/perrin-ash.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c58-perrin-ash-tense.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c58-perrin-ash-tense.png; register \"tense\" in characters/*/perrin-ash.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c59-merrin-thorne-warm.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c59-merrin-thorne-warm.png; register \"warm\" in characters/*/merrin-thorne.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c59-merrin-thorne-amused.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c59-merrin-thorne-amused.png; register \"amused\" in characters/*/merrin-thorne.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c59-merrin-thorne-grave.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c59-merrin-thorne-grave.png; register \"grave\" in characters/*/merrin-thorne.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c59-merrin-thorne-tense.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c59-merrin-thorne-tense.png; register \"tense\" in characters/*/merrin-thorne.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c60-beatrix-kettle-warm.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c60-beatrix-kettle-warm.png; register \"warm\" in characters/*/beatrix-kettle.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c60-beatrix-kettle-amused.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c60-beatrix-kettle-amused.png; register \"amused\" in characters/*/beatrix-kettle.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c60-beatrix-kettle-grave.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c60-beatrix-kettle-grave.png; register \"grave\" in characters/*/beatrix-kettle.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c60-beatrix-kettle-tense.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c60-beatrix-kettle-tense.png; register \"tense\" in characters/*/beatrix-kettle.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c61-oren-voss-warm.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c61-oren-voss-warm.png; register \"warm\" in characters/*/oren-voss.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c61-oren-voss-amused.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c61-oren-voss-amused.png; register \"amused\" in characters/*/oren-voss.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c61-oren-voss-grave.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c61-oren-voss-grave.png; register \"grave\" in characters/*/oren-voss.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c61-oren-voss-tense.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c61-oren-voss-tense.png; register \"tense\" in characters/*/oren-voss.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c49-vesper-sen-neutral.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c49-vesper-sen-neutral.png; register \"neutral\" in characters/*/vesper-sen.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c50-edda-moss-neutral.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c50-edda-moss-neutral.png; register \"neutral\" in characters/*/edda-moss.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c51-soren-bell-neutral.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c51-soren-bell-neutral.png; register \"neutral\" in characters/*/soren-bell.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c52-nessa-flint-neutral.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c52-nessa-flint-neutral.png; register \"neutral\" in characters/*/nessa-flint.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c53-ari-fen-neutral.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c53-ari-fen-neutral.png; register \"neutral\" in characters/*/ari-fen.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c54-iona-reed-neutral.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c54-iona-reed-neutral.png; register \"neutral\" in characters/*/iona-reed.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c55-milo-wick-neutral.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c55-milo-wick-neutral.png; register \"neutral\" in characters/*/milo-wick.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c56-tamsin-wren-neutral.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c56-tamsin-wren-neutral.png; register \"neutral\" in characters/*/tamsin-wren.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c57-esme-brook-neutral.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c57-esme-brook-neutral.png; register \"neutral\" in characters/*/esme-brook.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c58-perrin-ash-neutral.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c58-perrin-ash-neutral.png; register \"neutral\" in characters/*/perrin-ash.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c59-merrin-thorne-neutral.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c59-merrin-thorne-neutral.png; register \"neutral\" in characters/*/merrin-thorne.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c60-beatrix-kettle-neutral.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c60-beatrix-kettle-neutral.png; register \"neutral\" in characters/*/beatrix-kettle.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c61-oren-voss-neutral.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 1 \u2014 Already designed, never painted (13 people) \u2014 wanted",
+    "placement": "art/c61-oren-voss-neutral.png; register \"neutral\" in characters/*/oren-voss.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c02-imogen-scared.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c02-imogen-scared.png; register \"scared\" in characters/*/imogen.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c03-saoirse-surprised.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c03-saoirse-surprised.png; register \"surprised\" in characters/*/saoirse.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c04-cas-warm.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c04-cas-warm.png; register \"warm\" in characters/*/cas.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c04-cas-amused.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c04-cas-amused.png; register \"amused\" in characters/*/cas.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c04-cas-grave.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c04-cas-grave.png; register \"grave\" in characters/*/cas.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c04-cas-tense.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c04-cas-tense.png; register \"tense\" in characters/*/cas.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c04-cas-shy.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c04-cas-shy.png; register \"shy\" in characters/*/cas.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c05-noor-warm.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c05-noor-warm.png; register \"warm\" in characters/*/noor.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c05-noor-amused.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c05-noor-amused.png; register \"amused\" in characters/*/noor.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c05-noor-grave.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c05-noor-grave.png; register \"grave\" in characters/*/noor.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c05-noor-tense.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c05-noor-tense.png; register \"tense\" in characters/*/noor.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c05-noor-shy.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c05-noor-shy.png; register \"shy\" in characters/*/noor.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c06-idris-warm.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c06-idris-warm.png; register \"warm\" in characters/*/idris.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c06-idris-amused.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c06-idris-amused.png; register \"amused\" in characters/*/idris.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c06-idris-grave.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c06-idris-grave.png; register \"grave\" in characters/*/idris.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c06-idris-tense.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c06-idris-tense.png; register \"tense\" in characters/*/idris.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c06-idris-shy.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c06-idris-shy.png; register \"shy\" in characters/*/idris.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c07-toby-warm.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c07-toby-warm.png; register \"warm\" in characters/*/toby.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c07-toby-amused.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c07-toby-amused.png; register \"amused\" in characters/*/toby.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c07-toby-grave.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c07-toby-grave.png; register \"grave\" in characters/*/toby.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c07-toby-tense.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c07-toby-tense.png; register \"tense\" in characters/*/toby.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c07-toby-shy.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c07-toby-shy.png; register \"shy\" in characters/*/toby.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c11-rhys-grave.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c11-rhys-grave.png; register \"grave\" in characters/*/rhys.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c11-rhys-amused.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c11-rhys-amused.png; register \"amused\" in characters/*/rhys.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c19-tully-grave.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c19-tully-grave.png; register \"grave\" in characters/*/tully.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c19-tully-amused.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c19-tully-amused.png; register \"amused\" in characters/*/tully.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c08-kestrel-amused.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c08-kestrel-amused.png; register \"amused\" in characters/*/kestrel.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "warm.png",
+    "kind": "environment",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/warm.png; location background (new places: add a row to src/content.mjs locations)"
+  },
+  {
+    "file": "grave.png",
+    "kind": "environment",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/grave.png; location background (new places: add a row to src/content.mjs locations)"
+  },
+  {
+    "file": "amused.png",
+    "kind": "environment",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/amused.png; location background (new places: add a row to src/content.mjs locations)"
+  },
+  {
+    "file": "c31-hask-warm.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c31-hask-warm.png; register \"warm\" in characters/*/hask.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c31-hask-guarded.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c31-hask-guarded.png; register \"guarded\" in characters/*/hask.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c31-hask-hurt.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c31-hask-hurt.png; register \"hurt\" in characters/*/hask.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c34-jory-warm.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c34-jory-warm.png; register \"warm\" in characters/*/jory.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c34-jory-amused.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c34-jory-amused.png; register \"amused\" in characters/*/jory.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c34-jory-tense.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c34-jory-tense.png; register \"tense\" in characters/*/jory.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c46-honoria-warm.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c46-honoria-warm.png; register \"warm\" in characters/*/honoria.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c46-honoria-tense.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c46-honoria-tense.png; register \"tense\" in characters/*/honoria.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c46-honoria-tired.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 2 \u2014 Expressions for the people you meet most \u2014 wanted",
+    "placement": "art/c46-honoria-tired.png; register \"tired\" in characters/*/honoria.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c62-hollis-tarrant-neutral.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 3 \u2014 More people for a living world (new, proposed) \u2014 wanted",
+    "placement": "art/c62-hollis-tarrant-neutral.png; register \"neutral\" in characters/*/hollis-tarrant.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c63-juno-ashdown-neutral.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 3 \u2014 More people for a living world (new, proposed) \u2014 wanted",
+    "placement": "art/c63-juno-ashdown-neutral.png; register \"neutral\" in characters/*/juno-ashdown.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c64-caspian-lowe-neutral.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 3 \u2014 More people for a living world (new, proposed) \u2014 wanted",
+    "placement": "art/c64-caspian-lowe-neutral.png; register \"neutral\" in characters/*/caspian-lowe.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c65-wren-okafor-hale-neutral.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 3 \u2014 More people for a living world (new, proposed) \u2014 wanted",
+    "placement": "art/c65-wren-okafor-hale-neutral.png; register \"neutral\" in characters/*/wren-okafor-hale.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c66-abernathy-neutral.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 3 \u2014 More people for a living world (new, proposed) \u2014 wanted",
+    "placement": "art/c66-abernathy-neutral.png; register \"neutral\" in characters/*/abernathy.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c67-senna-mire-neutral.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 3 \u2014 More people for a living world (new, proposed) \u2014 wanted",
+    "placement": "art/c67-senna-mire-neutral.png; register \"neutral\" in characters/*/senna-mire.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c68-ilse-varrow-neutral.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 3 \u2014 More people for a living world (new, proposed) \u2014 wanted",
+    "placement": "art/c68-ilse-varrow-neutral.png; register \"neutral\" in characters/*/ilse-varrow.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c69-dorrit-pell-neutral.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 3 \u2014 More people for a living world (new, proposed) \u2014 wanted",
+    "placement": "art/c69-dorrit-pell-neutral.png; register \"neutral\" in characters/*/dorrit-pell.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c70-tobias-hearn-neutral.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 3 \u2014 More people for a living world (new, proposed) \u2014 wanted",
+    "placement": "art/c70-tobias-hearn-neutral.png; register \"neutral\" in characters/*/tobias-hearn.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c71-maren-coyle-neutral.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 3 \u2014 More people for a living world (new, proposed) \u2014 wanted",
+    "placement": "art/c71-maren-coyle-neutral.png; register \"neutral\" in characters/*/maren-coyle.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c72-fennick-lark-neutral.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 3 \u2014 More people for a living world (new, proposed) \u2014 wanted",
+    "placement": "art/c72-fennick-lark-neutral.png; register \"neutral\" in characters/*/fennick-lark.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c73-agnes-rowe-neutral.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 3 \u2014 More people for a living world (new, proposed) \u2014 wanted",
+    "placement": "art/c73-agnes-rowe-neutral.png; register \"neutral\" in characters/*/agnes-rowe.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c74-pedlar-neutral.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 3 \u2014 More people for a living world (new, proposed) \u2014 wanted",
+    "placement": "art/c74-pedlar-neutral.png; register \"neutral\" in characters/*/pedlar.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "c75-pim-hollow-neutral.png",
+    "kind": "portrait",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 3 \u2014 More people for a living world (new, proposed) \u2014 wanted",
+    "placement": "art/c75-pim-hollow-neutral.png; register \"neutral\" in characters/*/pim-hollow.json presentation.expressions, then npm run sync:characters"
+  },
+  {
+    "file": "dormitory-evening.png",
+    "kind": "environment",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 4 \u2014 Places (seasonal variants from the existing plan) \u2014 wanted",
+    "placement": "art/dormitory-evening.png; location background (new places: add a row to src/content.mjs locations)"
+  },
+  {
+    "file": "mere-spring-day.png",
+    "kind": "environment",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 4 \u2014 Places (seasonal variants from the existing plan) \u2014 wanted",
+    "placement": "art/mere-spring-day.png; location background (new places: add a row to src/content.mjs locations)"
+  },
+  {
+    "file": "mere-summer-evening.png",
+    "kind": "environment",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 4 \u2014 Places (seasonal variants from the existing plan) \u2014 wanted",
+    "placement": "art/mere-summer-evening.png; location background (new places: add a row to src/content.mjs locations)"
+  },
+  {
+    "file": "classroom-night.png",
+    "kind": "environment",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 4 \u2014 Places (seasonal variants from the existing plan) \u2014 wanted",
+    "placement": "art/classroom-night.png; location background (new places: add a row to src/content.mjs locations)"
+  },
+  {
+    "file": "rookery-night.png",
+    "kind": "environment",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 4 \u2014 Places (seasonal variants from the existing plan) \u2014 wanted",
+    "placement": "art/rookery-night.png; location background (new places: add a row to src/content.mjs locations)"
+  },
+  {
+    "file": "thimble-cross-spring.png",
+    "kind": "environment",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 4 \u2014 Places (seasonal variants from the existing plan) \u2014 wanted",
+    "placement": "art/thimble-cross-spring.png; location background (new places: add a row to src/content.mjs locations)"
+  },
+  {
+    "file": "thimble-cross-summer.png",
+    "kind": "environment",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 4 \u2014 Places (seasonal variants from the existing plan) \u2014 wanted",
+    "placement": "art/thimble-cross-summer.png; location background (new places: add a row to src/content.mjs locations)"
+  },
+  {
+    "file": "whispering-wood-spring.png",
+    "kind": "environment",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 4 \u2014 Places (seasonal variants from the existing plan) \u2014 wanted",
+    "placement": "art/whispering-wood-spring.png; location background (new places: add a row to src/content.mjs locations)"
+  },
+  {
+    "file": "whispering-wood-winter.png",
+    "kind": "environment",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 4 \u2014 Places (seasonal variants from the existing plan) \u2014 wanted",
+    "placement": "art/whispering-wood-winter.png; location background (new places: add a row to src/content.mjs locations)"
+  },
+  {
+    "file": "boathouse-day.png",
+    "kind": "environment",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 4 \u2014 Places (seasonal variants from the existing plan) \u2014 wanted",
+    "placement": "art/boathouse-day.png; location background (new places: add a row to src/content.mjs locations)"
+  },
+  {
+    "file": "dorm-owlcombe.png",
+    "kind": "environment",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 5 \u2014 New places for a living world (new, proposed) \u2014 owner to approve first",
+    "placement": "art/dorm-owlcombe.png; location background (new places: add a row to src/content.mjs locations)"
+  },
+  {
+    "file": "dorm-rookhallow.png",
+    "kind": "environment",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 5 \u2014 New places for a living world (new, proposed) \u2014 owner to approve first",
+    "placement": "art/dorm-rookhallow.png; location background (new places: add a row to src/content.mjs locations)"
+  },
+  {
+    "file": "dorm-heronmere.png",
+    "kind": "environment",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 5 \u2014 New places for a living world (new, proposed) \u2014 owner to approve first",
+    "placement": "art/dorm-heronmere.png; location background (new places: add a row to src/content.mjs locations)"
+  },
+  {
+    "file": "dorm-larkspire.png",
+    "kind": "environment",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 5 \u2014 New places for a living world (new, proposed) \u2014 owner to approve first",
+    "placement": "art/dorm-larkspire.png; location background (new places: add a row to src/content.mjs locations)"
+  },
+  {
+    "file": "bakery-interior.png",
+    "kind": "environment",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 5 \u2014 New places for a living world (new, proposed) \u2014 owner to approve first",
+    "placement": "art/bakery-interior.png; location background (new places: add a row to src/content.mjs locations)"
+  },
+  {
+    "file": "apothecary-interior.png",
+    "kind": "environment",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 5 \u2014 New places for a living world (new, proposed) \u2014 owner to approve first",
+    "placement": "art/apothecary-interior.png; location background (new places: add a row to src/content.mjs locations)"
+  },
+  {
+    "file": "broom-workshop.png",
+    "kind": "environment",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 5 \u2014 New places for a living world (new, proposed) \u2014 owner to approve first",
+    "placement": "art/broom-workshop.png; location background (new places: add a row to src/content.mjs locations)"
+  },
+  {
+    "file": "academy-courtyard.png",
+    "kind": "environment",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 5 \u2014 New places for a living world (new, proposed) \u2014 owner to approve first",
+    "placement": "art/academy-courtyard.png; location background (new places: add a row to src/content.mjs locations)"
+  },
+  {
+    "file": "bell-tower.png",
+    "kind": "environment",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 5 \u2014 New places for a living world (new, proposed) \u2014 owner to approve first",
+    "placement": "art/bell-tower.png; location background (new places: add a row to src/content.mjs locations)"
+  },
+  {
+    "file": "village-market-day.png",
+    "kind": "environment",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 5 \u2014 New places for a living world (new, proposed) \u2014 owner to approve first",
+    "placement": "art/village-market-day.png; location background (new places: add a row to src/content.mjs locations)"
+  },
+  {
+    "file": "village-dock.png",
+    "kind": "environment",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 5 \u2014 New places for a living world (new, proposed) \u2014 owner to approve first",
+    "placement": "art/village-dock.png; location background (new places: add a row to src/content.mjs locations)"
+  },
+  {
+    "file": "staff-room.png",
+    "kind": "environment",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 5 \u2014 New places for a living world (new, proposed) \u2014 owner to approve first",
+    "placement": "art/staff-room.png; location background (new places: add a row to src/content.mjs locations)"
+  },
+  {
+    "file": "clue-lantern-nameplate.png",
+    "kind": "closeup",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 6 \u2014 Story milestone and clue art \u2014 later",
+    "placement": "art/clue-lantern-nameplate.png; beat illustration in the matching src/story/ scene"
+  },
+  {
+    "file": "clue-atlas-shore-path.png",
+    "kind": "closeup",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 6 \u2014 Story milestone and clue art \u2014 later",
+    "placement": "art/clue-atlas-shore-path.png; beat illustration in the matching src/story/ scene"
+  },
+  {
+    "file": "clue-station-ticket.png",
+    "kind": "closeup",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 6 \u2014 Story milestone and clue art \u2014 later",
+    "placement": "art/clue-station-ticket.png; beat illustration in the matching src/story/ scene"
+  },
+  {
+    "file": "clue-mended-ward.png",
+    "kind": "closeup",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 6 \u2014 Story milestone and clue art \u2014 later",
+    "placement": "art/clue-mended-ward.png; beat illustration in the matching src/story/ scene"
+  },
+  {
+    "file": "cg-winter-shore-rescue.png",
+    "kind": "closeup",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 6 \u2014 Story milestone and clue art \u2014 later",
+    "placement": "art/cg-winter-shore-rescue.png; beat illustration in the matching src/story/ scene"
+  },
+  {
+    "file": "cg-greenhouse-promise.png",
+    "kind": "closeup",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 6 \u2014 Story milestone and clue art \u2014 later",
+    "placement": "art/cg-greenhouse-promise.png; beat illustration in the matching src/story/ scene"
+  },
+  {
+    "file": "cg-heartfire-circle.png",
+    "kind": "closeup",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 6 \u2014 Story milestone and clue art \u2014 later",
+    "placement": "art/cg-heartfire-circle.png; beat illustration in the matching src/story/ scene"
+  },
+  {
+    "file": "cg-homecoming-lanterns.png",
+    "kind": "closeup",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 6 \u2014 Story milestone and clue art \u2014 later",
+    "placement": "art/cg-homecoming-lanterns.png; beat illustration in the matching src/story/ scene"
+  }
+]
