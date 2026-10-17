@@ -6,9 +6,9 @@
  */
 import { endingCommon, endingVariants } from '../src/features/story/epilogue.mjs';
 import { stagedScenes } from '../src/scene-beats.mjs';
-import { enumerateStoryPaths } from '../src/story/choices.mjs';
-const storyPaths = enumerateStoryPaths(stagedScenes);
-const reachableBeats = new Set(storyPaths.flatMap((path) => path.beats));
+import { auditStory, storyFields, normalizeText, countWords } from '../src/story/audit.mjs';
+const storyAudit = auditStory(stagedScenes);
+const reachableBeats = storyAudit.reachable;
 import {
   chapters,
   characters,
@@ -36,9 +36,9 @@ if (args.has('--help')) {
 
 const TARGET = 250_000;
 const records = [];
-const normalize = (value) => value.normalize('NFC').replace(/\s+/gu, ' ').trim();
+const normalize = normalizeText;
 // Apostrophes and internal hyphens belong to a word; an em dash separates words.
-const wordCount = (value) => (value.match(/[\p{L}\p{N}]+(?:['’\-][\p{L}\p{N}]+)*/gu) || []).length;
+const wordCount = countWords;
 function add(category, source, text, eligible = true) {
   if (typeof text !== 'string' || !normalize(text)) throw new Error(`Missing text in ${source}`);
   records.push({ category, source, text: normalize(text), words: wordCount(text), eligible });
@@ -237,19 +237,14 @@ const unchangedProse = chapters.flatMap((chapter, index) => [
   ...(stagedScenes.some((scene) => scene.chapter === index) ? [] : chapter.text),
   ...chapter.choices.map((choice) => choice[0]),
 ]);
-const routeStrings = (path) =>
-  path.beats.flatMap((beat) => [
-    beat.text,
-    ...(beat.choice?.options || []).map((option) => option.label),
-  ]);
 const bookRoutes = Object.fromEntries(
   Object.entries(endingVariants).map(([ending, text]) => {
-    const counts = storyPaths.map((path) =>
-      uniqueWordCount([...unchangedProse, ...routeStrings(path), ...endingCommon, text]),
-    );
+    const counts = auditStory(stagedScenes, {
+      initialFields: [...unchangedProse, ...endingCommon, text],
+    });
     return [
       ending,
-      { minimum: Math.min(...counts), maximum: Math.max(...counts), authoredPaths: counts.length },
+      { minimum: counts.minimum, maximum: counts.maximum, authoredPaths: counts.paths.toString() },
     ];
   }),
 );
@@ -257,14 +252,11 @@ const illustratedRoutes = bookRoutes;
 const chapterRows = chapters.map((chapter, index) => {
   const scene = stagedScenes.find((scene) => scene.chapter === index);
   const beats = scene?.beats.filter((beat) => reachableBeats.has(beat));
-  const counts = storyPaths.map((path) =>
-    uniqueWordCount(
-      scene
-        ? routeStrings({ beats: path.beats.filter((beat) => scene.beats.includes(beat)) })
-        : chapter.text,
-    ),
-  );
   const finalLabels = chapter.choices.map((choice) => choice[0]);
+  const counts = auditStory(stagedScenes, {
+    fields: (beat, source) => (source === scene ? storyFields(beat) : []),
+    initialFields: [...(scene ? [] : chapter.text), ...finalLabels],
+  });
   return {
     chapter: index + 1,
     title: chapter.title,
@@ -275,8 +267,8 @@ const chapterRows = chapters.map((chapter, index) => {
         (beat.choice?.options || []).map((option) => option.label),
       ),
     ]),
-    routeMinimum: Math.min(...counts) + uniqueWordCount(finalLabels),
-    routeMaximum: Math.max(...counts) + uniqueWordCount(finalLabels),
+    routeMinimum: counts.minimum,
+    routeMaximum: counts.maximum,
   };
 });
 const report = {
@@ -311,15 +303,15 @@ const report = {
     ]),
   ),
   authoredSceneRouteWords: {
-    minimum: Math.min(...storyPaths.map((path) => uniqueWordCount(routeStrings(path)))),
-    maximum: Math.max(...storyPaths.map((path) => uniqueWordCount(routeStrings(path)))),
+    minimum: storyAudit.minimum,
+    maximum: storyAudit.maximum,
   },
   bookRouteWords: bookRoutes,
   illustratedRouteWords: illustratedRoutes,
   categories: categoryRows,
   chapters: chapterRows,
   limitations: [
-    'Book and staged reader share identical selected paths. Route ranges enumerate saved local choices, their later callbacks, both visible choice labels, and one ending. Optional chats and migration-only fallbacks are excluded.',
+    'Book and staged reader share identical selected paths. Exact dependency-state analysis counts saved local choices, their later callbacks, both visible choice labels, and one ending. Optional chats and migration-only fallbacks are excluded.',
     'Route figures measure supplied prose, not player reading behavior. They exclude interface transitions and repeated visits.',
     'The full total spans mutually exclusive choices and recurring events; it is not a one-playthrough word count.',
     'Exact whole-field reuse is deduplicated after whitespace/NFC normalization. Near-duplicates, copied passages inside longer strings and filler still require editorial review.',
@@ -352,7 +344,7 @@ if (args.has('--json')) {
   );
   if (stagedScenes.length)
     console.log(
-      `Illustrated reader uses the same routes as the book (${storyPaths.length} authored opening combinations).`,
+      `Illustrated reader uses the same routes as the book (${storyAudit.paths} authored combinations; ${storyAudit.peakStates} concurrent dependency states).`,
     );
   console.table(chapterRows);
   console.log(

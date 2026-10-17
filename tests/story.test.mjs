@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { initialState, transition, parseSave, canAdvance, SAVE_VERSION } from '../src/engine.mjs';
 import { chapterBeats, stagedScenes } from '../src/scene-beats.mjs';
-import { enumerateStoryPaths } from '../src/story/choices.mjs';
+import { auditStory } from '../src/story/audit.mjs';
 import { characterInput, buildCharacterContext } from '../src/character-context.mjs';
 import { finishSceneChoices } from './helpers/story.mjs';
 const choose = (state, key, option) => transition(state, { type: 'story-choice', key, option });
@@ -42,8 +42,8 @@ test('unanswered decisions gate both modes, reject out-of-order actions, and can
   }
 });
 
-test('all authored route combinations reach callbacks and both endings with their selected memories', () => {
-  for (const path of enumerateStoryPaths(stagedScenes)) {
+test('routes covering every authored beat and option reach both endings with their selected memories', () => {
+  for (const path of auditStory(stagedScenes).coverage) {
     for (const ending of [0, 1]) {
       let state = initialState('book');
       for (const scene of stagedScenes) {
