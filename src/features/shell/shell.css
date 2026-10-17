@@ -1,0 +1,325 @@
+/* Lamplight game shell: the current place's art, softly darkened, sits behind every page;
+   the sidebar is umber glass with thin gold rules and collapses to a rail or hides. */
+.app-shell {
+  --sidebar-w: 236px;
+  position: relative;
+  isolation: isolate;
+  background: var(--lm-bg);
+  color: var(--lm-ink);
+}
+.app-shell[data-sidebar='rail'] {
+  --sidebar-w: 76px;
+}
+.app-shell[data-sidebar='hidden'] {
+  --sidebar-w: 0px;
+}
+.app-shell::before {
+  content: '';
+  position: fixed;
+  inset: -40px;
+  z-index: -2;
+  background: var(--scene-art) center / cover no-repeat;
+  filter: blur(26px) saturate(0.85);
+  opacity: 0.55;
+}
+.app-shell::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 80% 70% at 55% 35%, transparent 0%, var(--lm-bg) 95%),
+    linear-gradient(180deg, color-mix(in srgb, var(--lm-bg) 72%, transparent), var(--lm-bg));
+}
+html[data-reading-mode='parchment'] .app-shell::before {
+  opacity: 0.22;
+}
+
+/* Sidebar */
+.app-shell .sidebar {
+  width: var(--sidebar-w);
+  padding: 26px 16px 16px;
+  color: var(--lm-ink);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--lm-surface) 88%, transparent),
+    color-mix(in srgb, var(--lm-bg) 94%, transparent)
+  );
+  border-right: 1px solid color-mix(in srgb, var(--lm-gold) 30%, transparent);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  transition:
+    width 0.3s cubic-bezier(0.3, 0.7, 0.2, 1),
+    padding 0.3s;
+}
+.app-shell[data-sidebar='hidden'] .sidebar {
+  padding-inline: 0;
+  border-right-color: transparent;
+}
+.sidebar-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+.app-shell .brand {
+  gap: 11px;
+  color: var(--lm-ink);
+  min-width: 0;
+}
+.app-shell .brand img {
+  width: 36px;
+  height: 39px;
+  flex-shrink: 0;
+  filter: sepia(0.5) saturate(1.3) brightness(1.15);
+}
+.app-shell .brand span {
+  font-family: var(--lm-display);
+  font-size: 23px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.app-shell .brand small {
+  display: block;
+  margin-top: 3px;
+  font-family: var(--lm-label);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--lm-ink-soft);
+}
+.sidebar-toggle,
+.sidebar-show {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  color: var(--lm-ink-soft);
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 1px;
+}
+.sidebar-toggle:hover,
+.sidebar-toggle:focus-visible,
+.sidebar-show:hover,
+.sidebar-show:focus-visible {
+  color: var(--lm-gold-bright);
+  border-color: color-mix(in srgb, var(--lm-gold) 45%, transparent);
+}
+.app-shell[data-sidebar='rail'] .sidebar-toggle svg {
+  transform: rotate(0deg);
+}
+.sidebar-show {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 30;
+  width: 44px;
+  height: 44px;
+  background: color-mix(in srgb, var(--lm-surface) 82%, transparent);
+  border-color: color-mix(in srgb, var(--lm-gold) 40%, transparent);
+  backdrop-filter: blur(8px);
+}
+.sidebar-show img {
+  width: 26px;
+  filter: sepia(0.5) saturate(1.3) brightness(1.15);
+}
+.app-shell .sidebar-rule {
+  background: color-mix(in srgb, var(--lm-gold) 32%, transparent);
+  margin: 24px 0 20px;
+}
+.app-shell .sidebar > .eyebrow {
+  margin: 0 10px 12px;
+  font-family: var(--lm-label);
+  font-size: 13px;
+  letter-spacing: 0.24em;
+  color: var(--lm-gold);
+  white-space: nowrap;
+}
+.app-shell .nav-item {
+  gap: 13px;
+  padding: 10px 12px;
+  border-radius: 1px;
+  color: var(--lm-ink-soft);
+  font-family: var(--lm-read);
+  font-size: 17px;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+.app-shell .nav-item svg {
+  flex-shrink: 0;
+  color: var(--lm-gold);
+}
+.app-shell .nav-item:hover {
+  background: color-mix(in srgb, var(--lm-gold) 8%, transparent);
+  color: var(--lm-ink);
+}
+.app-shell .nav-item.active {
+  color: var(--lm-ink);
+  font-weight: 500;
+  background: color-mix(in srgb, var(--lm-wine) 55%, transparent);
+  border-color: color-mix(in srgb, var(--lm-gold) 35%, transparent);
+}
+.app-shell .nav-dot {
+  background: var(--lm-gold-bright);
+}
+.app-shell .nav-item.secondary {
+  font-size: 15px;
+  padding: 8px 12px;
+}
+.app-shell .familiar-card {
+  border-bottom-color: color-mix(in srgb, var(--lm-gold) 25%, transparent);
+}
+.app-shell .familiar-card small {
+  font-family: var(--lm-label);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  color: var(--lm-gold);
+}
+.app-shell .familiar-card p {
+  font-family: var(--lm-display);
+  font-size: 15px;
+  color: var(--lm-ink-soft);
+}
+.app-shell .player-card {
+  border-top-color: color-mix(in srgb, var(--lm-gold) 25%, transparent);
+}
+.app-shell .player-initial {
+  font-family: var(--lm-display);
+  color: #fbf0d6;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--lm-gold) 50%, transparent);
+}
+.app-shell .player-card strong {
+  font-size: 15px;
+  color: var(--lm-ink);
+}
+.app-shell .player-card small {
+  font-size: 13px;
+  color: var(--lm-ink-soft);
+}
+.app-shell .player-card > svg {
+  color: var(--lm-gold);
+}
+
+/* Rail: icons only. */
+.app-shell[data-sidebar='rail'] .sidebar {
+  padding-inline: 10px;
+}
+.app-shell[data-sidebar='rail']
+  :is(.nav-label, .sidebar > .eyebrow, .familiar-card > div, .nav-dot, .player-card > svg) {
+  display: none;
+}
+.app-shell[data-sidebar='rail'] .sidebar-head {
+  flex-direction: column;
+}
+.app-shell[data-sidebar='rail'] .nav-item {
+  justify-content: center;
+  padding: 11px 0;
+}
+.app-shell[data-sidebar='rail'] .familiar-card {
+  justify-content: center;
+  min-height: 0;
+}
+.app-shell[data-sidebar='rail'] .familiar-card > img {
+  width: 48px;
+  height: 58px;
+}
+.app-shell[data-sidebar='rail'] .player-card {
+  justify-content: center;
+}
+
+/* Workspace */
+.app-shell .workspace {
+  margin-left: var(--sidebar-w);
+  transition: margin-left 0.3s cubic-bezier(0.3, 0.7, 0.2, 1);
+}
+.app-shell .topbar {
+  background: color-mix(in srgb, var(--lm-bg) 55%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--lm-gold) 22%, transparent);
+  backdrop-filter: blur(8px);
+}
+.app-shell[data-sidebar='hidden'] .topbar {
+  padding-left: 74px;
+}
+.app-shell .breadcrumb {
+  font-family: var(--lm-label);
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  color: var(--lm-ink-soft);
+}
+.app-shell .breadcrumb > span {
+  color: var(--lm-gold);
+}
+.app-shell .breadcrumb strong {
+  font-family: var(--lm-display);
+  font-size: 17px;
+  letter-spacing: 0.02em;
+  color: var(--lm-ink);
+}
+.app-shell .connection {
+  font-family: var(--lm-label);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  color: var(--lm-ink-soft);
+}
+.app-shell .connection i {
+  background: var(--lm-gold);
+}
+.app-shell .date-pill {
+  font-family: var(--lm-read);
+  font-size: 15px;
+  color: var(--lm-ink);
+  background: color-mix(in srgb, var(--lm-surface) 80%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 40%, transparent);
+  border-radius: 1px;
+}
+.app-shell .date-pill > svg {
+  color: var(--lm-gold);
+}
+.app-shell .date-pill > span {
+  color: var(--lm-ink-soft);
+}
+.app-shell .app-footer {
+  border-top-color: color-mix(in srgb, var(--lm-gold) 20%, transparent);
+  color: var(--lm-ink-soft);
+  font-family: var(--lm-read);
+  font-size: 13px;
+}
+.app-shell .app-footer svg {
+  color: var(--lm-gold);
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-shell .sidebar,
+  .app-shell .workspace {
+    transition: none;
+  }
+}
+.app-shell[data-reduced-motion='true'] :is(.sidebar, .workspace) {
+  transition: none;
+}
+
+/* Below desktop width the existing slide-in drawer takes over. */
+@media (max-width: 760px) {
+  .app-shell,
+  .app-shell[data-sidebar] {
+    --sidebar-w: 225px;
+  }
+  .app-shell .workspace,
+  .app-shell[data-sidebar] .workspace {
+    margin-left: 0;
+  }
+  .sidebar-toggle,
+  .sidebar-show {
+    display: none;
+  }
+  .app-shell[data-sidebar] :is(.nav-label, .sidebar > .eyebrow, .familiar-card > div) {
+    display: revert;
+  }
+  .app-shell[data-sidebar='hidden'] .topbar {
+    padding-left: 17px;
+  }
+}

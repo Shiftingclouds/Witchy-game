@@ -17,6 +17,7 @@ import {
   CalendarDays,
   Feather,
   Settings,
+  ChevronsLeft,
   Flame,
   Leaf,
   ArrowRight,
@@ -73,6 +74,8 @@ import './theme/lamplight.css';
 import { applyReadingMode } from './theme/apply.mjs';
 import { OpeningScene } from './features/opening/OpeningScene.jsx';
 import { TitleScreen } from './features/opening/TitleScreen.jsx';
+import { useSidebarState } from './features/shell/sidebar.mjs';
+import './features/shell/shell.css';
 import { CharacterCreation } from './features/opening/CharacterCreation.jsx';
 import { LAST_MODE_KEY } from './features/opening/menu-model.mjs';
 
@@ -127,6 +130,7 @@ function taskLocation(game, id) {
 
 function App() {
   const reading = useReadingPreferences();
+  const sidebar = useSidebarState();
   useEffect(() => applyReadingMode(reading.mode), [reading.mode]);
   const [game, setGame] = useState(null),
     [view, setView] = useState('world'),
@@ -250,14 +254,41 @@ function App() {
       className="app-shell"
       data-reading-size={reading.size}
       data-reduced-motion={reading.reduced}
+      data-sidebar={sidebar.state}
+      style={{ '--scene-art': `url(${art(sceneArt(game))})` }}
     >
-      <aside className={'sidebar ' + (mobileNav ? 'open' : '')} inert={Boolean(modal)}>
-        <button className="brand" onClick={() => setGame(null)} aria-label="Back to main menu">
+      {sidebar.state === 'hidden' && (
+        <button
+          className="sidebar-show"
+          onClick={sidebar.show}
+          aria-label="Show sidebar"
+          title="Show sidebar (Ctrl+B)"
+        >
           <img src="/crest.svg" alt="" />
-          <span>
-            Lanternmere<small>A LIFE LESS ORDINARY</small>
-          </span>
         </button>
+      )}
+      <aside
+        className={'sidebar ' + (mobileNav ? 'open' : '')}
+        inert={Boolean(modal) || sidebar.state === 'hidden'}
+      >
+        <div className="sidebar-head">
+          <button className="brand" onClick={() => setGame(null)} aria-label="Back to main menu">
+            <img src="/crest.svg" alt="" />
+            <span className="nav-label">
+              Lanternmere<small>The Quiet Arts</small>
+            </span>
+          </button>
+          <button
+            className="sidebar-toggle"
+            onClick={sidebar.cycle}
+            aria-label={sidebar.state === 'open' ? 'Collapse sidebar' : 'Hide sidebar'}
+            title={
+              (sidebar.state === 'open' ? 'Collapse sidebar' : 'Hide sidebar') + ' (Ctrl+B hides)'
+            }
+          >
+            <ChevronsLeft size={17} />
+          </button>
+        </div>
         <div className="sidebar-rule" />
         <Eyebrow>YOUR LITTLE WORLD</Eyebrow>
         <nav aria-label="Main navigation">
@@ -268,9 +299,11 @@ function App() {
                 key={id}
                 className={'nav-item ' + (view === id ? 'active' : '')}
                 onClick={() => navigate(id)}
+                aria-label={label}
+                title={sidebar.state === 'rail' ? label : undefined}
               >
                 <Icon size={19} />
-                {label}
+                <span className="nav-label">{label}</span>
                 {view === id && <span className="nav-dot" />}
               </button>
             ))}
@@ -287,17 +320,27 @@ function App() {
               </p>
             </div>
           </div>
-          <button className="nav-item secondary" onClick={() => setModal({ type: 'settings' })}>
-            <Settings size={17} /> Settings & saves
+          <button
+            className="nav-item secondary"
+            onClick={() => setModal({ type: 'settings' })}
+            aria-label="Settings & saves"
+            title={sidebar.state === 'rail' ? 'Settings & saves' : undefined}
+          >
+            <Settings size={17} /> <span className="nav-label">Settings & saves</span>
           </button>
-          <button className="nav-item secondary" onClick={() => setGame(null)}>
-            <LogOut size={17} /> Main menu
+          <button
+            className="nav-item secondary"
+            onClick={() => setGame(null)}
+            aria-label="Main menu"
+            title={sidebar.state === 'rail' ? 'Main menu' : undefined}
+          >
+            <LogOut size={17} /> <span className="nav-label">Main menu</span>
           </button>
           <div className="player-card">
             <span className="player-initial" style={{ background: house.color }}>
               {game.name[0].toUpperCase()}
             </span>
-            <span>
+            <span className="nav-label">
               <strong>{game.name}</strong>
               <small>{house.name} · First year</small>
             </span>
