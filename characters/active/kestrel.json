@@ -14,14 +14,8 @@
   },
   "canon": {
     "summary": "Kestrel teaches precise, generous magic. She expects students to ask why a boundary exists before they strengthen it.",
-    "traits": [
-      "precise",
-      "fair",
-      "demanding"
-    ],
-    "values": [
-      "purposeful boundaries"
-    ],
+    "traits": ["precise", "fair", "demanding"],
+    "values": ["purposeful boundaries"],
     "motivation": "Teach students to explain what a ward protects and whom it includes.",
     "fear": "A technically perfect spell used without understanding.",
     "boundaries": [
@@ -34,6 +28,12 @@
         "minimumChapter": 0,
         "minimumBond": 0,
         "text": "Kestrel teaches precise, generous magic. She expects students to ask why a boundary exists before they strengthen it."
+      },
+      {
+        "id": "longnight-account",
+        "minimumChapter": 5,
+        "minimumBond": 0,
+        "text": "At Longnight I supervised a lake reading that showed seven lights joining separately. Ward surveys and Moth’s cycle records establish the next Midsummer renewal as the restoration deadline. Buildings and protective wards remain sound; the threatened magic is the shared welcome. Honoria, Okoro, Tully and the archivists share the work."
       }
     ],
     "privateReactions": [
@@ -74,9 +74,7 @@
   },
   "presentation": {
     "portraitPrefix": "c08-kestrel",
-    "availableExpressions": [
-      "neutral"
-    ],
+    "availableExpressions": ["neutral", "grave"],
     "missingArt": false,
     "direction": "Use only available expressions; neutral is the fallback. Do not invent an unseen gesture or additional portrait."
   },

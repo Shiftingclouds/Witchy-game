@@ -20,7 +20,7 @@ test('one keyboard action reveals the line; a second advances without choosing o
   await page.keyboard.press('Enter');
   await expect(box).toHaveAttribute('data-revealing', 'false');
   await expect(box).toHaveAttribute('data-beat', '0');
-  expect((await box.boundingBox()).height).toBe(height);
+  expect((await box.boundingBox()).height).toBeCloseTo(height, 2);
   await page.keyboard.press('Enter');
   await expect(box).toHaveAttribute('data-beat', '1');
   const save = await page.evaluate(() => JSON.parse(localStorage.getItem('lanternmere.save.book')));

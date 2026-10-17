@@ -38,10 +38,20 @@ export const magicSystem = {
       let clue = null,
         text = '';
       if (action.id === 'echo' && s.location === 'mere') {
+        if (s.chapter < 4) {
+          s.feedback =
+            'Small traces of arrivals shimmer along the shore. The deeper memory remains indistinct; continue the investigation in your journal before attempting to read it.';
+          return;
+        }
         clue = 'lake';
         text =
           'Under the water, seven small lights form an open circle. The lake remembers the first keepers.';
       } else if (action.id === 'echo' && s.location === 'candlestones') {
+        if (s.chapter < 5) {
+          s.feedback =
+            'Faint marks show through the weathered surface, but no complete inscription resolves. Continue the investigation in your journal before attempting this reading.';
+          return;
+        }
         clue = 'stones';
         text = 'The inscription returns: A light freely offered. A space for whoever comes next.';
       } else if (action.id === 'thread' && s.location === 'heartfire') {

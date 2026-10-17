@@ -418,6 +418,8 @@ for (const character of characters) {
 }
 export const characterById = Object.fromEntries(characters.map((c) => [c.id, c]));
 export const expressions = {
+  kestrel: ['neutral', 'grave'],
+  tully: ['neutral', 'warm'],
   rhys: ['neutral', 'warm'],
   dunne: ['neutral', 'attentive'],
   'maelin-quill': ['neutral', 'reflective'],
@@ -654,7 +656,7 @@ export const chapters = [
     ],
     choices: [
       ['Take her hand and promise to finish this together.', 'saoirse', 'warm'],
-      ['Make a careful plan before leaving the shore.', 'imogen', 'warm'],
+      ['Make a careful plan for the work ahead.', 'imogen', 'warm'],
     ],
   },
   {

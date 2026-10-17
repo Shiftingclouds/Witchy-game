@@ -6,6 +6,7 @@ import {
   houses,
   spells,
   familiars,
+  chapters,
 } from '../content.mjs';
 import { eventById } from '../life.mjs';
 import {
@@ -97,7 +98,7 @@ export function parseSave(value) {
     const definition = choiceDefinition(key);
     if (
       !definition ||
-      (definition.beat.section?.date && s.date < definition.beat.section.date) ||
+      s.date < (definition.beat.section?.date || chapters[definition.scene.chapter].date) ||
       definition.scene.chapter > s.chapter ||
       !definition.beat.choice.options.some((option) => option.id === value) ||
       !matchesCondition(definition.beat, s.storyChoices)

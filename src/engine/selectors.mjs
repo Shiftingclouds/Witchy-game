@@ -11,6 +11,7 @@ export function sceneArt(state, id = state.location) {
         : 'mere-day';
   if (id === 'corridor' && state.period >= 2) return 'corridor-night';
   if (id === 'glasshouses' && state.period >= 2) return 'glasshouses-night';
+  if (id === 'tully-cottage' && season(state.date) === 'Winter') return 'tully-cottage-winter';
   if (['thimble-cross', 'glimmer-pitch'].includes(id) && season(state.date) === 'Winter')
     return id + '-snow';
   if (id === 'lantern-hall')

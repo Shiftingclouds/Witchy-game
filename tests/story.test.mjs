@@ -244,3 +244,48 @@ test('Emberfall can be caught up after its date and its private conversation sta
   assert.equal(canAdvance(state), true);
   assert.equal(transition(state, { type: 'chapter', choice: 0 }).chapter, 4);
 });
+
+test('Longnight records shared work, gates later knowledge, and imports without invented winter choices', () => {
+  let state = initialState('book');
+  for (let chapter = 0; chapter < 4; chapter++)
+    state = transition(finishSceneChoices(state), { type: 'chapter', choice: 0 });
+  const before = buildCharacterContext('kestrel', characterInput(state, 'kestrel'));
+  assert.ok(!before.character.knownFacts.some((fact) => fact.includes('cycle records')));
+  state = choose(state, 'longnight:shore-work', 'lanterns');
+  assert.equal(state.bonds.kestrel, 1);
+  assert.equal(state.bonds.tully, 1);
+  state = choose(state, 'longnight:echo-record', 'words');
+  state = choose(state, 'longnight:winter-duty', 'archive');
+  state = parseSave(state);
+  assert.ok(chapterBeats(4, state).some((beat) => beat.id === 'archive-start'));
+  assert.ok(!chapterBeats(4, state).some((beat) => beat.id === 'handover-start'));
+  const tully = buildCharacterContext('tully', characterInput(state, 'tully'));
+  assert.ok(
+    tully.relationship.sharedMemories.some(
+      (memory) => memory.key === 'scene:longnight:winter-duty:archive',
+    ),
+  );
+  const imogen = buildCharacterContext('imogen', characterInput(state, 'imogen'));
+  assert.ok(
+    !imogen.relationship.sharedMemories.some((memory) => memory.key.includes('winter-duty')),
+  );
+  const forged = {
+    ...state,
+    date: '2026-10-31',
+    journal: [],
+    characterMemories: {},
+    daily: { date: '2026-10-31', checkins: [], event: null },
+  };
+  assert.throws(() => parseSave(forged), /Invalid story decision/);
+  state = transition(state, { type: 'chapter', choice: 1 });
+  const later = buildCharacterContext('kestrel', characterInput(state, 'kestrel'));
+  assert.ok(later.character.knownFacts.some((fact) => fact.includes('cycle records')));
+  const legacy = parseSave({
+    ...initialState('book'),
+    chapter: 4,
+    date: '2026-12-21',
+    daily: { date: '2026-12-21', checkins: [], event: null },
+  });
+  assert.ok(chapterBeats(4, legacy).some((beat) => beat.id === 'winter-company-legacy'));
+  assert.equal(transition(finishSceneChoices(legacy), { type: 'chapter', choice: 0 }).chapter, 5);
+});

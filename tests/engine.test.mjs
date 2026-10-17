@@ -140,3 +140,35 @@ test('every game location, familiar, cast portrait and expression resolves to a 
   for (const a of raw)
     assert.ok((await stat(new URL('../public' + a.src, import.meta.url))).size > 0, a.id);
 });
+
+test('future Echosight clues wait for their chapter, remain available late, and preserve old discoveries', () => {
+  for (const [location, clue, chapter, spoiler] of [
+    ['mere', 'lake', 4, /seven|first keepers/iu],
+    ['candlestones', 'stones', 5, /freely offered|whoever comes next/iu],
+  ]) {
+    const early = { ...initialState('live'), spells: ['echo'], location, chapter: chapter - 1 };
+    const blocked = action(early, 'cast', { id: 'echo' });
+    assert.deepEqual(blocked.clues, []);
+    assert.equal(blocked.points, early.points);
+    assert.equal(blocked.date, early.date);
+    assert.equal(blocked.period, early.period);
+    assert.doesNotMatch(blocked.feedback, spoiler);
+    const old = parseSave({ ...early, version: 3, clues: [clue] });
+    assert.ok(old.clues.includes(clue));
+    for (const date of ['2027-08-12', '2027-12-21']) {
+      const ready = { ...early, chapter, date, daily: { date, checkins: [], event: null } };
+      const found = action(ready, 'cast', { id: 'echo' });
+      assert.ok(found.clues.includes(clue));
+      assert.equal(found.points, ready.points + 10);
+      assert.equal(action(found, 'cast', { id: 'echo' }).points, found.points);
+    }
+  }
+  assert.equal(
+    sceneArt({ ...initialState(), date: '2026-12-21' }, 'tully-cottage'),
+    'tully-cottage-winter',
+  );
+  assert.equal(
+    sceneArt({ ...initialState(), date: '2026-10-31' }, 'tully-cottage'),
+    'tully-cottage',
+  );
+});

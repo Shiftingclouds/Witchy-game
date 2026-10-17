@@ -23,3 +23,12 @@ The previously integrated `academy-map.png` and `c47-elian-vale-neutral.png` bel
 - `c11-rhys-warm.png`: expression edit of Rhys’s supplied neutral portrait; hat, snail, cape and hand position retained.
 
 Generated with the image-generation tool, inspected, and included in the offline art collection. Browser checks load both expressions and the evidence image; desktop and largest-text mobile captures are in `docs/emberfall-*.png`. Original sources remain unchanged.
+
+## Longnight package — 16 October 2026
+
+- `tully-cottage-winter.png`: snow-and-ice variant referenced the supplied cottage view, preserving its porch workbench, steps, boats, lake and distant academy. Used for winter world visits and Longnight's round/report.
+- `lake-seven-lights.png`: evidence close-up referenced the supplied frozen mere. Seven amber lights form an open ring; indistinct figures are reflections in the memory, not people on the ice. Count and meaning remain explicit in accessible prose.
+- `c19-tully-warm.png`: expression edit from Tully's neutral portrait, preserving the cap, patchwork coat, scarf, candle, hands and transparency.
+- `c08-kestrel-grave.png`: expression edit from Kestrel's neutral portrait, preserving braid, star freckles, embroidered robe, proportions and transparency.
+
+Generated with the image-generation tool and reviewed. Both portraits and the winter background load in the browser; the lake illustration and reading bookmark survive an offline reload. Desktop and narrow-phone evidence views are in `docs/longnight-*.png`.

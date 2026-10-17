@@ -74,3 +74,69 @@ test('Emberfall uses night scenery and new portraits, then resumes its petal com
   );
   await context.setOffline(false);
 });
+
+test('Longnight loads winter art, preserves a seven-light reading offline, and carries winter work forward', async ({
+  page,
+  context,
+}) => {
+  await reachBookChapter(page, 4, 1);
+  await playSection(page, 'The work of arriving');
+  const dialog = page.getByRole('dialog');
+  await expect(dialog.locator('.performance-background')).toHaveAttribute(
+    'src',
+    '/art/tully-cottage-winter.webp',
+  );
+  await dialog.getByRole('button', { name: 'Next line', exact: true }).click();
+  await dialog.getByRole('button', { name: 'Next line', exact: true }).click();
+  await expect(dialog.getByAltText('Tully, warm expression')).toBeVisible();
+  await dialog.getByRole('button', { name: 'Close dialog', exact: true }).click();
+  await page.locator('[data-choice="longnight:shore-work"] button').nth(1).click();
+  await playSection(page, 'What the water has kept');
+  for (let i = 0; i < 3; i++)
+    await dialog.getByRole('button', { name: 'Next line', exact: true }).click();
+  await expect(dialog.locator('.performance-background')).toHaveAttribute(
+    'src',
+    '/art/lake-seven-lights.webp',
+  );
+  await expect(dialog.locator('.speech-text')).toContainText('Seven small amber flames');
+  await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
+  await context.setOffline(true);
+  await page.reload();
+  await page.getByRole('button', { name: 'Continue your story' }).click();
+  await page.getByRole('button', { name: 'Play scene', exact: true }).click();
+  await expect(dialog.locator('.speech-text')).toContainText('Seven small amber flames');
+  await expect
+    .poll(() =>
+      dialog
+        .locator('.performance-background')
+        .evaluate((img) => img.complete && img.naturalWidth > 0),
+    )
+    .toBe(true);
+  await page.screenshot({
+    path: '/tmp/lanternmere-review/longnight-evidence.png',
+    animations: 'disabled',
+  });
+  await page.setViewportSize({ width: 320, height: 740 });
+  await dialog.getByLabel('Story text size').selectOption('largest');
+  await dialog.getByLabel('Reading motion').selectOption('reduce');
+  await dialog.locator('.scene-reader').evaluate((el) => el.scrollTo(0, 0));
+  expect(await page.locator('body').evaluate((el) => el.scrollWidth)).toBe(320);
+  await page.screenshot({
+    path: '/tmp/lanternmere-review/longnight-mobile.png',
+    animations: 'disabled',
+  });
+  await dialog.getByRole('button', { name: 'Close dialog', exact: true }).click();
+  await page.locator('[data-choice="longnight:echo-record"] button').nth(1).click();
+  await playSection(page, 'What the school would lose');
+  await dialog.getByRole('button', { name: 'Next line', exact: true }).click();
+  await expect(dialog.getByAltText('Kestrel, grave expression')).toBeVisible();
+  await dialog.getByRole('button', { name: 'Close dialog', exact: true }).click();
+  await page.locator('[data-choice="longnight:winter-duty"] button').nth(1).click();
+  await expect(page.locator('[data-story-beat="archive-start"]')).toBeVisible();
+  await page.locator('.story-choices button').nth(1).click();
+  await expect(page.getByRole('heading', { name: 'An open circle', exact: true })).toBeVisible();
+  const save = await page.evaluate(() => JSON.parse(localStorage.getItem('lanternmere.save.book')));
+  expect(save.storyChoices['longnight:winter-duty']).toBe('archive');
+  expect(save.clues).toContain('lake');
+  await context.setOffline(false);
+});

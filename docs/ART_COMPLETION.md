@@ -8,16 +8,16 @@ The tables below are the **original-cast art budget**, not a limit on the finish
 
 ## What already works
 
-| Supplied art | Count | Production use |
-| --- | ---: | --- |
-| Backgrounds | 49 | Academy rooms, four houses, village, lake, ruins, arrival and seasonal states |
-| Portrait files | 85 | 45 identities; includes six alternate `-v1` files |
-| Familiars | 8 | Companion selection and incidental appearances |
-| Original total | **142** | Preserve source files |
-| Generated overview map | 1 | Existing `art/academy-map.png` |
-| New teacher portrait | 1 | `art/c47-elian-vale-neutral.png`, reviewed transparent portrait used in the first practical |
+| Supplied art           |   Count | Production use                                                                              |
+| ---------------------- | ------: | ------------------------------------------------------------------------------------------- |
+| Backgrounds            |      49 | Academy rooms, four houses, village, lake, ruins, arrival and seasonal states               |
+| Portrait files         |      85 | 45 identities; includes six alternate `-v1` files                                           |
+| Familiars              |       8 | Companion selection and incidental appearances                                              |
+| Original total         | **142** | Preserve source files                                                                       |
+| Generated overview map |       1 | Existing `art/academy-map.png`                                                              |
+| New teacher portrait   |       1 | `art/c47-elian-vale-neutral.png`, reviewed transparent portrait used in the first practical |
 
-Rowan has 13 canonical expressions, Imogen 13 and Saoirse 11. Dunne now has neutral and attentive expressions; the other 41 original supporting characters and Elian have one neutral portrait each. Maelin has neutral and reflective expressions. The six `-v1` files are alternatives, not six extra emotions or people. There is no character 39; preserve the uploaded numbering.
+Rowan has 13 canonical expressions, Imogen 13 and Saoirse 12. Dunne has neutral/attentive, Rhys and Tully neutral/warm, and Kestrel neutral/grave. The other 38 original supporting characters and Elian retain one neutral portrait each. Maelin has neutral and reflective expressions. The six `-v1` files are alternatives, not six extra emotions or people. There is no character 39; preserve the uploaded numbering.
 
 The portraits have transparent backgrounds and useful, consistent upper-body framing. Their restrained differences suit dialogue. Their dense painted pixel texture should remain intact; neither vector-style redraws nor smooth 3D characters would fit. Architectural detail, glass, candles and water already give the environments depth without additional decorations.
 
@@ -38,14 +38,14 @@ Browser motion can provide text reveal, restrained camera movement, light opacit
 
 All names below are proposed **source PNG** filenames under `art/`; the browser pipeline produces matching WebP derivatives. Braces enumerate exact requested suffixes, not arbitrary future variations. New expressions also need to be registered in the runtime expression list. Keep neutral as the safe fallback until each file is approved and cached.
 
-| Priority | Exact filename pattern | Count | Scene purpose |
-| --- | --- | ---: | --- |
-| P1: fill core gaps | `c02-imogen-scared.png`; `c03-saoirse-attentive.png`; `c03-saoirse-surprised.png` | 3 | Danger, listening and discovery currently lack a close fit for these leads |
-| P1: recurring peers | `c04-cas-{warm,amused,grave,tense,shy}.png`; `c05-noor-{warm,amused,grave,tense,shy}.png`; `c06-idris-{warm,amused,grave,tense,shy}.png`; `c07-toby-{warm,amused,grave,tense,shy}.png` | 20 | Perfectionism, letters home, returning to study and creature care deserve visible emotional progression |
-| P2: substantial quest hosts | `c08-kestrel-{warm,grave,amused}.png`; `c11-rhys-{warm,grave,amused}.png`; `c19-tully-{warm,grave,amused}.png`; `c20-priya-{warm,grave,amused}.png`; `c21-flick-{warm,grave,amused}.png`; `c22-marcus-{warm,grave,amused}.png`; `c37-nana-{warm,grave,amused}.png`; `c42-lettice-{warm,grave,amused}.png` | 24 | Warding, ecology, forgotten workers, lost property, festival labour, team trust, oral history and remembered music |
-| P2: consequential recurring witnesses | `c31-hask-{warm,guarded,hurt}.png`; `c34-jory-{warm,amused,tense}.png`; `c46-honoria-{warm,tense,tired}.png` | 9 | The records, failing lamps and institutional responsibility need credible reactions |
-| P3: remaining named speakers | The 27 prefixes below, each with `-warm.png` and `-grave.png` | 54 | A bounded minimum for lighter roles that actually speak in the finished manuscript |
-| **Maximum planned portrait additions** | Complete the packets in order, after scene assignment | **110** | Every identity would have at least neutral, warm and a serious reaction |
+| Priority                               | Exact filename pattern                                                                                                                                                                                                                                                                                    |   Count | Scene purpose                                                                                                      |
+| -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------: | ------------------------------------------------------------------------------------------------------------------ |
+| P1: fill core gaps                     | `c02-imogen-scared.png`; `c03-saoirse-attentive.png`; `c03-saoirse-surprised.png`                                                                                                                                                                                                                         |       3 | Danger, listening and discovery currently lack a close fit for these leads                                         |
+| P1: recurring peers                    | `c04-cas-{warm,amused,grave,tense,shy}.png`; `c05-noor-{warm,amused,grave,tense,shy}.png`; `c06-idris-{warm,amused,grave,tense,shy}.png`; `c07-toby-{warm,amused,grave,tense,shy}.png`                                                                                                                    |      20 | Perfectionism, letters home, returning to study and creature care deserve visible emotional progression            |
+| P2: substantial quest hosts            | `c08-kestrel-{warm,grave,amused}.png`; `c11-rhys-{warm,grave,amused}.png`; `c19-tully-{warm,grave,amused}.png`; `c20-priya-{warm,grave,amused}.png`; `c21-flick-{warm,grave,amused}.png`; `c22-marcus-{warm,grave,amused}.png`; `c37-nana-{warm,grave,amused}.png`; `c42-lettice-{warm,grave,amused}.png` |      24 | Warding, ecology, forgotten workers, lost property, festival labour, team trust, oral history and remembered music |
+| P2: consequential recurring witnesses  | `c31-hask-{warm,guarded,hurt}.png`; `c34-jory-{warm,amused,tense}.png`; `c46-honoria-{warm,tense,tired}.png`                                                                                                                                                                                              |       9 | The records, failing lamps and institutional responsibility need credible reactions                                |
+| P3: remaining named speakers           | The 27 prefixes below, each with `-warm.png` and `-grave.png`                                                                                                                                                                                                                                             |      54 | A bounded minimum for lighter roles that actually speak in the finished manuscript                                 |
+| **Maximum planned portrait additions** | Complete the packets in order, after scene assignment                                                                                                                                                                                                                                                     | **110** | Every identity would have at least neutral, warm and a serious reaction                                            |
 
 The P3 prefixes are `c09-bassani`, `c10-kovac`, `c12-crook`, `c13-grey`, `c14-moth`, `c15-solano`, `c16-okoro`, `c17-dunne`, `c18-holloway`, `c23-petra`, `c24-hamish`, `c25-delphine`, `c26-bram`, `c27-mina`, `c28-jonty`, `c29-fitch`, `c30-odile`, `c32-tick`, `c33-arkwright`, `c35-morrow`, `c36-corliss`, `c38-dev`, `c40-moll`, `c41-ombree`, `c43-maisie`, `c44-kit`, and `c45-hester`.
 
@@ -57,20 +57,20 @@ For every derivative, use that exact person's original as reference. Preserve fa
 
 The current year already has autumn and winter identity. Prioritise a personal place and visible spring/summer change. Night schedules also expose paintings with bright windows; a dark CSS filter cannot remove a sunset or turn a sunny window into moonlight.
 
-| Priority | Proposed filename | Reference | Actual use |
-| --- | --- | --- | --- |
-| P1 | `dormitory-evening.png` | House rooms and `home-kitchen` lighting | A modest personal room for letters, familiar care, rest and private reflection; no new campus building |
-| P1 | `mere-spring-day.png` | `mere-day.png` | First Thaw and returning shore life |
-| P1 | `mere-summer-evening.png` | `mere-night.png` / `mere-day.png` | Homecoming and the last weeks of term |
-| P1 | `glasshouses-night.png` | `glasshouses.png` | Moonflower discoveries and quiet after-hours conversations |
-| P1 | `classroom-night.png` | `classroom.png` | Late practice scenes without bright daylight windows |
-| P1 | `rookery-night.png` | `rookery.png` | Noor's evening letters and the missed-message quest |
-| P2 | `thimble-cross-spring.png` | `thimble-cross.png` | Spring village quest returns |
-| P2 | `thimble-cross-summer.png` | `thimble-cross.png` | Final festival preparations with a changed season |
-| P2 | `whispering-wood-spring.png` | `whispering-wood.png` | Rhys's ecological recovery quest |
-| P2 | `whispering-wood-winter.png` | `whispering-wood.png` | A visibly colder, sparse woodland chapter |
-| P2 | `candlestones-day.png` | `candlestones.png` | Reading inscriptions in daylight, distinct from dusk vigils |
-| P2 | `boathouse-day.png` | `boathouse.png` | Routine crossings and boat repairs without a visible night sky |
+| Priority | Proposed filename                    | Reference                               | Actual use                                                                                             |
+| -------- | ------------------------------------ | --------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| P1       | `dormitory-evening.png`              | House rooms and `home-kitchen` lighting | A modest personal room for letters, familiar care, rest and private reflection; no new campus building |
+| P1       | `mere-spring-day.png`                | `mere-day.png`                          | First Thaw and returning shore life                                                                    |
+| P1       | `mere-summer-evening.png`            | `mere-night.png` / `mere-day.png`       | Homecoming and the last weeks of term                                                                  |
+| P1       | `glasshouses-night.png` — integrated | `glasshouses.png`                       | Moonflower discoveries and quiet after-hours conversations                                             |
+| P1       | `classroom-night.png`                | `classroom.png`                         | Late practice scenes without bright daylight windows                                                   |
+| P1       | `rookery-night.png`                  | `rookery.png`                           | Noor's evening letters and the missed-message quest                                                    |
+| P2       | `thimble-cross-spring.png`           | `thimble-cross.png`                     | Spring village quest returns                                                                           |
+| P2       | `thimble-cross-summer.png`           | `thimble-cross.png`                     | Final festival preparations with a changed season                                                      |
+| P2       | `whispering-wood-spring.png`         | `whispering-wood.png`                   | Rhys's ecological recovery quest                                                                       |
+| P2       | `whispering-wood-winter.png`         | `whispering-wood.png`                   | A visibly colder, sparse woodland chapter                                                              |
+| P2       | `candlestones-day.png`               | `candlestones.png`                      | Reading inscriptions in daylight, distinct from dusk vigils                                            |
+| P2       | `boathouse-day.png`                  | `boathouse.png`                         | Routine crossings and boat repairs without a visible night sky                                         |
 
 This is a **12-background** queue. Keep architecture, camera and recognisable landmarks consistent in variants. The optional dormitory needs a location and story use implemented before it enters navigation. Other interiors can retain their current artwork throughout the year. For exterior variants not in this queue, write scenes at the depicted time or explicitly frame the view as an establishing illustration; do not promise full visual coverage of every hour and season.
 
@@ -78,14 +78,14 @@ This is a **12-background** queue. Keep architecture, camera and recognisable la
 
 Six evidence closeups make exploration concrete rather than requiring every clue to exist as a hotspot in a wide painting. Commission them after their puzzle text and clues are locked:
 
-| Proposed filename | Story use |
-| --- | --- |
-| `clue-lantern-nameplate.png` | A worn maker's name discovered under a handle |
-| `register-study.png` — integrated | Intact pages with omitted name cells, not visible erasure. The evidence and its limits are supplied in selectable prose in both readers. |
-| `clue-atlas-shore-path.png` | Compare the old route with the current map |
-| `clue-moonflower-echo.png` | Observe a flower holding an echo after a lesson |
-| `clue-station-ticket.png` | Priya's undated ticket links an arrival to a missing person |
-| `clue-mended-ward.png` | Cas and Idris identify where a circle was repaired |
+| Proposed filename                   | Story use                                                                                                                                |
+| ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `clue-lantern-nameplate.png`        | A worn maker's name discovered under a handle                                                                                            |
+| `register-study.png` — integrated   | Intact pages with omitted name cells, not visible erasure. The evidence and its limits are supplied in selectable prose in both readers. |
+| `clue-atlas-shore-path.png`         | Compare the old route with the current map                                                                                               |
+| `moonflower-study.png` — integrated | Compare fallen petals under controlled lighting                                                                                          |
+| `clue-station-ticket.png`           | Priya's undated ticket links an arrival to a missing person                                                                              |
+| `clue-mended-ward.png`              | Cas and Idris identify where a circle was repaired                                                                                       |
 
 Four later full-scene illustrations are the bounded milestone set: `cg-winter-shore-rescue.png`, `cg-greenhouse-promise.png`, `cg-heartfire-circle.png`, and `cg-homecoming-lanterns.png`. Each must depict a written consequence worth showing: a coordinated rescue, a voluntary personal promise, the shared ritual, and the restored year-end gathering. The greenhouse promise can be intimate friendship or romance depending on the route; keep a first-person player viewpoint so a fixed protagonist appearance is not imposed. The same climax painting can support both authored endings if the changed responsibility is expressed through dialogue and epilogue.
 
@@ -97,7 +97,7 @@ Do not commission a separate romantic illustration for every character. Use exis
 - **Gesture pilot:** `c01-rowan-offer-lantern.png`, `c02-imogen-open-book.png`, `c03-saoirse-hold-moonflower.png` — three new upper-body poses for specific actions. They are not walking sprites or lip-sync frames.
 - **Environment layer pilot:** `lantern-hall-{cleanplate,foreground,lamplight-mask}.png`, with equivalent trios for `glasshouses`, `mere-night`, and `heartfire` — twelve derived production layers. Separating foreground elements requires retouching the area behind them; the original cannot supply hidden pixels automatically. These need a layer manifest rather than appearing as new destinations.
 
-These 21 optional production assets are separate from the **132 new story images** in the original-cast queue: 110 portraits + 12 backgrounds + 6 clues + 4 milestone illustrations. These are the original planning budgets, not a current remaining-file total. One clue slot is now fulfilled by `register-study.png`; the archive comparison does not justify an erasure painting. The browser collection now contains 148 images, including the new-character packet produced so far and the additional Dunne attentive expression. Produce the opening's teacher and housemates alongside the existing P1 packet as their scenes are written, in small reviewed batches. This document records asset requirements; generation order follows the user's authorized story work.
+These 21 optional production assets are separate from the **132 new story images** in the original-cast queue: 110 portraits + 12 backgrounds + 6 clues + 4 milestone illustrations. These are the original planning budgets, not a current remaining-file total. Two clue slots are fulfilled by `register-study.png` and `moonflower-study.png`; the archive comparison does not justify an erasure painting. The browser collection now contains 156 images, including the new-character packet produced so far and the additional Dunne attentive expression. Produce the opening's teacher and housemates alongside the existing P1 packet as their scenes are written, in small reviewed batches. This document records asset requirements; generation order follows the user's authorized story work.
 
 ## Acceptance criteria
 
@@ -105,13 +105,13 @@ These 21 optional production assets are separate from the **132 new story images
 2. Run rapid neutral → new expression → neutral swaps at the actual game size. Reject eye/shoulder jumps and unexplained accessory changes. Keep the original source files untouched.
 3. Associate every new image with named scene IDs and a fallback before adding it to the build. No orphan assets created just to fill a target count.
 4. Check two-person placement and a narrow phone viewport. Faces and meaningful props must remain visible above the dialogue panel.
-5. Verify cache size and offline loads. The present browser collection is about 27.2 MiB; a 132-image expansion requires measuring the new download and choosing transparent chapter packs or a clearly labelled complete offline download before assuming the existing all-at-once cache remains appropriate.
+5. Verify cache size and offline loads. The present browser collection is about 29.0 MiB; a 132-image expansion requires measuring the new download and choosing transparent chapter packs or a clearly labelled complete offline download before assuming the existing all-at-once cache remains appropriate.
 
 ## Opening packet review — 16 October 2026
 
 The opening uses Lantern Hall, the night corridor, Heronmere’s underwater common room, the Glasshouses, and the Charms Classroom. The common-room and watering scenes were written after reviewing those exact backgrounds. Elian’s neutral portrait has been reviewed and integrated; the original 142 sources remain unchanged.
 
-Next scene-linked gaps: Elian `{warm,attentive,grave}` for the repeated demonstration, student uncertainty, and voice report; Noor `{warm,attentive}` for the invitation and study hour; Idris `{warm,amused}` for the timetable/model exchange; Cas and Toby `{warm,shy}` for the arrival problem; Grey `{attentive,grave}` for the repair report; Rhys `{attentive,warm}` for the safe trial. These are queued, not generated. Neutral currently remains their truthful available expression.
+Next scene-linked gaps: Elian `{warm,attentive,grave}` for the repeated demonstration, student uncertainty, and voice report; Noor `{warm,attentive}` for the invitation and study hour; Idris `{warm,amused}` for the timetable/model exchange; Cas and Toby `{warm,shy}` for the arrival problem; Grey `{attentive,grave}` for the repair report; Rhys `{attentive}` (warm is now integrated) for the safe trial. These are queued, not generated. Neutral currently remains their truthful available expression.
 
 The first-night section is framed as a corridor/landing establishing view. A private dormitory background is still needed before staging bedroom actions as a distinct location. Mobile reading now keeps the scene visible while longer text scrolls and restarts each line at its beginning.
 
@@ -119,13 +119,19 @@ The first-night section is framed as a corridor/landing establishing view. A pri
 
 Four new source PNGs were generated from the existing library and portrait style, reviewed, and integrated in `src/story/register.mjs`:
 
-| Image | Actual scene use |
-| --- | --- |
-| `art/register-study.png` | `register-detail`: blank name cells on intact paper. Both readers show the image; the prose gives the full observation without requiring image-text recognition. |
-| `art/c17-dunne-attentive.png` | Careful explanations and the accepted correction; transparent expression derived from Dunne’s original portrait. |
-| `art/c48-maelin-quill-neutral.png` | Introduction and supervised Echosight lesson; new character designed to match the existing art. |
-| `art/c48-maelin-quill-reflective.png` | Reviewing the printed teaching sheet and acknowledging its error; derived from the neutral portrait. |
+| Image                                 | Actual scene use                                                                                                                                                 |
+| ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `art/register-study.png`              | `register-detail`: blank name cells on intact paper. Both readers show the image; the prose gives the full observation without requiring image-text recognition. |
+| `art/c17-dunne-attentive.png`         | Careful explanations and the accepted correction; transparent expression derived from Dunne’s original portrait.                                                 |
+| `art/c48-maelin-quill-neutral.png`    | Introduction and supervised Echosight lesson; new character designed to match the existing art.                                                                  |
+| `art/c48-maelin-quill-reflective.png` | Reviewing the printed teaching sheet and acknowledging its error; derived from the neutral portrait.                                                             |
 
 The original library composition supplies the setting, lighting and desk details. The close-up does not replace a campus destination. Maelin’s pair has identical source dimensions; all new portrait files have real transparency. Desktop and 320px phone views were inspected, and browser tests verify decoded images, stable listener placement, offline illustration access and saved bookmarks. Reference captures: [register](register-desktop.png), [phone](register-mobile.png), [cast](register-portraits.png). The browser image collection is 27.2 MiB.
 
-Next artwork belongs to the Emberfall expansion: review the supplied Glasshouses and festival hall first, then generate a moonflower close-up and any necessary evening variant after the observation scene is written. Existing opening expression gaps remain in the queue above.
+## Emberfall and Longnight packet review — 16 October 2026
+
+Eight further source files are integrated: the night glasshouse, moonflower comparison, Saoirse attentive, Rhys warm, winter cottage, seven-light lake detail, Tully warm and Kestrel grave. The environment variants retain the supplied compositions; portraits preserve identity and true transparency. The evidence views use uncropped images with independently readable prose. Original uploads remain unchanged.
+
+Reviewed captures: [Emberfall cast](emberfall-cast.png), [petals](emberfall-evidence.png), [petals on phone](emberfall-mobile.png), [lake](longnight-evidence.png), [lake on phone](longnight-mobile.png). Both seasonal reader tests verify offline image access and saved decisions. The browser collection is 156 images / 29.0 MiB.
+
+First Thaw is the next artwork packet: daylight Candlestones, a source-consistent inscription detail, and Kestrel's warmer lesson expression. These are not yet integrated. Opening expression gaps and the other planned images remain in the queue.

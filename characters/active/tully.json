@@ -14,14 +14,8 @@
   },
   "canon": {
     "summary": "Tully has brought generations of students across the mere. He can tell who is homesick by how tightly they hold their luggage.",
-    "traits": [
-      "steady",
-      "practical",
-      "tender"
-    ],
-    "values": [
-      "safe arrivals"
-    ],
+    "traits": ["steady", "practical", "tender"],
+    "values": ["safe arrivals"],
     "motivation": "Bring people across the lake and make the crossing feel manageable.",
     "fear": "Failing someone who trusted him with a difficult journey.",
     "boundaries": [
@@ -34,6 +28,12 @@
         "minimumChapter": 0,
         "minimumBond": 0,
         "text": "Tully has brought generations of students across the mere. He can tell who is homesick by how tightly they hold their luggage."
+      },
+      {
+        "id": "longnight-account",
+        "minimumChapter": 5,
+        "minimumBond": 0,
+        "text": "At Longnight I helped the supervised shore reading and compared its account with an old landing chart. Seven separate lights formed an open ring. I keep the winter arrival routes operating; current visitors’ private arrangements are not research material. The Candlestones approach must be checked after the thaw."
       }
     ],
     "privateReactions": [
@@ -74,9 +74,7 @@
   },
   "presentation": {
     "portraitPrefix": "c19-tully",
-    "availableExpressions": [
-      "neutral"
-    ],
+    "availableExpressions": ["neutral", "warm"],
     "missingArt": false,
     "direction": "Use only available expressions; neutral is the fallback. Do not invent an unseen gesture or additional portrait."
   },
