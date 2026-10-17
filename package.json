@@ -12,6 +12,7 @@
     "test:browser": "playwright test",
     "count:words": "node scripts/count-story-words.mjs",
     "export:story": "node scripts/export-story.mjs",
+    "story:brief": "node scripts/make-chatgpt-story.mjs",
     "check:story-export": "node scripts/export-story.mjs --check",
     "check:story-length": "node scripts/count-story-words.mjs --check",
     "sync:characters": "node scripts/sync-character-registry.mjs",
