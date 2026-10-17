@@ -73,6 +73,7 @@ import './styles.css';
 import './dialogue-presentation.css';
 import './theme/lamplight.css';
 import { applyReadingMode } from './theme/apply.mjs';
+import { OpeningScene } from './features/opening/OpeningScene.jsx';
 
 const saves = createSaveRepository(platformStorage());
 function load(mode) {
@@ -284,6 +285,9 @@ function App() {
         setToast('This file is not a valid Lanternmere save. Your current progress is safe.'),
       );
   }
+  // Stand-alone view of the opening scene (used by the scene's own browser tests).
+  if (new URLSearchParams(window.location.search).has('opening'))
+    return <OpeningScene reduced={reading.reduced} awake={false} />;
   if (!game)
     return (
       <>

@@ -1,0 +1,248 @@
+/* The living opening. Every layer sits in .frame, which is sized exactly like the painting under
+   "cover", so percentages and the 1672×941 SVG viewBoxes stay registered at any window size. */
+.opening {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: #140b06;
+  color: #fbf0d6;
+}
+.opening-defs {
+  position: absolute;
+}
+.opening .frame {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: max(100vw, calc(100vh * 1672 / 941));
+  aspect-ratio: 1672 / 941;
+  transform: translate(-50%, -50%);
+}
+.opening .op-scene {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 70%;
+  filter: contrast(1.16) brightness(0.95) saturate(1.04);
+  animation: op-push 70s ease-in-out infinite alternate;
+}
+@keyframes op-push {
+  from {
+    transform: scale(1.02);
+  }
+  to {
+    transform: scale(1.08) translateY(-0.6%);
+  }
+}
+.opening :is(.paint, .sky, .water) {
+  position: absolute;
+  inset: 0;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+/* Sky clouds drift and reshape; faded out above the mountains, which never move. */
+.opening .sky {
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 22%, transparent 31%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 22%, transparent 31%);
+  filter: url(#op-billow);
+  animation: op-clouds 38s ease-in-out infinite alternate;
+}
+@keyframes op-clouds {
+  from {
+    transform: translateX(-3.6%);
+  }
+  to {
+    transform: translateX(3.6%);
+  }
+}
+/* Only the open lake wavers (rocks, lantern and orbs are cut out of the mask). */
+.opening .water {
+  filter: url(#op-ripple);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+.opening :is(.twinkle, .puffs, .fog) {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+/* Castle windows: mostly resting, a brief faint swell like a candle passing. */
+.opening .twinkle {
+  mix-blend-mode: screen;
+}
+.opening .twinkle circle {
+  opacity: 0;
+  animation: op-twinkle 9s ease-in-out infinite;
+}
+@keyframes op-twinkle {
+  0%,
+  70%,
+  100% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0.55;
+  }
+  86% {
+    opacity: 0.2;
+  }
+  90% {
+    opacity: 0.45;
+  }
+}
+/* Rose light drifting inside the painted cloud shapes; no pixels are displaced. */
+.opening .puffs {
+  opacity: 0.32;
+  mix-blend-mode: screen;
+}
+.opening .puffs .drift {
+  animation: op-puffs 85s ease-in-out infinite alternate;
+}
+@keyframes op-puffs {
+  from {
+    transform: translateX(-90px);
+  }
+  to {
+    transform: translateX(90px);
+  }
+}
+/* Dusty rose valley fog: two layers drifting past each other, never re-forming (no flicker). */
+.opening .fog {
+  opacity: 0.42;
+}
+.opening .fog .drift {
+  animation: op-fog 140s ease-in-out infinite alternate;
+}
+.opening .fog .drift.b {
+  animation: op-fog 200s ease-in-out infinite alternate-reverse;
+}
+@keyframes op-fog {
+  from {
+    transform: translateX(-200px);
+  }
+  to {
+    transform: translateX(200px);
+  }
+}
+/* The lantern is the light source of the whole screen. */
+.opening .glow {
+  position: absolute;
+  left: 50%;
+  top: 69%;
+  width: 34%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 214, 140, 0.55) 0%,
+    rgba(255, 170, 70, 0.22) 22%,
+    rgba(255, 140, 40, 0) 60%
+  );
+  mix-blend-mode: screen;
+  animation:
+    op-breathe 5.5s ease-in-out infinite,
+    op-flicker 2.3s steps(1) infinite;
+}
+.opening.awake .glow {
+  animation:
+    op-breathe 5.5s ease-in-out infinite,
+    op-flicker 2.3s steps(1) infinite,
+    op-wake 1.6s ease-out 1;
+}
+@keyframes op-breathe {
+  0%,
+  100% {
+    opacity: 0.78;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes op-flicker {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  37% {
+    filter: brightness(1.08);
+  }
+  41% {
+    filter: brightness(0.96);
+  }
+  73% {
+    filter: brightness(1.05);
+  }
+}
+@keyframes op-wake {
+  0% {
+    opacity: 0.8;
+  }
+  30% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+  100% {
+    opacity: 0.9;
+  }
+}
+.opening .ring {
+  position: absolute;
+  left: 50%;
+  top: 77.6%;
+  width: 3%;
+  aspect-ratio: 5 / 1;
+  border: 1px solid rgba(255, 210, 130, 0.7);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0.4);
+  opacity: 0;
+  animation: op-ring 7.5s cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
+}
+.opening .ring:nth-child(2) {
+  animation-delay: 2.5s;
+}
+.opening .ring:nth-child(3) {
+  animation-delay: 5s;
+}
+@keyframes op-ring {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.4);
+  }
+  12% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(7);
+  }
+}
+.opening .sparks {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.opening .vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 72% 66% at 50% 58%, transparent 48%, rgba(16, 6, 2, 0.7) 100%),
+    linear-gradient(180deg, rgba(22, 8, 18, 0.45) 0%, transparent 32%),
+    linear-gradient(0deg, rgba(14, 5, 2, 0.4) 0%, transparent 18%);
+}
+/* Reduced motion (device or in-app): a still painting. */
+.opening.still :is(.op-scene, .sky, .glow, .ring, .twinkle circle, .puffs .drift, .fog .drift) {
+  animation: none !important;
+}
+.opening.still .ring {
+  opacity: 0;
+}
+.opening.still .sparks {
+  display: none;
+}
