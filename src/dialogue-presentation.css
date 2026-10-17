@@ -72,7 +72,7 @@
 .reading-controls select {
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
   background: var(--lm-surface);
-  border-radius: 4px;
+  border-radius: 2px;
   padding: 8px 12px;
   font-size: 13px;
 }
@@ -117,7 +117,7 @@
   height: 350px;
   position: relative;
   overflow: hidden;
-  border-radius: 7px 7px 0 0;
+  border-radius: 2px 2px 0 0;
   background: #253526;
 }
 .performance-background {
@@ -152,7 +152,7 @@
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 7px;
+  border-radius: 2px;
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
 }
 .scene-light {
@@ -228,7 +228,7 @@
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
   border-top: 2px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
   background: var(--lm-surface);
-  border-radius: 0 0 7px 7px;
+  border-radius: 0 0 2px 2px;
   box-shadow: 0 6px 19px #2531240b;
   animation: speech-arrive 200ms ease-out;
 }
@@ -493,7 +493,7 @@
 .scene-decision {
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
   background: var(--lm-surface);
-  border-radius: 12px;
+  border-radius: 2px;
   padding: 18px;
   margin: 22px 0;
   display: flex;
@@ -518,7 +518,7 @@
   padding: 13px 16px;
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
   background: var(--lm-surface);
-  border-radius: 8px;
+  border-radius: 2px;
   color: var(--lm-gold);
   font: inherit;
   font-size: 15px;
@@ -586,7 +586,7 @@
   color: var(--lm-gold);
   padding: 8px 10px;
   background: var(--lm-surface);
-  border-radius: 5px;
+  border-radius: 2px;
 }
 .authored-chapter [data-story-beat]:focus-visible {
   outline: 2px solid color-mix(in srgb, var(--lm-line) 70%, transparent);

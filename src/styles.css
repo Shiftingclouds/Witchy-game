@@ -139,7 +139,7 @@ code {
   background: var(--lm-surface);
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
   padding: 12px 16px;
-  border-radius: 5px;
+  border-radius: 2px;
   font-size: 13px;
   font-weight: 500;
   line-height: 1.3;
@@ -288,7 +288,7 @@ code {
 }
 .nav-item {
   background: none;
-  border-radius: 5px;
+  border-radius: 2px;
   padding: 13px 13px;
   display: flex;
   align-items: center;
@@ -455,7 +455,7 @@ code {
   color: var(--lm-ink-soft);
   padding: 9px 12px;
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
-  border-radius: 4px;
+  border-radius: 2px;
   white-space: nowrap;
 }
 .date-pill > svg {
@@ -539,7 +539,7 @@ code {
   position: relative;
   aspect-ratio: 1.73;
   overflow: hidden;
-  border-radius: 7px;
+  border-radius: 2px;
   background: #25342b;
   box-shadow: 0 6px 20px #302c1d14;
 }
@@ -580,7 +580,7 @@ code {
   background: #1d2d2580;
   border: 1px solid #fff3;
   padding: 7px;
-  border-radius: 4px;
+  border-radius: 2px;
   display: flex;
 }
 .scene-caption {
@@ -670,7 +670,7 @@ code {
   align-items: center;
   gap: 3px;
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
-  border-radius: 4px;
+  border-radius: 2px;
   background: var(--lm-surface);
   padding: 0 8px;
   color: var(--lm-ink-soft);
@@ -707,7 +707,7 @@ code {
   gap: 12px;
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
   background: var(--lm-surface);
-  border-radius: 5px;
+  border-radius: 2px;
   overflow: hidden;
   padding: 0 12px 0 0;
   transition:
@@ -773,7 +773,7 @@ code {
 }
 .quest-card {
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
-  border-radius: 6px;
+  border-radius: 2px;
   padding: 20px;
   background: linear-gradient(
     135deg,
@@ -860,7 +860,7 @@ code {
 .company-card {
   padding: 19px 18px;
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
-  border-radius: 6px;
+  border-radius: 2px;
   background: var(--lm-surface);
 }
 .company-person {
@@ -906,7 +906,7 @@ code {
   background: var(--lm-surface);
   padding: 18px;
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
-  border-radius: 6px;
+  border-radius: 2px;
 }
 .house-crest {
   display: flex;
@@ -953,7 +953,7 @@ code {
 .atlas {
   position: relative;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 2px;
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
   box-shadow: 0 7px 25px #413f2014;
   margin-bottom: 26px;
@@ -975,7 +975,7 @@ code {
   background: color-mix(in srgb, var(--lm-surface) 96%, transparent);
   color: var(--lm-gold);
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
-  border-radius: 5px;
+  border-radius: 2px;
   box-shadow: 0 3px 12px #0004;
   font-size: 13px;
   white-space: nowrap;
@@ -1015,7 +1015,7 @@ code {
   padding: 9px 13px;
   background: transparent;
   font-size: 13px;
-  border-radius: 4px;
+  border-radius: 2px;
   color: var(--lm-ink-soft);
 }
 .tabs button:hover {
@@ -1030,7 +1030,7 @@ code {
   align-items: center;
   gap: 7px;
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
-  border-radius: 5px;
+  border-radius: 2px;
   background: var(--lm-surface);
   padding: 9px 11px;
   color: var(--lm-ink-soft);
@@ -1051,7 +1051,7 @@ code {
   position: relative;
   padding: 0;
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
-  border-radius: 6px;
+  border-radius: 2px;
   background: var(--lm-surface);
   overflow: hidden;
   text-align: left;
@@ -1120,7 +1120,7 @@ code {
   display: grid;
   grid-template-columns: 0.88fr 1.12fr;
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
-  border-radius: 8px;
+  border-radius: 2px;
   overflow: hidden;
   box-shadow: 0 10px 40px #53432110;
   min-height: 640px;
@@ -1229,7 +1229,7 @@ code {
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
   background: var(--lm-surface);
   text-align: left;
-  border-radius: 4px;
+  border-radius: 2px;
   font-size: 13px;
   line-height: 1.6;
   color: var(--lm-gold);
@@ -1250,7 +1250,7 @@ code {
   padding: 17px;
   background: var(--lm-surface);
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
-  border-radius: 5px;
+  border-radius: 2px;
   margin-top: 25px;
 }
 .story-gate > strong {
@@ -1333,7 +1333,7 @@ code {
 .person-card {
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
   background: var(--lm-surface);
-  border-radius: 6px;
+  border-radius: 2px;
   overflow: hidden;
   text-align: left;
   padding: 0;
@@ -1420,7 +1420,7 @@ code {
   max-width: 100%;
   max-height: 90vh;
   overflow: auto;
-  border-radius: 10px;
+  border-radius: 2px;
   background: var(--paper);
   padding: 27px;
   box-shadow: 0 25px 100px #0005;
@@ -1447,7 +1447,7 @@ code {
   margin: 15px 0;
 }
 .modal .full-scene {
-  border-radius: 6px;
+  border-radius: 2px;
   width: 100%;
 }
 .conversation {
@@ -1459,7 +1459,7 @@ code {
   background-size: cover;
   background-position: center;
   position: relative;
-  border-radius: 5px;
+  border-radius: 2px;
   overflow: hidden;
   min-height: 480px;
   max-height: 650px;
@@ -1531,7 +1531,7 @@ code {
   padding: 11px 9px;
   background: var(--lm-surface);
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
-  border-radius: 4px;
+  border-radius: 2px;
   font-size: 13px;
   text-align: left;
   color: var(--lm-ink-soft);
@@ -1570,7 +1570,7 @@ code {
 .lesson-answers button {
   background: var(--lm-surface);
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
-  border-radius: 5px;
+  border-radius: 2px;
   padding: 14px;
   text-align: left;
   font-size: 13px;
@@ -1587,7 +1587,7 @@ code {
 }
 .lesson-feedback {
   background: var(--lm-surface);
-  border-radius: 4px;
+  border-radius: 2px;
   padding: 12px;
   font-size: 13px !important;
 }
@@ -1596,7 +1596,7 @@ code {
   grid-template-columns: 1fr 1fr;
   background: var(--lm-surface);
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
-  border-radius: 7px;
+  border-radius: 2px;
   overflow: hidden;
   margin-bottom: 25px;
 }
@@ -1637,7 +1637,7 @@ code {
   background: var(--lm-surface);
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
   padding: 25px;
-  border-radius: 6px;
+  border-radius: 2px;
 }
 .spell-card.learned {
   border-color: color-mix(in srgb, var(--lm-line) 70%, transparent);
@@ -1703,7 +1703,7 @@ code {
 .calendar-card {
   background: var(--lm-surface);
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
-  border-radius: 7px;
+  border-radius: 2px;
   overflow: hidden;
 }
 .calendar-heading {
@@ -1782,7 +1782,7 @@ code {
 }
 .season-card {
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
-  border-radius: 6px;
+  border-radius: 2px;
   overflow: hidden;
 }
 .season-card > img {
@@ -1830,7 +1830,7 @@ code {
   padding: 17px;
   background: var(--lm-surface);
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
-  border-radius: 5px;
+  border-radius: 2px;
 }
 .festival-list > div > span {
   display: flex;
@@ -1868,7 +1868,7 @@ code {
 .journal-pages {
   background: var(--lm-surface);
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
-  border-radius: 5px;
+  border-radius: 2px;
   padding: 30px 35px;
 }
 .journal-pages > .eyebrow {
@@ -1905,7 +1905,7 @@ code {
   padding: 25px;
   background: var(--lm-surface);
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
-  border-radius: 5px;
+  border-radius: 2px;
   color: var(--lm-ink-soft);
 }
 .personal-notes > h3 {
@@ -1996,7 +1996,7 @@ code {
 .gallery-grid button {
   background: var(--lm-surface);
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
-  border-radius: 4px;
+  border-radius: 2px;
   padding: 0;
   overflow: hidden;
   text-align: left;
@@ -2017,7 +2017,7 @@ code {
   background: var(--lm-surface);
   padding: 12px;
   margin-bottom: 20px;
-  border-radius: 5px;
+  border-radius: 2px;
 }
 .gallery-selected img {
   max-height: 400px;
@@ -2046,7 +2046,7 @@ code {
   color: #f5edda;
   border: 1px solid color-mix(in srgb, var(--lm-gold) 33%, transparent);
   box-shadow: 0 8px 30px #1c271d33;
-  border-radius: 7px;
+  border-radius: 2px;
   font-size: 13px;
   line-height: 1.7;
   animation: fade 0.2s;
@@ -2916,7 +2916,7 @@ code {
   padding: 4px 9px 4px 4px;
   background: var(--lm-surface);
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
-  border-radius: 24px;
+  border-radius: 2px;
   font-size: 13px;
   color: var(--lm-ink-soft);
 }
@@ -2965,7 +2965,7 @@ code {
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
   background: linear-gradient(120deg, var(--lm-surface), var(--lm-surface));
   padding: 23px;
-  border-radius: 7px;
+  border-radius: 2px;
   margin: 20px 0 25px;
   overflow: hidden;
 }
@@ -3041,7 +3041,7 @@ code {
 .gathering-art {
   position: relative;
   min-height: 400px;
-  border-radius: 6px;
+  border-radius: 2px;
   overflow: hidden;
   background: #243427;
 }
@@ -3093,7 +3093,7 @@ code {
   gap: 12px;
   background: var(--lm-surface);
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
-  border-radius: 5px;
+  border-radius: 2px;
   padding: 15px 12px;
   font-size: 13px;
   color: var(--lm-gold);
@@ -3123,7 +3123,7 @@ code {
 }
 .profile-art {
   background: radial-gradient(ellipse at 40% 45%, var(--lm-surface), var(--lm-surface));
-  border-radius: 6px;
+  border-radius: 2px;
   min-height: 450px;
   position: relative;
   overflow: hidden;
@@ -3194,7 +3194,7 @@ code {
   gap: 10px;
   align-items: center;
   padding: 10px;
-  border-radius: 4px;
+  border-radius: 2px;
   font-size: 13px;
   color: var(--lm-ink-soft);
 }
@@ -3244,7 +3244,7 @@ code {
   background: var(--lm-surface);
   border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
   color: var(--lm-ink-soft);
-  border-radius: 4px;
+  border-radius: 2px;
   padding: 11px 14px;
   width: 100%;
 }
