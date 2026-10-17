@@ -43,6 +43,16 @@ The original 45 characters are a starting cast. `docs/CAST_EXPANSION.md` propose
 
 All 60 identities now have individual [character sheets](characters/README.md). The 47 active sheets supply names, profiles, personality, voice, boundaries, NPC connections, and gated story knowledge. The 13 proposed sheets remain outside gameplay. Each save separately tracks friendship scores and shared moments. Open “Your history with…” in a conversation to review shared events.
 
+## Desktop app (Windows)
+
+```sh
+npm run app        # build, then open the game in an Electron window
+npm run dist:win   # build release/Lanternmere <version>.exe (portable, unsigned)
+npm run test:electron  # desktop smoke tests: restart persistence, art protocol, single instance
+```
+
+Double-click the `.exe` to play; no terminal or server is needed. Desktop saves are JSON files in `%APPDATA%\Lanternmere\saves\` (when run from source with `npm run app`, `%APPDATA%\lanternmere-academy\saves\`). They are never written inside the repository. `release/` and `*.exe` are ignored by Git. Opening the app twice focuses the existing window.
+
 ## Saves
 
 Progress is automatically stored in this browser. Export it in Settings or Journal to move devices or keep a backup. Browser storage eviction, clearing site data, or private browsing can remove local progress. Imported saves are validated; the current save is backed up to `lanternmere.import-backup` before replacement. Version-one, version-two, and version-three saves automatically upgrade to version four, preserving progress, friendship scores, and notes. Recoverable topic memories carry an unknown date; missing old conversation history and story decisions stay unknown. Scene decisions and confirmed introductions persist into character context. No account or cloud sync is configured.

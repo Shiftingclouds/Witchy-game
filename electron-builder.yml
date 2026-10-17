@@ -1,0 +1,11 @@
+appId: local.lanternmere
+productName: Lanternmere
+directories:
+  output: release
+files:
+  - dist/**
+  - electron/**
+  - package.json
+asar: true
+win:
+  target: portable
