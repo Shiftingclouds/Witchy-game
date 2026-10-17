@@ -10,7 +10,12 @@ const requested = (file) =>
         const brace = name.match(/^(.*)\{([a-z,]+)\}(.*)$/);
         return brace ? brace[2].split(',').map((v) => brace[1] + v + brace[3]) : [name];
       })
-      .filter((n) => !/^(c01-rowan-neutral|c02-imogen-neutral|lantern-hall|mere-day|mere-night|thimble-cross|whispering-wood|boathouse|rookery|classroom|home-kitchen|glasshouses|candlestones)\.png$/.test(n))
+      .filter(
+        (n) =>
+          !/^(c01-rowan-neutral|c02-imogen-neutral|lantern-hall|mere-day|mere-night|thimble-cross|whispering-wood|boathouse|rookery|classroom|home-kitchen|glasshouses|candlestones)\.png$/.test(
+            n,
+          ),
+      )
       .filter((n) => !n.startsWith('c') || /^c\d\d-/.test(n) || !n.includes('.png') || true),
   );
 
@@ -18,7 +23,8 @@ test('every requested art file has a slot with a placement', () => {
   const files = new Set(slots.map((s) => s.file));
   for (const doc of ['docs/design/ART_REQUESTS.md', 'docs/design/WORLD_ART_REQUESTS.md'])
     for (const name of requested(doc))
-      if (!existsSync('art/' + name) && !existsSync(name)) assert.ok(files.has(name), `${name} from ${doc} has no slot`);
+      if (!existsSync('art/' + name) && !existsSync(name))
+        assert.ok(files.has(name), `${name} from ${doc} has no slot`);
   for (const s of slots) {
     assert.match(s.file, /^[a-z0-9-]+\.png$/);
     assert.ok(['portrait', 'environment', 'icon', 'closeup', 'layer'].includes(s.kind), s.file);
