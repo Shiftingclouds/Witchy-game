@@ -289,3 +289,47 @@ test('Longnight records shared work, gates later knowledge, and imports without 
   assert.ok(chapterBeats(4, legacy).some((beat) => beat.id === 'winter-company-legacy'));
   assert.equal(transition(finishSceneChoices(legacy), { type: 'chapter', choice: 0 }).chapter, 5);
 });
+
+test('First Thaw pays off both winter tasks and keeps practical outcomes and later knowledge consistent', () => {
+  for (const option of [0, 1]) {
+    let state = initialState('book');
+    for (let chapter = 0; chapter < 5; chapter++)
+      state = transition(finishSceneChoices(state, option), { type: 'chapter', choice: option });
+    const initial = chapterBeats(5, state);
+    assert.ok(initial.some((beat) => beat.id === (option ? 'archive-result' : 'handover-result')));
+    assert.ok(!initial.some((beat) => beat.id === (option ? 'handover-result' : 'archive-result')));
+    const before = buildCharacterContext('kestrel', characterInput(state, 'kestrel'));
+    assert.ok(!before.character.knownFacts.some((fact) => fact.includes('Larger rehearsals')));
+    state = parseSave(finishSceneChoices(state, option));
+    assert.equal(state.date, '2027-03-20');
+    assert.equal(state.period, 1);
+    assert.ok(
+      chapterBeats(5, state).some((beat) => beat.id === (option ? 'space-card' : 'signal-card')),
+    );
+    const imogen = buildCharacterContext('imogen', characterInput(state, 'imogen'));
+    assert.ok(
+      imogen.relationship.sharedMemories.some(
+        (memory) => memory.key === `scene:thaw:rejoining:${option ? 'space' : 'signal'}`,
+      ),
+    );
+    const rowan = buildCharacterContext('rowan', characterInput(state, 'rowan'));
+    assert.ok(
+      !rowan.relationship.sharedMemories.some((memory) =>
+        memory.key.includes('thaw:practice-role'),
+      ),
+    );
+    state = transition(state, { type: 'chapter', choice: option });
+    assert.ok(state.spells.includes('thread'));
+    assert.ok(state.clues.includes('stones'));
+    const after = buildCharacterContext('kestrel', characterInput(state, 'kestrel'));
+    assert.ok(after.character.knownFacts.some((fact) => fact.includes('Larger rehearsals')));
+  }
+  const old = parseSave({
+    ...initialState('book'),
+    chapter: 5,
+    date: '2027-03-20',
+    daily: { date: '2027-03-20', checkins: [], event: null },
+  });
+  assert.ok(chapterBeats(5, old).some((beat) => beat.id === 'winter-task-legacy'));
+  assert.equal(transition(finishSceneChoices(old), { type: 'chapter', choice: 0 }).chapter, 6);
+});

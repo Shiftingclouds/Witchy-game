@@ -18,22 +18,22 @@ The counter uses the actual application data and fixed engine outcomes. It does 
 
 ## Current measured length
 
-Measured on 16 October 2026, after the integrated Longnight chapter:
+Measured on 16 October 2026, after the integrated First Thaw chapter:
 
 | Measure                                                                                                               |         Words |
 | --------------------------------------------------------------------------------------------------------------------- | ------------: |
-| Eligible unique story, dialogue, choices, lessons, discoveries                                                        |        28,448 |
-| Progress toward 250,000                                                                                               |        11.38% |
-| Remaining to the minimum                                                                                              |       221,552 |
-| Catalogued reference copy, generic fallbacks, and migration-only prose, excluded                                      |         2,912 |
-| Expanded scenes and local decisions, across branches                                                                  |        24,234 |
+| Eligible unique story, dialogue, choices, lessons, discoveries                                                        |        32,163 |
+| Progress toward 250,000                                                                                               |        12.87% |
+| Remaining to the minimum                                                                                              |       217,837 |
+| Catalogued reference copy, generic fallbacks, and migration-only prose, excluded                                      |         2,975 |
+| Expanded scenes and local decisions, across branches                                                                  |        28,033 |
 | Longnight alone, including local choices                                                                              |         4,284 |
 | One opening path, excluding the two chapter-exit choice pairs                                                         |   8,960–9,034 |
-| Complete current Book / illustrated route, including visible choices and one ending, excluding optional conversations | 20,948–21,138 |
+| Complete current Book / illustrated route, including visible choices and one ending, excluding optional conversations | 24,102–24,308 |
 
-Both reading presentations consume **the same selected path**. Retired compact summaries for chapters 1–5 no longer count. Sixteen local decisions produce 65,536 combinations with explicit rejoins and later callbacks. Exact dependency-state auditing currently needs at most 32 simultaneous states; it does not add mutually exclusive outcomes to a single-playthrough figure.
+Both reading presentations consume **the same selected path**. Retired compact summaries for chapters 1–6 no longer count. Nineteen local decisions produce 524,288 combinations with explicit rejoins and later callbacks. Exact dependency-state auditing currently needs at most 32 simultaneous states; it does not add mutually exclusive outcomes to a single-playthrough figure.
 
-The opening contains 13 sections; register, Emberfall and Longnight add six each, for 31 total. Chapters 6–8 still have compact prototype narration (79–90 words each) and require full expansion. The prior Emberfall checkpoint contained 24,263 eligible whole-game words. Completing these packages does not complete the first-year manuscript.
+The opening contains 13 sections; register, Emberfall, Longnight and First Thaw add six each, for 37 total. Chapters 7–8 still have compact prototype narration (79–90 words each) and require full expansion. The prior Longnight checkpoint contained 28,448 eligible whole-game words. Completing these packages does not complete the first-year manuscript.
 
 ## What qualifies toward 250,000
 

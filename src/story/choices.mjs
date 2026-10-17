@@ -2,6 +2,10 @@ export const choiceKey = (scene, beat) => `${scene}:${beat}`;
 
 // Explicit story introductions; stage positions and portrait presence grant nothing.
 export const introductions = {
+  'thaw:reading-method': {
+    people: ['kestrel', 'imogen'],
+    text: 'We compared the spring approach and weathered surface at the Candlestones before a supervised reading.',
+  },
   'longnight:shore-work': {
     people: ['tully', 'kestrel'],
     text: 'We met for the Longnight winter round and prepared the route before the supervised lake reading.',

@@ -1,6 +1,6 @@
 # First-year continuity ledger
 
-This ledger distinguishes implemented evidence from the next writing work. It is an authoring document and never enters AI context or the word count. The opening, register, Emberfall and Longnight are integrated; chapters 6–8 retain the short playable arc.
+This ledger distinguishes implemented evidence from the next writing work. It is an authoring document and never enters AI context or the word count. The opening, register, Emberfall, Longnight and First Thaw are integrated; chapters 7–8 retain the short playable arc.
 
 ## Evidence and information order
 
@@ -11,7 +11,7 @@ This ledger distinguishes implemented evidence from the next writing work. It is
 | Register, 18 September    | Three working/formal record pairs show omitted workers. Grey supplies present practice and an independently archived keeper instruction. A supervised echo is consistent with care and return.  | Motive for omission, whether it caused the failure, and how restoration works.                                         | Corroborate the link between light, memory and belonging; correct claims of proven erasure. **Integrated in six sections.** |
 | Moonflowers, 31 October   | Saoirse/Rhys and a tended specimen show that petals can carry an echo of warmth.                                                                                                                | An echo is not a living person and cannot supply every missing fact.                                                   | Learn a method for preserving evidence without claiming resurrection. **Integrated in six sections.**                       |
 | Lake, 21 December         | Echosight reveals seven willing lights in an open circle. The buildings will remain if the welcoming magic fails; midsummer is the restoration deadline.                                        | Complete participants’ identities and how the opening in the circle works.                                             | Give the investigation a bounded deadline and a credible cost. **Integrated in six sections.**                              |
-| Candlestones, 20 March    | Inscription confirms freely offered light and space for newcomers. Threadbind must connect willing people rather than compel them.                                                              | Which practical restoration arrangements the current academy will choose.                                              | Replace a vague rescue with an achievable plan. **Compact implementation.**                                                 |
+| Candlestones, 20 March    | Inscription confirms freely offered light and space for newcomers. Threadbind must connect willing people rather than compel them.                                                              | Which practical restoration arrangements the current academy will choose.                                              | Replace a vague rescue with an achievable plan. **Integrated in six sections.**                                             |
 | Preparation, 1 May        | Recovered names, a register, willing participants, learned spells, and repaired relationships can be gathered.                                                                                  | No single person is required to sacrifice their place or accept romance.                                               | Test the plan, invite consent, and handle ordinary logistics. **Compact implementation.**                                   |
 | Heartfire, 21 June        | The player has three spells, four discoveries, and sufficient friendship with the trio. Willing lights restore the Heartfire.                                                                   | The academy’s future is an ongoing responsibility, not a magically finished society.                                   | Choose shared stewardship or the keeper role; both remain viable, non-romantic endings. **Compact implementation.**         |
 
@@ -66,7 +66,7 @@ Six sections cover a practical winter round, safe approach, lake reading, teache
 - Kestrel distinguishes the threatened welcome from sound buildings and protective wards. Moth's annual-cycle records and repeated ward measurements establish 21 June 2027 as the next necessary renewal; adults have named responsibilities.
 - Live Echosight cannot reveal the lake before chapter 5 or the inscription before chapter 6. Gates follow story progress, not the current season; late visits remain possible and old discoveries survive migration.
 
-## Next package: First Thaw
+## Integrated package: First Thaw
 
 1. Show the winter task being used to prepare a safe spring visit; provide an honest missing-choice fallback for older saves.
 2. At the stones, separate visible weathering from the words Echosight restores. Compare the chart's approach with the open ring.

@@ -418,7 +418,7 @@ for (const character of characters) {
 }
 export const characterById = Object.fromEntries(characters.map((c) => [c.id, c]));
 export const expressions = {
-  kestrel: ['neutral', 'grave'],
+  kestrel: ['neutral', 'grave', 'warm'],
   tully: ['neutral', 'warm'],
   rhys: ['neutral', 'warm'],
   dunne: ['neutral', 'attentive'],

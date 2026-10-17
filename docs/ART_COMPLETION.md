@@ -17,7 +17,7 @@ The tables below are the **original-cast art budget**, not a limit on the finish
 | Generated overview map |       1 | Existing `art/academy-map.png`                                                              |
 | New teacher portrait   |       1 | `art/c47-elian-vale-neutral.png`, reviewed transparent portrait used in the first practical |
 
-Rowan has 13 canonical expressions, Imogen 13 and Saoirse 12. Dunne has neutral/attentive, Rhys and Tully neutral/warm, and Kestrel neutral/grave. The other 38 original supporting characters and Elian retain one neutral portrait each. Maelin has neutral and reflective expressions. The six `-v1` files are alternatives, not six extra emotions or people. There is no character 39; preserve the uploaded numbering.
+Rowan has 13 canonical expressions, Imogen 13 and Saoirse 12. Dunne has neutral/attentive, Rhys and Tully neutral/warm, and Kestrel neutral/grave/warm. The other 38 original supporting characters and Elian retain one neutral portrait each. Maelin has neutral and reflective expressions. The six `-v1` files are alternatives, not six extra emotions or people. There is no character 39; preserve the uploaded numbering.
 
 The portraits have transparent backgrounds and useful, consistent upper-body framing. Their restrained differences suit dialogue. Their dense painted pixel texture should remain intact; neither vector-style redraws nor smooth 3D characters would fit. Architectural detail, glass, candles and water already give the environments depth without additional decorations.
 
@@ -97,7 +97,7 @@ Do not commission a separate romantic illustration for every character. Use exis
 - **Gesture pilot:** `c01-rowan-offer-lantern.png`, `c02-imogen-open-book.png`, `c03-saoirse-hold-moonflower.png` — three new upper-body poses for specific actions. They are not walking sprites or lip-sync frames.
 - **Environment layer pilot:** `lantern-hall-{cleanplate,foreground,lamplight-mask}.png`, with equivalent trios for `glasshouses`, `mere-night`, and `heartfire` — twelve derived production layers. Separating foreground elements requires retouching the area behind them; the original cannot supply hidden pixels automatically. These need a layer manifest rather than appearing as new destinations.
 
-These 21 optional production assets are separate from the **132 new story images** in the original-cast queue: 110 portraits + 12 backgrounds + 6 clues + 4 milestone illustrations. These are the original planning budgets, not a current remaining-file total. Two clue slots are fulfilled by `register-study.png` and `moonflower-study.png`; the archive comparison does not justify an erasure painting. The browser collection now contains 156 images, including the new-character packet produced so far and the additional Dunne attentive expression. Produce the opening's teacher and housemates alongside the existing P1 packet as their scenes are written, in small reviewed batches. This document records asset requirements; generation order follows the user's authorized story work.
+These 21 optional production assets are separate from the **132 new story images** in the original-cast queue: 110 portraits + 12 backgrounds + 6 clues + 4 milestone illustrations. These are the original planning budgets, not a current remaining-file total. Two clue slots are fulfilled by `register-study.png` and `moonflower-study.png`; the archive comparison does not justify an erasure painting. The browser collection now contains 159 images, including the new-character packet produced so far and the additional Dunne attentive expression. Produce the opening's teacher and housemates alongside the existing P1 packet as their scenes are written, in small reviewed batches. This document records asset requirements; generation order follows the user's authorized story work.
 
 ## Acceptance criteria
 
@@ -105,7 +105,7 @@ These 21 optional production assets are separate from the **132 new story images
 2. Run rapid neutral → new expression → neutral swaps at the actual game size. Reject eye/shoulder jumps and unexplained accessory changes. Keep the original source files untouched.
 3. Associate every new image with named scene IDs and a fallback before adding it to the build. No orphan assets created just to fill a target count.
 4. Check two-person placement and a narrow phone viewport. Faces and meaningful props must remain visible above the dialogue panel.
-5. Verify cache size and offline loads. The present browser collection is about 29.0 MiB; a 132-image expansion requires measuring the new download and choosing transparent chapter packs or a clearly labelled complete offline download before assuming the existing all-at-once cache remains appropriate.
+5. Verify cache size and offline loads. The present browser collection is about 29.9 MiB; a 132-image expansion requires measuring the new download and choosing transparent chapter packs or a clearly labelled complete offline download before assuming the existing all-at-once cache remains appropriate.
 
 ## Opening packet review — 16 October 2026
 
@@ -134,4 +134,4 @@ Eight further source files are integrated: the night glasshouse, moonflower comp
 
 Reviewed captures: [Emberfall cast](emberfall-cast.png), [petals](emberfall-evidence.png), [petals on phone](emberfall-mobile.png), [lake](longnight-evidence.png), [lake on phone](longnight-mobile.png). Both seasonal reader tests verify offline image access and saved decisions. The browser collection is 156 images / 29.0 MiB.
 
-First Thaw is the next artwork packet: daylight Candlestones, a source-consistent inscription detail, and Kestrel's warmer lesson expression. These are not yet integrated. Opening expression gaps and the other planned images remain in the queue.
+First Thaw now integrates daylight Candlestones, the source-consistent inscription detail and Kestrel's warm expression. The inscription lighting was corrected to match the daytime scene. Reviewed captures: [desktop](thaw-evidence.png), [phone](thaw-mobile.png). Current collection: 159 images / 29.9 MiB. Opening expression gaps and the other planned images remain in the queue.

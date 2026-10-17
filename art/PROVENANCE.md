@@ -32,3 +32,11 @@ Generated with the image-generation tool, inspected, and included in the offline
 - `c08-kestrel-grave.png`: expression edit from Kestrel's neutral portrait, preserving braid, star freckles, embroidered robe, proportions and transparency.
 
 Generated with the image-generation tool and reviewed. Both portraits and the winter background load in the browser; the lake illustration and reading bookmark survive an offline reload. Desktop and narrow-phone evidence views are in `docs/longnight-*.png`.
+
+## First Thaw package — 16 October 2026
+
+- `candlestones-day.png`: spring daylight variant of the supplied stone-circle view, preserving the stones, approach, firepit, lake, island academy and village. Used for daytime spring visits and the March investigation.
+- `candlestones-inscription.png`: close-up derived from that setting. The first generated version retained sunset light; a second image-tool edit matched the daylight background before integration. Its exact inscription is also available in selectable prose and alt text.
+- `c08-kestrel-warm.png`: expression edit from Kestrel's original neutral portrait, with the same identity, clothing, silhouette and true transparency. Used for the supervised practical and its feedback.
+
+All three images load offline. The stone detail and largest-text phone presentation were reviewed in `docs/thaw-*.png`. Original files remain unchanged.

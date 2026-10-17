@@ -140,3 +140,70 @@ test('Longnight loads winter art, preserves a seven-light reading offline, and c
   expect(save.clues).toContain('lake');
   await context.setOffline(false);
 });
+
+test('First Thaw pays off winter research, presents the inscription offline, and teaches a voluntary return', async ({
+  page,
+  context,
+}) => {
+  await reachBookChapter(page, 5, 1);
+  await expect(page.locator('[data-story-beat="archive-result"]')).toBeVisible();
+  await expect(page.locator('[data-story-beat="handover-result"]')).toHaveCount(0);
+  await page.locator('[data-choice="thaw:reading-method"] button').nth(1).click();
+  await playSection(page, 'The words weather left behind');
+  const dialog = page.getByRole('dialog');
+  await expect(dialog.locator('.performance-background')).toHaveAttribute(
+    'src',
+    '/art/candlestones-day.webp',
+  );
+  for (let step = 0; step < 5; step++)
+    await dialog.getByRole('button', { name: 'Next line', exact: true }).click();
+  await expect(dialog.locator('.performance-background')).toHaveAttribute(
+    'src',
+    '/art/candlestones-inscription.webp',
+  );
+  await expect(dialog.locator('.speech-text')).toContainText('A space for whoever comes next.');
+  await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
+  await context.setOffline(true);
+  await page.reload();
+  await page.getByRole('button', { name: 'Continue your story' }).click();
+  await page.getByRole('button', { name: 'Play scene', exact: true }).click();
+  await expect(dialog.locator('.speech-text')).toContainText(
+    'The restored reading is two sentences',
+  );
+  await expect
+    .poll(() =>
+      dialog
+        .locator('.performance-background')
+        .evaluate((img) => img.complete && img.naturalWidth > 0),
+    )
+    .toBe(true);
+  await page.screenshot({
+    path: '/tmp/lanternmere-review/thaw-evidence.png',
+    animations: 'disabled',
+  });
+  await page.setViewportSize({ width: 320, height: 740 });
+  await dialog.getByLabel('Story text size').selectOption('largest');
+  await dialog.getByLabel('Reading motion').selectOption('reduce');
+  await dialog.locator('.scene-reader').evaluate((el) => el.scrollTo(0, 0));
+  expect(await page.locator('body').evaluate((el) => el.scrollWidth)).toBe(320);
+  await page.screenshot({
+    path: '/tmp/lanternmere-review/thaw-mobile.png',
+    animations: 'disabled',
+  });
+  await dialog.getByRole('button', { name: 'Close dialog', exact: true }).click();
+  await playSection(page, 'A lesson with a way out');
+  await dialog.getByRole('button', { name: 'Next line', exact: true }).click();
+  await expect(dialog.getByAltText('Kestrel, warm expression')).toBeVisible();
+  await dialog.getByRole('button', { name: 'Close dialog', exact: true }).click();
+  await page.locator('[data-choice="thaw:practice-role"] button').nth(1).click();
+  await expect(page.locator('[data-story-beat="holding-first"]')).toBeVisible();
+  await page.locator('[data-choice="thaw:rejoining"] button').nth(1).click();
+  await expect(page.locator('[data-story-beat="space-card"]')).toBeVisible();
+  await page.locator('.story-choices button').first().click();
+  const save = await page.evaluate(() => JSON.parse(localStorage.getItem('lanternmere.save.book')));
+  expect(save.chapter).toBe(6);
+  expect(save.spells).toContain('thread');
+  expect(save.clues).toContain('stones');
+  expect(save.storyChoices['thaw:rejoining']).toBe('space');
+  await context.setOffline(false);
+});

@@ -34,6 +34,12 @@
         "minimumChapter": 5,
         "minimumBond": 0,
         "text": "At Longnight I supervised a lake reading that showed seven lights joining separately. Ward surveys and Moth’s cycle records establish the next Midsummer renewal as the restoration deadline. Buildings and protective wards remain sound; the threatened magic is the shared welcome. Honoria, Okoro, Tully and the archivists share the work."
+      },
+      {
+        "id": "first-thaw-practice",
+        "minimumChapter": 6,
+        "minimumBond": 0,
+        "text": "At First Thaw I witnessed the Candlestones reading: A light freely offered. A space for whoever comes next. I supervised a small Threadbind exercise in which the player and Imogen joined, withdrew and returned while each kept their own light. Larger rehearsals and renewed permission are still needed before Midsummer."
       }
     ],
     "privateReactions": [
@@ -74,7 +80,7 @@
   },
   "presentation": {
     "portraitPrefix": "c08-kestrel",
-    "availableExpressions": ["neutral", "grave"],
+    "availableExpressions": ["neutral", "grave", "warm"],
     "missingArt": false,
     "direction": "Use only available expressions; neutral is the fallback. Do not invent an unseen gesture or additional portrait."
   },
