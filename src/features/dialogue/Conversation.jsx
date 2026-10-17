@@ -1,3 +1,4 @@
+import { isLiveLike } from '../../engine/modes.mjs';
 import { useState } from 'react';
 import { Heart, MessageCircle, Check } from 'lucide-react';
 import { characterById, expressions, topics, art } from '../../content.mjs';
@@ -49,7 +50,7 @@ export function Conversation({ id, game, act, onClose, reading }) {
               </button>
             ))}
           </div>
-          {game.mode === 'live' && (
+          {isLiveLike(game.mode) && (
             <div className="daily-checkin">
               <button
                 disabled={!(game.bonds[id] > 0) || game.daily.checkins.includes(id)}

@@ -1,3 +1,4 @@
+import { isBookLike } from './engine/modes.mjs';
 import { characters, characterById, locationById } from './content.mjs';
 import { castDetails, dailyLines, supportingDialogues } from './cast.mjs';
 
@@ -302,7 +303,7 @@ export const allEvents = [...dailyEvents, ...festivalEvents];
 export const eventById = Object.fromEntries(allEvents.map((e) => [e.id, e]));
 export const dayNumber = (date) => Math.floor(Date.parse(date + 'T12:00:00Z') / 86400000);
 export function eventForDay(state) {
-  if (state.mode === 'book') return null;
+  if (isBookLike(state.mode)) return null;
   const m = Number(state.date.slice(5, 7)),
     d = Number(state.date.slice(8, 10));
   return (

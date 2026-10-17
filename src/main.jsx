@@ -80,7 +80,8 @@ import { useSidebarState } from './features/shell/sidebar.mjs';
 import { PatternShowcase } from './features/patterns/PatternShowcase.jsx';
 import './features/shell/shell.css';
 import { CharacterCreation } from './features/opening/CharacterCreation.jsx';
-import { LAST_MODE_KEY } from './features/opening/menu-model.mjs';
+import { LAST_MODE_KEY, MODE_LABELS } from './features/opening/menu-model.mjs';
+import { isBookLike, isLiveLike } from './engine/modes.mjs';
 
 const storage = platformStorage();
 const saves = createSaveRepository(storage);
@@ -203,7 +204,7 @@ function App() {
   function start(mode, name, house, familiar) {
     try {
       setGame(saves.read(mode) || initialState(mode, name, house, familiar));
-      setView(mode === 'book' ? 'book' : 'world');
+      setView(isBookLike(mode) ? 'book' : 'world');
     } catch (error) {
       setToast(error.message);
     }
@@ -219,7 +220,7 @@ function App() {
       .then((raw) => {
         const imported = saves.import(raw, game);
         setGame(imported);
-        navigate(imported.mode === 'book' ? 'book' : 'world');
+        navigate(isBookLike(imported.mode) ? 'book' : 'world');
         setModal(null);
         setToast('Your saved life is restored.');
       })
@@ -314,7 +315,7 @@ function App() {
         <Eyebrow>YOUR LITTLE WORLD</Eyebrow>
         <nav aria-label="Main navigation">
           {navItems
-            .filter(([id]) => game.mode === 'live' || !['world', 'map'].includes(id))
+            .filter(([id]) => isLiveLike(game.mode) || !['world', 'map'].includes(id))
             .map(([id, label, Icon]) => (
               <button
                 key={id}
@@ -379,8 +380,7 @@ function App() {
             <Menu size={20} />
           </button>
           <div className="breadcrumb">
-            LANTERNMERE ACADEMY <span>/</span>{' '}
-            <strong>{game.mode === 'book' ? 'Read the book' : 'Live the world'}</strong>
+            LANTERNMERE ACADEMY <span>/</span> <strong>{MODE_LABELS[game.mode]}</strong>
           </div>
           <div className="header-status">
             <span className="connection">
@@ -418,7 +418,7 @@ function App() {
               visit={visit}
               open={setModal}
               reading={reading}
-              leave={() => (game.mode === 'live' ? navigate('world') : setGame(null))}
+              leave={() => (isLiveLike(game.mode) ? navigate('world') : setGame(null))}
             />
           )}
           {view === 'people' && <People game={game} open={setModal} />}
@@ -687,7 +687,7 @@ function Epilogue({ game, leave }) {
         <VineButton
           lead
           title="Your life at Lanternmere continues"
-          subline={game.mode === 'live' ? 'Return to your day' : 'Close the book for now'}
+          subline={isLiveLike(game.mode) ? 'Return to your day' : 'Close the book for now'}
           onClick={leave}
         />
       </div>
@@ -701,10 +701,10 @@ function Story({ game, act, visit, open, reading, leave }) {
   return (
     <>
       <PageHeading
-        eyebrow={game.mode === 'book' ? 'READ THE BOOK · AN ILLUSTRATED YEAR' : 'THE STORY SO FAR'}
+        eyebrow={isBookLike(game.mode) ? 'READ THE BOOK · AN ILLUSTRATED YEAR' : 'THE STORY SO FAR'}
         title="The light we leave behind."
         description={
-          game.mode === 'book'
+          isBookLike(game.mode)
             ? 'Settle in. The world can wait while you turn the page.'
             : 'Your days become a story. Your choices give it meaning.'
         }
@@ -761,7 +761,7 @@ function Story({ game, act, visit, open, reading, leave }) {
               <AuthoredChapter game={game} act={act} />
               {pendingStoryChoice(game) ? (
                 <p className="story-gate">Make your decision in the scene above to continue.</p>
-              ) : game.mode === 'live' && !canAdvance(game) ? (
+              ) : isLiveLike(game.mode) && !canAdvance(game) ? (
                 <div className="story-gate">
                   <strong>
                     <Compass size={16} /> Before the next page
@@ -858,7 +858,7 @@ function People({ game, open }) {
               <div className="friendship-meter">
                 <i style={{ width: (game.bonds[c.id] || 0) + '%' }} />
               </div>
-              {game.mode === 'live' && (
+              {isLiveLike(game.mode) && (
                 <div className="person-where">
                   <MapPin size={12} />
                   {locationById[characterLocation(game, c.id)].name}
@@ -973,13 +973,13 @@ function Grimoire({ game, visit, open, act }) {
                 <span className="learned-label">
                   <CheckCircle2 size={14} /> In your grimoire
                 </span>
-                {game.mode === 'live' && (
+                {isLiveLike(game.mode) && (
                   <Button onClick={() => act({ type: 'cast', id: s.id })}>
                     Cast at {locationById[game.location].name}
                   </Button>
                 )}
               </>
-            ) : game.mode === 'book' ? (
+            ) : isBookLike(game.mode) ? (
               <span className="muted">Learned as your story unfolds</span>
             ) : (
               <Button
@@ -1023,7 +1023,7 @@ function Calendar({ game, act, visit, open }) {
         title="A season for everything."
         description="Lessons, festivals, and ordinary days that turn out to matter."
       />
-      <>{game.mode === 'live' && <DailyCard game={game} visit={visit} open={open} />}</>
+      <>{isLiveLike(game.mode) && <DailyCard game={game} visit={visit} open={open} />}</>
       <div className="calendar-layout">
         <section className="calendar-card">
           <div className="calendar-heading">
@@ -1096,7 +1096,7 @@ function Calendar({ game, act, visit, open }) {
               It’s {dateLabel(game.date)}, {periods[game.period].toLowerCase()}. Conversations and
               lessons move the day along; story milestones turn the season.
             </p>
-            {game.mode === 'live' && (
+            {isLiveLike(game.mode) && (
               <Button icon={Moon} onClick={() => act({ type: 'rest' })}>
                 Rest until tomorrow
               </Button>

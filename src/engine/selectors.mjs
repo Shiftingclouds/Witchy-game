@@ -1,3 +1,4 @@
+import { isBookLike } from './modes.mjs';
 import { chapters, dialogues } from '../content.mjs';
 import { castDetails, supportingDialogues } from '../cast.mjs';
 import { season, holiday } from './time.mjs';
@@ -54,7 +55,7 @@ export function canAdvance(s) {
   return (
     !s.ending &&
     !pendingStoryChoice(s) &&
-    (s.mode === 'book' || requirements(s).every((r) => r.done))
+    (isBookLike(s.mode) || requirements(s).every((r) => r.done))
   );
 }
 export function talkLine(id, topic, state) {

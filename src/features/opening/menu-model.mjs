@@ -1,6 +1,11 @@
 import { chapters } from '../../content.mjs';
 
-export const MODE_LABELS = { book: 'Read the book', live: 'Live the world' };
+export const MODE_LABELS = {
+  book: 'Read the book',
+  live: 'Live the world',
+  guided: 'The Guided Tale',
+  sandbox: 'The Open World',
+};
 export const LAST_MODE_KEY = 'lanternmere.last-mode';
 
 /** Which save "Continue" opens: the last one played if it still loads, otherwise any other save. */

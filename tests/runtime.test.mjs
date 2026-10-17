@@ -5,7 +5,7 @@ import { initialState, transition, parseSave, gameEngine } from '../src/engine.m
 import { createSaveRepository } from '../src/storage/saves.mjs';
 
 test('systems are explicit, extensible, deterministic, and discard rejected mutations', () => {
-  assert.deepEqual(gameEngine.systems, ['world', 'relationships', 'magic', 'story']);
+  assert.deepEqual(gameEngine.systems, ['world', 'relationships', 'magic', 'story', 'ai']);
   const extension = {
     id: 'test-feature',
     commands: {

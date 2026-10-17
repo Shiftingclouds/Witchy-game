@@ -1,3 +1,4 @@
+import { isLiveLike } from './engine/modes.mjs';
 import {
   ArrowRight,
   CalendarDays,
@@ -169,7 +170,7 @@ export function CharacterProfile({ id, game, visit, open, onClose }) {
           <div className="friendship-meter">
             <i style={{ width: (game.bonds[id] || 0) + '%' }} />
           </div>
-          {game.mode === 'live' ? (
+          {isLiveLike(game.mode) ? (
             <>
               <div className="routine-heading">
                 <Clock size={14} /> Where to find them today

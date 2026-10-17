@@ -1,3 +1,4 @@
+import { isBookLike } from '../modes.mjs';
 import { chapters } from '../../content.mjs';
 import {
   chapterBeats,
@@ -68,7 +69,7 @@ export const storySystem = {
         s.feedback = 'There are still a few things to discover before the next chapter.';
         return;
       }
-      if (s.mode === 'book')
+      if (isBookLike(s.mode))
         for (const r of chapter.requirements) {
           if (['rowan', 'imogen', 'saoirse'].includes(r)) bond(s, r, 5);
           else if (['kindle', 'echo', 'thread'].includes(r)) {

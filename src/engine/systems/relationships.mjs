@@ -1,3 +1,4 @@
+import { isLiveLike } from '../modes.mjs';
 import { characterById } from '../../content.mjs';
 import { eventForDay } from '../../life.mjs';
 import { rememberCharacter, recordConversation } from '../../character-memory.mjs';
@@ -35,7 +36,7 @@ export const relationshipsSystem = {
       return;
     },
     checkin: (s, action) => {
-      if (s.mode !== 'live' || !Object.hasOwn(characterById, action.id)) return false;
+      if (!isLiveLike(s.mode) || !Object.hasOwn(characterById, action.id)) return false;
       if (!(s.bonds[action.id] > 0)) {
         s.feedback = 'Say hello first. A friendship begins with an introduction.';
         return;
@@ -56,7 +57,7 @@ export const relationshipsSystem = {
       return;
     },
     event: (s, action) => {
-      if (s.mode !== 'live') return false;
+      if (!isLiveLike(s.mode)) return false;
       const event = eventForDay(s);
       if (!event || event.id !== action.id || s.location !== event.location) {
         s.feedback = 'Visit today’s gathering before taking part.';
