@@ -1,5 +1,7 @@
 # Claude: start here — Lanternmere development handoff
 
+**ChatGPT prose rewrite update:** On branch `scene-player`, read [CHATGPT_REWRITE_HANDOFF.md](CHATGPT_REWRITE_HANDOFF.md) and the actual rewritten opening at [story-drafts/01-arrival-chatgpt.txt](story-drafts/01-arrival-chatgpt.txt). The opening is ready for import and play review; it has not yet replaced the runtime story. The older development and publication notes below are historical context for that rewrite.
+
 Updated 16 October 2026. The user asked to finish **Bloomtide**, publish the actual story to the repository, and then stop. Do not assume the later work described below has been completed or newly authorized.
 
 ## Read the story itself
