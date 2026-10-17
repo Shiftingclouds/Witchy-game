@@ -2,6 +2,10 @@ export const choiceKey = (scene, beat) => `${scene}:${beat}`;
 
 // Explicit story introductions; stage positions and portrait presence grant nothing.
 export const introductions = {
+  'emberfall:work-plan': {
+    people: ['saoirse', 'rhys', 'delphine'],
+    text: 'We worked together on the Emberfall lantern frames and agreed which work could be finished before the supper bell.',
+  },
   'arrival:first-observation': {
     people: ['rowan', 'imogen'],
     text: 'We met at the welcome supper and examined the extinguished hall lantern.',

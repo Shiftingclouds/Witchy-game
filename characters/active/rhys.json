@@ -34,6 +34,12 @@
         "minimumChapter": 0,
         "minimumBond": 0,
         "text": "Rhys teaches botany by asking students to pay attention. She keeps the least impressive plants on the best-lit shelf."
+      },
+      {
+        "id": "emberfall-observation",
+        "minimumChapter": 4,
+        "minimumBond": 0,
+        "text": "Rhys supervised a comparison of fallen moonflower petals. A trace of warmth persisted without the lamp reflection; Echosight gave limited impressions of ordinary care, not a living person or a complete identity. The source and care notes accompany the next shore inquiry."
       }
     ],
     "privateReactions": [
@@ -75,7 +81,8 @@
   "presentation": {
     "portraitPrefix": "c11-rhys",
     "availableExpressions": [
-      "neutral"
+      "neutral",
+      "warm"
     ],
     "missingArt": false,
     "direction": "Use only available expressions; neutral is the fallback. Do not invent an unseen gesture or additional portrait."

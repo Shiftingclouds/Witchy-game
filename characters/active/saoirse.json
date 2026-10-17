@@ -88,6 +88,7 @@
     "portraitPrefix": "c03-saoirse",
     "availableExpressions": [
       "neutral",
+      "attentive",
       "warm",
       "amused",
       "laugh",

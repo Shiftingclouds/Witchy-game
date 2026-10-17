@@ -208,3 +208,39 @@ test('register decisions preserve private support, new faculty memories, and evi
   assert.ok(chapterBeats(2, legacy).some((beat) => beat.id === 'record-legacy'));
   assert.equal(transition(finishSceneChoices(legacy), { type: 'chapter', choice: 0 }).chapter, 3);
 });
+
+test('Emberfall can be caught up after its date and its private conversation stays with Saoirse', () => {
+  let state = initialState('book');
+  for (let chapter = 0; chapter < 3; chapter++)
+    state = transition(finishSceneChoices(state), { type: 'chapter', choice: 0 });
+  state = {
+    ...state,
+    mode: 'live',
+    date: '2027-02-12',
+    period: 3,
+    daily: { date: '2027-02-12', checkins: [], event: null },
+  };
+  state = choose(state, 'emberfall:work-plan', 'shared');
+  state = choose(state, 'emberfall:observation', 'exchange');
+  state = choose(state, 'emberfall:quiet-company', 'rest');
+  state = parseSave(state);
+  assert.equal(state.date, '2027-02-12');
+  assert.equal(state.bonds.delphine, 1);
+  assert.ok(chapterBeats(3, state).some((beat) => beat.id === 'shared-memory-cover'));
+  assert.ok(!chapterBeats(3, state).some((beat) => beat.id === 'simple-memory-cover'));
+  const rhys = buildCharacterContext('rhys', characterInput(state, 'rhys'));
+  const saoirse = buildCharacterContext('saoirse', characterInput(state, 'saoirse'));
+  assert.ok(
+    !rhys.relationship.sharedMemories.some((memory) => memory.key.includes('quiet-company')),
+  );
+  assert.ok(
+    saoirse.relationship.sharedMemories.some(
+      (memory) => memory.key === 'scene:emberfall:quiet-company:rest',
+    ),
+  );
+  assert.equal(canAdvance(state), false);
+  state = transition(state, { type: 'visit', id: 'glasshouses' });
+  state = transition(state, { type: 'tend' });
+  assert.equal(canAdvance(state), true);
+  assert.equal(transition(state, { type: 'chapter', choice: 0 }).chapter, 4);
+});

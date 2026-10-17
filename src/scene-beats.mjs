@@ -3,9 +3,10 @@ import { chapters, expressions } from './content.mjs';
 import { kindleScene } from './story/kindle.mjs';
 import { arrivalScene } from './story/arrival.mjs';
 import { registerScene } from './story/register.mjs';
+import { emberfallScene } from './story/emberfall.mjs';
 import { resolveBeats, choiceKey } from './story/choices.mjs';
 const beat = (text, speaker = null, actors = []) => ({ text, speaker, actors });
-export const stagedScenes = [arrivalScene, kindleScene, registerScene];
+export const stagedScenes = [arrivalScene, kindleScene, registerScene, emberfallScene];
 export { choiceKey } from './story/choices.mjs';
 export const chapterSceneId = (index) =>
   stagedScenes.find((scene) => scene.chapter === index)?.id || `chapter-${index + 1}`;

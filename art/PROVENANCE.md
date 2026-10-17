@@ -14,3 +14,12 @@ Generated with the image-generation tool and inspected before integration:
 All three new portraits have RGBA transparency. The register is an opaque landscape illustration. All four are used in the authored register chapter, included in offline caching, and covered by file-existence and browser-loading checks. See [packet review](../docs/ART_COMPLETION.md) for captures and remaining requirements.
 
 The previously integrated `academy-map.png` and `c47-elian-vale-neutral.png` belong to the earlier map/opening packages.
+
+## Emberfall package — 16 October 2026
+
+- `glasshouses-night.png`: night edit of the supplied glasshouse, preserving its ironwork, benches, owl, mandrakes and planting. Used by evening glasshouse visits and the authored observation.
+- `moonflower-study.png`: close-up based on the glasshouse; two fallen petals, separate saucers and a contained lamp. The prose describes the comparison and its limits independently of the image.
+- `c03-saoirse-attentive.png`: expression edit of Saoirse’s supplied neutral portrait; goggles, hair, clothing, pin and transparent background retained.
+- `c11-rhys-warm.png`: expression edit of Rhys’s supplied neutral portrait; hat, snail, cape and hand position retained.
+
+Generated with the image-generation tool, inspected, and included in the offline art collection. Browser checks load both expressions and the evidence image; desktop and largest-text mobile captures are in `docs/emberfall-*.png`. Original sources remain unchanged.
