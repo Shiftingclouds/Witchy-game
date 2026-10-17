@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { reachBookChapter, playSection } from './story-helpers.js';
+import { reachBookChapter, playSection, enterMode, continueGame } from './story-helpers.js';
 
 test('Emberfall uses night scenery and new portraits, then resumes its petal comparison offline', async ({
   page,
@@ -36,7 +36,7 @@ test('Emberfall uses night scenery and new portraits, then resumes its petal com
   );
   await expect(dialog.locator('.speech-text')).toContainText('Two fallen petals lie');
   await page.reload();
-  await page.getByRole('button', { name: 'Continue your story' }).click();
+  await continueGame(page);
   await page.getByRole('button', { name: 'Play scene', exact: true }).click();
   await expect(dialog.locator('.speech-text')).toContainText('Two fallen petals lie');
   await expect
@@ -95,7 +95,7 @@ test('Longnight loads winter art, preserves a seven-light reading offline, and c
   );
   await expect(dialog.locator('.speech-text')).toContainText('Seven small amber flames');
   await page.reload();
-  await page.getByRole('button', { name: 'Continue your story' }).click();
+  await continueGame(page);
   await page.getByRole('button', { name: 'Play scene', exact: true }).click();
   await expect(dialog.locator('.speech-text')).toContainText('Seven small amber flames');
   await expect
@@ -154,7 +154,7 @@ test('First Thaw pays off winter research, presents the inscription offline, and
   );
   await expect(dialog.locator('.speech-text')).toContainText('A space for whoever comes next.');
   await page.reload();
-  await page.getByRole('button', { name: 'Continue your story' }).click();
+  await continueGame(page);
   await page.getByRole('button', { name: 'Play scene', exact: true }).click();
   await expect(dialog.locator('.speech-text')).toContainText(
     'The restored reading is two sentences',

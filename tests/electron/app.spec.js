@@ -15,13 +15,19 @@ test.beforeEach(() => {
 test('book save survives a restart and lands in the user data folder', async () => {
   let app = await launch(tmp);
   let win = await app.firstWindow();
-  await win.getByRole('button', { name: 'Read the book', exact: false }).click();
+  await win.getByText('Press any key').waitFor();
+  await win.keyboard.press('Enter');
+  await win.getByRole('button', { name: /The Story/ }).click();
+  await win.getByRole('button', { name: /Read the book/ }).click();
+  await win.getByRole('button', { name: /Begin your story/ }).click();
   await expect(win.getByRole('button', { name: 'Play scene', exact: true })).toBeVisible();
   await app.close();
   expect(existsSync(join(tmp, 'saves', 'lanternmere.save.book.json'))).toBe(true);
   app = await launch(tmp);
   win = await app.firstWindow();
-  await expect(win.getByRole('button', { name: /Continue your story/ })).toBeVisible();
+  await win.getByText('Press any key').waitFor();
+  await win.keyboard.press('Enter');
+  await expect(win.getByRole('button', { name: /^Continue.*Read the book/ })).toBeVisible();
   await app.close();
 });
 

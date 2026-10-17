@@ -33,21 +33,41 @@ typography:
     fontWeight: 400
     lineHeight: 1
     letterSpacing: "0.05em"
+  heading-lg:
+    fontFamily: "Cormorant Garamond, Georgia, serif"
+    fontSize: "44px"
+    fontWeight: 500
+    lineHeight: 1.1
   heading:
     fontFamily: "Cormorant Garamond, Georgia, serif"
-    fontSize: "clamp(26px, 2.4vw, 38px)"
+    fontSize: "32px"
     fontWeight: 500
     lineHeight: 1.15
-  label:
-    fontFamily: "Cormorant SC, Cormorant Garamond, Georgia, serif"
-    fontSize: "13px"
+  lead:
+    fontFamily: "Cormorant Garamond, Georgia, serif"
+    fontSize: "23px"
     fontWeight: 600
-    letterSpacing: "0.28em"
+    lineHeight: 1.25
   body:
     fontFamily: "EB Garamond, Georgia, serif"
     fontSize: "19px"
     fontWeight: 400
     lineHeight: 1.6
+  ui:
+    fontFamily: "EB Garamond, Georgia, serif"
+    fontSize: "17px"
+    fontWeight: 400
+    lineHeight: 1.45
+  small:
+    fontFamily: "EB Garamond, Georgia, serif"
+    fontSize: "15px"
+    fontWeight: 400
+    lineHeight: 1.4
+  label:
+    fontFamily: "Cormorant SC, Cormorant Garamond, Georgia, serif"
+    fontSize: "13px"
+    fontWeight: 600
+    letterSpacing: "0.28em"
 rounded:
   hairline: "1px"
   sm: "3px"
@@ -61,7 +81,7 @@ components:
   button-vine:
     backgroundColor: "{colors.lamplight-surface}"
     textColor: "{colors.lamplight-ink}"
-    typography: "{typography.heading}"
+    typography: "{typography.lead}"
     rounded: "{rounded.hairline}"
     padding: "11px 28px 12px"
   story-backing:
@@ -99,7 +119,7 @@ Three reading modes share one token vocabulary (`src/theme/tokens.mjs`, applied 
 - **Display** Cormorant Garamond for titles and headings; **Labels** Cormorant SC with wide tracking, short phrases only; **Reading** EB Garamond for story text and UI copy. Fonts are bundled (`src/theme/fonts.mjs`).
 
 ### Hierarchy
-Display title → heading → body at a 60–75 character measure with ~1.6 leading. Speaker names in the display face.
+Type ramp (px): 13 label · 15 small · 17 ui · 19 body · 23 lead · 32 heading · 44 large heading · display clamp(48–112). Fluid sizes interpolate between two ramp steps. Story text uses body at a 60–75 character measure with ~1.6 leading. Speaker names in the display face.
 
 ### Named Rules
 - **No gradient text, ever.** Solid cream or ink; warmth comes from light behind, not colour inside letters.

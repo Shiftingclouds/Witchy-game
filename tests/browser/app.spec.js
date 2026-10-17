@@ -1,10 +1,10 @@
-import { chooseRemainingScenes } from './story-helpers.js';
+import { chooseRemainingScenes, enterMode, continueGame } from './story-helpers.js';
 import { test, expect } from '@playwright/test';
 test('world navigation, expressions, lessons, journal, and save restore', async ({ page }) => {
   const errors = [];
   page.on('pageerror', (e) => errors.push(e.message));
   await page.goto('/');
-  await page.getByRole('button', { name: 'Live the world', exact: false }).click();
+  await enterMode(page, 'live');
   await expect(page.getByRole('heading', { name: 'Lantern Hall', exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Talk to Rowan', exact: true }).first().click();
   await page.getByRole('button', { name: 'Share a little levity' }).click();
@@ -23,7 +23,7 @@ test('world navigation, expressions, lessons, journal, and save restore', async 
     .getByRole('textbox', { name: 'Personal journal notes' })
     .fill('Remember to ask Imogen about the old register.');
   await page.reload();
-  await page.getByRole('button', { name: 'Continue your life' }).click();
+  await continueGame(page);
   await page.getByRole('button', { name: 'Journal', exact: true }).click();
   await expect(page.getByRole('textbox', { name: 'Personal journal notes' })).toHaveValue(
     'Remember to ask Imogen about the old register.',
@@ -38,7 +38,7 @@ test('book mode reaches a complete ending through all authored scenes and eight 
   page,
 }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Read the book', exact: false }).click();
+  await enterMode(page, 'book');
   for (let i = 0; i < 8; i++) {
     await chooseRemainingScenes(page);
     await expect(page.locator('.story-choices button')).toHaveCount(2);
@@ -55,7 +55,7 @@ test('mobile layout, navigation, map and conversations remain usable', async ({ 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
   await expect(page.locator('body')).toHaveJSProperty('scrollWidth', 390);
-  await page.getByRole('button', { name: 'Live the world', exact: false }).click();
+  await enterMode(page, 'live');
   await expect(page.locator('body')).toHaveJSProperty('scrollWidth', 390);
   await page.getByRole('button', { name: 'Toggle navigation' }).click();
   await page.getByRole('button', { name: 'People', exact: true }).click();
@@ -69,12 +69,12 @@ test('mobile layout, navigation, map and conversations remain usable', async ({ 
 });
 test('gathering choices persist offline and the next day offers a new event', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Live the world', exact: false }).click();
+  await enterMode(page, 'live');
   await page.getByRole('button', { name: 'Take part', exact: true }).click();
   await page.getByRole('button', { name: /Make room at your table/ }).click();
   await expect(page.getByText('A little memory made today')).toBeVisible();
   await page.reload();
-  await page.getByRole('button', { name: 'Continue your life' }).click();
+  await continueGame(page);
   await expect(page.getByText('A little memory made today')).toBeVisible();
   await page.getByRole('button', { name: 'Rest until tomorrow', exact: true }).click();
   await expect(page.getByText('A little memory made today')).toHaveCount(0);
@@ -88,7 +88,7 @@ test('profiles find moving characters and daily friendship is limited to once a 
   page,
 }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Live the world', exact: false }).click();
+  await enterMode(page, 'live');
   await page.getByRole('button', { name: 'People', exact: true }).click();
   await page.getByLabel('Find a person').fill('Noor');
   await page.locator('.person-card').click();
@@ -109,7 +109,7 @@ test('profiles find moving characters and daily friendship is limited to once a 
 });
 test('a version-one save resumes in the browser with its progress preserved', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Live the world', exact: false }).click();
+  await enterMode(page, 'live');
   await page.getByRole('button', { name: 'Look around' }).click();
   await page.evaluate(() => {
     const key = 'lanternmere.save.live';
@@ -120,7 +120,7 @@ test('a version-one save resumes in the browser with its progress preserved', as
     localStorage.setItem(key, JSON.stringify(save));
   });
   await page.reload();
-  await page.getByRole('button', { name: 'Continue your life' }).click();
+  await continueGame(page);
   await page.getByRole('button', { name: 'Journal', exact: true }).click();
   await expect(page.getByLabel('Personal journal notes')).toHaveValue(
     'A memory from before the update.',
@@ -134,7 +134,7 @@ test('export and import transfer progress and invalid imports leave the save int
   page,
 }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Live the world', exact: false }).click();
+  await enterMode(page, 'live');
   await page.getByRole('button', { name: 'Look around' }).click();
   await page.getByRole('button', { name: 'Settings & saves' }).click();
   const downloaded = page.waitForEvent('download');

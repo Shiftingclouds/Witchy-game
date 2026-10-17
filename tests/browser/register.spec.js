@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
-import { chooseRemainingScenes } from './story-helpers.js';
+import { chooseRemainingScenes, enterMode, continueGame } from './story-helpers.js';
 
 async function openRegister(page) {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Read the book', exact: false }).click();
+  await enterMode(page, 'book');
   for (let chapter = 0; chapter < 2; chapter++) {
     await chooseRemainingScenes(page);
     await page.locator('.story-choices button').first().click();
@@ -39,7 +39,7 @@ test('register illustration and its written evidence resume offline in both read
   );
   await expect(dialog.locator('.stage-actor.present')).toHaveCount(0);
   await page.reload();
-  await page.getByRole('button', { name: 'Continue your story' }).click();
+  await continueGame(page);
   await page.getByRole('button', { name: 'Play scene', exact: true }).click();
   await expect(dialog.locator('.speech-text')).toContainText('Dates and payment amounts continue');
   await expect

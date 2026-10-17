@@ -28,7 +28,6 @@ import {
   Sun,
   Moon,
   Download,
-  Upload,
   X,
   Search,
   LogOut,
@@ -43,7 +42,6 @@ import {
 import {
   art,
   houses,
-  familiars,
   locations,
   locationById,
   characters,
@@ -74,8 +72,19 @@ import './dialogue-presentation.css';
 import './theme/lamplight.css';
 import { applyReadingMode } from './theme/apply.mjs';
 import { OpeningScene } from './features/opening/OpeningScene.jsx';
+import { TitleScreen } from './features/opening/TitleScreen.jsx';
+import { CharacterCreation } from './features/opening/CharacterCreation.jsx';
+import { LAST_MODE_KEY } from './features/opening/menu-model.mjs';
 
-const saves = createSaveRepository(platformStorage());
+const storage = platformStorage();
+const saves = createSaveRepository(storage);
+const lastMode = () => {
+  try {
+    return storage.getItem(LAST_MODE_KEY);
+  } catch {
+    return null;
+  }
+};
 function load(mode) {
   try {
     return saves.read(mode);
@@ -116,107 +125,13 @@ function taskLocation(game, id) {
   return taskLocations[id];
 }
 
-function Landing({ onStart }) {
-  const [name, setName] = useState('Avery'),
-    [house, setHouse] = useState('owlcombe'),
-    [familiar, setFamiliar] = useState('cat');
-  return (
-    <div className="landing">
-      <div className="landing-art" style={{ backgroundImage: `url(${art('mere-day')})` }}>
-        <div className="landing-brand">
-          <img src="/crest.svg" alt="" />
-          <span>
-            LANTERNMERE <small>ACADEMY OF THE QUIET ARTS</small>
-          </span>
-        </div>
-        <div className="landing-art-caption">
-          <span className="little-line" /> Across the water, a different life is waiting.
-        </div>
-      </div>
-      <main className="landing-paper">
-        <Eyebrow>
-          <Sparkles size={14} /> A LIFE LESS ORDINARY
-        </Eyebrow>
-        <h1>
-          There’s a little
-          <br />
-          magic in <em>belonging.</em>
-        </h1>
-        <p className="landing-intro">
-          A lantern in the window. A seat beside the fire.
-          <br />A whole world waiting to know your name.
-        </p>
-        <div className="enrolment">
-          <label>
-            Your name
-            <input
-              maxLength={24}
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="What should we call you?"
-            />
-          </label>
-          <div className="form-row">
-            <label>
-              Your house
-              <select value={house} onChange={(e) => setHouse(e.target.value)}>
-                {houses.map((h) => (
-                  <option key={h.id} value={h.id}>
-                    {h.name} · {h.virtue}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Your familiar
-              <select value={familiar} onChange={(e) => setFamiliar(e.target.value)}>
-                {familiars.map((f) => (
-                  <option key={f} value={f}>
-                    {f[0].toUpperCase() + f.slice(1)}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
-        </div>
-        <div className="mode-options">
-          <button
-            className="mode-card primary-mode"
-            onClick={() => onStart('live', name, house, familiar)}
-          >
-            <Compass size={27} />
-            <span>
-              <strong>{load('live') ? 'Continue your life' : 'Live the world'}</strong>
-              <small>Explore at your own pace. Make this place yours.</small>
-            </span>
-            <ArrowRight size={20} />
-          </button>
-          <button className="mode-card" onClick={() => onStart('book', name, house, familiar)}>
-            <BookOpen size={27} />
-            <span>
-              <strong>{load('book') ? 'Continue your story' : 'Read the book'}</strong>
-              <small>An illustrated, choice-led story. One page at a time.</small>
-            </span>
-            <ArrowRight size={20} />
-          </button>
-        </div>
-        <p className="landing-foot">
-          <Leaf size={14} />
-          Every page plays on this computer, no connection needed.
-          <br />
-          <span>Two ways to belong. Separate saves. The same enchanted year.</span>
-        </p>
-      </main>
-    </div>
-  );
-}
-
 function App() {
   const reading = useReadingPreferences();
   useEffect(() => applyReadingMode(reading.mode), [reading.mode]);
   const [game, setGame] = useState(null),
     [view, setView] = useState('world'),
     [modal, setModal] = useState(null),
+    [creating, setCreating] = useState(null),
     [toast, setToast] = useState(''),
     [mobileNav, setMobileNav] = useState(false),
     [manifest, setManifest] = useState([]),
@@ -231,6 +146,7 @@ function App() {
     if (!game) return;
     try {
       saves.write(game);
+      storage.setItem(LAST_MODE_KEY, game.mode);
       setSaveError('');
     } catch {
       setSaveError(
@@ -257,6 +173,10 @@ function App() {
   function visit(id) {
     act({ type: 'visit', id });
     navigate('world');
+  }
+  function chooseMode(mode) {
+    if (load(mode)) start(mode);
+    else setCreating(mode);
   }
   function start(mode, name, house, familiar) {
     try {
@@ -291,18 +211,31 @@ function App() {
   if (!game)
     return (
       <>
-        <Landing onStart={start} />
-        <div className="landing-import">
-          <label className="text-button">
-            <Upload size={14} /> Restore a saved game
-            <input
-              type="file"
-              accept="application/json,.json"
-              hidden
-              onChange={(e) => importSave(e.target.files[0])}
+        <TitleScreen
+          reduced={reading.reduced}
+          saves={{ book: load('book'), live: load('live') }}
+          lastMode={lastMode()}
+          onContinue={(mode) => start(mode)}
+          onChooseMode={chooseMode}
+          onImport={importSave}
+          onSettings={() => setModal({ type: 'reading' })}
+        >
+          {creating && (
+            <CharacterCreation
+              mode={creating}
+              onBack={() => setCreating(null)}
+              onBegin={(name, house, familiar) => {
+                start(creating, name, house, familiar);
+                setCreating(null);
+              }}
             />
-          </label>
-        </div>
+          )}
+        </TitleScreen>
+        {modal?.type === 'reading' && (
+          <Modal title="Settings" onClose={() => setModal(null)}>
+            <ReadingControls reading={reading} />
+          </Modal>
+        )}
         {toast && (
           <div className="toast" role="status">
             {toast}

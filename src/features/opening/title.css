@@ -1,0 +1,251 @@
+/* Title, menu and character creation over the living opening. */
+.title-ui {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fbf0d6;
+}
+.title-ui:not(.awake) {
+  cursor: pointer;
+}
+/* While a character is being created, the title and menu step aside. */
+.title-ui.stepped-aside {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+.title-block {
+  position: relative;
+  isolation: isolate;
+  margin-top: 13vh;
+  text-align: center;
+  transition: transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.title-ui.awake .title-block {
+  transform: translateY(-7vh) scale(0.72);
+}
+/* Sunset light behind the whole title block. */
+.title-block::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 150%;
+  height: 200%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 48% 44% at 50% 50%,
+    rgba(255, 160, 86, 0.4),
+    rgba(240, 112, 62, 0.17) 50%,
+    rgba(200, 80, 50, 0) 78%
+  );
+  filter: blur(14px);
+  animation: title-dusk 9s ease-in-out infinite;
+}
+@keyframes title-dusk {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.title-kicker {
+  margin: 0 0 0.9em 0.32em;
+  font-family: var(--lm-label);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.32em;
+  color: #e4cfa6;
+}
+.title-name {
+  margin: 0;
+  font-family: var(--lm-display);
+  font-weight: 400;
+  font-size: clamp(48px, 7.4vw, 112px);
+  letter-spacing: 0.05em;
+  line-height: 1;
+  color: #fbf0d6;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.4);
+}
+html[data-reading-mode] .title-name {
+  color: #fbf0d6;
+}
+.title-rule {
+  display: block;
+  margin: 1.1em auto 0;
+  width: clamp(240px, 26vw, 420px);
+  height: auto;
+  fill: none;
+  stroke: #f0cc84;
+  stroke-width: 1;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 2px rgba(255, 196, 110, 0.75))
+    drop-shadow(0 0 7px rgba(255, 160, 80, 0.35));
+}
+.title-rule circle {
+  fill: #ffe3a3;
+  stroke: none;
+}
+.title-press {
+  position: absolute;
+  top: 41vh;
+  margin: 0;
+  font-family: var(--lm-label);
+  font-weight: 500;
+  font-size: clamp(15px, 1.35vw, 19px);
+  letter-spacing: 0.5em;
+  color: #fbf0d6;
+  animation: title-press 3.6s ease-in-out infinite;
+}
+@keyframes title-press {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+/* The menu sits in the sky so the lantern stays visible below it. */
+.title-menu {
+  position: absolute;
+  top: 27vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 11px;
+  animation: title-menu-in 1s 0.35s both cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@keyframes title-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+.title-quiet {
+  background: none;
+  border: 0;
+  padding: 6px 2px;
+  cursor: pointer;
+  font-family: var(--lm-label);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.28em;
+  color: #fbf0d6;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.9),
+    0 0 12px rgba(0, 0, 0, 0.7);
+}
+.title-quiet:hover,
+.title-quiet:focus-visible {
+  color: #fbf0d6;
+}
+.title-corner {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  display: flex;
+  gap: 22px;
+  animation: title-menu-in 1s 0.8s both;
+}
+/* Character creation: a lamplit card over the same scene. */
+.character-creation {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(560px, calc(100vw - 32px));
+  padding: 34px 40px 30px;
+  text-align: center;
+  color: var(--lm-ink);
+  background: linear-gradient(180deg, rgba(34, 15, 9, 0.84), rgba(20, 9, 5, 0.9));
+  border: 1px solid rgba(232, 191, 110, 0.5);
+  outline: 1px solid rgba(232, 191, 110, 0.18);
+  outline-offset: -6px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+}
+.character-creation h2 {
+  margin: 0;
+  font-size: clamp(32px, 3vw, 44px);
+  font-weight: 500;
+  color: #fbf0d6;
+}
+.creation-lede {
+  margin: 6px 0 22px;
+  font-style: italic;
+  color: #e4cfa6;
+}
+.creation-body {
+  display: grid;
+  grid-template-columns: 132px 1fr;
+  gap: 24px;
+  align-items: center;
+  text-align: left;
+}
+.creation-familiar {
+  width: 132px;
+  height: 160px;
+  object-fit: contain;
+  border: 1px solid rgba(232, 191, 110, 0.35);
+  background: rgba(60, 30, 16, 0.5);
+}
+.creation-fields {
+  display: grid;
+  gap: 12px;
+}
+.creation-fields label {
+  display: grid;
+  gap: 4px;
+  font-family: var(--lm-label);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: #e4cfa6;
+}
+.creation-fields :is(input, select) {
+  font-family: var(--lm-read);
+  font-size: 17px;
+  letter-spacing: 0;
+  padding: 8px 10px;
+  color: #fbf0d6;
+  background: rgba(16, 7, 3, 0.6);
+  border: 1px solid rgba(232, 191, 110, 0.4);
+  border-radius: 1px;
+}
+.creation-motto {
+  margin: -4px 0 0;
+  font-style: italic;
+  font-size: 15px;
+  color: #e4cfa6;
+}
+.creation-actions {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  margin-top: 26px;
+}
+.opening.still :is(.title-block, .title-block::before, .title-press, .title-menu, .title-corner) {
+  animation: none !important;
+  transition: none !important;
+}
+/* Narrow windows (browser development only): keep it usable, stacked. */
+@media (max-width: 1023px) {
+  .title-menu {
+    top: 30vh;
+  }
+  .creation-body {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+  .title-corner {
+    right: 12px;
+    gap: 14px;
+  }
+}

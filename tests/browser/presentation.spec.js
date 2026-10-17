@@ -1,9 +1,9 @@
-import { chooseRemainingScenes } from './story-helpers.js';
+import { chooseRemainingScenes, enterMode, continueGame } from './story-helpers.js';
 import { test, expect } from '@playwright/test';
 
 async function openScene(page) {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Read the book', exact: false }).click();
+  await enterMode(page, 'book');
   await page.getByRole('button', { name: 'Play scene', exact: true }).click();
 }
 
@@ -76,7 +76,7 @@ test('scene bookmarks and reading preference reload offline with the same line a
   for (let i = 0; i < 5; i++)
     await page.getByRole('button', { name: 'Next line', exact: true }).click();
   await page.reload();
-  await page.getByRole('button', { name: 'Continue your story' }).click();
+  await continueGame(page);
   await page.getByRole('button', { name: 'Play scene', exact: true }).click();
   await expect(page.locator('.speech-box')).toHaveAttribute('data-beat', '5');
   await expect(page.locator('.speech-box')).toHaveAttribute('data-revealing', 'false');
@@ -139,7 +139,7 @@ test('rapid topic changes keep the last reply expression without accumulating po
   page,
 }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Live the world', exact: false }).click();
+  await enterMode(page, 'live');
   await page.getByRole('button', { name: 'Talk to Rowan', exact: true }).first().click();
   await page.getByRole('button', { name: 'Ask about the lanterns' }).click();
   await page.getByRole('button', { name: 'Ask how they’re feeling' }).click();

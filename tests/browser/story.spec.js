@@ -1,11 +1,11 @@
 import { test, expect } from '@playwright/test';
-import { chooseRemainingScenes } from './story-helpers.js';
+import { chooseRemainingScenes, enterMode, continueGame } from './story-helpers.js';
 
 test('book decisions reveal only the chosen branch and resume in the staged reader offline', async ({
   page,
 }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Read the book', exact: false }).click();
+  await enterMode(page, 'book');
   await expect(page.locator('.story-choices button')).toHaveCount(0);
   await page.getByRole('button', { name: 'Make a record with Imogen.', exact: false }).click();
   await expect(page.locator('[data-story-beat="record-columns"]')).toBeVisible();
@@ -14,7 +14,7 @@ test('book decisions reveal only the chosen branch and resume in the staged read
     page.locator('[data-choice="arrival:first-observation"] button').first(),
   ).toBeDisabled();
   await page.reload();
-  await page.getByRole('button', { name: 'Continue your story' }).click();
+  await continueGame(page);
   await page.getByRole('button', { name: 'Play scene', exact: true }).click();
   await expect(page.locator('.speech-text')).toContainText('Imogen rules three columns');
   const state = await page.evaluate(() =>
@@ -30,7 +30,7 @@ test('staged choices work with keyboard focus and the transcript retains the dec
   page,
 }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Read the book', exact: false }).click();
+  await enterMode(page, 'book');
   await page.getByRole('button', { name: 'Play scene', exact: true }).click();
   const dialog = page.getByRole('dialog');
   await dialog.getByLabel('Text reveal speed').selectOption('instant');
@@ -59,7 +59,7 @@ test('large text and motion preferences persist and keep a two-person lesson usa
 }) => {
   await page.setViewportSize({ width: 320, height: 740 });
   await page.goto('/');
-  await page.getByRole('button', { name: 'Read the book', exact: false }).click();
+  await enterMode(page, 'book');
   await page.getByLabel('Story text size').selectOption('largest');
   await page.getByLabel('Reading motion').selectOption('reduce');
   await chooseRemainingScenes(page, 1);
@@ -85,7 +85,7 @@ test('large text and motion preferences persist and keep a two-person lesson usa
     fullPage: false,
   });
   await page.reload();
-  await page.getByRole('button', { name: 'Continue your story' }).click();
+  await continueGame(page);
   await expect(page.getByLabel('Story text size')).toHaveValue('largest');
   await expect(page.getByLabel('Reading motion')).toHaveValue('reduce');
   await page.getByRole('button', { name: 'Play scene', exact: true }).click();
