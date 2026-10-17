@@ -30,3 +30,12 @@ test('records, settings and the art collection all sit in the reading mode', asy
   await page.keyboard.press('Escape');
   await expect(page.getByRole('dialog')).toHaveCount(0);
 });
+
+test('dates to look forward to are all still ahead of today', async ({ page }) => {
+  await page.goto('/');
+  await enterMode(page, 'live');
+  await page.getByRole('button', { name: 'Calendar', exact: true }).first().click();
+  const first = page.locator('.festival-list > div').first();
+  await expect(first).toBeVisible();
+  await expect(first.locator('strong')).not.toHaveText('1');
+});

@@ -88,3 +88,6 @@ export function pendingStoryChoice(state) {
     ) || null
   );
 }
+
+/** What a character says, set in curly quotes so speech reads apart from action. */
+export const spoken = (text) => (/^[“"]/.test(text.trim()) ? text : `“${text}”`);

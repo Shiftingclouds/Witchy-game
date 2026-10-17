@@ -19,7 +19,6 @@ import {
   Settings,
   ChevronsLeft,
   Flame,
-  Leaf,
   ArrowRight,
   ChevronRight,
   ChevronLeft,
@@ -76,6 +75,7 @@ import { applyReadingMode } from './theme/apply.mjs';
 import { OpeningScene } from './features/opening/OpeningScene.jsx';
 import { TitleScreen } from './features/opening/TitleScreen.jsx';
 import { VineButton } from './features/opening/VineButton.jsx';
+import { metCharacters } from './engine/selectors.mjs';
 import { AiScene } from './features/ai/AiScene.jsx';
 import { useChronicle } from './features/ai/useTurn.mjs';
 import { AiStory, ThreadsCard } from './features/ai/AiStory.jsx';
@@ -365,16 +365,6 @@ function App() {
           >
             <LogOut size={17} /> <span className="nav-label">Main menu</span>
           </button>
-          <div className="player-card">
-            <span className="player-initial" style={{ background: house.color }}>
-              {game.name[0].toUpperCase()}
-            </span>
-            <span className="nav-label">
-              <strong>{game.name}</strong>
-              <small>{house.name} · First year</small>
-            </span>
-            <Leaf size={17} />
-          </div>
         </div>
       </aside>
       <div className="workspace" inert={Boolean(modal)}>
@@ -828,7 +818,10 @@ function Story({ game, act, visit, open, reading, leave }) {
 function People({ game, open }) {
   const [query, setQuery] = useState(''),
     [onlyFriends, setOnlyFriends] = useState(false);
-  const shown = characters.filter(
+  // Nobody appears here until you have actually come across them.
+  const met = metCharacters(game);
+  const known = characters.filter((c) => met.has(c.id));
+  const shown = known.filter(
     (c) => c.name.toLowerCase().includes(query.toLowerCase()) && (!onlyFriends || game.bonds[c.id]),
   );
   return (
@@ -841,10 +834,10 @@ function People({ game, open }) {
       <div className="filter-bar">
         <div className="tabs">
           <button className={!onlyFriends ? 'active' : ''} onClick={() => setOnlyFriends(false)}>
-            Everyone · {characters.length}
+            People you’ve met · {known.length}
           </button>
           <button className={onlyFriends ? 'active' : ''} onClick={() => setOnlyFriends(true)}>
-            People you know
+            Friends
           </button>
         </div>
         <label className="search">
@@ -970,55 +963,77 @@ function Grimoire({ game, visit, open, act }) {
             you.
           </p>
           <span>
-            {game.spells.length} of {spells.length} spells learned
+            {game.spells.length === 1 ? '1 spell learned' : `${game.spells.length} spells learned`}
           </span>
         </div>
       </div>
+      {/* A spell only appears once you have taken its class. */}
+      {!game.spells.length && (
+        <p className="grimoire-empty">
+          The pages are still blank. Spells are learned in class; each one you master will be
+          written here.
+        </p>
+      )}
       <div className="spell-grid">
-        {spells.map((s, i) => (
-          <section
-            className={'spell-card ' + (game.spells.includes(s.id) ? 'learned' : '')}
-            key={s.id}
-          >
-            <span className="spell-icon">
-              {i === 0 ? <Flame /> : i === 1 ? <Eye /> : <Shield />}
-            </span>
-            <Eyebrow>{s.school}</Eyebrow>
-            <h2>{s.name}</h2>
-            <p>{s.description}</p>
-            <div className="spell-gesture">{s.gesture}</div>
-            {game.spells.includes(s.id) ? (
-              <>
-                <span className="learned-label">
-                  <CheckCircle2 size={14} /> In your grimoire
-                </span>
-                {isLiveLike(game.mode) && (
-                  <Button onClick={() => act({ type: 'cast', id: s.id })}>
-                    Cast at {locationById[game.location].name}
-                  </Button>
-                )}
-              </>
-            ) : isBookLike(game.mode) ? (
-              <span className="muted">Learned as your story unfolds</span>
-            ) : (
-              <Button
-                icon={GraduationCap}
-                onClick={() =>
-                  game.location === s.location
-                    ? open({ type: 'lesson', id: s.id })
-                    : visit(s.location)
-                }
-              >
-                {game.location === s.location
-                  ? 'Begin the lesson'
-                  : 'Visit ' + locationById[s.location].name}
-              </Button>
-            )}
-          </section>
-        ))}
+        {spells
+          .filter((s) => game.spells.includes(s.id))
+          .map((s) => (
+            <section
+              className={'spell-card ' + (game.spells.includes(s.id) ? 'learned' : '')}
+              key={s.id}
+            >
+              <span className="spell-icon">
+                {s.id === spells[0].id ? <Flame /> : s.id === spells[1]?.id ? <Eye /> : <Shield />}
+              </span>
+              <Eyebrow>{s.school}</Eyebrow>
+              <h2>{s.name}</h2>
+              <p>{s.description}</p>
+              <div className="spell-gesture">{s.gesture}</div>
+              {game.spells.includes(s.id) ? (
+                <>
+                  <span className="learned-label">
+                    <CheckCircle2 size={14} /> In your grimoire
+                  </span>
+                  {isLiveLike(game.mode) && (
+                    <Button onClick={() => act({ type: 'cast', id: s.id })}>
+                      Cast at {locationById[game.location].name}
+                    </Button>
+                  )}
+                </>
+              ) : isBookLike(game.mode) ? (
+                <span className="muted">Learned as your story unfolds</span>
+              ) : (
+                <Button
+                  icon={GraduationCap}
+                  onClick={() =>
+                    game.location === s.location
+                      ? open({ type: 'lesson', id: s.id })
+                      : visit(s.location)
+                  }
+                >
+                  {game.location === s.location
+                    ? 'Begin the lesson'
+                    : 'Visit ' + locationById[s.location].name}
+                </Button>
+              )}
+            </section>
+          ))}
       </div>
     </>
   );
+}
+
+/** Festivals still ahead of today (never today or the past), soonest first, with their next date. */
+function upcomingFestivals(today) {
+  const year = Number(today.slice(0, 4));
+  return festivals
+    .map((f) => {
+      const pad = (n) => String(n).padStart(2, '0');
+      let date = `${year}-${pad(f.month)}-${pad(f.day)}`;
+      if (date <= today) date = `${year + 1}-${pad(f.month)}-${pad(f.day)}`;
+      return { ...f, date };
+    })
+    .sort((a, b) => a.date.localeCompare(b.date));
 }
 
 function Calendar({ game, act, visit, open }) {
@@ -1125,7 +1140,7 @@ function Calendar({ game, act, visit, open }) {
       </div>
       <h2 className="section-heading">Dates to look forward to</h2>
       <div className="festival-list">
-        {festivals.map((f) => (
+        {upcomingFestivals(game.date).map((f) => (
           <div key={f.name}>
             <span>
               <small>

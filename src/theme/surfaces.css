@@ -336,3 +336,12 @@ html[data-reading-mode] .search input {
   min-width: 360px;
   margin: 0 auto;
 }
+
+.grimoire-empty {
+  margin: 8px 0 24px;
+  max-width: 60ch;
+  font-family: var(--lm-read);
+  font-size: 19px;
+  font-style: italic;
+  color: var(--lm-ink-soft);
+}

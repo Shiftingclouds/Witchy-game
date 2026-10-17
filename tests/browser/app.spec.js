@@ -89,6 +89,15 @@ test('profiles find moving characters and daily friendship is limited to once a 
 }) => {
   await page.goto('/');
   await enterMode(page, 'live');
+  // People only lists those you have met: say Noor has spoken with you once before.
+  await page.evaluate(() => {
+    const save = JSON.parse(localStorage.getItem('lanternmere.save.live'));
+    save.conversations = { ...save.conversations, noor: [] };
+    localStorage.setItem('lanternmere.save.live', JSON.stringify(save));
+  });
+  await page.reload();
+  await page.keyboard.press('Enter');
+  await page.getByRole('button', { name: /^Continue/ }).click();
   await page.getByRole('button', { name: 'People', exact: true }).click();
   await page.getByLabel('Find a person').fill('Noor');
   await page.locator('.person-card').click();

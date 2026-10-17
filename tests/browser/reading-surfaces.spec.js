@@ -60,3 +60,11 @@ for (const mode of ['lamplight', 'parchment', 'night']) {
     expect(ratio(rgb(fg), background)).toBeGreaterThanOrEqual(4.5);
   });
 }
+
+test('in the book, what people say is set in quotation marks', async ({ page }) => {
+  await page.goto('/');
+  await enterMode(page, 'book');
+  const line = page.locator('.authored-dialogue').first();
+  await expect(line).toContainText('“');
+  await expect(line).toContainText('”');
+});

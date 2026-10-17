@@ -10,18 +10,21 @@ test('Enter or Space wakes the title and shows the menu', async ({ page }) => {
   }
 });
 
-test('keyboard focus on a menu button shows its vine', async ({ page }) => {
+test('keyboard focus brightens a menu button frame without growing vines', async ({ page }) => {
   await page.goto('/');
   await page.keyboard.press('Enter');
   await page.keyboard.press('Tab');
   const focused = page.locator('.vine-button:focus-visible');
   await expect(focused).toHaveCount(1);
   await page.waitForTimeout(1300);
+  expect(await focused.evaluate((el) => getComputedStyle(el).borderColor)).toBe(
+    'rgba(246, 214, 146, 0.95)',
+  );
   const opacity = await focused
     .locator('.vine')
     .first()
     .evaluate((el) => Number(getComputedStyle(el).opacity));
-  expect(opacity).toBeGreaterThan(0.9);
+  expect(opacity).toBeLessThan(0.1);
 });
 
 test('a new player creates a character, and Continue later opens that save', async ({ page }) => {
@@ -53,7 +56,7 @@ test('choosing a mode that already has a save continues it and never re-creates'
   await page.getByRole('button', { name: /The Story/ }).click();
   await page.getByRole('button', { name: /Live the world/ }).click();
   await expect(page.getByRole('heading', { name: 'Who are you?' })).toHaveCount(0);
-  await expect(page.getByText('Wren', { exact: true }).first()).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Wren/ }).first()).toBeVisible();
 });
 
 test('the menu never covers the lantern at 1024×700', async ({ page }) => {
@@ -104,22 +107,27 @@ test('the focus outline on the opening stays bright in Parchment', async ({ page
   );
 });
 
-test('keyboard focus grows the vine on a button that is not the lead', async ({ page }) => {
+test('vines grow only on hover, on every menu button alike', async ({ page }) => {
   await page.goto('/');
   await page.keyboard.press('Enter');
-  await page.keyboard.press('Tab');
-  await page.keyboard.press('Enter');
-  const read = page.getByRole('button', { name: /Read the book/ });
-  const live = page.getByRole('button', { name: /Live the world/ });
-  await expect(read).toBeFocused();
-  await page.waitForTimeout(1300);
   const vine = (b) =>
     b
       .locator('.vine')
       .first()
       .evaluate((el) => Number(getComputedStyle(el).opacity));
-  expect(await vine(read)).toBeGreaterThan(0.9);
-  expect(await vine(live)).toBeLessThan(0.1);
+  const story = page.getByRole('button', { name: /The Story/ });
+  await page.waitForTimeout(1300);
+  expect(await vine(story)).toBeLessThan(0.1);
+  await story.hover();
+  await page.waitForTimeout(1300);
+  expect(await vine(story)).toBeGreaterThan(0.9);
+  await page.mouse.move(0, 0);
+  await story.click();
+  const read = page.getByRole('button', { name: /Read the book/ });
+  await expect(read).toBeFocused();
+  await page.mouse.move(0, 0);
+  await page.waitForTimeout(1300);
+  expect(await vine(read)).toBeLessThan(0.1);
 });
 
 test('an unreadable save is never mistaken for an empty slot', async ({ page }) => {

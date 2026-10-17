@@ -14,3 +14,5 @@ release/
 public/opening/
 logs/
 *.jsonl
+.superdesign/
+build/icon.png

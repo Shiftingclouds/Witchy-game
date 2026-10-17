@@ -12,6 +12,7 @@ import {
   textSpeeds,
   letterDelay,
   choiceKey,
+  spoken,
 } from './scene-beats.mjs';
 import { READING_MODES } from './theme/tokens.mjs';
 
@@ -320,8 +321,9 @@ export function SceneReader({ game, reading, act, onClose }) {
     [finished, setFinished] = useState(false),
     [transcriptOpen, setTranscriptOpen] = useState(false);
   const current = beats[Math.min(position, beats.length - 1)],
+    currentText = current.speaker ? spoken(current.text) : current.text,
     reveal = useTextReveal(
-      current.text,
+      currentText,
       { ...reading, paused: transcriptOpen },
       Boolean(game.bookmark),
     );
@@ -394,9 +396,9 @@ export function SceneReader({ game, reading, act, onClose }) {
             disabled={finished || (pending && reveal.complete)}
           >
             <RevealedText
-              text={current.text}
+              text={currentText}
               reveal={reveal}
-              announcement={`${current.speaker ? characterById[current.speaker].name : 'Narration'}: ${current.text}`}
+              announcement={`${current.speaker ? characterById[current.speaker].name : 'Narration'}: ${currentText}`}
             />
           </button>
           {current.choice && reveal.complete && (

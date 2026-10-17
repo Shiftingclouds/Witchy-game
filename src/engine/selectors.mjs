@@ -2,7 +2,7 @@ import { isBookLike } from './modes.mjs';
 import { chapters, dialogues } from '../content.mjs';
 import { castDetails, supportingDialogues } from '../cast.mjs';
 import { season, holiday } from './time.mjs';
-import { pendingStoryChoice } from '../scene-beats.mjs';
+import { chapterBeats, pendingStoryChoice } from '../scene-beats.mjs';
 export function sceneArt(state, id = state.location) {
   if (id === 'mere')
     return season(state.date) === 'Winter'
@@ -75,4 +75,17 @@ export function talkLine(id, topic, state) {
         'I think an ordinary, uneventful afternoon is an underrated magical achievement. Shall we try for one?',
     }[topic] || 'It is good to see you.',
   ];
+}
+
+/** Everyone the player has actually come across: spoken to, heard in the story so far, or met in an AI scene. */
+export function metCharacters(s) {
+  const met = new Set();
+  for (const [id, bond] of Object.entries(s.bonds || {})) if (bond > 0) met.add(id);
+  for (const id of Object.keys(s.conversations || {})) met.add(id);
+  for (let i = 0; i <= (s.chapter || 0); i++)
+    for (const beat of chapterBeats(i, s)) if (beat.speaker) met.add(beat.speaker);
+  for (const turn of s.ai?.turns || [])
+    for (const beat of turn.beats) if (beat.speaker) met.add(beat.speaker);
+  for (const id of Object.keys(s.ai?.memories || {})) met.add(id);
+  return met;
 }

@@ -45,3 +45,9 @@ test('Ctrl+B is ignored while typing in the journal', async ({ page }) => {
   await page.keyboard.press('Control+b');
   await expect(page.locator('.app-shell')).toHaveAttribute('data-sidebar', 'open');
 });
+
+test('the sidebar has no player badge', async ({ page }) => {
+  await page.goto('/');
+  await enterMode(page, 'live');
+  await expect(page.locator('.player-card')).toHaveCount(0);
+});

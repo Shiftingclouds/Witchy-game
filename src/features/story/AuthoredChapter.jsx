@@ -5,7 +5,7 @@ import { StoryInput } from '../../components/lamplight/StoryInput.jsx';
 import { ThinkingVeil } from '../../components/lamplight/ThinkingVeil.jsx';
 import { useTurn } from '../ai/useTurn.mjs';
 import { ERROR_COPY } from '../../ai/claude.mjs';
-import { chapterBeats, chapterSceneId, choiceKey } from '../../scene-beats.mjs';
+import { chapterBeats, chapterSceneId, choiceKey, spoken } from '../../scene-beats.mjs';
 import { art, characterById, locationById } from '../../content.mjs';
 
 export function SceneDecision({ beat, sceneId, game, onSelect }) {
@@ -149,7 +149,7 @@ export function AuthoredChapter({ game, act, reduced = false }) {
               {beat.speaker && (
                 <strong className="story-speaker">{characterById[beat.speaker].name}</strong>
               )}
-              {beat.text}
+              {beat.speaker ? spoken(beat.text) : beat.text}
             </p>
             {beat.choice && (
               <SceneDecision

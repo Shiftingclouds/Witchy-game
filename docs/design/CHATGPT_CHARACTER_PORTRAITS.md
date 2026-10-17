@@ -1,6 +1,6 @@
 # Lanternmere — character portraits
 
-Hello! This file is everything you need to paint **81 character portraits** (27 characters × 3 expressions) for **Lanternmere**, a cosy, mysterious witch-academy story game. Please read it all first, then work through it in order.
+Hello! This file is everything you need to paint **81 character portraits** (27 characters × 3 expressions), plus one **app icon** at the end, for **Lanternmere**, a cosy, mysterious witch-academy story game. Please read it all first, then work through it in order.
 
 ## Attached with this file
 
@@ -427,6 +427,15 @@ _Travelling merchant._ The Pedlar arrives at every festival with a cart-pack of 
 
 ---
 
+## Last: the app icon
+
+One more image, after the portraits: the icon for the game's Windows program.
+
+- **File:** `lantern-icon.png`, **1024×1024**, square.
+- **What:** a single small brass lantern with a warm golden flame, ornate but simple silhouette, centred on a deep umber-brown background with a soft gold glow behind it, in the same warm painterly style as the portraits. No text. It must still read clearly when shrunk to 32 pixels, so keep the shape bold and simple.
+
+---
+
 ## When everything is done
 
-Please list all 81 filenames you produced, so I can check that none are missing. Thank you!
+Please list all 82 filenames you produced (81 portraits and the icon), so I can check that none are missing. Thank you!

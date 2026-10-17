@@ -1,5 +1,5 @@
 /* The framed Lamplight button: dark warm fill, double hairline frame, serif label and italic subline.
-   Thin gold vines grow outward from both ends on hover, on keyboard focus, and on the lead action. */
+   Thin gold vines grow outward from both ends on hover; keyboard focus brightens the frame. */
 .vine-button {
   position: relative;
   display: grid;
@@ -69,9 +69,7 @@
 .vine-button .vine-buds {
   fill: var(--lm-gold-bright, #f6d48e);
 }
-.vine-button:hover .vine,
-.vine-button:focus-visible .vine,
-.vine-button.lead .vine {
+.vine-button:hover .vine {
   opacity: 1;
   clip-path: inset(0 0 0 0);
 }

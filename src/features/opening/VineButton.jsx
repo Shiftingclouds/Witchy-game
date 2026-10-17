@@ -19,7 +19,7 @@ function Vine({ side }) {
   );
 }
 
-/** The framed Lamplight button. Vines grow on hover and keyboard focus, and stay on the lead action. */
+/** The framed Lamplight button. Vines grow on hover; keyboard focus brightens the frame. */
 export function VineButton({ title, subline, lead = false, className = '', ...props }) {
   return (
     <button

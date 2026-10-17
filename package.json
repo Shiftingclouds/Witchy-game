@@ -21,7 +21,7 @@
     "check": "npm run format:check && npm run check:characters && npm run check:story && npm run check:story-export && npm test",
     "check:story": "node scripts/check-story.mjs",
     "app": "npm run build && electron .",
-    "dist:win": "npm run build && electron-builder --win portable",
+    "dist:win": "npm run build && node scripts/copy-icon.mjs && electron-builder --win portable",
     "test:electron": "npm run build && playwright test -c playwright.electron.config.js",
     "design:screens": "npm run build && node scripts/capture-screens.mjs",
     "design:detect": "node scripts/design-detect.mjs"
