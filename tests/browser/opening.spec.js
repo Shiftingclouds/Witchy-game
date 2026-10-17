@@ -32,7 +32,9 @@ test.describe('the living opening', () => {
     expect(await motion(page, ROCKS_RIGHT, 3000)).toBeLessThan(0.3);
     expect(await motion(page, MOUNTAIN_PEAKS, 3000)).toBeLessThan(0.3);
     expect(await motion(page, CASTLE, 3000)).toBeLessThan(0.3);
-    expect(await motion(page, OPEN_LAKE, 3000)).toBeGreaterThan(2);
+    // The ripple swings on a 14 s cycle; one of two samples is always away from a turnaround.
+    const lake = Math.max(await motion(page, OPEN_LAKE, 3000), await motion(page, OPEN_LAKE, 3000));
+    expect(lake).toBeGreaterThan(2);
   });
 
   test('in-app reduce motion stills everything', async ({ page }) => {
