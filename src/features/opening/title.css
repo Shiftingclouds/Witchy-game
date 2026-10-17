@@ -1,4 +1,14 @@
 /* Title, menu and character creation over the living opening. */
+/* The opening is always a dusk painting, so it keeps Lamplight colours in every reading mode. */
+.opening {
+  --lm-ink: #fbf0d6;
+  --lm-ink-soft: #e4cfa6;
+  --lm-gold: #e8bf6e;
+  --lm-gold-bright: #f6d48e;
+  --lm-surface: #26150d;
+  --lm-bg: #1a0f0a;
+  --lm-wine: #5b2433;
+}
 .title-ui {
   position: absolute;
   inset: 0;
@@ -113,6 +123,14 @@ html[data-reading-mode] .title-name {
   }
 }
 /* The menu sits in the sky so the lantern stays visible below it. */
+/* "Back" can land on the brightest part of the sunset, so it carries its own dark backing. */
+.title-menu .title-quiet {
+  margin-top: 8px;
+  padding: 6px 18px;
+  background: rgba(20, 9, 5, 0.72);
+  border: 1px solid rgba(232, 191, 110, 0.35);
+  border-radius: 1px;
+}
 .title-menu {
   position: absolute;
   top: 27vh;
@@ -129,14 +147,15 @@ html[data-reading-mode] .title-name {
   }
 }
 .title-quiet {
+  min-height: 32px;
   background: none;
   border: 0;
-  padding: 6px 2px;
+  padding: 6px 4px;
   cursor: pointer;
   font-family: var(--lm-label);
   font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 0.28em;
+  font-size: 15px;
+  letter-spacing: 0.2em;
   color: #fbf0d6;
   text-shadow:
     0 1px 2px rgba(0, 0, 0, 0.9),

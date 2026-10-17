@@ -71,3 +71,13 @@ test('the menu never covers the lantern at 1024×700', async ({ page }) => {
     expect(menu.y + menu.height).toBeLessThan(lanternTop);
   }
 });
+
+test('restoring a save is a real button the keyboard can reach', async ({ page }) => {
+  await page.goto('/');
+  await page.keyboard.press('Enter');
+  const restore = page.getByRole('button', { name: 'Restore a save' });
+  await expect(restore).toBeVisible();
+  for (let i = 0; i < 6 && !(await restore.evaluate((el) => el === document.activeElement)); i++)
+    await page.keyboard.press('Tab');
+  await expect(restore).toBeFocused();
+});

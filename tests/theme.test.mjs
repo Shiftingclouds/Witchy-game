@@ -28,3 +28,12 @@ test('themeVariables names variables predictably', () => {
   assert.match(vars['--lm-display'], /Cormorant Garamond/);
   assert.match(vars['--lm-read'], /EB Garamond/);
 });
+
+test('gold labels stay readable on every ground in every mode', () => {
+  for (const m of READING_MODES)
+    for (const surface of ['bg', 'surface', 'surfaceStrong', 'backing'])
+      assert.ok(
+        contrastRatio(tokens[m].gold, tokens[m][surface]) >= 4.5,
+        `${m} gold/${surface} = ${contrastRatio(tokens[m].gold, tokens[m][surface]).toFixed(2)}`,
+      );
+});

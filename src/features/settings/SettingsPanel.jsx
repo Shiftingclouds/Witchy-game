@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Download, Upload, Image, RotateCcw } from 'lucide-react';
 import { Modal, Button, Eyebrow } from '../../components.jsx';
 import { ReadingControls } from '../../dialogue-presentation.jsx';
@@ -15,6 +15,7 @@ export function SettingsPanel({
   open,
 }) {
   const [confirm, setConfirm] = useState(false);
+  const fileInput = useRef(null);
   return (
     <Modal title="Make yourself at home" onClose={onClose}>
       <div className="settings-section">
@@ -38,16 +39,16 @@ export function SettingsPanel({
           <Button icon={Download} onClick={() => downloadSave(game)}>
             Export save
           </Button>
-          <label className="button">
-            <Upload size={16} />
+          <Button icon={Upload} onClick={() => fileInput.current?.click()}>
             Import save
-            <input
-              type="file"
-              accept="application/json,.json"
-              hidden
-              onChange={(e) => importSave(e.target.files[0])}
-            />
-          </label>
+          </Button>
+          <input
+            ref={fileInput}
+            type="file"
+            accept="application/json,.json"
+            hidden
+            onChange={(e) => importSave(e.target.files[0])}
+          />
         </div>
       </div>
       <div className="settings-section">

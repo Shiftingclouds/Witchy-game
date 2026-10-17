@@ -94,8 +94,7 @@ html[data-reading-mode] :is(.book-page, .authored-chapter) p {
   color: var(--lm-ink);
   max-width: 68ch;
 }
-html[data-reading-mode] .book-page > p:first-of-type::first-letter,
-html[data-reading-mode] .authored-chapter p:first-of-type::first-letter {
+html[data-reading-mode] .book-page > p:first-of-type::first-letter {
   font-family: var(--lm-display);
   color: var(--lm-gold);
 }
@@ -182,4 +181,158 @@ html[data-reading-mode]
 }
 html[data-reading-mode] :is(.scene-caption, .book-art, .conversation-portrait) .eyebrow {
   color: #f0d49c;
+}
+
+/* Book page: the art stays in view at a fixed height instead of stretching (and blurring) with the text. */
+html[data-reading-mode] .book-layout {
+  align-items: start;
+}
+html[data-reading-mode] .book-art {
+  height: min(78vh, 760px);
+  min-height: 0;
+}
+.book-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+html[data-reading-mode] .book-page > p:first-of-type::first-letter {
+  padding: 4px 3px 0 0;
+}
+
+/* Choices are special moments: the label leads; a gold edge and warm fill answer hover and focus. */
+html[data-reading-mode] :is(.lesson-answers, .gathering-choices) button {
+  font-family: var(--lm-read);
+  font-size: 17px;
+  color: var(--lm-ink);
+  background: color-mix(in srgb, var(--lm-surface) 90%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 38%, transparent);
+  border-left-width: 2px;
+  border-radius: 1px;
+  transition:
+    border-color 0.3s,
+    background 0.3s;
+}
+html[data-reading-mode]
+  :is(.lesson-answers, .gathering-choices)
+  button:is(:hover, :focus-visible, .selected) {
+  border-color: var(--lm-gold-bright);
+  background: color-mix(in srgb, var(--lm-wine) 45%, var(--lm-surface));
+}
+html[data-reading-mode] .gathering-choices small {
+  display: block;
+  margin-top: 3px;
+  font-size: 15px;
+  color: var(--lm-ink-soft);
+}
+
+/* The ending: the year's last moment gets its own stage. */
+.epilogue {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: calc(100vh - 220px);
+  padding: 48px 24px;
+  background: var(--epilogue-art) center / cover no-repeat;
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 35%, transparent);
+}
+.epilogue::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(12, 6, 3, 0.35), rgba(12, 6, 3, 0.8));
+}
+.epilogue-card {
+  position: relative;
+  max-width: 640px;
+  padding: 40px 48px 36px;
+  text-align: center;
+  color: var(--lm-ink);
+  background: var(--lm-backing);
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 45%, transparent);
+  outline: 1px solid color-mix(in srgb, var(--lm-gold) 16%, transparent);
+  outline-offset: -6px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+}
+.epilogue-card h2 {
+  margin: 10px 0 0;
+  font-size: 44px;
+}
+.epilogue-card > p {
+  font-family: var(--lm-read);
+  font-size: 19px;
+  line-height: 1.65;
+  text-align: left;
+}
+.epilogue-card .ending-line {
+  margin: 24px 0;
+  font-family: var(--lm-display);
+  font-size: 28px;
+  font-style: italic;
+  text-align: center;
+}
+.epilogue-card .ending-stats {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin: 0 0 26px;
+  font-size: 15px;
+  color: var(--lm-ink-soft);
+}
+.epilogue-card .ending-stats svg {
+  width: 15px;
+  height: 15px;
+  color: var(--lm-gold);
+}
+
+/* Quieter structure: inner fields drop their frames; captions on busy art get a soft shadow. */
+html[data-reading-mode] .search input {
+  border: 0;
+  background: transparent;
+}
+html[data-reading-mode] .scene-caption :is(.eyebrow, p) {
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.9),
+    0 0 14px rgba(0, 0, 0, 0.6);
+}
+html[data-reading-mode='parchment'] .app-shell .nav-item.active {
+  background: color-mix(in srgb, var(--lm-wine) 18%, var(--lm-surface));
+}
+html[data-reading-mode] .player-initial {
+  filter: saturate(0.55) brightness(0.9);
+}
+
+/* Grimoire: spells read as pages of a book rather than numbered cards. */
+html[data-reading-mode] .spell-card {
+  border: 0;
+  border-top: 1px solid color-mix(in srgb, var(--lm-gold) 45%, transparent);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--lm-surface) 80%, transparent),
+    transparent
+  );
+}
+html[data-reading-mode] .spell-card h3 {
+  font-size: 32px;
+}
+html[data-reading-mode] .spell-gesture {
+  font-family: var(--lm-display);
+  font-size: 19px;
+  font-style: italic;
+  color: var(--lm-ink);
+}
+html[data-reading-mode] .spell-icon {
+  color: var(--lm-gold);
+  border-color: color-mix(in srgb, var(--lm-gold) 45%, transparent);
+}
+html[data-reading-mode] .search input {
+  min-height: 32px;
+}
+
+.epilogue-card .vine-button {
+  width: auto;
+  min-width: 360px;
+  margin: 0 auto;
 }

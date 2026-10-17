@@ -122,7 +122,6 @@ export function Gathering({ id, game, act, onClose }) {
                       onClose();
                     }}
                   >
-                    <span>{String(i + 1).padStart(2, '0')}</span>
                     <div>
                       {choice.label}
                       <small>

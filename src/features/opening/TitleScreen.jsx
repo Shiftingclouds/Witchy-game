@@ -37,6 +37,7 @@ export function TitleScreen({
 }) {
   const [stage, setStage] = useState('title');
   const menu = useRef(null);
+  const fileInput = useRef(null);
   const target = continueTarget({ lastMode, saves });
   const desktop = typeof window !== 'undefined' && Boolean(window.lanternmere);
 
@@ -114,15 +115,16 @@ export function TitleScreen({
             <button className="title-quiet" onClick={onSettings}>
               Settings
             </button>
-            <label className="title-quiet">
+            <button className="title-quiet" onClick={() => fileInput.current?.click()}>
               Restore a save
-              <input
-                type="file"
-                accept="application/json,.json"
-                hidden
-                onChange={(e) => onImport(e.target.files[0])}
-              />
-            </label>
+            </button>
+            <input
+              ref={fileInput}
+              type="file"
+              accept="application/json,.json"
+              hidden
+              onChange={(e) => onImport(e.target.files[0])}
+            />
             {desktop && (
               <button className="title-quiet" onClick={() => window.close()}>
                 Quit

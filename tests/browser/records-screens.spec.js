@@ -23,6 +23,7 @@ test('records, settings and the art collection all sit in the reading mode', asy
   const dialog = page.getByRole('dialog');
   await expect(dialog).toBeVisible();
   expect(await dialog.evaluate((el) => getComputedStyle(el).borderTopLeftRadius)).toBe('1px');
+  await expect(dialog.getByRole('button', { name: 'Import save' })).toBeVisible();
   await page.getByRole('button', { name: 'Browse the art collection' }).click();
   await page.getByRole('button', { name: /^Art needed · \d+/ }).click();
   await expect(page.getByText('ART NEEDED · c49-vesper-sen-neutral.png')).toBeVisible();

@@ -55,7 +55,7 @@
   margin-bottom: 4px;
 }
 .reveal-control {
-  font-size: 13px;
+  font-size: 15px;
   position: absolute;
   right: 0;
   bottom: 0;
@@ -65,7 +65,7 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 9px;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
   margin-top: 16px;
 }
@@ -74,16 +74,16 @@
   background: var(--lm-surface);
   border-radius: 2px;
   padding: 8px 12px;
-  font-size: 13px;
+  font-size: 15px;
 }
 .reading-controls small {
-  font-size: 13px;
+  font-size: 15px;
   width: 100%;
   color: var(--lm-ink-soft);
 }
 .scene-view-button {
   margin: -5px 0 22px;
-  font-size: 13px;
+  font-size: 15px;
   background: var(--lm-surface);
 }
 .scene-reader {
@@ -118,7 +118,7 @@
   position: relative;
   overflow: hidden;
   border-radius: 2px 2px 0 0;
-  background: #253526;
+  background: #3b271e;
 }
 .performance-background {
   position: absolute;
@@ -133,7 +133,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(transparent 65%, #19291eaa);
+  background: linear-gradient(transparent 65%, #2d1b14aa);
 }
 .performance-detail {
   background: #201a13;
@@ -212,16 +212,16 @@
   bottom: 12px;
   left: 50%;
   transform: translateX(-50%);
-  background: #233b2ae8;
+  background: #42271be8;
   border: 1px solid color-mix(in srgb, var(--lm-line) 40%, transparent);
   border-radius: 3px;
   padding: 6px 10px;
   color: #faf0d8;
-  font-size: 13px;
+  font-size: 15px;
   white-space: nowrap;
 }
 .stage-actor.listening .actor-name {
-  background: #394039e6;
+  background: #49372fe6;
 }
 .speech-box {
   padding: 20px 24px 18px;
@@ -229,7 +229,7 @@
   border-top: 2px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
   background: var(--lm-surface);
   border-radius: 0 0 2px 2px;
-  box-shadow: 0 6px 19px #2531240b;
+  box-shadow: 0 6px 19px #37251d0b;
   animation: speech-arrive 200ms ease-out;
 }
 .speaker-heading {
@@ -246,7 +246,7 @@
   font-weight: 400;
 }
 .speaker-heading > span {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
 }
 .speech-text {
@@ -274,15 +274,15 @@
   margin-top: 18px;
 }
 .speech-controls > .button {
-  font-size: 13px;
+  font-size: 15px;
   min-width: 130px;
 }
 .speech-controls > .text-button {
-  font-size: 13px;
+  font-size: 15px;
   min-height: 40px;
 }
 .scene-complete {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-gold);
   margin-top: 12px;
 }
@@ -348,7 +348,7 @@
     left: 12.5%;
   }
   .actor-name {
-    font-size: 13px;
+    font-size: 15px;
     padding: 5px 6px;
     bottom: 9px;
   }
@@ -396,7 +396,7 @@
   border-top: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
   padding: 14px 0 0;
   color: var(--lm-gold);
-  font-size: 13px;
+  font-size: 15px;
 }
 .scene-transcript summary {
   cursor: pointer;
@@ -415,7 +415,7 @@
   border-bottom: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
 }
 .scene-transcript li strong {
-  font-size: 13px;
+  font-size: 15px;
 }
 .scene-transcript li p {
   font: 19px/1.7 var(--lm-display);
@@ -427,7 +427,7 @@
   margin-top: 20px;
   padding-top: 14px;
   color: var(--lm-ink-soft);
-  font-size: 13px;
+  font-size: 15px;
 }
 .conversation-memory summary {
   cursor: pointer;
@@ -439,7 +439,7 @@
   margin: 18px 0 10px;
 }
 .conversation-memory > p {
-  font-size: 13px;
+  font-size: 15px;
 }
 .conversation-memory ul,
 .conversation-memory ol {
@@ -452,12 +452,12 @@
   line-height: 1.6;
 }
 .conversation-memory li p {
-  font-size: 13px;
+  font-size: 15px;
   margin-bottom: 6px;
 }
 .conversation-memory li small {
   display: block;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
 }
 .story-section-heading {
@@ -478,7 +478,7 @@
 }
 .story-speaker {
   display: block;
-  font-family: var(--font-body, sans-serif);
+  font-family: var(--lm-label);
   font-size: 13px;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -486,7 +486,7 @@
   margin-bottom: 5px;
 }
 .scene-section-title {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
   margin: 0 0 12px;
 }
@@ -524,7 +524,7 @@
   font-size: 15px;
 }
 .scene-decision button small {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
   line-height: 1.5;
 }
@@ -582,7 +582,7 @@
 }
 .chapter-contents a,
 .chapter-contents button {
-  font: 13px/1.5 var(--sans, sans-serif);
+  font: 15px/1.5 var(--lm-read);
   color: var(--lm-gold);
   padding: 8px 10px;
   background: var(--lm-surface);

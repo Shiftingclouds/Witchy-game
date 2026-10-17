@@ -75,6 +75,7 @@ import './theme/surfaces.css';
 import { applyReadingMode } from './theme/apply.mjs';
 import { OpeningScene } from './features/opening/OpeningScene.jsx';
 import { TitleScreen } from './features/opening/TitleScreen.jsx';
+import { VineButton } from './features/opening/VineButton.jsx';
 import { useSidebarState } from './features/shell/sidebar.mjs';
 import { PatternShowcase } from './features/patterns/PatternShowcase.jsx';
 import './features/shell/shell.css';
@@ -166,7 +167,9 @@ function App() {
     return () => clearTimeout(t);
   }, [toast]);
   useEffect(() => {
-    if (game?.feedback) setToast(game.feedback);
+    // The ending screen says this itself; no toast on top of it.
+    if (game?.feedback && !(game.ending && game.feedback.startsWith('The first year is complete')))
+      setToast(game.feedback);
   }, [game]);
   function act(action) {
     setGame((prev) => transition(prev, action));
@@ -368,7 +371,7 @@ function App() {
           <div className="header-status">
             <span className="connection">
               <i />
-              Local story
+              Saved on this computer
             </span>
             <button className="date-pill" onClick={() => navigate('calendar')}>
               <Sun size={16} />
@@ -395,7 +398,14 @@ function App() {
           )}
           {view === 'map' && <Atlas game={game} visit={visit} />}
           {view === 'book' && (
-            <Story game={game} act={act} visit={visit} open={setModal} reading={reading} />
+            <Story
+              game={game}
+              act={act}
+              visit={visit}
+              open={setModal}
+              reading={reading}
+              leave={() => (game.mode === 'live' ? navigate('world') : setGame(null))}
+            />
           )}
           {view === 'people' && <People game={game} open={setModal} />}
           {view === 'spells' && <Grimoire game={game} visit={visit} open={setModal} act={act} />}
@@ -459,6 +469,11 @@ function App() {
             alt={locationById[game.location].name}
           />
           <p>{locationById[game.location].description}</p>
+        </Modal>
+      )}
+      {modal?.type === 'reading' && (
+        <Modal title="Reading settings" onClose={() => setModal(null)}>
+          <ReadingControls reading={reading} />
         </Modal>
       )}
       {modal?.type === 'settings' && (
@@ -633,8 +648,42 @@ function Atlas({ game, visit }) {
   );
 }
 
-function Story({ game, act, visit, open, reading }) {
+function Epilogue({ game, leave }) {
+  return (
+    <section className="epilogue" style={{ '--epilogue-art': `url(${art('heartfire')})` }}>
+      <div className="epilogue-card">
+        <Eyebrow>The end of the beginning</Eyebrow>
+        <h2>A home made of light</h2>
+        <div className="book-ornament">— ✧ —</div>
+        <p>{endingCommon[0]}</p>
+        <p>{endingVariants[game.ending]}</p>
+        <p>{endingCommon[1]}</p>
+        <p className="ending-line">{endingCommon[2]}</p>
+        <p className="ending-stats">
+          <span>
+            <Heart /> {Object.values(game.bonds).filter((v) => v >= 10).length} friendships
+          </span>
+          <span>
+            <Sparkles /> {game.spells.length} spells
+          </span>
+          <span>
+            <Shield /> {game.points} house points
+          </span>
+        </p>
+        <VineButton
+          lead
+          title="Your life at Lanternmere continues"
+          subline={game.mode === 'live' ? 'Return to your day' : 'Close the book for now'}
+          onClick={leave}
+        />
+      </div>
+    </section>
+  );
+}
+
+function Story({ game, act, visit, open, reading, leave }) {
   const ch = chapters[game.chapter];
+  if (game.ending) return <Epilogue game={game} leave={leave} />;
   return (
     <>
       <PageHeading
@@ -666,9 +715,14 @@ function Story({ game, act, visit, open, reading }) {
           <h2>{game.ending ? 'A home made of light' : ch.title}</h2>
           <div className="book-ornament">— ✧ —</div>
           {!game.ending && (
-            <Button className="scene-view-button" onClick={() => open({ type: 'performance' })}>
-              Play scene <MessageCircle size={15} />
-            </Button>
+            <div className="book-actions">
+              <Button className="scene-view-button" onClick={() => open({ type: 'performance' })}>
+                Play scene <MessageCircle size={15} />
+              </Button>
+              <button className="text-button" onClick={() => open({ type: 'reading' })}>
+                Reading settings
+              </button>
+            </div>
           )}
           {game.ending ? (
             <>
@@ -690,7 +744,6 @@ function Story({ game, act, visit, open, reading }) {
             </>
           ) : (
             <>
-              <ReadingControls reading={reading} />
               <AuthoredChapter game={game} act={act} />
               {pendingStoryChoice(game) ? (
                 <p className="story-gate">Make your decision in the scene above to continue.</p>
@@ -841,7 +894,6 @@ function Lesson({ spell, game, act, onClose }) {
                   setResult(null);
                 }}
               >
-                <span>{String.fromCharCode(65 + i)}</span>
                 {answer}
               </button>
             ))}
@@ -895,7 +947,6 @@ function Grimoire({ game, visit, open, act }) {
             className={'spell-card ' + (game.spells.includes(s.id) ? 'learned' : '')}
             key={s.id}
           >
-            <span className="spell-number">0{i + 1}</span>
             <span className="spell-icon">
               {i === 0 ? <Flame /> : i === 1 ? <Eye /> : <Shield />}
             </span>
@@ -1103,7 +1154,8 @@ function Journal({ game, act, visit }) {
           <section className="discoveries">
             <h3>Little discoveries</h3>
             <p>
-              {game.visited.length} places visited · {game.clues.length} clues gathered
+              {game.visited.length} {game.visited.length === 1 ? 'place' : 'places'} visited ·{' '}
+              {game.clues.length} {game.clues.length === 1 ? 'clue' : 'clues'} gathered
             </p>
             {game.clues.map((c) => (
               <span key={c}>

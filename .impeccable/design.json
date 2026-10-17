@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-17T10:00:00Z",
+  "title": "Design System: Lanternmere — Lamplight",
+  "extensions": {
+    "colorMeta": {
+      "lamplight-bg": { "role": "neutral", "displayName": "Umber Night", "canonical": "#1a0f0a" },
+      "lamplight-surface": { "role": "neutral", "displayName": "Lamplit Panel", "canonical": "#26150d" },
+      "lamplight-ink": { "role": "neutral", "displayName": "Cream Ink", "canonical": "#fbf0d6" },
+      "lamplight-gold": { "role": "primary", "displayName": "Lantern Gold", "canonical": "#e8bf6e" },
+      "lamplight-wine": { "role": "secondary", "displayName": "Dusk Wine", "canonical": "#5b2433" },
+      "parchment-bg": { "role": "neutral", "displayName": "Parchment", "canonical": "#f1e6cf" },
+      "night-bg": { "role": "neutral", "displayName": "Deep Night", "canonical": "#0a0605" },
+      "painting-ink": { "role": "neutral", "displayName": "Ink over paintings (every mode)", "canonical": "#fbf0d6" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The title and screen headlines; Cormorant Garamond." },
+      "body": { "displayName": "Reading", "purpose": "Story text at 60–75 characters; EB Garamond." },
+      "label": { "displayName": "Label", "purpose": "Short small-caps labels only; Cormorant SC with wide tracking." }
+    },
+    "shadows": [
+      { "name": "panel", "value": "0 20px 60px rgba(0, 0, 0, 0.45)", "purpose": "Neutral elevation for book, dialogs and cards." },
+      { "name": "dialog", "value": "0 30px 80px rgba(0, 0, 0, 0.55)", "purpose": "Modal dialogs over the darkened page." },
+      { "name": "legibility", "value": "0 1px 2px rgba(0, 0, 0, 0.9), 0 0 12px rgba(0, 0, 0, 0.7)", "purpose": "Small links laid directly over paintings." }
+    ],
+    "motion": [
+      { "name": "ease-lamplight", "value": "cubic-bezier(0.3, 0.7, 0.2, 1)", "purpose": "Sidebar, menu and panel transitions (≤300 ms for UI)." },
+      { "name": "vine-grow", "value": "clip-path 1.1s cubic-bezier(0.3, 0.6, 0.2, 1)", "purpose": "Vines growing on hover/focus." },
+      { "name": "ambient", "value": "38–200 s ease-in-out alternate", "purpose": "Opening scene life: clouds, fog, cloud light, push-in. Never on detailed pixels." }
+    ],
+    "breakpoints": [
+      { "name": "desktop-min", "value": "1024px" },
+      { "name": "drawer", "value": "760px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Vine Button",
+      "kind": "button",
+      "refersTo": "button-vine",
+      "description": "Primary and focused actions; thin gold vines grow from both ends on hover and focus.",
+      "html": "<button class=\"ds-vine\"><strong>The Story</strong><small>The tale as it was written</small></button>",
+      "css": ".ds-vine { display: grid; gap: 2px; justify-items: center; width: 300px; padding: 11px 28px 12px; font-family: 'Cormorant Garamond', Georgia, serif; color: #fbf0d6; background: linear-gradient(180deg, rgba(36,16,10,.62), rgba(22,9,5,.74)); border: 1px solid rgba(232,191,110,.6); outline: 1px solid rgba(232,191,110,.22); outline-offset: -5px; border-radius: 1px; cursor: pointer; transition: border-color .4s, background .4s; } .ds-vine strong { font-size: 23px; font-weight: 600; letter-spacing: .04em; } .ds-vine small { font-family: 'EB Garamond', Georgia, serif; font-size: 15px; font-style: italic; color: #e4cfa6; } .ds-vine:hover, .ds-vine:focus-visible { border-color: rgba(246,214,146,.95); background: linear-gradient(180deg, rgba(58,26,14,.7), rgba(30,12,6,.8)); }"
+    },
+    {
+      "name": "Hairline Button",
+      "kind": "button",
+      "refersTo": "button",
+      "description": "Everyday actions inside pages.",
+      "html": "<button class=\"ds-btn\">Look around</button>",
+      "css": ".ds-btn { padding: 10px 16px; font-family: 'EB Garamond', Georgia, serif; font-size: 15px; color: #fbf0d6; background: rgba(38,21,13,.85); border: 1px solid rgba(232,191,110,.42); border-radius: 1px; cursor: pointer; } .ds-btn:hover, .ds-btn:focus-visible { border-color: #e8bf6e; background: #3a1d1f; }"
+    },
+    {
+      "name": "Story Input",
+      "kind": "input",
+      "refersTo": "story-input",
+      "description": "Free text in the AI modes; Enter sends.",
+      "html": "<div class=\"ds-input\"><textarea placeholder=\"What do you do?\" rows=\"2\"></textarea><button aria-label=\"Send\">➜</button></div>",
+      "css": ".ds-input { display: flex; border: 1px solid rgba(232,191,110,.45); background: #1f120c; } .ds-input textarea { flex: 1; resize: none; padding: 12px 14px; font: 19px/1.5 'EB Garamond', Georgia, serif; color: #fbf0d6; background: transparent; border: 0; outline: none; } .ds-input:focus-within { border-color: #f6d48e; } .ds-input button { width: 52px; color: #e8bf6e; background: rgba(91,36,51,.45); border: 0; border-left: 1px solid rgba(232,191,110,.35); }"
+    },
+    {
+      "name": "Sidebar Item",
+      "kind": "nav",
+      "refersTo": "nav-item",
+      "description": "Umber-glass sidebar navigation; active item in wine with a gold hairline.",
+      "html": "<button class=\"ds-nav active\">Your day</button><button class=\"ds-nav\">World map</button>",
+      "css": ".ds-nav { display: block; width: 200px; padding: 10px 12px; text-align: left; font: 17px 'EB Garamond', Georgia, serif; color: #e4cfa6; background: none; border: 1px solid transparent; border-radius: 1px; } .ds-nav:hover { color: #fbf0d6; background: rgba(232,191,110,.08); } .ds-nav.active { color: #fbf0d6; background: rgba(91,36,51,.55); border-color: rgba(232,191,110,.35); }"
+    },
+    {
+      "name": "Lamplit Card",
+      "kind": "card",
+      "refersTo": "story-backing",
+      "description": "Translucent umber panel with a single gold hairline.",
+      "html": "<div class=\"ds-card\"><p class=\"ds-eyebrow\">Your story</p><h3>A place at the table</h3><p>Find Rowan and introduce yourself.</p></div>",
+      "css": ".ds-card { width: 280px; padding: 22px; color: #fbf0d6; background: rgba(38,21,13,.9); border: 1px solid rgba(232,191,110,.35); border-radius: 1px; box-shadow: 0 20px 60px rgba(0,0,0,.45); } .ds-card h3 { margin: 6px 0; font: 500 28px 'Cormorant Garamond', Georgia, serif; } .ds-card p { font: 15px/1.5 'EB Garamond', Georgia, serif; color: #e4cfa6; } .ds-eyebrow { font: 600 13px 'Cormorant SC', Georgia, serif; letter-spacing: .2em; color: #e8bf6e; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "A lamplit world",
+    "overview": "The illustrations are the light source of the whole game; interface surfaces recede into warm umber and wine shadows, framed by hairline gold. It should feel warm, comforting, mysterious and magical, never overwhelming.",
+    "keyCharacteristics": ["Art first", "Light has a source", "Reading is sacred", "One typographic voice", "Vines are an accent"],
+    "rules": [
+      { "name": "Light has a source", "body": "Glow and warm bloom only on light sources (lantern, candles, sunset, spells, title) and special moments. Everything else uses neutral shadow.", "section": "colors" },
+      { "name": "Gold is jewellery", "body": "Thin lines, small caps labels, vines, the diamond. Never fills, never paragraphs.", "section": "colors" },
+      { "name": "No gradient text, ever", "body": "Solid cream or ink; warmth comes from light behind, not colour inside letters.", "section": "typography" }
+    ],
+    "dos": [
+      "Let illustrations carry colour; keep chrome quiet.",
+      "Use the vine flourish for primary and focused actions only.",
+      "Keep story text on solid backing with AA contrast in every mode.",
+      "Honour reduced motion everywhere."
+    ],
+    "donts": [
+      "Glow on everything, gradient text, purple/blue neon, glass cards everywhere, icon-card grids.",
+      "Animate trees, mountains, rocks, the castle or the lantern in the opening, or anything by displacing detailed pixels.",
+      "Use gold for paragraphs or wide tracking on body text."
+    ]
+  }
+}

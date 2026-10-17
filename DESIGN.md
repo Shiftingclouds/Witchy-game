@@ -17,15 +17,19 @@ colors:
   parchment-backing: "#fbf5e8"
   parchment-ink: "#2b1a10"
   parchment-ink-soft: "#57402c"
-  parchment-gold: "#93651f"
+  parchment-gold: "#7a521a"
   parchment-line: "#c4a575"
-  night-bg: "#0d0806"
-  night-surface: "#160d09"
-  night-backing: "#110a07"
-  night-ink: "#e6d8bb"
-  night-ink-soft: "#bfab88"
-  night-gold: "#c49d55"
-  night-line: "#4a3320"
+  night-bg: "#0a0605"
+  night-surface: "#110a07"
+  night-backing: "#0d0806"
+  night-ink: "#dccdae"
+  night-ink-soft: "#b19d7c"
+  night-gold: "#b8934e"
+  night-line: "#3f2b1b"
+  shadow: "rgba(0, 0, 0, 0.5)"
+  painting-ink: "#fbf0d6"
+  painting-gold: "#f0cc84"
+  painting-gold-light: "#ffe3a3"
 typography:
   display:
     fontFamily: "Cormorant Garamond, Georgia, serif"
@@ -38,6 +42,11 @@ typography:
     fontSize: "44px"
     fontWeight: 500
     lineHeight: 1.1
+  heading-md:
+    fontFamily: "Cormorant Garamond, Georgia, serif"
+    fontSize: "28px"
+    fontWeight: 500
+    lineHeight: 1.15
   heading:
     fontFamily: "Cormorant Garamond, Georgia, serif"
     fontSize: "32px"
@@ -70,6 +79,7 @@ typography:
     letterSpacing: "0.28em"
 rounded:
   hairline: "1px"
+  xs: "2px"
   sm: "3px"
 spacing:
   xs: "4px"
@@ -119,7 +129,7 @@ Three reading modes share one token vocabulary (`src/theme/tokens.mjs`, applied 
 - **Display** Cormorant Garamond for titles and headings; **Labels** Cormorant SC with wide tracking, short phrases only; **Reading** EB Garamond for story text and UI copy. Fonts are bundled (`src/theme/fonts.mjs`).
 
 ### Hierarchy
-Type ramp (px): 13 label · 15 small · 17 ui · 19 body · 23 lead · 32 heading · 44 large heading · display clamp(48–112). Fluid sizes interpolate between two ramp steps. Story text uses body at a 60–75 character measure with ~1.6 leading. Speaker names in the display face.
+Type ramp (px): 13 label · 15 small · 17 ui · 19 body · 23 lead · 28 sub-heading · 32 heading · 44 large heading · display clamp(48–112). Fluid sizes interpolate between two ramp steps. Story text uses body at a 60–75 character measure with ~1.6 leading. Speaker names in the display face.
 
 ### Named Rules
 - **No gradient text, ever.** Solid cream or ink; warmth comes from light behind, not colour inside letters.

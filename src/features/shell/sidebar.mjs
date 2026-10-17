@@ -30,8 +30,10 @@ const write = (key, value) => {
 /** Open / rail / hidden, remembered between sessions. Ctrl+B hides and restores it. */
 export function useSidebarState() {
   const [state, setState] = useState(() => {
-    const saved = read(KEY, 'open');
-    return SIDEBAR_STATES.includes(saved) ? saved : 'open';
+    // Small windows start with the icon rail so the art has room; an explicit choice always wins.
+    const fallback = typeof window !== 'undefined' && window.innerWidth < 1200 ? 'rail' : 'open';
+    const saved = read(KEY, fallback);
+    return SIDEBAR_STATES.includes(saved) ? saved : fallback;
   });
   const set = useCallback((next) => {
     setState(next);

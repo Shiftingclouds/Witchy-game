@@ -60,8 +60,10 @@ test('large text and motion preferences persist and keep a two-person lesson usa
   await page.setViewportSize({ width: 320, height: 740 });
   await page.goto('/');
   await enterMode(page, 'book');
-  await page.getByLabel('Story text size').selectOption('largest');
-  await page.getByLabel('Reading motion').selectOption('reduce');
+  await page.getByRole('button', { name: 'Reading settings' }).click();
+  await page.getByRole('dialog').getByLabel('Story text size').selectOption('largest');
+  await page.getByRole('dialog').getByLabel('Reading motion').selectOption('reduce');
+  await page.keyboard.press('Escape');
   await chooseRemainingScenes(page, 1);
   await page.locator('.story-choices button').first().click();
   await page.getByRole('button', { name: 'Play scene', exact: true }).click();
@@ -86,8 +88,10 @@ test('large text and motion preferences persist and keep a two-person lesson usa
   });
   await page.reload();
   await continueGame(page);
-  await expect(page.getByLabel('Story text size')).toHaveValue('largest');
-  await expect(page.getByLabel('Reading motion')).toHaveValue('reduce');
+  await page.getByRole('button', { name: 'Reading settings' }).click();
+  await expect(page.getByRole('dialog').getByLabel('Story text size')).toHaveValue('largest');
+  await expect(page.getByRole('dialog').getByLabel('Reading motion')).toHaveValue('reduce');
+  await page.keyboard.press('Escape');
   await page.getByRole('button', { name: 'Play scene', exact: true }).click();
   await expect(page.locator('.speech-text')).toContainText('Elian Vale. Introductory charms');
   await page.setViewportSize({ width: 1440, height: 1000 });

@@ -39,7 +39,7 @@ a:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 3px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  outline: 3px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   outline-offset: 4px;
 }
 button {
@@ -106,7 +106,7 @@ em {
   font-weight: 400;
 }
 code {
-  font-size: 13px;
+  font-size: 15px;
   overflow-wrap: anywhere;
 }
 ::selection {
@@ -129,10 +129,10 @@ code {
   justify-content: center;
   gap: 7px;
   background: var(--lm-surface);
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   padding: 12px 16px;
   border-radius: 2px;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   line-height: 1.3;
   transition:
@@ -151,7 +151,7 @@ code {
 }
 .button.gold {
   background: var(--lm-surface);
-  border-color: color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border-color: color-mix(in srgb, var(--lm-line) 45%, transparent);
   color: var(--lm-ink-soft);
 }
 .button-row {
@@ -165,7 +165,7 @@ code {
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   color: var(--lm-gold);
   text-align: left;
@@ -189,10 +189,10 @@ code {
 }
 .muted {
   color: var(--lm-ink-soft);
-  font-size: 13px;
+  font-size: 15px;
 }
 .small-copy {
-  font-size: 13px !important;
+  font-size: 15px !important;
 }
 .empty-state {
   text-align: center;
@@ -206,7 +206,7 @@ code {
 .spinner {
   height: 16px;
   width: 16px;
-  border: 2px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 2px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   border-top-color: var(--lm-gold);
   border-radius: 50%;
   animation: spin 1s linear infinite;
@@ -231,7 +231,7 @@ code {
   width: 223px;
   flex-shrink: 0;
   background: var(--lm-surface);
-  border-right: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border-right: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   position: fixed;
   inset: 0 auto 0 0;
   display: flex;
@@ -288,7 +288,7 @@ code {
   width: 100%;
   text-align: left;
   color: var(--lm-ink-soft);
-  font-size: 13px;
+  font-size: 15px;
   position: relative;
   transition: background 0.2s;
 }
@@ -321,7 +321,7 @@ code {
   align-items: center;
   margin: 0 -2px 20px;
   padding: 10px 4px 14px;
-  border-bottom: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   min-height: 100px;
 }
 .familiar-card > img {
@@ -347,7 +347,7 @@ code {
 }
 .nav-item.secondary {
   padding: 10px 12px;
-  font-size: 13px;
+  font-size: 15px;
 }
 .player-card {
   display: flex;
@@ -355,7 +355,7 @@ code {
   gap: 10px;
   padding: 19px 3px 0;
   margin-top: 17px;
-  border-top: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
 }
 .player-initial {
   display: flex;
@@ -371,12 +371,12 @@ code {
   flex: 1;
 }
 .player-card strong {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
 }
 .player-card small {
   display: block;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
   margin-top: 3px;
 }
@@ -392,7 +392,7 @@ code {
 }
 .topbar {
   height: 76px;
-  border-bottom: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   padding: 0 34px;
   display: flex;
   align-items: center;
@@ -414,7 +414,7 @@ code {
   font-weight: 400;
   color: var(--lm-ink-soft);
   letter-spacing: 0.3px;
-  font-size: 13px;
+  font-size: 15px;
 }
 .header-status {
   display: flex;
@@ -425,7 +425,7 @@ code {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
   white-space: nowrap;
 }
@@ -442,11 +442,11 @@ code {
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 13px;
+  font-size: 15px;
   background: var(--lm-surface);
   color: var(--lm-ink-soft);
   padding: 9px 12px;
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   border-radius: 2px;
   white-space: nowrap;
 }
@@ -477,7 +477,7 @@ code {
   margin: 7px 0 9px;
 }
 .page-heading p {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
   line-height: 1.7;
 }
@@ -487,7 +487,7 @@ code {
   align-items: center;
   gap: 7px;
   color: var(--lm-ink-soft);
-  font-size: 13px;
+  font-size: 15px;
   white-space: nowrap;
 }
 .app-footer {
@@ -495,9 +495,9 @@ code {
   justify-content: space-between;
   gap: 15px;
   padding: 17px 34px;
-  border-top: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   color: var(--lm-ink-soft);
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.5;
 }
 .app-footer > span:first-child {
@@ -511,7 +511,7 @@ code {
 .storage-warning {
   background: var(--lm-surface);
   padding: 12px 25px;
-  font-size: 13px;
+  font-size: 15px;
   display: flex;
   gap: 15px;
   align-items: center;
@@ -532,14 +532,14 @@ code {
   aspect-ratio: 1.73;
   overflow: hidden;
   border-radius: 2px;
-  background: #25342b;
+  background: #3a261e;
   box-shadow: 0 6px 20px #302c1d14;
 }
 .scene:after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, #15201420, transparent 35%, #101c17ad 100%);
+  background: linear-gradient(180deg, #23161020, transparent 35%, #1f120cad 100%);
   pointer-events: none;
 }
 .scene-background {
@@ -564,12 +564,12 @@ code {
   gap: 6px;
   padding: 7px 9px;
   border-radius: 3px;
-  background: #24382f80;
+  background: #3e271d80;
   backdrop-filter: blur(5px);
 }
 .scene-expand {
   color: #fff9e4;
-  background: #1d2d2580;
+  background: #321f1780;
   border: 1px solid #fff3;
   padding: 7px;
   border-radius: 2px;
@@ -622,7 +622,7 @@ code {
   height: 45px;
   width: 45px;
   border-radius: 50%;
-  border: 2px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 2px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   display: block;
   overflow: hidden;
   background: var(--lm-surface-strong);
@@ -634,10 +634,10 @@ code {
   object-position: top;
 }
 .scene-person > span:last-child {
-  font-size: 13px;
+  font-size: 15px;
   color: #f3e9ce;
   padding: 6px 9px;
-  background: #26392ae8;
+  background: #40281ee8;
   border: 1px solid color-mix(in srgb, var(--lm-line) 47%, transparent);
   border-radius: 3px;
   display: flex;
@@ -653,7 +653,7 @@ code {
   border-bottom: 1px solid var(--lm-line);
 }
 .scene-actions .button {
-  font-size: 13px;
+  font-size: 15px;
   padding: 10px 13px;
   min-height: 36px;
 }
@@ -661,7 +661,7 @@ code {
   display: flex;
   align-items: center;
   gap: 3px;
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   border-radius: 2px;
   background: var(--lm-surface);
   padding: 0 8px;
@@ -670,7 +670,7 @@ code {
 .cast-select select {
   border: 0;
   background: none;
-  font-size: 13px;
+  font-size: 15px;
   padding: 10px 3px;
   max-width: 150px;
 }
@@ -685,7 +685,7 @@ code {
   font-size: 23px;
 }
 .nearby-heading .text-button {
-  font-size: 13px;
+  font-size: 15px;
 }
 .nearby-grid {
   display: grid;
@@ -697,7 +697,7 @@ code {
   align-items: center;
   text-align: left;
   gap: 12px;
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   background: var(--lm-surface);
   border-radius: 2px;
   overflow: hidden;
@@ -729,7 +729,7 @@ code {
 }
 .place-card small {
   display: block;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
   margin-top: 5px;
 }
@@ -764,7 +764,7 @@ code {
   gap: 18px;
 }
 .quest-card {
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   border-radius: 2px;
   padding: 20px;
   background: linear-gradient(
@@ -786,7 +786,7 @@ code {
 }
 .chapter-number {
   margin-left: auto;
-  font-size: 13px;
+  font-size: 15px;
   letter-spacing: 0;
   color: var(--lm-ink-soft);
 }
@@ -797,7 +797,7 @@ code {
 }
 .quest-card > p {
   color: var(--lm-ink-soft);
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.8;
 }
 .quest-progress {
@@ -823,7 +823,7 @@ code {
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
   text-align: left;
   padding: 5px 0;
@@ -841,17 +841,17 @@ code {
 .empty-check {
   width: 12px;
   height: 12px;
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   border-radius: 3px;
   margin-top: 1px;
   flex-shrink: 0;
 }
 .quest-card > .text-button {
-  font-size: 13px;
+  font-size: 15px;
 }
 .company-card {
   padding: 19px 18px;
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   border-radius: 2px;
   background: var(--lm-surface);
 }
@@ -876,20 +876,20 @@ code {
   font-size: 23px;
 }
 .company-person p {
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.5;
   color: var(--lm-ink-soft);
   margin: 5px 0 9px;
 }
 .company-person span {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
   display: flex;
   align-items: center;
   gap: 5px;
 }
 .company-card > .text-button {
-  font-size: 13px;
+  font-size: 15px;
 }
 .house-card {
   display: flex;
@@ -897,7 +897,7 @@ code {
   align-items: center;
   background: var(--lm-surface);
   padding: 18px;
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   border-radius: 2px;
 }
 .house-crest {
@@ -926,11 +926,11 @@ code {
 }
 .house-card strong span {
   font-family: var(--lm-read);
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
 }
 .house-card p {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
   margin-top: 3px;
 }
@@ -938,7 +938,7 @@ code {
   border-color: transparent;
   background: transparent;
   color: var(--lm-ink-soft);
-  font-size: 13px;
+  font-size: 15px;
   padding: 3px;
 }
 /* World atlas and location cards */
@@ -946,7 +946,7 @@ code {
   position: relative;
   overflow: hidden;
   border-radius: 2px;
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   box-shadow: 0 7px 25px #413f2014;
   margin-bottom: 26px;
   max-height: 680px;
@@ -966,10 +966,10 @@ code {
   padding: 9px 12px;
   background: color-mix(in srgb, var(--lm-surface) 96%, transparent);
   color: var(--lm-gold);
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   border-radius: 2px;
   box-shadow: 0 3px 12px #0004;
-  font-size: 13px;
+  font-size: 15px;
   white-space: nowrap;
   transition: background 0.2s;
 }
@@ -977,7 +977,7 @@ code {
 .map-pin.current {
   background: var(--lm-wine);
   color: #f8efda;
-  border-color: color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border-color: color-mix(in srgb, var(--lm-line) 45%, transparent);
   z-index: 3;
 }
 .map-compass {
@@ -1006,7 +1006,7 @@ code {
 .tabs button {
   padding: 9px 13px;
   background: transparent;
-  font-size: 13px;
+  font-size: 15px;
   border-radius: 2px;
   color: var(--lm-ink-soft);
 }
@@ -1021,7 +1021,7 @@ code {
   display: flex;
   align-items: center;
   gap: 7px;
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   border-radius: 2px;
   background: var(--lm-surface);
   padding: 9px 11px;
@@ -1030,7 +1030,7 @@ code {
 .search input {
   background: none;
   border: 0;
-  font-size: 13px;
+  font-size: 15px;
   width: 170px;
   outline-offset: 7px;
 }
@@ -1042,7 +1042,7 @@ code {
 .location-tile {
   position: relative;
   padding: 0;
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   border-radius: 2px;
   background: var(--lm-surface);
   overflow: hidden;
@@ -1068,7 +1068,7 @@ code {
   top: 9px;
   left: 9px;
   padding: 4px 7px;
-  font-size: 13px;
+  font-size: 15px;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -1092,7 +1092,7 @@ code {
   margin: 5px 0;
 }
 .location-tile-copy > span {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
 }
 .location-tile > svg {
@@ -1103,7 +1103,7 @@ code {
 }
 /* Storybook */
 .page-count {
-  font-size: 13px;
+  font-size: 15px;
   letter-spacing: 0.6px;
   color: var(--lm-ink-soft);
   white-space: nowrap;
@@ -1111,7 +1111,7 @@ code {
 .book-layout {
   display: grid;
   grid-template-columns: 0.88fr 1.12fr;
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   border-radius: 2px;
   overflow: hidden;
   box-shadow: 0 10px 40px #53432110;
@@ -1120,7 +1120,7 @@ code {
 .book-art {
   position: relative;
   min-height: 100%;
-  background: #233126;
+  background: #37241c;
   overflow: hidden;
 }
 .book-art > img:first-child {
@@ -1134,7 +1134,7 @@ code {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 40%, #1d2821a0);
+  background: linear-gradient(180deg, transparent 40%, #2d1e17a0);
 }
 .book-art > .portrait {
   position: absolute;
@@ -1154,7 +1154,7 @@ code {
   font-size: 13px;
   letter-spacing: 1px;
   color: #fff4d6;
-  background: #273628aa;
+  background: #3c2820aa;
   padding: 8px 12px;
   border: 1px solid color-mix(in srgb, var(--lm-line) 24%, transparent);
   z-index: 2;
@@ -1203,7 +1203,7 @@ code {
 }
 .story-choices {
   margin-top: 25px;
-  border-top: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   padding-top: 18px;
 }
 .story-choices > .eyebrow {
@@ -1218,11 +1218,11 @@ code {
   width: 100%;
   padding: 13px 12px;
   margin-top: 9px;
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   background: var(--lm-surface);
   text-align: left;
   border-radius: 2px;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.6;
   color: var(--lm-gold);
   transition: background 0.2s;
@@ -1241,7 +1241,7 @@ code {
 .story-gate {
   padding: 17px;
   background: var(--lm-surface);
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   border-radius: 2px;
   margin-top: 25px;
 }
@@ -1249,7 +1249,7 @@ code {
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   color: var(--lm-gold);
   margin-bottom: 10px;
@@ -1263,9 +1263,9 @@ code {
   text-align: left;
   width: 100%;
   justify-content: space-between;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
-  border-top: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
 }
 .chapter-trail {
   display: flex;
@@ -1281,8 +1281,8 @@ code {
   justify-content: center;
   border-radius: 50%;
   color: var(--lm-ink-soft);
-  font-size: 13px;
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  font-size: 15px;
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
 }
 .chapter-trail .current {
   background: var(--lm-wine);
@@ -1303,7 +1303,7 @@ code {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-gold);
   margin-top: 25px;
 }
@@ -1323,7 +1323,7 @@ code {
   gap: 22px;
 }
 .person-card {
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   background: var(--lm-surface);
   border-radius: 2px;
   overflow: hidden;
@@ -1367,7 +1367,7 @@ code {
   font-size: 28px;
 }
 .person-info p {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
   margin: 6px 0 15px;
   min-height: 27px;
@@ -1388,7 +1388,7 @@ code {
   display: flex;
   gap: 5px;
   align-items: center;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
 }
 .person-info > small > span {
@@ -1399,7 +1399,7 @@ code {
   position: fixed;
   inset: 0;
   z-index: 100;
-  background: #142019ab;
+  background: #231610ab;
   backdrop-filter: blur(5px);
   display: flex;
   align-items: center;
@@ -1471,7 +1471,7 @@ code {
   padding: 55px 20px 22px;
   right: 0;
   left: 0;
-  background: linear-gradient(transparent, #17261be8);
+  background: linear-gradient(transparent, #2a1912e8);
   color: #fff3d5;
 }
 .conversation-portrait h3 {
@@ -1479,7 +1479,7 @@ code {
   margin-bottom: 8px;
 }
 .conversation-portrait span {
-  font-size: 13px;
+  font-size: 15px;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -1503,7 +1503,7 @@ code {
   overflow-wrap: anywhere;
 }
 .dialogue-source {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
   display: block;
 }
@@ -1522,9 +1522,9 @@ code {
   gap: 6px;
   padding: 11px 9px;
   background: var(--lm-surface);
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   border-radius: 2px;
-  font-size: 13px;
+  font-size: 15px;
   text-align: left;
   color: var(--lm-ink-soft);
   line-height: 1.4;
@@ -1540,7 +1540,7 @@ code {
   margin: 20px auto;
   width: 80px;
   height: 80px;
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1561,11 +1561,11 @@ code {
 }
 .lesson-answers button {
   background: var(--lm-surface);
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   border-radius: 2px;
   padding: 14px;
   text-align: left;
-  font-size: 13px;
+  font-size: 15px;
   display: flex;
   gap: 14px;
   line-height: 1.5;
@@ -1581,13 +1581,13 @@ code {
   background: var(--lm-surface);
   border-radius: 2px;
   padding: 12px;
-  font-size: 13px !important;
+  font-size: 15px !important;
 }
 .spell-intro {
   display: grid;
   grid-template-columns: 1fr 1fr;
   background: var(--lm-surface);
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   border-radius: 2px;
   overflow: hidden;
   margin-bottom: 25px;
@@ -1611,7 +1611,7 @@ code {
   margin: 12px 0;
 }
 .spell-intro p {
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.8;
 }
 .spell-intro span {
@@ -1627,12 +1627,12 @@ code {
 .spell-card {
   position: relative;
   background: var(--lm-surface);
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   padding: 25px;
   border-radius: 2px;
 }
 .spell-card.learned {
-  border-color: color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border-color: color-mix(in srgb, var(--lm-line) 45%, transparent);
 }
 .spell-number {
   position: absolute;
@@ -1648,7 +1648,7 @@ code {
   width: 47px;
   height: 47px;
   background: var(--lm-surface);
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   border-radius: 50%;
   color: var(--lm-ink-soft);
   margin-bottom: 25px;
@@ -1658,14 +1658,14 @@ code {
   font-size: 32px;
 }
 .spell-card > p {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
   min-height: 65px;
 }
 .spell-gesture {
   font-family: var(--lm-display);
   font-style: italic;
-  border-top: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   padding: 16px 0;
   margin-top: 16px;
   color: var(--lm-ink-soft);
@@ -1675,14 +1675,14 @@ code {
 }
 .spell-card > .button {
   margin-top: 13px;
-  font-size: 13px;
+  font-size: 15px;
   padding: 10px 12px;
 }
 .learned-label {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-gold);
 }
 /* Calendar and journal */
@@ -1694,7 +1694,7 @@ code {
 }
 .calendar-card {
   background: var(--lm-surface);
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   border-radius: 2px;
   overflow: hidden;
 }
@@ -1713,7 +1713,7 @@ code {
   align-items: center;
 }
 .calendar-heading .text-button {
-  font-size: 13px;
+  font-size: 15px;
   margin-right: 10px;
 }
 .calendar-grid {
@@ -1721,22 +1721,22 @@ code {
   grid-template-columns: repeat(7, minmax(0, 1fr));
 }
 .calendar-grid > strong {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 400;
   color: var(--lm-ink-soft);
   letter-spacing: 0.5px;
   text-align: center;
   padding: 14px 5px;
   background: var(--lm-surface);
-  border-top: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
-  border-bottom: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
 }
 .calendar-day {
   min-height: 85px;
   padding: 10px 7px;
-  border-bottom: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
-  border-right: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
-  font-size: 13px;
+  border-bottom: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
+  border-right: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
+  font-size: 15px;
   color: var(--lm-ink-soft);
 }
 .calendar-day > span {
@@ -1761,7 +1761,7 @@ code {
   background: var(--lm-surface);
 }
 .calendar-day small {
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.5;
   display: flex;
   gap: 3px;
@@ -1773,7 +1773,7 @@ code {
   margin-top: 1px;
 }
 .season-card {
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   border-radius: 2px;
   overflow: hidden;
 }
@@ -1791,7 +1791,7 @@ code {
   font-size: 28px;
 }
 .season-card p {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
 }
 .calendar-note {
@@ -1799,12 +1799,12 @@ code {
   color: var(--lm-ink-soft);
 }
 .calendar-note > p {
-  font-size: 13px;
+  font-size: 15px;
   margin: 12px 0 16px;
   line-height: 1.9;
 }
 .calendar-note > .button {
-  font-size: 13px;
+  font-size: 15px;
 }
 .section-heading {
   font-size: 28px;
@@ -1821,7 +1821,7 @@ code {
   gap: 17px;
   padding: 17px;
   background: var(--lm-surface);
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   border-radius: 2px;
 }
 .festival-list > div > span {
@@ -1845,7 +1845,7 @@ code {
   margin-bottom: 5px;
 }
 .festival-list p {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
 }
 .festival-list > div > svg {
@@ -1859,7 +1859,7 @@ code {
 }
 .journal-pages {
   background: var(--lm-surface);
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   border-radius: 2px;
   padding: 30px 35px;
 }
@@ -1869,7 +1869,7 @@ code {
 .journal-pages > article {
   position: relative;
   padding: 0 0 25px 26px;
-  border-left: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border-left: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   margin-left: 5px;
 }
 .journal-dot {
@@ -1880,10 +1880,10 @@ code {
   height: 7px;
   border-radius: 50%;
   background: var(--lm-surface-strong);
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
 }
 .journal-pages time {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
   letter-spacing: 0.5px;
 }
@@ -1896,7 +1896,7 @@ code {
 .personal-notes {
   padding: 25px;
   background: var(--lm-surface);
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   border-radius: 2px;
   color: var(--lm-ink-soft);
 }
@@ -1906,7 +1906,7 @@ code {
   color: var(--lm-gold);
 }
 .personal-notes > p {
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.8;
 }
 .personal-notes textarea {
@@ -1924,7 +1924,7 @@ code {
   color: var(--lm-gold);
 }
 .personal-notes > small {
-  font-size: 13px;
+  font-size: 15px;
 }
 .discoveries {
   padding: 25px 6px;
@@ -1933,7 +1933,7 @@ code {
   font-size: 28px;
 }
 .discoveries p {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
   margin: 10px 0 16px;
 }
@@ -1941,7 +1941,7 @@ code {
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-gold);
   margin: 10px 0;
 }
@@ -1957,17 +1957,17 @@ code {
   margin: 9px 0;
 }
 .settings-section p {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
   margin: 10px 0 17px;
   line-height: 1.8;
 }
 .settings-section small {
   color: var(--lm-ink-soft);
-  font-size: 13px;
+  font-size: 15px;
 }
 .settings-section .button {
-  font-size: 13px;
+  font-size: 15px;
 }
 .danger-zone {
   border-bottom: 0;
@@ -1975,7 +1975,7 @@ code {
 }
 .danger-zone > .text-button {
   color: var(--lm-ink-soft);
-  font-size: 13px;
+  font-size: 15px;
 }
 .gallery-grid {
   display: grid;
@@ -1987,7 +1987,7 @@ code {
 }
 .gallery-grid button {
   background: var(--lm-surface);
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   border-radius: 2px;
   padding: 0;
   overflow: hidden;
@@ -2000,7 +2000,7 @@ code {
   background: var(--lm-surface);
 }
 .gallery-grid span {
-  font-size: 13px;
+  font-size: 15px;
   padding: 9px;
   display: block;
   overflow-wrap: anywhere;
@@ -2018,7 +2018,7 @@ code {
 }
 .gallery-selected p {
   text-align: center;
-  font-size: 13px;
+  font-size: 15px;
   margin-top: 10px;
   color: var(--lm-ink-soft);
 }
@@ -2037,9 +2037,9 @@ code {
   background: var(--lm-wine);
   color: #f5edda;
   border: 1px solid color-mix(in srgb, var(--lm-gold) 33%, transparent);
-  box-shadow: 0 8px 30px #1c271d33;
+  box-shadow: 0 8px 30px #2c1d1633;
   border-radius: 2px;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.7;
   animation: fade 0.2s;
 }
@@ -2095,7 +2095,7 @@ code {
     font-size: 19px;
   }
   .place-card small {
-    font-size: 13px;
+    font-size: 15px;
   }
   .quest-card h3 {
     font-size: 28px;
@@ -2104,7 +2104,7 @@ code {
     font-size: 15px;
   }
   .task-list button {
-    font-size: 13px;
+    font-size: 15px;
   }
   .people-grid {
     grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -2125,7 +2125,7 @@ code {
     width: 34px;
   }
   .brand small {
-    font-size: 13px;
+    font-size: 15px;
   }
   .main-content {
     padding: 28px 25px;
@@ -2154,7 +2154,7 @@ code {
     font-size: 32px;
   }
   .scene-caption p {
-    font-size: 13px;
+    font-size: 15px;
   }
   .nearby-grid {
     grid-template-columns: 1fr;
@@ -2164,7 +2164,7 @@ code {
   }
   .scene-actions .button {
     padding: 10px;
-    font-size: 13px;
+    font-size: 15px;
   }
   .quest-card {
     padding: 17px;
@@ -2192,7 +2192,7 @@ code {
     font-size: 32px;
   }
   .book-page > .eyebrow {
-    font-size: 13px;
+    font-size: 15px;
   }
   .journal-layout {
     grid-template-columns: minmax(0, 1fr) 260px;
@@ -2201,7 +2201,7 @@ code {
     padding: 20px;
   }
   .spell-card > .button {
-    font-size: 13px;
+    font-size: 15px;
   }
   .spell-intro h2 {
     font-size: 28px;
@@ -2226,10 +2226,10 @@ code {
     letter-spacing: 1px;
   }
   .connection {
-    font-size: 13px;
+    font-size: 15px;
   }
   .date-pill {
-    font-size: 13px;
+    font-size: 15px;
   }
 }
 @media (max-width: 1000px) {
@@ -2361,7 +2361,7 @@ code {
     flex-wrap: wrap;
   }
   .map-pin {
-    font-size: 13px;
+    font-size: 15px;
     padding: 6px;
     gap: 3px;
   }
@@ -2369,7 +2369,7 @@ code {
     width: 14px;
   }
   .app-footer {
-    font-size: 13px;
+    font-size: 15px;
   }
 }
 @media (max-width: 760px) {
@@ -2379,7 +2379,7 @@ code {
   .sidebar {
     transform: translateX(-100%);
     transition: transform 0.2s;
-    box-shadow: 10px 0 50px #26322533;
+    box-shadow: 10px 0 50px #38261e33;
     width: 225px;
   }
   .sidebar.open {
@@ -2392,7 +2392,7 @@ code {
     left: 100%;
     height: 100%;
     width: calc(100vw - 225px);
-    background: #12201980;
+    background: #23140e80;
     z-index: -1;
     pointer-events: none;
   }
@@ -2408,7 +2408,7 @@ code {
     gap: 7px;
   }
   .breadcrumb {
-    font-size: 13px;
+    font-size: 15px;
     flex: 1;
   }
   .breadcrumb > span,
@@ -2417,7 +2417,7 @@ code {
   }
   .date-pill {
     padding: 8px;
-    font-size: 13px;
+    font-size: 15px;
     gap: 5px;
   }
   .date-pill > span {
@@ -2442,7 +2442,7 @@ code {
     max-width: 520px;
   }
   .page-heading p {
-    font-size: 13px;
+    font-size: 15px;
   }
   .page-heading .eyebrow {
     font-size: 13px;
@@ -2450,7 +2450,7 @@ code {
   }
   .page-heading > .button {
     padding: 8px;
-    font-size: 13px;
+    font-size: 15px;
     white-space: nowrap;
   }
   .world-layout {
@@ -2472,7 +2472,7 @@ code {
     letter-spacing: 1px;
   }
   .scene-caption p {
-    font-size: 13px;
+    font-size: 15px;
     max-width: 100%;
   }
   .scene-top {
@@ -2487,7 +2487,7 @@ code {
     width: 37px;
   }
   .scene-person > span:last-child {
-    font-size: 13px;
+    font-size: 15px;
   }
   .scene-actions {
     padding-bottom: 17px;
@@ -2497,7 +2497,7 @@ code {
     font-size: 28px;
   }
   .nearby-heading .text-button {
-    font-size: 13px;
+    font-size: 15px;
   }
   .nearby-grid {
     gap: 10px;
@@ -2519,7 +2519,7 @@ code {
     font-size: 19px;
   }
   .place-card small {
-    font-size: 13px;
+    font-size: 15px;
     margin-top: 5px;
   }
   .place-card > svg {
@@ -2551,10 +2551,10 @@ code {
     font-size: 23px;
   }
   .company-person p {
-    font-size: 13px;
+    font-size: 15px;
   }
   .company-person span {
-    font-size: 13px;
+    font-size: 15px;
   }
   .house-card {
     gap: 9px;
@@ -2564,22 +2564,22 @@ code {
     width: 27px;
   }
   .house-card small {
-    font-size: 13px;
+    font-size: 15px;
   }
   .house-card strong {
     font-size: 28px;
   }
   .house-card strong span {
-    font-size: 13px;
+    font-size: 15px;
   }
   .house-card p {
-    font-size: 13px;
+    font-size: 15px;
   }
   .app-footer {
     display: block;
     text-align: center;
     padding: 18px;
-    font-size: 13px;
+    font-size: 15px;
   }
   .app-footer > span:first-child {
     justify-content: center;
@@ -2589,7 +2589,7 @@ code {
     left: 50%;
     bottom: 15px;
     max-width: 93vw;
-    font-size: 13px;
+    font-size: 15px;
     padding: 12px;
     gap: 8px;
   }
@@ -2597,7 +2597,7 @@ code {
     margin: 0;
   }
   .page-count {
-    font-size: 13px;
+    font-size: 15px;
     margin-top: 6px;
   }
   .people-grid {
@@ -2611,20 +2611,20 @@ code {
     font-size: 28px;
   }
   .person-info p {
-    font-size: 13px;
+    font-size: 15px;
   }
   .person-portrait {
     aspect-ratio: 1;
   }
   .person-info > small {
-    font-size: 13px;
+    font-size: 15px;
   }
   .tabs button {
-    font-size: 13px;
+    font-size: 15px;
     padding: 8px 10px;
   }
   .search input {
-    font-size: 13px;
+    font-size: 15px;
     width: 150px;
   }
   .atlas > img {
@@ -2643,7 +2643,7 @@ code {
     background: color-mix(in srgb, var(--lm-surface) 91%, transparent);
     padding: 3px 5px;
     border-radius: 3px;
-    font-size: 13px;
+    font-size: 15px;
     color: var(--lm-gold);
     white-space: nowrap;
     left: 50%;
@@ -2656,7 +2656,7 @@ code {
   .map-compass {
     bottom: 11px;
     right: 11px;
-    font-size: 13px;
+    font-size: 15px;
   }
   .map-compass svg {
     width: 25px;
@@ -2671,10 +2671,10 @@ code {
     font-size: 23px;
   }
   .location-tile-copy > span {
-    font-size: 13px;
+    font-size: 15px;
   }
   .location-tile-copy > small {
-    font-size: 13px;
+    font-size: 15px;
   }
   .book-art {
     min-height: 280px;
@@ -2701,7 +2701,7 @@ code {
     gap: 13px;
   }
   .story-choices button {
-    font-size: 13px;
+    font-size: 15px;
   }
   .conversation {
     grid-template-columns: 1fr;
@@ -2732,7 +2732,7 @@ code {
     padding: 0 3px;
   }
   .topic-grid button {
-    font-size: 13px;
+    font-size: 15px;
     padding: 12px 9px;
   }
   .modal-backdrop {
@@ -2750,7 +2750,7 @@ code {
     font-size: 28px;
   }
   .dialogue-source {
-    font-size: 13px;
+    font-size: 15px;
   }
   .spell-intro {
     grid-template-columns: 1fr;
@@ -2774,15 +2774,15 @@ code {
     gap: 3px;
   }
   .calendar-grid > strong {
-    font-size: 13px;
+    font-size: 15px;
   }
   .calendar-day {
     padding: 6px 3px;
     min-height: 76px;
-    font-size: 13px;
+    font-size: 15px;
   }
   .calendar-day small {
-    font-size: 13px;
+    font-size: 15px;
     display: block;
   }
   .calendar-day small svg {
@@ -2801,7 +2801,7 @@ code {
     grid-template-columns: 1fr;
   }
   .festival-list p {
-    font-size: 13px;
+    font-size: 15px;
   }
   .festival-list h3 {
     font-size: 23px;
@@ -2819,42 +2819,42 @@ code {
     grid-template-columns: 1fr 1fr;
   }
   .gallery-grid span {
-    font-size: 13px;
+    font-size: 15px;
   }
   .gallery-grid img {
     height: 110px;
   }
 }
 .section-label {
-  font-size: 13px;
+  font-size: 15px;
 }
 .nav-item {
   font-size: 15px;
 }
 .quest-card > p {
-  font-size: 13px;
+  font-size: 15px;
 }
 .task-list button {
-  font-size: 13px;
+  font-size: 15px;
 }
 .company-person p {
-  font-size: 13px;
+  font-size: 15px;
 }
 .company-person span {
-  font-size: 13px;
+  font-size: 15px;
 }
 .topic-grid button {
-  font-size: 13px;
+  font-size: 15px;
 }
 .dialogue-source {
-  font-size: 13px;
+  font-size: 15px;
 }
 .scene-actions .button {
-  font-size: 13px;
+  font-size: 15px;
 }
 .quest-card > .text-button,
 .company-card > .text-button {
-  font-size: 13px;
+  font-size: 15px;
 }
 @media (max-width: 760px) {
   .company-person {
@@ -2868,26 +2868,26 @@ code {
     min-width: 75px;
   }
   .company-person p {
-    font-size: 13px;
+    font-size: 15px;
   }
   .company-person span {
-    font-size: 13px;
+    font-size: 15px;
   }
   .section-label {
     font-size: 13px;
     letter-spacing: 1px;
   }
   .topic-grid button {
-    font-size: 13px;
+    font-size: 15px;
   }
   .scene-actions .button {
-    font-size: 13px;
+    font-size: 15px;
   }
   .task-list button {
-    font-size: 13px;
+    font-size: 15px;
   }
   .quest-card > p {
-    font-size: 13px;
+    font-size: 15px;
   }
 }
 .residents {
@@ -2907,9 +2907,9 @@ code {
   gap: 8px;
   padding: 4px 9px 4px 4px;
   background: var(--lm-surface);
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   border-radius: 2px;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
 }
 .resident-list button:hover {
@@ -2925,7 +2925,7 @@ code {
 }
 .residents > p,
 .quiet-room {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
   line-height: 1.8;
   margin-top: 13px;
@@ -2935,7 +2935,7 @@ code {
   gap: 9px;
 }
 .passing-time > .button {
-  font-size: 13px;
+  font-size: 15px;
   background: var(--lm-surface);
 }
 .passing-time > .rest-button {
@@ -2946,7 +2946,7 @@ code {
   align-items: center;
   gap: 5px;
   color: var(--lm-ink-soft);
-  font-size: 13px;
+  font-size: 15px;
   min-height: 30px;
   margin: -2px 0 7px;
   line-height: 1.4;
@@ -2954,7 +2954,7 @@ code {
 .daily-card {
   display: flex;
   gap: 20px;
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   background: linear-gradient(120deg, var(--lm-surface), var(--lm-surface));
   padding: 23px;
   border-radius: 2px;
@@ -2963,7 +2963,7 @@ code {
 }
 .daily-card.complete {
   background: linear-gradient(120deg, var(--lm-surface), var(--lm-surface));
-  border-color: color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border-color: color-mix(in srgb, var(--lm-line) 45%, transparent);
 }
 .daily-host {
   width: 85px;
@@ -2995,7 +2995,7 @@ code {
   color: var(--lm-ink-soft);
 }
 .daily-copy > p {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
   line-height: 1.8;
 }
@@ -3003,7 +3003,7 @@ code {
   display: flex;
   gap: 13px;
   flex-wrap: wrap;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
   margin: 12px 0;
 }
@@ -3013,7 +3013,7 @@ code {
   gap: 5px;
 }
 .daily-copy > .button {
-  font-size: 13px;
+  font-size: 15px;
   padding: 10px 14px;
   background: var(--lm-surface);
 }
@@ -3021,7 +3021,7 @@ code {
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-gold);
   margin-top: 15px;
 }
@@ -3035,7 +3035,7 @@ code {
   min-height: 400px;
   border-radius: 2px;
   overflow: hidden;
-  background: #243427;
+  background: #3a261d;
 }
 .gathering-art > img:first-child {
   position: absolute;
@@ -3058,7 +3058,7 @@ code {
   padding: 12px 0;
 }
 .gathering-page > .eyebrow {
-  font-size: 13px;
+  font-size: 15px;
 }
 .gathering-page > h3 {
   font-size: 32px;
@@ -3071,7 +3071,7 @@ code {
   margin-bottom: 22px;
 }
 .gathering-page > small {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
 }
 .gathering-choices {
@@ -3084,10 +3084,10 @@ code {
   align-items: center;
   gap: 12px;
   background: var(--lm-surface);
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   border-radius: 2px;
   padding: 15px 12px;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-gold);
   text-align: left;
   line-height: 1.6;
@@ -3104,7 +3104,7 @@ code {
 }
 .gathering-choices small {
   display: block;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-gold);
   margin-top: 6px;
 }
@@ -3133,14 +3133,14 @@ code {
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(transparent, #243326db);
+  background: linear-gradient(transparent, #39251ddb);
   padding: 45px 20px 20px;
   color: #f2ecd7;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.7;
 }
 .profile-copy > .eyebrow {
-  font-size: 13px;
+  font-size: 15px;
 }
 .profile-copy > h3 {
   font-size: 32px;
@@ -3155,7 +3155,7 @@ code {
   display: flex;
   gap: 7px;
   align-items: center;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
   margin: 20px 0 10px;
 }
@@ -3164,14 +3164,14 @@ code {
   flex: 1;
 }
 .profile-friendship > span {
-  font-size: 13px;
+  font-size: 15px;
 }
 .routine-heading {
   display: flex;
   align-items: center;
   gap: 6px;
   margin: 22px 0 12px;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
 }
 .routine-list {
@@ -3187,7 +3187,7 @@ code {
   align-items: center;
   padding: 10px;
   border-radius: 2px;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
 }
 .routine-list > li.now {
@@ -3207,34 +3207,34 @@ code {
   letter-spacing: 1px;
 }
 .profile-copy > .routine-note {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
   margin-bottom: 15px;
 }
 .profile-tip {
   display: block;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
   line-height: 1.8;
   margin-top: 13px;
 }
 .profile-copy > .button {
-  font-size: 13px;
+  font-size: 15px;
 }
 .daily-checkin {
   margin-top: 17px;
   padding-top: 15px;
-  border-top: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
 }
 .daily-checkin > button {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 9px;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.5;
   background: var(--lm-surface);
-  border: 1px solid color-mix(in srgb, var(--lm-line) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-line) 45%, transparent);
   color: var(--lm-ink-soft);
   border-radius: 2px;
   padding: 11px 14px;
@@ -3245,7 +3245,7 @@ code {
 }
 .daily-checkin > small {
   display: block;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--lm-ink-soft);
   line-height: 1.8;
   margin-top: 7px;
@@ -3288,24 +3288,24 @@ code {
     font-size: 28px;
   }
   .daily-copy > p {
-    font-size: 13px;
+    font-size: 15px;
   }
   .daily-meta {
     gap: 8px;
-    font-size: 13px;
+    font-size: 15px;
   }
   .daily-copy > .eyebrow {
     font-size: 13px;
     letter-spacing: 1px;
   }
   .daily-copy > .button {
-    font-size: 13px;
+    font-size: 15px;
   }
   .residents > .section-label {
-    font-size: 13px;
+    font-size: 15px;
   }
   .resident-list button {
-    font-size: 13px;
+    font-size: 15px;
     min-height: 40px;
   }
   .gathering-layout,
@@ -3350,17 +3350,17 @@ code {
     width: 100%;
   }
   .routine-list > li {
-    font-size: 13px;
+    font-size: 15px;
     padding: 12px 10px;
   }
   .routine-list > li > span {
     width: 65px;
   }
   .person-where {
-    font-size: 13px;
+    font-size: 15px;
   }
   .daily-checkin > button {
-    font-size: 13px;
+    font-size: 15px;
   }
   .profile-layout {
     gap: 18px;

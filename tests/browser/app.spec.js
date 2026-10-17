@@ -14,7 +14,7 @@ test('world navigation, expressions, lessons, journal, and save restore', async 
   await page.getByLabel('Find a place').fill('Charms');
   await page.getByRole('button', { name: /Charms Classroom Small spells/ }).click();
   await page.getByRole('button', { name: 'Learn Kindle', exact: true }).click();
-  await page.getByRole('button', { name: 'B A steady warmth and room to breathe' }).click();
+  await page.getByRole('button', { name: 'A steady warmth and room to breathe' }).click();
   await page.getByRole('button', { name: 'Try the spell' }).click();
   await page.getByRole('button', { name: 'Grimoire', exact: true }).click();
   await expect(page.getByText('In your grimoire')).toBeVisible();
