@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { houses, familiars, art } from '../../content.mjs';
 import { VineButton } from './VineButton.jsx';
+import { ModeChoice } from '../../components/lamplight/ModeCard.jsx';
 import { MODE_LABELS } from './menu-model.mjs';
 
 /** Shown only when entering a mode whose save slot is empty. */
 export function CharacterCreation({ mode, onBegin, onBack }) {
+  const [timeMode, setTimeMode] = useState('timeless');
   const [name, setName] = useState('Avery'),
     [house, setHouse] = useState('owlcombe'),
     [familiar, setFamiliar] = useState('cat');
@@ -44,12 +46,38 @@ export function CharacterCreation({ mode, onBegin, onBack }) {
           </label>
         </div>
       </div>
+      {mode === 'sandbox' && (
+        <div className="creation-time">
+          <p className="creation-time-label" id="time-label">
+            How should time pass?
+          </p>
+          <ModeChoice
+            label="How should time pass?"
+            value={timeMode}
+            onChange={setTimeMode}
+            options={[
+              {
+                id: 'timeless',
+                title: 'Timeless',
+                description: 'Live at your own pace. The mystery waits until you go looking.',
+              },
+              {
+                id: 'timed',
+                title: 'Timed',
+                description: 'The year moves on, and the mystery with it. Midsummer is coming.',
+              },
+            ]}
+          />
+        </div>
+      )}
       <div className="creation-actions">
         <VineButton
           lead
           title="Begin your story"
           disabled={!name.trim()}
-          onClick={() => onBegin(name.trim(), house, familiar)}
+          onClick={() =>
+            onBegin(name.trim(), house, familiar, mode === 'sandbox' ? timeMode : null)
+          }
         />
         <button className="title-quiet" onClick={onBack}>
           Back

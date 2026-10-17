@@ -36,3 +36,14 @@ test('label names the player, mode and chapter', () => {
   assert.match(t.label, /^Avery · Live the world · \S/);
   assert.equal(MODE_LABELS.book, 'Read the book');
 });
+
+test('continue covers the AI modes too', () => {
+  const s = initialState('sandbox', 'Wren', 'heronmere', 'fox', { timeMode: 'timed' });
+  const t = continueTarget({
+    lastMode: 'sandbox',
+    saves: { book: g('book'), live: null, guided: null, sandbox: s },
+  });
+  assert.equal(t.mode, 'sandbox');
+  assert.match(t.label, /^Wren · The Open World · /);
+  assert.equal(MODE_LABELS.guided, 'The Guided Tale');
+});

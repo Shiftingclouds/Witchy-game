@@ -81,7 +81,7 @@ import { PatternShowcase } from './features/patterns/PatternShowcase.jsx';
 import './features/shell/shell.css';
 import { CharacterCreation } from './features/opening/CharacterCreation.jsx';
 import { LAST_MODE_KEY, MODE_LABELS } from './features/opening/menu-model.mjs';
-import { isBookLike, isLiveLike } from './engine/modes.mjs';
+import { isBookLike, isLiveLike, MODES } from './engine/modes.mjs';
 
 const storage = platformStorage();
 const saves = createSaveRepository(storage);
@@ -201,9 +201,9 @@ function App() {
     else if (status === 'ok') start(mode);
     else setCreating(mode);
   }
-  function start(mode, name, house, familiar) {
+  function start(mode, name, house, familiar, timeMode) {
     try {
-      setGame(saves.read(mode) || initialState(mode, name, house, familiar));
+      setGame(saves.read(mode) || initialState(mode, name, house, familiar, { timeMode }));
       setView(isBookLike(mode) ? 'book' : 'world');
     } catch (error) {
       setToast(error.message);
@@ -238,8 +238,8 @@ function App() {
       <>
         <TitleScreen
           reduced={reading.reduced}
-          saves={{ book: load('book'), live: load('live') }}
-          slots={{ book: slotStatus('book'), live: slotStatus('live') }}
+          saves={Object.fromEntries(MODES.map((m) => [m, load(m)]))}
+          slots={Object.fromEntries(MODES.map((m) => [m, slotStatus(m)]))}
           lastMode={lastMode()}
           onContinue={(mode) => start(mode)}
           onChooseMode={chooseMode}
@@ -250,8 +250,8 @@ function App() {
             <CharacterCreation
               mode={creating}
               onBack={() => setCreating(null)}
-              onBegin={(name, house, familiar) => {
-                start(creating, name, house, familiar);
+              onBegin={(name, house, familiar, timeMode) => {
+                start(creating, name, house, familiar, timeMode);
                 setCreating(null);
               }}
             />

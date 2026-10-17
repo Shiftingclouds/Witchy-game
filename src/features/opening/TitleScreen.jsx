@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { OpeningScene } from './OpeningScene.jsx';
 import { VineButton } from './VineButton.jsx';
 import { continueTarget, MODE_LABELS } from './menu-model.mjs';
+import { aiAvailable } from '../../ai/claude.mjs';
 import './title.css';
 
 function Title() {
@@ -44,7 +45,8 @@ export function TitleScreen({
   const menu = useRef(null);
   const fileInput = useRef(null);
   const target = continueTarget({ lastMode, saves });
-  const desktop = typeof window !== 'undefined' && Boolean(window.lanternmere);
+  const desktop = typeof window !== 'undefined' && Boolean(window.lanternmere?.storage);
+  const ai = aiAvailable();
 
   useEffect(() => {
     if (stage !== 'title') return;
@@ -88,12 +90,37 @@ export function TitleScreen({
                     onClick={() => onContinue(target.mode)}
                   />
                 )}
-                <VineButton
-                  lead={!target}
-                  title="The Story"
-                  subline="The tale as it was written"
-                  onClick={() => setStage('story')}
-                />
+                <div className={'title-modes' + (ai ? ' three' : '')}>
+                  <VineButton
+                    lead={!target}
+                    title="The Story"
+                    subline="The tale as it was written"
+                    onClick={() => setStage('story')}
+                  />
+                  {ai && (
+                    <>
+                      <VineButton
+                        title={MODE_LABELS.guided}
+                        subline={slotLine(
+                          slots.guided,
+                          'Continue your tale',
+                          'The same path, alive around you',
+                        )}
+                        onClick={() => onChooseMode('guided')}
+                      />
+                      <VineButton
+                        title={MODE_LABELS.sandbox}
+                        subline={slotLine(
+                          slots.sandbox,
+                          'Continue your life',
+                          'Go anywhere. Make a life.',
+                        )}
+                        onClick={() => onChooseMode('sandbox')}
+                      />
+                    </>
+                  )}
+                </div>
+                {!ai && <p className="title-note">AI modes run in the desktop app.</p>}
               </>
             ) : (
               <>
