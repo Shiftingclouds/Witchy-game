@@ -4,6 +4,7 @@ import { Modal, Button, Eyebrow } from '../../components.jsx';
 import { ReadingControls } from '../../dialogue-presentation.jsx';
 import { initialState } from '../../engine.mjs';
 import { downloadSave } from '../../storage/saves.mjs';
+import { ClaudeConnection } from '../ai/ClaudeConnection.jsx';
 export function SettingsPanel({
   reading,
   game,
@@ -51,6 +52,7 @@ export function SettingsPanel({
           />
         </div>
       </div>
+      <ClaudeConnection />
       <div className="settings-section">
         <Eyebrow>THE WORLD IN PICTURES</Eyebrow>
         <p>

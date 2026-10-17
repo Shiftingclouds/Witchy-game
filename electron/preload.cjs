@@ -13,4 +13,9 @@ contextBridge.exposeInMainWorld('lanternmere', {
       if (!reply.ok) throw new Error(reply.error);
     },
   },
+  ai: {
+    status: () => ipcRenderer.invoke('ai:status'),
+    request: (options) => ipcRenderer.invoke('ai:request', options),
+    cancel: () => ipcRenderer.invoke('ai:cancel'),
+  },
 });
