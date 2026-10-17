@@ -774,7 +774,7 @@ function Story({ game, act, visit, open, reading, leave }) {
             </>
           ) : (
             <>
-              <AuthoredChapter game={game} act={act} />
+              <AuthoredChapter game={game} act={act} reduced={reading.reduced} />
               {pendingStoryChoice(game) ? (
                 <p className="story-gate">Make your decision in the scene above to continue.</p>
               ) : isLiveLike(game.mode) && !canAdvance(game) ? (

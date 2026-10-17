@@ -1,4 +1,10 @@
+import { useEffect, useRef, useState } from 'react';
 import { dateLabel } from '../../engine.mjs';
+import { Interlude } from '../ai/Interlude.jsx';
+import { StoryInput } from '../../components/lamplight/StoryInput.jsx';
+import { ThinkingVeil } from '../../components/lamplight/ThinkingVeil.jsx';
+import { useTurn } from '../ai/useTurn.mjs';
+import { ERROR_COPY } from '../../ai/claude.mjs';
 import { chapterBeats, chapterSceneId, choiceKey } from '../../scene-beats.mjs';
 import { art, characterById, locationById } from '../../content.mjs';
 
@@ -26,7 +32,45 @@ export function SceneDecision({ beat, sceneId, game, onSelect }) {
   );
 }
 
-export function AuthoredChapter({ game, act }) {
+/** Guided Tale: answer an authored decision in your own words; Claude maps it to an authored option. */
+function OwnWords({ game, act, beat, sceneId, sceneText, reduced }) {
+  const [text, setText] = useState('');
+  const turn = useTurn({ game, act, mode: 'guided' });
+  const key = choiceKey(sceneId, beat.id);
+  if (game.storyChoices?.[key]) return null;
+  const decision = {
+    prompt: beat.choice.prompt || 'What will you do?',
+    options: beat.choice.options.map((o) => ({ id: o.id, label: o.label })),
+  };
+  const submit = async (words) => {
+    const reply = await turn.send(words, {
+      focus: { sectionId: beat.section?.id, sceneText },
+      decision,
+      onReply: (r) => act({ type: 'story-choice', key, option: r.mappedOption }),
+    });
+    if (reply) setText('');
+  };
+  return (
+    <div className="own-words">
+      <StoryInput
+        value={text}
+        onChange={setText}
+        onSubmit={submit}
+        disabled={turn.busy}
+        placeholder="Or answer in your own words"
+      />
+      {turn.error && (
+        <p className="ai-error-inline" role="alert">
+          {ERROR_COPY[turn.error] || ERROR_COPY.failed}
+        </p>
+      )}
+      <ThinkingVeil active={turn.busy} reduced={reduced} label="Finding your way into the story…" />
+    </div>
+  );
+}
+
+export function AuthoredChapter({ game, act, reduced = false }) {
+  const guided = game.mode === 'guided';
   const justChosen = useRef(null),
     root = useRef(null);
   const beats = chapterBeats(game.chapter, game),
@@ -41,6 +85,13 @@ export function AuthoredChapter({ game, act }) {
   const sections = beats.filter(
     (beat, index) => beat.section && beat.section.id !== beats[index - 1]?.section?.id,
   );
+  // The authored text of one section, handed to Claude as verbatim canon for interludes.
+  const sectionText = (id) =>
+    beats
+      .filter((b) => b.section?.id === id)
+      .map((b) => (b.speaker ? `${characterById[b.speaker].name}: ${b.text}` : b.text))
+      .join('\n')
+      .slice(-2500);
   function jump(beat) {
     root.current?.querySelector(`[data-story-beat="${beat.id}"]`)?.focus();
     act({ type: 'bookmark', scene: sceneId, beat: beat.id });
@@ -63,42 +114,66 @@ export function AuthoredChapter({ game, act }) {
           )}
         </nav>
       )}
-      {beats.map((beat, index) => (
-        <div key={beat.id} data-story-beat={beat.id} tabIndex={-1}>
-          {beat.section && beat.section.id !== beats[index - 1]?.section?.id && (
-            <header className="story-section-heading">
-              <small>
-                {locationById[beat.section.location]?.name}
-                {beat.section.date && ` · ${dateLabel(beat.section.date)}`}
-              </small>
-              <h3>{beat.section.title}</h3>
-            </header>
-          )}
-          {beat.illustration && (
-            <figure className="story-illustration">
-              <img src={art(beat.illustration.art)} alt={beat.illustration.alt} loading="lazy" />
-            </figure>
-          )}
-          <p className={beat.speaker ? 'authored-dialogue' : ''}>
-            {beat.speaker && (
-              <strong className="story-speaker">{characterById[beat.speaker].name}</strong>
+      {beats.map((beat, index) => {
+        const sectionEnds =
+          guided &&
+          beat.section &&
+          (beats[index + 1] ? beats[index + 1].section?.id !== beat.section.id : !beat.choice);
+        return (
+          <div key={beat.id} data-story-beat={beat.id} tabIndex={-1}>
+            {beat.section && beat.section.id !== beats[index - 1]?.section?.id && (
+              <header className="story-section-heading">
+                <small>
+                  {locationById[beat.section.location]?.name}
+                  {beat.section.date && ` · ${dateLabel(beat.section.date)}`}
+                </small>
+                <h3>{beat.section.title}</h3>
+              </header>
             )}
-            {beat.text}
-          </p>
-          {beat.choice && (
-            <SceneDecision
-              beat={beat}
-              sceneId={sceneId}
-              game={game}
-              onSelect={(key, option) => {
-                justChosen.current = beat.id;
-                act({ type: 'story-choice', key, option });
-              }}
-            />
-          )}
-        </div>
-      ))}
+            {beat.illustration && (
+              <figure className="story-illustration">
+                <img src={art(beat.illustration.art)} alt={beat.illustration.alt} loading="lazy" />
+              </figure>
+            )}
+            <p className={beat.speaker ? 'authored-dialogue' : ''}>
+              {beat.speaker && (
+                <strong className="story-speaker">{characterById[beat.speaker].name}</strong>
+              )}
+              {beat.text}
+            </p>
+            {beat.choice && (
+              <SceneDecision
+                beat={beat}
+                sceneId={sceneId}
+                game={game}
+                onSelect={(key, option) => {
+                  justChosen.current = beat.id;
+                  act({ type: 'story-choice', key, option });
+                }}
+              />
+            )}
+            {beat.choice && guided && (
+              <OwnWords
+                game={game}
+                act={act}
+                beat={beat}
+                sceneId={sceneId}
+                sceneText={sectionText(beat.section?.id)}
+                reduced={reduced}
+              />
+            )}
+            {sectionEnds && (
+              <Interlude
+                game={game}
+                act={act}
+                reduced={reduced}
+                sectionId={beat.section.id}
+                sceneText={sectionText(beat.section.id)}
+              />
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }
-import { useEffect, useRef } from 'react';

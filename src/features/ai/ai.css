@@ -197,3 +197,47 @@
   letter-spacing: 0.18em;
   color: var(--lm-gold);
 }
+
+/* Guided Tale */
+.interlude {
+  position: relative;
+  margin: 26px 0;
+}
+.interlude-invite {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  padding: 14px 0;
+  border-top: 1px solid color-mix(in srgb, var(--lm-gold) 22%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--lm-gold) 22%, transparent);
+}
+.interlude-recall {
+  margin: 0;
+  max-width: 60ch;
+  font-family: var(--lm-display);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--lm-ink-soft);
+  text-align: center;
+}
+.interlude .ai-scene {
+  margin: 0;
+}
+.interlude-continue {
+  margin-top: 10px;
+  font-family: var(--lm-display);
+  font-size: 17px;
+}
+.own-words {
+  position: relative;
+  margin: 12px 0 4px;
+}
+.own-words .thinking-veil {
+  align-items: center;
+  padding: 0;
+}
+.ai-error-inline {
+  margin: 8px 0 0;
+  font-size: 15px;
+  color: var(--lm-ink);
+}
