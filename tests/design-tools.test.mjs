@@ -4,8 +4,13 @@ import { execFileSync } from 'node:child_process';
 import { SCREENS } from '../scripts/capture-screens.mjs';
 
 test('the review covers every screen once', () => {
-  assert.equal(SCREENS.length, 20);
-  assert.equal(new Set(SCREENS.map((s) => s.id)).size, 20);
+  assert.equal(SCREENS.length, 23);
+  assert.equal(new Set(SCREENS.map((s) => s.id)).size, 23);
+  for (const id of ['open-world', 'ai-error', 'guided-interlude'])
+    assert.ok(
+      SCREENS.some((s) => s.id === id && s.bridge),
+      id,
+    );
 });
 
 test('design-detect resolves the Impeccable CLI or explains why not', () => {

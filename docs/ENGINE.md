@@ -10,22 +10,22 @@ new state → UI + browser save repository
 
 ## Files and responsibilities
 
-| Module | Responsibility |
-| --- | --- |
-| `src/engine.mjs` | Stable public exports for UI, tests, and content tools. |
-| `src/engine/runtime.mjs` | Builds the command registry, rejects duplicate names, clones state, and discards rejected changes. |
-| `src/engine/transition.mjs` | Registers systems and prepares each command. |
-| `src/engine/systems/world.mjs` | Exploration, discoveries, resting, waiting, journal notes. |
-| `src/engine/systems/relationships.mjs` | Authored topics, check-ins, gatherings, shared memories, stored (hidden) legacy AI dialogue. |
-| `src/engine/systems/magic.mjs` | Lessons, spell prerequisites, casting, restoration requirements. |
-| `src/engine/systems/story.mjs` | Local decisions, introductions, chapter choices, endings, bookmarks, and Book-mode progression. |
-| `src/engine/state.mjs` | New-game defaults and save schema version. |
-| `src/engine/effects.mjs` | Shared journal, reward, and friendship operations. |
-| `src/engine/time.mjs` | Game calendar, seasons, festivals, day changes. |
-| `src/engine/selectors.mjs` | Read-only requirements, scene art, and prepared dialogue selection. |
-| `src/engine/migrations.mjs` / `save.mjs` | Sequential save upgrades, validation, and removal of unknown fields. |
-| `src/storage/saves.mjs` | Browser persistence, mode slots, import backups, export. Storage is injectable for tests. |
-| `src/features/` | Dialogue UI, settings, and authored epilogue data. |
+| Module                                   | Responsibility                                                                                     |
+| ---------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `src/engine.mjs`                         | Stable public exports for UI, tests, and content tools.                                            |
+| `src/engine/runtime.mjs`                 | Builds the command registry, rejects duplicate names, clones state, and discards rejected changes. |
+| `src/engine/transition.mjs`              | Registers systems and prepares each command.                                                       |
+| `src/engine/systems/world.mjs`           | Exploration, discoveries, resting, waiting, journal notes.                                         |
+| `src/engine/systems/relationships.mjs`   | Authored topics, check-ins, gatherings, shared memories, stored (hidden) legacy AI dialogue.       |
+| `src/engine/systems/magic.mjs`           | Lessons, spell prerequisites, casting, restoration requirements.                                   |
+| `src/engine/systems/story.mjs`           | Local decisions, introductions, chapter choices, endings, bookmarks, and Book-mode progression.    |
+| `src/engine/state.mjs`                   | New-game defaults and save schema version.                                                         |
+| `src/engine/effects.mjs`                 | Shared journal, reward, and friendship operations.                                                 |
+| `src/engine/time.mjs`                    | Game calendar, seasons, festivals, day changes.                                                    |
+| `src/engine/selectors.mjs`               | Read-only requirements, scene art, and prepared dialogue selection.                                |
+| `src/engine/migrations.mjs` / `save.mjs` | Sequential save upgrades, validation, and removal of unknown fields.                               |
+| `src/storage/saves.mjs`                  | Browser persistence, mode slots, import backups, export. Storage is injectable for tests.          |
+| `src/features/`                          | Dialogue UI, settings, and authored epilogue data.                                                 |
 
 ## Add a gameplay feature
 
@@ -41,7 +41,13 @@ New persistent fields also need defaults in `state.mjs`, a validation rule, a ne
 
 Character sheets define personality and canon. Per-save bonds, verified shared moments, and recent unverified dialogue stay separate. See [the character guide](../characters/README.md). `character-context.mjs` builds bounded character context; future writing notes and unreached facts are excluded.
 
-AI play is being rebuilt on Claude Code (`claude -p`); Prebuilt modes use prepared dialogue only. See [the design](docs/superpowers/specs/2026-10-16-desktop-and-ai-modes-design.md). Prebuilt modes never call AI and remain fully deterministic.
+Prebuilt modes never call AI and remain fully deterministic. The AI modes (`guided`, `sandbox`) keep the engine authoritative:
+
+- `src/ai/context.mjs` builds layered context (rules, lore, mystery stage, style samples, cast, memory, recent turns) within a 60,000-token budget, trimming from the bottom.
+- Claude replies through a JSON schema (`src/ai/contract.mjs`). `validateReply` checks speakers, places, expressions and proposals. An invalid reply is retried once with the problems listed, then shown as a calm error; the save is untouched.
+- Accepted proposals are applied only by the `ai-turn` command (`src/engine/systems/ai.mjs`): bond changes are clamped to ±5, and invented people get `p-` ids with no portrait and no new places. Threads, memories and time moves are recorded with provenance in `game.ai`.
+- `src/ai/memory.mjs` folds older turns into a chronicle on the housekeeping model so long games keep their history.
+- `electron/claude-bridge.mjs` runs `claude -p` one request at a time, with no tools, no MCP, no settings and no session persistence, in an empty working folder under userData.
 
 ## Persistence and failure behavior
 

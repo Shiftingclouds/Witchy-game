@@ -12,3 +12,5 @@ release/
 *.blockmap
 .superpowers/
 public/opening/
+logs/
+*.jsonl
