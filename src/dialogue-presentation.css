@@ -241,7 +241,7 @@
   color: var(--lm-gold);
 }
 .speaker-heading strong {
-  font-family: var(--serif);
+  font-family: var(--lm-display);
   font-size: 23px;
   font-weight: 400;
 }
@@ -256,7 +256,7 @@
   text-align: left;
   width: 100%;
   min-height: 100px;
-  font: 23px/1.7 var(--serif);
+  font: 23px/1.7 var(--lm-display);
   color: var(--lm-ink-soft);
   cursor: pointer;
   border-radius: 3px;
@@ -418,7 +418,7 @@
   font-size: 13px;
 }
 .scene-transcript li p {
-  font: 19px/1.7 var(--serif);
+  font: 19px/1.7 var(--lm-display);
   margin-top: 6px;
 }
 
@@ -435,7 +435,7 @@
   min-height: 40px;
 }
 .conversation-memory h4 {
-  font: 23px var(--serif);
+  font: 23px var(--lm-display);
   margin: 18px 0 10px;
 }
 .conversation-memory > p {

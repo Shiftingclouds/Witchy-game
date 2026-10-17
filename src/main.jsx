@@ -1127,15 +1127,27 @@ function Gallery({ manifest, onClose }) {
   const [kind, setKind] = useState('environment'),
     [query, setQuery] = useState(''),
     [selected, setSelected] = useState(null);
+  const needed = manifest.filter((a) => a.placeholder);
+  const shown =
+    kind === 'needed'
+      ? needed.filter((a) => a.original.includes(query.toLowerCase()))
+      : manifest.filter(
+          (a) => !a.placeholder && a.kind === kind && a.id.includes(query.toLowerCase()),
+        );
   return (
     <Modal title="The art that built this world" wide onClose={onClose}>
       <p>
-        Your originals are preserved. These are smaller copies for the browser; the overview map is
-        newly generated.
+        Your originals are preserved. These are smaller copies for the game. Art still to come from
+        ChatGPT is listed under Art needed, with the exact filename to save it as.
       </p>
       <div className="filter-bar">
         <div className="tabs">
-          {['environment', 'character', 'familiar'].map((k) => (
+          {[
+            ['environment', 'Environments'],
+            ['character', 'Characters'],
+            ['familiar', 'Familiars'],
+            ['needed', `Art needed · ${needed.length}`],
+          ].map(([k, label]) => (
             <button
               key={k}
               className={kind === k ? 'active' : ''}
@@ -1144,7 +1156,7 @@ function Gallery({ manifest, onClose }) {
                 setSelected(null);
               }}
             >
-              {k[0].toUpperCase() + k.slice(1)}s
+              {label}
             </button>
           ))}
         </div>
@@ -1163,19 +1175,25 @@ function Gallery({ manifest, onClose }) {
           <img src={selected.src} alt={selected.id} />
           <p>
             {selected.original}
-            {selected.generated ? ' · New artwork' : ' · Original artwork'}
+            {selected.placeholder
+              ? ` · Art needed — save as art/${selected.original}. ${selected.request}`
+              : selected.generated
+                ? ' · New artwork'
+                : ' · Original artwork'}
           </p>
         </div>
       )}
       <div className="gallery-grid">
-        {manifest
-          .filter((a) => a.kind === kind && a.id.includes(query.toLowerCase()))
-          .map((a) => (
-            <button key={a.id} onClick={() => setSelected(a)}>
-              <img src={a.src} alt={a.id} loading="lazy" />
-              <span>{a.id}</span>
-            </button>
-          ))}
+        {shown.map((a) => (
+          <button key={a.id} onClick={() => setSelected(a)}>
+            <img
+              src={a.src}
+              alt={a.placeholder ? `Art needed: ${a.original}` : a.id}
+              loading="lazy"
+            />
+            <span>{a.placeholder ? `ART NEEDED · ${a.original}` : a.id}</span>
+          </button>
+        ))}
       </div>
     </Modal>
   );
