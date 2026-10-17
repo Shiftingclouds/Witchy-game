@@ -16,7 +16,7 @@ The canonical editable story is in **[src/story/](src/story/)**. Each main chapt
 | 4. A lantern for the lost | `emberfall.mjs`, `emberfall-preparations.mjs`                   | Expanded                                               |
 | 5. The lake remembers     | `longnight.mjs`, `longnight-shore.mjs`                          | Expanded                                               |
 | 6. An open circle         | `thaw.mjs`, `thaw-stones.mjs`                                   | Expanded                                               |
-| 7. The light we carry     | `bloom.mjs`, `bloom-rehearsal.mjs`                              | Integrated; browser review pending                     |
+| 7. The light we carry     | `bloom.mjs`, `bloom-rehearsal.mjs`                              | Expanded; browser review passed                        |
 | 8. A home made of light   | `src/content.mjs`, final chapter entry                          | Compact playable prototype; full expansion not started |
 | Two endings               | `src/features/story/epilogue.mjs`                               | Compact playable epilogues                             |
 
@@ -46,11 +46,13 @@ A dim Heartfire variant was generated and inspected at `/workspace/generated_ima
 - **47 active / 13 proposed characters**, **161 browser images / about 30.0 MiB**.
 - Full personal arcs, house/community stories, adult romance, minigames, proposed cast and much of the art queue remain unfinished. Do not claim the game or manuscript is complete.
 
-## Verification and current limitation
+## Verification
 
 The last full successful unit/API run was **47 tests** at Longnight. All **27 browser scenarios** at that checkpoint passed across the full run and a six-test presentation rerun; a subpixel comparison was corrected from strict equality to a 0.01px tolerance. First Thaw then passed **25 targeted tests** and **12 browser scenarios**, including offline artwork, saved branches, imports and the complete Book route.
 
-Bloomtide passed **22 targeted engine/story/audit tests**, the character/story validators, and a production build. Its new browser scenario is written in `tests/browser/seasonal-story.spec.js`, but **was not run**: automatic approval review could not authorize the local Chromium command because the account usage limit had been reached. This was a review-capacity failure, not a finding that the command was unsafe. Do not describe Bloomtide as visually verified in-browser.
+Bloomtide passed **22 targeted engine/story/audit tests**, character/story validators and a production build. Its new browser scenario then passed, verifying Grey/Okoro expression loading, rehearsal payoff, Rowan's private memory and the lantern assignment. The [rehearsal capture](docs/bloom-rehearsal.png) was visually reviewed. The final **full check passed all 49 unit/API tests**, formatting, character/story validation and export freshness.
+
+Automatic approval review initially blocked the browser run because of the account usage limit. Approval review became available again after the user's follow-up, and the same authorized test completed successfully. There is no outstanding Bloomtide browser-test blocker. The main-JS chunk warning and real-provider trial remain separate limitations.
 
 Commands when execution is available:
 
@@ -77,6 +79,8 @@ npm run check:story-export
 
 Read [PROGRESS.md](PROGRESS.md), [YEAR_CONTINUITY.md](docs/YEAR_CONTINUITY.md), [STORY_AUTHORING.md](docs/STORY_AUTHORING.md), and [PRODUCTION_PLAN.md](docs/PRODUCTION_PLAN.md) for details. [START_HERE.md](START_HERE.md) covers running the app and AI setup.
 
-## Git and publication status
+## Git and publication
 
-Work was saved on local branch `work`. The configured remote is `https://github.com/Shiftingclouds/Witchy-game.git`. The user explicitly requested a push in this session. Publication must be verified against the remote before claiming it succeeded. The first remote read failed because the sandbox could not connect to its network proxy; final push status will be reported separately after the publication attempt. If this file is being read on GitHub, the commit containing it is available on that branch; check the branch selector before assuming it is `main`.
+The repository is `https://github.com/Shiftingclouds/Witchy-game.git`; the publication target for this handoff is **main**. Development checkpoints were made on local branch `work`. When checked before publication, remote `main` was still the original-art commit `8f4cbe2`, explaining why Claude could not find the implementation. All completed game/story checkpoints are descendants of it, so the requested push can fast-forward without replacing remote work.
+
+On GitHub, select **main** and open this file or [STORY.md](STORY.md). If using an older clone, fetch/pull the remote before concluding that the story is missing. The publishing agent verifies the remote commit after pushing; a local-only copy of this document is not evidence that a network push succeeded.

@@ -46,4 +46,4 @@ All three images load offline. The stone detail and largest-text phone presentat
 - `c13-grey-attentive.png`: expression edit from Grey's supplied neutral portrait; preserves grey hair/stubble, dark clothing, identity and transparent silhouette.
 - `c16-okoro-warm.png`: expression edit from Okoro's supplied neutral portrait; preserves face, goggles, fleece collar, leather, whistle and transparency.
 
-Both generated source images were visually inspected and integrated into the rehearsal. Asset and scene validation and the production build passed. Browser loading/staging coverage is written but remains unrun because automatic approval review reached the account usage limit. Do not claim a completed browser visual review for this packet.
+Both generated source images were visually inspected and integrated into the rehearsal. Asset and scene validation and the production build passed. Browser loading/staging coverage passed after an initial approval-review usage limit was resolved. The rehearsal capture in `docs/bloom-rehearsal.png` was visually reviewed.

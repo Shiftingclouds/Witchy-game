@@ -136,6 +136,6 @@ Reviewed captures: [Emberfall cast](emberfall-cast.png), [petals](emberfall-evid
 
 First Thaw now integrates daylight Candlestones, the source-consistent inscription detail and Kestrel's warm expression. The inscription lighting was corrected to match the daytime scene. Reviewed captures: [desktop](thaw-evidence.png), [phone](thaw-mobile.png). Current collection: 159 images / 29.9 MiB. Opening expression gaps and the other planned images remain in the queue.
 
-## Bloomtide packet — source review completed; browser review pending
+## Bloomtide packet — reviewed
 
-Grey attentive and Okoro warm were generated from their original portraits and used in the rehearsal. Both retain transparency and their existing identity, clothes and props. Source images were inspected; asset/scene validation and the build passed. The new browser scenario is written but unrun because automatic approval review reached the account usage limit. The collection is now 161 images / 30.0 MiB. A dim Heartfire concept exists outside the repository, unintegrated; Midsummer work is paused at the user's request.
+Grey attentive and Okoro warm were generated from their original portraits and used in the rehearsal. Both retain transparency and their existing identity, clothes and props. Source images were inspected; asset/scene validation and the build passed. The new browser scenario passed after an initial approval-review usage limit was resolved. Both portraits load and the [rehearsal screenshot](bloom-rehearsal.png) was visually inspected. The collection is now 161 images / 30.0 MiB. A dim Heartfire concept exists outside the repository, unintegrated; Midsummer work is paused at the user's request.
