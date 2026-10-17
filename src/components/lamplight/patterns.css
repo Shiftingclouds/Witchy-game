@@ -1,0 +1,139 @@
+/* Patterns for the AI modes (Plans 2–4). */
+.thinking-veil {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 28px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s;
+}
+.thinking-veil.active {
+  opacity: 1;
+  background: linear-gradient(
+    0deg,
+    color-mix(in srgb, var(--lm-bg) 70%, transparent),
+    transparent 55%
+  );
+}
+.thinking-veil p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 8px 16px;
+  font-family: var(--lm-display);
+  font-style: italic;
+  font-size: 19px;
+  color: var(--lm-ink);
+  background: color-mix(in srgb, var(--lm-surface) 85%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 35%, transparent);
+}
+.thinking-mote {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--lm-gold-bright);
+  animation: thinking-breathe 2.4s ease-in-out infinite;
+}
+@keyframes thinking-breathe {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+.thinking-veil.still,
+.thinking-veil.still .thinking-mote {
+  transition: none;
+  animation: none;
+}
+.story-input {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 45%, transparent);
+  background: color-mix(in srgb, var(--lm-bg) 70%, var(--lm-surface));
+}
+.story-input:focus-within {
+  border-color: var(--lm-gold-bright);
+}
+.story-input textarea {
+  flex: 1;
+  resize: none;
+  padding: 12px 14px;
+  font-family: var(--lm-read);
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--lm-ink);
+  background: transparent;
+  border: 0;
+  outline: none;
+}
+.story-input textarea::placeholder {
+  color: var(--lm-ink-soft);
+  font-style: italic;
+}
+.story-input button {
+  width: 52px;
+  color: var(--lm-gold);
+  background: color-mix(in srgb, var(--lm-wine) 45%, transparent);
+  border: 0;
+  border-left: 1px solid color-mix(in srgb, var(--lm-gold) 35%, transparent);
+  cursor: pointer;
+}
+.story-input button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.mode-choice {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+.mode-card-choice {
+  display: grid;
+  gap: 8px;
+  padding: 22px 24px;
+  text-align: left;
+  cursor: pointer;
+  color: var(--lm-ink);
+  background: color-mix(in srgb, var(--lm-surface) 90%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 35%, transparent);
+  border-radius: 1px;
+}
+.mode-card-choice strong {
+  font-family: var(--lm-display);
+  font-size: 23px;
+  font-weight: 500;
+}
+.mode-card-choice span {
+  font-family: var(--lm-read);
+  font-size: 17px;
+  color: var(--lm-ink-soft);
+}
+.mode-card-choice.selected {
+  background: color-mix(in srgb, var(--lm-wine) 45%, var(--lm-surface));
+  border-color: var(--lm-gold);
+  outline: 1px solid color-mix(in srgb, var(--lm-gold) 30%, transparent);
+  outline-offset: -5px;
+}
+.pattern-showcase {
+  display: grid;
+  gap: 24px;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 24px;
+}
+.pattern-scene {
+  position: relative;
+  aspect-ratio: 16 / 7;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 35%, transparent);
+}

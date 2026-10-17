@@ -76,6 +76,7 @@ import { applyReadingMode } from './theme/apply.mjs';
 import { OpeningScene } from './features/opening/OpeningScene.jsx';
 import { TitleScreen } from './features/opening/TitleScreen.jsx';
 import { useSidebarState } from './features/shell/sidebar.mjs';
+import { PatternShowcase } from './features/patterns/PatternShowcase.jsx';
 import './features/shell/shell.css';
 import { CharacterCreation } from './features/opening/CharacterCreation.jsx';
 import { LAST_MODE_KEY } from './features/opening/menu-model.mjs';
@@ -210,6 +211,8 @@ function App() {
         setToast('This file is not a valid Lanternmere save. Your current progress is safe.'),
       );
   }
+  if (new URLSearchParams(window.location.search).has('patterns'))
+    return <PatternShowcase reduced={reading.reduced} />;
   // Stand-alone view of the opening scene (used by the scene's own browser tests).
   if (new URLSearchParams(window.location.search).has('opening'))
     return <OpeningScene reduced={reading.reduced} awake={false} />;
