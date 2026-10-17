@@ -87,3 +87,35 @@ test('status reports the installed version or why it is unavailable', async () =
   });
   assert.equal((await missing.status()).available, false);
 });
+
+test('cancel targets its own request, even while it is still queued', async () => {
+  const b = bridge({ FAKE_CLAUDE_MODE: 'slow' });
+  const first = b.request({ id: 'a', system: 's', prompt: 'p', schema: {}, timeoutMs: 30_000 });
+  const second = b.request({ id: 'b', system: 's', prompt: 'p', schema: {}, timeoutMs: 30_000 });
+  await new Promise((r) => setTimeout(r, 200));
+  b.cancel('b');
+  assert.equal((await second).error, 'cancelled');
+  b.cancel('a');
+  assert.equal((await first).error, 'cancelled');
+});
+
+test('checking status mid-request does not lose track of the running claude', async () => {
+  const b = bridge({ FAKE_CLAUDE_MODE: 'slow' });
+  const pending = ask(b, { timeoutMs: 30_000 });
+  await new Promise((r) => setTimeout(r, 200));
+  await b.status();
+  b.dispose();
+  const started = Date.now();
+  assert.equal((await pending).error, 'cancelled');
+  assert.ok(Date.now() - started < 5000);
+});
+
+test('after dispose, queued requests never start a new claude', async () => {
+  const b = bridge({ FAKE_CLAUDE_MODE: 'slow' });
+  const first = ask(b, { timeoutMs: 30_000 });
+  const queued = ask(b, { timeoutMs: 30_000 });
+  await new Promise((r) => setTimeout(r, 200));
+  b.dispose();
+  assert.equal((await first).error, 'cancelled');
+  assert.equal((await queued).error, 'cancelled');
+});

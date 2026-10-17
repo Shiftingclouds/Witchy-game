@@ -47,6 +47,7 @@ test('new AI games start with empty playthrough memory', () => {
       sequence: 0,
       pendingTimed: false,
       lastSuggestions: [],
+      milestoneAt: 0,
     },
   );
   assert.equal(initialState('guided').ai.timeMode, null);
@@ -87,6 +88,7 @@ test('a turn records the exchange and applies bounded proposals', () => {
 
 test('only the Open World can reach a milestone, and only one step at a time', () => {
   let s = initialState('sandbox', 'Wren', 'heronmere', 'fox', { timeMode: 'timeless' });
+  for (let i = 0; i < 5; i++) s = turn(s, { beats });
   s = turn(s, { beats, proposals: [{ type: 'milestone' }, { type: 'milestone' }] });
   assert.equal(s.chapter, 1);
   let gd = initialState('guided');
@@ -131,4 +133,73 @@ test('a very long playthrough stays bounded', () => {
   assert.ok(g.ai.turns.length <= 24);
   assert.ok(g.ai.events.length <= 150);
   assert.ok(new TextEncoder().encode(JSON.stringify(g)).length < MAX_SAVE_BYTES);
+});
+
+test('bond changes total at most ±5 per person per turn, however many proposals', () => {
+  const g = initialState('sandbox', 'Wren', 'heronmere', 'fox', { timeMode: 'timeless' });
+  const proposals = Array.from({ length: 8 }, () => ({
+    type: 'bond',
+    character: 'rowan',
+    delta: 50,
+  }));
+  assert.equal(turn(g, { beats, proposals }).bonds.rowan, 5);
+});
+
+test('a chronicle whose turns are already absorbed changes nothing', () => {
+  let g = initialState('sandbox', 'Wren', 'heronmere', 'fox', { timeMode: 'timeless' });
+  g = turn(g, { beats });
+  const action = {
+    type: 'ai-chronicle',
+    mode: 'sandbox',
+    entry: 'They met Rowan.',
+    absorbedTurnIds: [1],
+  };
+  const once = transition(g, action);
+  const twice = transition(once, action);
+  assert.equal(twice.ai.chronicle.length, 1);
+});
+
+test('a reply meant for another mode never lands in this save', () => {
+  const g = initialState('guided', 'Wren', 'heronmere', 'fox');
+  const t = transition(g, { type: 'ai-turn', mode: 'sandbox', player: 'Hi', reply: { beats } });
+  assert.equal(t.ai.turns.length, 0);
+  const c = transition(g, {
+    type: 'ai-chronicle',
+    mode: 'sandbox',
+    entry: 'x',
+    absorbedTurnIds: [],
+  });
+  assert.equal(c.ai.chronicle.length, 0);
+});
+
+test('the mystery cannot be rushed: milestones need time between them', () => {
+  let g = initialState('sandbox', 'Wren', 'heronmere', 'fox', { timeMode: 'timeless' });
+  const start = g.chapter;
+  for (let i = 0; i < 7; i++)
+    g = turn(g, { beats, proposals: [{ type: 'milestone' }] }, 'Push on.', i);
+  assert.equal(g.chapter, start + 1);
+});
+
+test('long games keep every open thread through a reload, and resolved ones stay bounded', () => {
+  let g = initialState('sandbox', 'Wren', 'heronmere', 'fox', { timeMode: 'timeless' });
+  for (let i = 0; i < 120; i++)
+    g = turn(
+      g,
+      {
+        beats,
+        proposals: [
+          { type: 'thread', op: 'open', id: 't' + i, title: 'T' + i },
+          { type: 'thread', op: 'resolve', id: 't' + i },
+        ],
+      },
+      'x',
+      i,
+    );
+  g = turn(g, {
+    beats,
+    proposals: [{ type: 'thread', op: 'open', id: 'newest', title: 'Newest' }],
+  });
+  assert.ok(g.ai.threads.length <= 81);
+  const reloaded = parseSave(JSON.stringify(g));
+  assert.ok(reloaded.ai.threads.some((t) => t.id === 'newest' && t.status === 'open'));
 });

@@ -143,7 +143,7 @@ function checkProposal(p, { game, mode, newPeople }) {
         {
           type: 'event',
           summary: str(p.summary, 600),
-          involves: (p.involves || []).filter(person),
+          involves: (Array.isArray(p.involves) ? p.involves : []).filter(person),
           importance: [1, 2, 3].includes(p.importance) ? p.importance : 1,
         },
       ];

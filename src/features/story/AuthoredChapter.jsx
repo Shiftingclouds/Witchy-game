@@ -33,11 +33,16 @@ export function SceneDecision({ beat, sceneId, game, onSelect }) {
 }
 
 /** Guided Tale: answer an authored decision in your own words; Claude maps it to an authored option. */
-function OwnWords({ game, act, beat, sceneId, sceneText, reduced }) {
+function OwnWords(props) {
+  // Once the decision is made there is nothing to answer, and no turn should stay alive.
+  if (props.game.storyChoices?.[choiceKey(props.sceneId, props.beat.id)]) return null;
+  return <OwnWordsInput {...props} />;
+}
+
+function OwnWordsInput({ game, act, beat, sceneId, sceneText, reduced }) {
   const [text, setText] = useState('');
   const turn = useTurn({ game, act, mode: 'guided' });
   const key = choiceKey(sceneId, beat.id);
-  if (game.storyChoices?.[key]) return null;
   const decision = {
     prompt: beat.choice.prompt || 'What will you do?',
     options: beat.choice.options.map((o) => ({ id: o.id, label: o.label })),
@@ -65,6 +70,11 @@ function OwnWords({ game, act, beat, sceneId, sceneText, reduced }) {
         </p>
       )}
       <ThinkingVeil active={turn.busy} reduced={reduced} label="Finding your way into the story…" />
+      {turn.busy && (
+        <button className="text-button ai-stop" onClick={turn.cancel}>
+          Stop
+        </button>
+      )}
     </div>
   );
 }

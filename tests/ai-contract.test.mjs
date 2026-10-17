@@ -142,3 +142,15 @@ test('a reply with no usable beats is rejected', () => {
   assert.ok(errors.length);
   assert.equal(validateReply(null, { game: sandbox(), mode: 'sandbox' }).reply, null);
 });
+
+test('a malformed involves list is dropped, not thrown', () => {
+  const raw = {
+    beats: [{ speaker: null, text: 'Rain.', expression: 'neutral' }],
+    location: 'lantern-hall',
+    present: [],
+    suggestions: [],
+    proposals: [{ type: 'event', summary: 'It rained.', involves: 'rowan', importance: 1 }],
+    memoryNotes: '',
+  };
+  assert.doesNotThrow(() => validateReply(raw, { game: sandbox(), mode: 'sandbox' }));
+});

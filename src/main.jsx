@@ -77,6 +77,7 @@ import { OpeningScene } from './features/opening/OpeningScene.jsx';
 import { TitleScreen } from './features/opening/TitleScreen.jsx';
 import { VineButton } from './features/opening/VineButton.jsx';
 import { AiScene } from './features/ai/AiScene.jsx';
+import { useChronicle } from './features/ai/useTurn.mjs';
 import { AiStory, ThreadsCard } from './features/ai/AiStory.jsx';
 import { useSidebarState } from './features/shell/sidebar.mjs';
 import { PatternShowcase } from './features/patterns/PatternShowcase.jsx';
@@ -154,6 +155,8 @@ function App() {
     [mobileNav, setMobileNav] = useState(false),
     [manifest, setManifest] = useState([]),
     [saveError, setSaveError] = useState('');
+  // One chronicle keeper per playthrough (AI modes only; it does nothing for Book and Live).
+  useChronicle(game, act);
   useEffect(() => {
     fetch('/art/manifest.json')
       .then((r) => r.json())

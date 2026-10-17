@@ -109,6 +109,11 @@ export function AiScene({
         placeholder={placeholder}
       />
       <ThinkingVeil active={turn.busy} reduced={reduced} />
+      {turn.busy && (
+        <button className="text-button ai-stop" onClick={turn.cancel}>
+          Stop
+        </button>
+      )}
       {mode === 'sandbox' && game.ai?.pendingTimed && (
         <Modal
           title="Let the year begin to move?"

@@ -8,6 +8,8 @@ export const AI_LIMITS = {
   chronicle: 60,
   events: 150,
   openThreads: 30,
+  resolvedThreads: 50,
+  turnsPerMilestone: 6,
   people: 40,
   memoriesPerPerson: 12,
   text: 600,
@@ -27,6 +29,7 @@ export const emptyAi = (timeMode = null) => ({
   sequence: 0,
   pendingTimed: false,
   lastSuggestions: [],
+  milestoneAt: 0,
 });
 
 const str = (value, max) => (typeof value === 'string' ? value.trim().slice(0, max) : '');
@@ -45,6 +48,7 @@ export function sanitizeAi(value, mode) {
   );
   ai.sequence = Number.isInteger(v.sequence) && v.sequence >= 0 ? v.sequence : 0;
   ai.pendingTimed = v.pendingTimed === true && ai.timeMode === 'timeless';
+  ai.milestoneAt = Number.isInteger(v.milestoneAt) && v.milestoneAt >= 0 ? v.milestoneAt : 0;
   ai.lastSuggestions = (Array.isArray(v.lastSuggestions) ? v.lastSuggestions : [])
     .map((x) => str(x, 120))
     .filter(Boolean)
@@ -96,15 +100,22 @@ export function sanitizeAi(value, mode) {
       source: 'invented',
     }))
     .filter((e) => e.summary);
-  ai.threads = (Array.isArray(v.threads) ? v.threads : []).slice(0, 80).map((t) => ({
-    id: str(t.id, 60),
-    title: str(t.title, 120),
-    status: t.status === 'resolved' ? 'resolved' : 'open',
-    notes: (Array.isArray(t.notes) ? t.notes : [])
-      .map((n) => str(n, 300))
-      .filter(Boolean)
-      .slice(-6),
-  }));
+  const threadList = Array.isArray(v.threads) ? v.threads : [];
+  const resolvedKept = new Set(
+    threadList.filter((t) => t?.status === 'resolved').slice(-AI_LIMITS.resolvedThreads),
+  );
+  ai.threads = threadList
+    .filter((t) => t && typeof t === 'object' && (t.status !== 'resolved' || resolvedKept.has(t)))
+    .slice(-(AI_LIMITS.openThreads + AI_LIMITS.resolvedThreads))
+    .map((t) => ({
+      id: str(t.id, 60),
+      title: str(t.title, 120),
+      status: t.status === 'resolved' ? 'resolved' : 'open',
+      notes: (Array.isArray(t.notes) ? t.notes : [])
+        .map((n) => str(n, 300))
+        .filter(Boolean)
+        .slice(-6),
+    }));
   for (const [who, list] of Object.entries(
     v.memories && typeof v.memories === 'object' ? v.memories : {},
   ))

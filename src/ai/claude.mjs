@@ -19,11 +19,12 @@ export const aiAvailable = () => Boolean(bridge());
  * Ask Claude for one structured reply.
  * @returns {Promise<{ok: true, data: object} | {ok: false, error: string, message?: string}>}
  */
-export async function askClaude({ system, prompt, schema, purpose = 'story' }) {
+export async function askClaude({ id = null, system, prompt, schema, purpose = 'story' }) {
   const ai = bridge();
   if (!ai) return { ok: false, error: 'desktop-only', message: 'AI modes run in the desktop app.' };
   try {
     return await ai.request({
+      id,
       system,
       prompt,
       schema,
@@ -38,7 +39,7 @@ export async function askClaude({ system, prompt, schema, purpose = 'story' }) {
 
 export const claudeStatus = async () =>
   bridge()?.status() ?? { available: false, reason: 'desktop-only' };
-export const cancelClaude = () => bridge()?.cancel();
+export const cancelClaude = (id) => bridge()?.cancel(id);
 
 /** Calm, in-world wording for each failure. */
 export const ERROR_COPY = {

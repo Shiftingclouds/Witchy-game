@@ -30,9 +30,14 @@ function classify(envelope) {
 export function createClaudeBridge({ command = defaultClaudeCommand(), workDir, log = null }) {
   mkdirSync(workDir, { recursive: true });
   let queue = Promise.resolve();
-  let current = null;
+  let disposed = false;
+  // Every running claude, so cancel and quit can always reach it (Windows won't kill children for us).
+  const live = new Set();
+  const cancelledIds = new Set();
+  const waiting = new Map(); // id → settle, for requests still in the queue
+  const CANCELLED = { ok: false, error: 'cancelled', message: 'Cancelled.' };
 
-  function run(args, { input = '', timeoutMs = 240_000 } = {}, attempt = command) {
+  function run(args, { input = '', timeoutMs = 240_000, id = null } = {}, attempt = command) {
     return new Promise((resolve) => {
       let out = '';
       let err = '';
@@ -41,7 +46,7 @@ export function createClaudeBridge({ command = defaultClaudeCommand(), workDir, 
         if (settled) return;
         settled = true;
         clearTimeout(timer);
-        if (current?.child === child) current = null;
+        live.delete(entry);
         resolve(result);
       };
       const [bin, ...pre] = attempt;
@@ -50,13 +55,8 @@ export function createClaudeBridge({ command = defaultClaudeCommand(), workDir, 
         env: process.env,
         windowsHide: true,
       });
-      current = {
-        child,
-        cancel: () => (
-          child.kill(),
-          finish({ ok: false, error: 'cancelled', message: 'Cancelled.' })
-        ),
-      };
+      const entry = { id, cancel: () => (child.kill(), finish(CANCELLED)) };
+      live.add(entry);
       const timer = setTimeout(() => {
         child.kill();
         finish({ ok: false, error: 'timeout', message: 'Claude took too long to answer.' });
@@ -72,7 +72,8 @@ export function createClaudeBridge({ command = defaultClaudeCommand(), workDir, 
         ) {
           settled = true;
           clearTimeout(timer);
-          return run(args, { input, timeoutMs }, [FALLBACK]).then(resolve);
+          live.delete(entry);
+          return run(args, { input, timeoutMs, id }, [FALLBACK]).then(resolve);
         }
         finish({
           ok: false,
@@ -89,7 +90,15 @@ export function createClaudeBridge({ command = defaultClaudeCommand(), workDir, 
     });
   }
 
-  async function request({ system, prompt, schema, model = 'opus', timeoutMs = 240_000 }) {
+  async function request({
+    id = null,
+    system,
+    prompt,
+    schema,
+    model = 'opus',
+    timeoutMs = 240_000,
+  }) {
+    if (disposed || (id && cancelledIds.delete(id))) return CANCELLED;
     const args = [
       '-p',
       '--output-format',
@@ -107,7 +116,7 @@ export function createClaudeBridge({ command = defaultClaudeCommand(), workDir, 
       '--model',
       model,
     ];
-    const result = await run(args, { input: prompt, timeoutMs });
+    const result = await run(args, { input: prompt, timeoutMs, id });
     if (result.error) return result;
     let envelope;
     try {
@@ -143,22 +152,42 @@ export function createClaudeBridge({ command = defaultClaudeCommand(), workDir, 
   return {
     /** One request at a time; later calls wait their turn. */
     request(options) {
-      const next = queue.then(() => request(options));
+      if (disposed) return Promise.resolve(CANCELLED);
+      const id = options?.id ?? null;
+      let settleEarly;
+      const early = new Promise((resolve) => (settleEarly = resolve));
+      if (id) waiting.set(id, settleEarly);
+      const next = queue.then(() => {
+        if (id) waiting.delete(id);
+        return request(options);
+      });
       queue = next.catch(() => {});
-      return next;
+      return Promise.race([next, early]);
     },
-    cancel() {
-      current?.cancel();
+    /** Cancel one request by id, whether running or still queued; with no id, every request. */
+    cancel(id = null) {
+      if (id) {
+        const running = [...live].find((e) => e.id === id);
+        if (running) return running.cancel();
+        cancelledIds.add(id);
+        waiting.get(id)?.(CANCELLED);
+        waiting.delete(id);
+        return;
+      }
+      for (const e of live) if (e.id !== 'status') e.cancel();
     },
     async status() {
-      const result = await run(['--version'], { timeoutMs: 20_000 });
+      const result = await run(['--version'], { timeoutMs: 20_000, id: 'status' });
       if (result.error) return { available: false, reason: result.error };
       return result.ok
         ? { available: true, version: result.raw.trim() }
         : { available: false, reason: 'failed' };
     },
     dispose() {
-      current?.child.kill();
+      disposed = true;
+      for (const e of live) e.cancel();
+      for (const settle of waiting.values()) settle(CANCELLED);
+      waiting.clear();
     },
   };
 }

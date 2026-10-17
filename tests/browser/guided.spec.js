@@ -11,6 +11,11 @@ async function withBridge(page) {
         cancel: async () => {},
         request: async (options) => {
           window.__prompts.push(options);
+          if (options.schema.properties.entry)
+            return {
+              ok: true,
+              data: { entry: 'They lingered in the hall.', memories: [], events: [] },
+            };
           const decision = options.schema.properties.mappedOption?.enum;
           return {
             ok: true,
@@ -131,4 +136,44 @@ test('the "make your decision" hint is plain text, not a drop-capped paragraph',
       getComputedStyle(el, '::first-letter').fontSize,
     ]);
   expect(sizes[1]).toBe(sizes[0]);
+});
+
+test('a long Guided chapter folds its history into one chronicle, asked for once', async ({
+  page,
+}) => {
+  const { initialState, transition } = await import('../../src/engine.mjs');
+  const { chapterBeats, chapterSceneId, choiceKey } = await import('../../src/scene-beats.mjs');
+  let g = initialState('guided', 'Avery', 'owlcombe', 'cat');
+  // Every decision in the chapter already made, as after a full read-through.
+  for (let i = 0; i < 20; i++) {
+    const beat = chapterBeats(g.chapter, g).find(
+      (b) => b.choice && !g.storyChoices?.[choiceKey(chapterSceneId(g.chapter), b.id)],
+    );
+    if (!beat) break;
+    g = transition(g, {
+      type: 'story-choice',
+      key: choiceKey(chapterSceneId(g.chapter), beat.id),
+      option: beat.choice.options[0].id,
+    });
+  }
+  for (let i = 0; i < 17; i++)
+    g = transition(g, {
+      type: 'ai-turn',
+      player: 'I linger ' + i,
+      reply: { beats: [{ speaker: null, text: 'Moment ' + i, expression: 'neutral' }] },
+    });
+  await page.addInitScript((save) => {
+    localStorage.setItem('lanternmere.save.guided', save);
+    localStorage.setItem('lanternmere.last-mode', 'guided');
+  }, JSON.stringify(g));
+  await withBridge(page);
+  await page.goto('/');
+  await page.keyboard.press('Enter');
+  await page.getByRole('button', { name: /^Continue/ }).click();
+  await page.locator('.app-shell').waitFor();
+  await page.waitForTimeout(1500);
+  const chronicles = await page.evaluate(
+    () => window.__prompts.filter((p) => p.schema?.properties?.entry).length,
+  );
+  expect(chronicles).toBe(1);
 });

@@ -241,3 +241,16 @@
   font-size: 15px;
   color: var(--lm-ink);
 }
+
+/* Stop sits above the thinking veil, which lets clicks through. */
+.ai-stop {
+  position: relative;
+  z-index: 3;
+  justify-self: end;
+  font-family: var(--lm-display);
+  font-size: 17px;
+}
+.own-words .ai-stop {
+  display: block;
+  margin: 6px 0 0 auto;
+}

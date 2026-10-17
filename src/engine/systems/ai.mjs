@@ -38,7 +38,12 @@ function apply(s, p, used) {
   switch (p?.type) {
     case 'bond': {
       if (!Object.hasOwn(characterById, p.character) || !Number.isFinite(p.delta)) return false;
-      const delta = Math.max(-5, Math.min(5, Math.round(p.delta)));
+      // At most ±5 per person per turn, however the change is split across proposals.
+      used.bond ??= {};
+      const so = used.bond[p.character] || 0;
+      const delta = Math.max(-5, Math.min(5, so + Math.round(p.delta))) - so;
+      if (!delta) return false;
+      used.bond[p.character] = so + delta;
       s.bonds[p.character] = Math.max(0, Math.min(100, (s.bonds[p.character] || 0) + delta));
       return true;
     }
@@ -79,7 +84,13 @@ function apply(s, p, used) {
       }
       if (!existing) return false;
       if (note) existing.notes = [...existing.notes, note].slice(-6);
-      if (p.op === 'resolve') existing.status = 'resolved';
+      if (p.op === 'resolve') {
+        existing.status = 'resolved';
+        // Keep only the newest resolved threads; open ones are never dropped.
+        const resolved = ai.threads.filter((t) => t.status === 'resolved');
+        const excess = new Set(resolved.slice(0, -AI_LIMITS.resolvedThreads));
+        ai.threads = ai.threads.filter((t) => !excess.has(t));
+      }
       return true;
     }
     case 'journal': {
@@ -125,7 +136,10 @@ function apply(s, p, used) {
     }
     case 'milestone': {
       if (s.mode !== 'sandbox' || used.milestone || s.chapter >= chapters.length - 1) return false;
+      // The mystery cannot be rushed: a revelation needs some living between it and the last one.
+      if (ai.sequence - (ai.milestoneAt || 0) < AI_LIMITS.turnsPerMilestone) return false;
       used.milestone = true;
+      ai.milestoneAt = ai.sequence;
       s.chapter += 1;
       return true;
     }
@@ -145,6 +159,8 @@ export const aiSystem = {
     'ai-turn'(s, action) {
       const reply = action.reply;
       if (!isAiMode(s.mode) || !s.ai || !reply || !Array.isArray(reply.beats)) return false;
+      // A reply asked for by another save (the player switched modes mid-request) is dropped.
+      if (action.mode && action.mode !== s.mode) return false;
       s.ai.sequence += 1;
       s.ai.turns.push({
         id: s.ai.sequence,
@@ -170,7 +186,10 @@ export const aiSystem = {
     'ai-chronicle'(s, action) {
       const text = str(action.entry, 800);
       if (!isAiMode(s.mode) || !s.ai || !text) return false;
+      if (action.mode && action.mode !== s.mode) return false;
       const absorbed = new Set(Array.isArray(action.absorbedTurnIds) ? action.absorbedTurnIds : []);
+      // Repeat-safe: if those moments are already folded in, this summary is a duplicate.
+      if (!s.ai.turns.some((t) => absorbed.has(t.id))) return false;
       s.ai.sequence += 1;
       s.ai.chronicle = [...s.ai.chronicle, { id: s.ai.sequence, text, date: s.date }].slice(
         -AI_LIMITS.chronicle,

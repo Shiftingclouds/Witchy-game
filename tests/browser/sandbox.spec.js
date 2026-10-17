@@ -150,3 +150,19 @@ test('conversations become free talk, and "The story" becomes your own', async (
   await page.getByRole('button', { name: 'Your story', exact: true }).click();
   await expect(page.getByRole('heading', { name: /Your story/ }).first()).toBeVisible();
 });
+
+test('a slow answer can be stopped: words kept, nothing changes', async ({ page }) => {
+  await startOpenWorld(page);
+  await queue(page, {
+    ...scene([{ speaker: null, text: 'Too late.', expression: 'neutral' }]),
+    delay: 2000,
+  });
+  await input(page).fill('I wait by the door.');
+  await input(page).press('Enter');
+  await page.getByRole('button', { name: 'Stop' }).click();
+  await expect(page.getByText(/You stopped that moment/)).toBeVisible();
+  await expect(input(page)).toHaveValue('I wait by the door.');
+  await page.waitForTimeout(2500);
+  await expect(page.getByText('Too late.')).toHaveCount(0);
+  expect((await save(page)).ai.turns).toHaveLength(0);
+});

@@ -70,6 +70,7 @@ function start() {
   ipcMain.handle('ai:request', (_event, options) => {
     debugLog = Boolean(options?.debug);
     return claude.request({
+      id: typeof options.id === 'string' ? options.id.slice(0, 80) : null,
       system: String(options.system),
       prompt: String(options.prompt),
       schema: options.schema,
@@ -77,7 +78,7 @@ function start() {
       timeoutMs: Math.min(Number(options.timeoutMs) || 240_000, 600_000),
     });
   });
-  ipcMain.handle('ai:cancel', () => claude.cancel());
+  ipcMain.handle('ai:cancel', (_event, id) => claude.cancel(typeof id === 'string' ? id : null));
   app.on('before-quit', () => claude.dispose());
 
   win = new BrowserWindow({
