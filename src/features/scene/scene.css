@@ -1,0 +1,121 @@
+/* The full-screen scene player: the place's painting, framed people, a fixed dialogue box. */
+.scene-player {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  overflow: hidden;
+  color: var(--lm-ink);
+  background: #140b06;
+}
+.scene-painting {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.scene-shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 40%, transparent 55%, rgba(10, 5, 3, 0.55) 100%),
+    linear-gradient(180deg, transparent 52%, rgba(16, 8, 4, 0.72) 82%, rgba(12, 6, 3, 0.9));
+}
+.scene-stage {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  width: min(1100px, calc(100vw - 48px));
+  transform: translateX(-50%);
+  display: grid;
+  justify-items: stretch;
+}
+
+/* Dialogue box: fixed height, controls pinned. */
+.dialogue-box {
+  position: relative;
+  height: 230px;
+  padding: 26px 40px 46px;
+  background: color-mix(in srgb, var(--lm-backing) 88%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 55%, transparent);
+  border-radius: 2px;
+  outline: 1px solid color-mix(in srgb, var(--lm-gold) 22%, transparent);
+  outline-offset: -6px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+}
+.dialogue-box.framed {
+  padding-left: 250px;
+}
+.name-plate {
+  margin: 0 0 8px;
+  font-family: var(--lm-display);
+  font-size: 23px;
+  font-weight: 600;
+  color: var(--lm-ink);
+}
+.dialogue-text {
+  display: block;
+  width: 100%;
+  max-height: 120px;
+  overflow-y: auto;
+  padding: 0;
+  text-align: left;
+  font-family: var(--lm-read);
+  font-size: 21px;
+  line-height: 1.55;
+  color: var(--lm-ink);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.dialogue-text .unrevealed-text {
+  color: transparent;
+}
+.scene-next,
+.scene-back {
+  position: absolute;
+  bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  font-family: var(--lm-label);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--lm-gold);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.scene-next {
+  right: 22px;
+}
+.scene-back {
+  left: 18px;
+  color: var(--lm-ink-soft);
+}
+.dialogue-box.framed .scene-back {
+  left: 232px;
+}
+.scene-next:disabled,
+.scene-back:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.scene-next:hover:not(:disabled),
+.scene-next:focus-visible {
+  color: var(--lm-gold-bright);
+}
+.dialogue-box .scene-decision {
+  position: absolute;
+  left: 40px;
+  right: 40px;
+  bottom: 230px;
+  margin: 0 0 12px;
+  padding: 14px 16px;
+  background: color-mix(in srgb, var(--lm-backing) 92%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 45%, transparent);
+}

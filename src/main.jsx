@@ -77,6 +77,7 @@ import { TitleScreen } from './features/opening/TitleScreen.jsx';
 import { VineButton } from './features/opening/VineButton.jsx';
 import { metCharacters } from './engine/selectors.mjs';
 import { AiScene } from './features/ai/AiScene.jsx';
+import { ScenePlayer } from './features/scene/ScenePlayer.jsx';
 import { useChronicle } from './features/ai/useTurn.mjs';
 import { AiStory, ThreadsCard } from './features/ai/AiStory.jsx';
 import { useSidebarState } from './features/shell/sidebar.mjs';
@@ -456,12 +457,12 @@ function App() {
         />
       )}
       {modal?.type === 'performance' && (
-        <SceneReader
+        <ScenePlayer
           key={game.chapter}
           game={game}
           reading={reading}
           act={act}
-          onClose={() => setModal(null)}
+          onExit={() => setModal(null)}
         />
       )}
       {modal?.type === 'profile' && (
