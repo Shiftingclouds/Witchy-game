@@ -16,8 +16,9 @@
 .app-shell::before {
   content: '';
   position: fixed;
-  inset: -40px;
+  inset: 0;
   z-index: -2;
+  transform: scale(1.12);
   background: var(--scene-art) center / cover no-repeat;
   filter: blur(26px) saturate(0.85);
   opacity: 0.55;
@@ -321,5 +322,22 @@ html[data-reading-mode='parchment'] .app-shell::before {
   }
   .app-shell[data-sidebar='hidden'] .topbar {
     padding-left: 17px;
+  }
+  .app-shell .connection {
+    display: none;
+  }
+  .app-shell .date-pill {
+    font-size: 13px;
+    padding: 7px 9px;
+  }
+  .app-shell .breadcrumb {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+  }
+  .app-shell .header-status {
+    flex-shrink: 0;
   }
 }
