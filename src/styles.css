@@ -1721,74 +1721,6 @@ code {
 .topic-grid button > svg:last-child:not(:first-child) {
   margin-left: auto;
 }
-.ai-conversation {
-  margin-top: 25px;
-  padding-top: 18px;
-  border-top: 1px solid var(--line);
-}
-.ai-conversation > label {
-  font-size: 10px;
-  color: #878b72;
-}
-.message-input {
-  display: flex;
-  margin: 10px 0;
-  border: 1px solid #d2d5be;
-  background: #faf8ef;
-  border-radius: 4px;
-  overflow: hidden;
-}
-.message-input input {
-  background: none;
-  border: none;
-  padding: 11px 12px;
-  font-size: 10px;
-  flex: 1;
-}
-.message-input button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #e1e6d2;
-  color: #64764c;
-  width: 36px;
-}
-.ai-conversation > small {
-  font-size: 9px;
-  color: #9b9883;
-  display: block;
-  line-height: 1.7;
-}
-.ai-conversation > .text-button {
-  font-size: 9px;
-  margin-top: 10px;
-}
-.ai-bridge {
-  margin-top: 15px;
-  display: grid;
-  gap: 12px;
-}
-.ai-bridge label {
-  font-size: 10px;
-  color: #8c8d76;
-}
-.ai-bridge textarea,
-.ai-bridge select {
-  display: block;
-  width: 100%;
-  margin-top: 5px;
-  background: #faf8ef;
-  border: 1px solid #d8d8c7;
-  border-radius: 4px;
-  padding: 9px;
-  font-size: 11px;
-}
-.ai-bridge textarea {
-  min-height: 100px;
-}
-.ai-bridge > .button {
-  font-size: 10px;
-}
 /* Lessons and grimoire */
 .lesson-symbol {
   margin: 20px auto;
@@ -3043,18 +2975,6 @@ code {
   .dialogue-source {
     font-size: 9px;
   }
-  .ai-conversation {
-    margin-top: 20px;
-  }
-  .message-input input {
-    font-size: 12px;
-  }
-  .ai-conversation > label {
-    font-size: 11px;
-  }
-  .ai-conversation > small {
-    font-size: 10px;
-  }
   .spell-intro {
     grid-template-columns: 1fr;
   }
@@ -3203,16 +3123,6 @@ code {
     font-size: 9px;
   }
 }
-/* Keep secondary copy readable beside the detailed illustrations. */
-.page-heading p,
-.quest-card > p,
-.company-person p,
-.place-card small,
-.dialogue-source,
-.ai-conversation > small,
-.settings-section p {
-  color: #747b66;
-}
 .section-label {
   font-size: 9px;
 }
@@ -3234,14 +3144,8 @@ code {
 .topic-grid button {
   font-size: 11px;
 }
-.message-input input {
-  font-size: 12px;
-}
 .dialogue-source {
   font-size: 10px;
-}
-.ai-conversation > label {
-  font-size: 11px;
 }
 .scene-actions .button {
   font-size: 11px;

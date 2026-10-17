@@ -62,7 +62,7 @@ The earlier art proposal of 132 additional story images, plus optional motion la
 
 - [x] Create an editable character sheet for every interactable identity: 47 active sheets and 13 proposed additions in [characters/](characters/README.md). Include individual voices, motives, boundaries, NPC connections, story knowledge, expression coverage, and future writing notes.
 - [x] Keep static canon separate from each player's relationship score, shared moments, and recent conversations. Book and Live saves remain independent; exported saves carry this history.
-- [x] Use the same character context builder for the optional AI relay and copy-to-another-AI flow. Include only reached story facts and trust-appropriate topics; exclude authoring plans, private journal notes, and other characters' conversations.
+- [x] (Retired connection) Use the same character context builder for the optional AI relay and copy-to-another-AI flow. Include only reached story facts and trust-appropriate topics; exclude authoring plans, private journal notes, and other characters' conversations.
 - [x] Record actual game interactions as shared memories and keep AI dialogue separate from verified events. Dialogue cannot award points, change friendship, learn spells, or complete quests.
 - [x] Upgrade older saves without losing relationships or inventing past conversations. Provide an in-game history view and a way to clear saved AI exchanges while retaining friendship and shared events.
 - [ ] Expand knowledge gates and persistent choice callbacks as the longer scene graph is written. Add long-term personal memories with provenance and correction controls before promising unlimited conversational recall; current storage retains four recent exchanges per character within a whole-save limit.
@@ -70,7 +70,7 @@ The earlier art proposal of 132 additional story images, plus optional motion la
 
 ## Next production milestones
 
-The engine foundation now has explicit world, relationship, magic, and story modules, a stable public API, sequential save migrations, and separate persistence. The optional AI setup page includes provider instructions, connection testing, and protected server-side configuration. See [ENGINE.md](docs/ENGINE.md) and [AI_SETUP.md](docs/AI_SETUP.md). This infrastructure does not add manuscript words or enable the proposed cast and romance routes.
+The engine foundation now has explicit world, relationship, magic, and story modules, a stable public API, sequential save migrations, and separate persistence. See [ENGINE.md](docs/ENGINE.md). AI play is being rebuilt on Claude Code (`claude -p`); Prebuilt modes use prepared dialogue only. See [the design](docs/superpowers/specs/2026-10-16-desktop-and-ai-modes-design.md). This infrastructure does not add manuscript words or enable the proposed cast and romance routes.
 
 1. **Presentation and character foundation:** the two-person arrival, text/portrait transitions, transcript, bookmarks, 60 character sheets, and per-save character context are implemented and verified. Continue editorial review as scenes expand.
 2. **First playable story package:** integrated at 10,795 scene words across 13 sections, with saved branches, common-room life, Saoirse’s prototype, a dedicated firecraft teacher, and callbacks. Dedicated dormmate arcs remain ahead. Continue pacing and art review while expanding the remaining acts.

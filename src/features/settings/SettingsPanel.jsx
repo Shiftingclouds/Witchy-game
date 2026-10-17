@@ -7,9 +7,6 @@ import { downloadSave } from '../../storage/saves.mjs';
 export function SettingsPanel({
   reading,
   game,
-  offline,
-  ai,
-  setAi,
   manifest,
   onClose,
   importSave,
@@ -34,8 +31,8 @@ export function SettingsPanel({
         <Eyebrow>YOUR PROGRESS</Eyebrow>
         <h3>One life. Safely kept.</h3>
         <p>
-          Your {game.mode === 'book' ? 'book' : 'world'} save stays in this browser. Export a copy
-          to move devices or keep a backup. The two modes have separate saves.
+          Your {game.mode === 'book' ? 'book' : 'world'} save stays on this computer. Export a copy
+          to keep a backup. The two modes have separate saves.
         </p>
         <div className="button-row">
           <Button icon={Download} onClick={() => downloadSave(game)}>
@@ -52,49 +49,6 @@ export function SettingsPanel({
             />
           </label>
         </div>
-      </div>
-      <div className="settings-section">
-        <Eyebrow>OFFLINE ADVENTURES</Eyebrow>
-        <p>
-          {offline === 'ready'
-            ? 'The app and every illustration are cached on this device. You can reload and play without an internet connection.'
-            : offline === 'preparing'
-              ? 'The app is downloading the illustrations for offline play. Keep this tab open until the status says Saved for offline.'
-              : offline === 'dev'
-                ? 'You are using the development server. Offline caching is enabled in the production build.'
-                : 'Offline caching could not finish. Free browser storage and reload while connected.'}
-        </p>
-        <small>Browser storage can be cleared by your browser. Export important saves.</small>
-      </div>
-      <div className="settings-section">
-        <Eyebrow>OPTIONAL AI CONVERSATIONS</Eyebrow>
-        <p>
-          {ai.configured
-            ? `Connected to ${ai.model}. Your message, character context, and recent conversation are sent to your configured provider when you press Send.`
-            : 'No AI provider is connected. All lessons, choices, friendships, and endings already work with prepared dialogue.'}
-        </p>
-        <p>
-          Choose a provider, follow its instructions, and test a greeting before saving. Local
-          models and copy-and-paste conversations are supported too.
-        </p>
-        <Button onClick={() => open({ type: 'ai-setup' })}>Open AI setup</Button>
-        <Button
-          onClick={() =>
-            fetch('/api/status')
-              .then((r) => r.json())
-              .then((data) => {
-                setAi(data);
-                notify(
-                  data.configured
-                    ? 'AI connection settings detected.'
-                    : 'No AI connection configured yet.',
-                );
-              })
-              .catch(() => notify('The AI server is unavailable. Offline play is still available.'))
-          }
-        >
-          Check connection settings
-        </Button>
       </div>
       <div className="settings-section">
         <Eyebrow>THE WORLD IN PICTURES</Eyebrow>

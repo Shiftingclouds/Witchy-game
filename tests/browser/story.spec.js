@@ -3,7 +3,6 @@ import { chooseRemainingScenes } from './story-helpers.js';
 
 test('book decisions reveal only the chosen branch and resume in the staged reader offline', async ({
   page,
-  context,
 }) => {
   await page.goto('/');
   await page.getByRole('button', { name: 'Read the book', exact: false }).click();
@@ -14,8 +13,6 @@ test('book decisions reveal only the chosen branch and resume in the staged read
   await expect(
     page.locator('[data-choice="arrival:first-observation"] button').first(),
   ).toBeDisabled();
-  await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
-  await context.setOffline(true);
   await page.reload();
   await page.getByRole('button', { name: 'Continue your story' }).click();
   await page.getByRole('button', { name: 'Play scene', exact: true }).click();
@@ -27,7 +24,6 @@ test('book decisions reveal only the chosen branch and resume in the staged read
   expect(state.characterMemories.imogen.map((memory) => memory.key)).toContain(
     'scene:arrival:first-observation:record',
   );
-  await context.setOffline(false);
 });
 
 test('staged choices work with keyboard focus and the transcript retains the decision', async ({

@@ -70,14 +70,11 @@ test('authored speaker turns retain the listener and use the correct expressions
 
 test('scene bookmarks and reading preference reload offline with the same line available', async ({
   page,
-  context,
 }) => {
   await openScene(page);
   await page.getByRole('dialog').getByLabel('Text reveal speed').selectOption('instant');
   for (let i = 0; i < 5; i++)
     await page.getByRole('button', { name: 'Next line', exact: true }).click();
-  await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
-  await context.setOffline(true);
   await page.reload();
   await page.getByRole('button', { name: 'Continue your story' }).click();
   await page.getByRole('button', { name: 'Play scene', exact: true }).click();
@@ -94,7 +91,6 @@ test('scene bookmarks and reading preference reload offline with the same line a
   expect(
     await page.evaluate(() => JSON.parse(localStorage.getItem('lanternmere.save.book')).points),
   ).toBe(0);
-  await context.setOffline(false);
 });
 
 test('reduced motion shows full text and disables ambient and portrait animation', async ({

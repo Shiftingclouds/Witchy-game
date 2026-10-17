@@ -14,7 +14,6 @@ async function openRegister(page) {
 
 test('register illustration and its written evidence resume offline in both readers on a narrow phone', async ({
   page,
-  context,
 }) => {
   await openRegister(page);
   const bookArt = page.locator('.story-illustration img');
@@ -39,8 +38,6 @@ test('register illustration and its written evidence resume offline in both read
     '/art/register-study.webp',
   );
   await expect(dialog.locator('.stage-actor.present')).toHaveCount(0);
-  await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
-  await context.setOffline(true);
   await page.reload();
   await page.getByRole('button', { name: 'Continue your story' }).click();
   await page.getByRole('button', { name: 'Play scene', exact: true }).click();
@@ -76,7 +73,6 @@ test('register illustration and its written evidence resume offline in both read
   );
   expect(saved.bookmark).toEqual({ scene: 'register', beat: 'register-detail' });
   expect(saved.storyChoices['register:search-method']).toBe('dates');
-  await context.setOffline(false);
 });
 
 test('new portrait expressions decode, keep listener positions, and appear in the register scene', async ({

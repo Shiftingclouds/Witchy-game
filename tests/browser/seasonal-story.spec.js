@@ -3,7 +3,6 @@ import { reachBookChapter, playSection } from './story-helpers.js';
 
 test('Emberfall uses night scenery and new portraits, then resumes its petal comparison offline', async ({
   page,
-  context,
 }) => {
   await reachBookChapter(page, 3, 1);
   await page.locator('[data-choice="emberfall:work-plan"] button').nth(1).click();
@@ -36,8 +35,6 @@ test('Emberfall uses night scenery and new portraits, then resumes its petal com
     '/art/moonflower-study.webp',
   );
   await expect(dialog.locator('.speech-text')).toContainText('Two fallen petals lie');
-  await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
-  await context.setOffline(true);
   await page.reload();
   await page.getByRole('button', { name: 'Continue your story' }).click();
   await page.getByRole('button', { name: 'Play scene', exact: true }).click();
@@ -72,12 +69,10 @@ test('Emberfall uses night scenery and new portraits, then resumes its petal com
   expect(save.characterMemories.rhys.map((memory) => memory.key)).toContain(
     'scene:emberfall:observation:exchange',
   );
-  await context.setOffline(false);
 });
 
 test('Longnight loads winter art, preserves a seven-light reading offline, and carries winter work forward', async ({
   page,
-  context,
 }) => {
   await reachBookChapter(page, 4, 1);
   await playSection(page, 'The work of arriving');
@@ -99,8 +94,6 @@ test('Longnight loads winter art, preserves a seven-light reading offline, and c
     '/art/lake-seven-lights.webp',
   );
   await expect(dialog.locator('.speech-text')).toContainText('Seven small amber flames');
-  await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
-  await context.setOffline(true);
   await page.reload();
   await page.getByRole('button', { name: 'Continue your story' }).click();
   await page.getByRole('button', { name: 'Play scene', exact: true }).click();
@@ -138,12 +131,10 @@ test('Longnight loads winter art, preserves a seven-light reading offline, and c
   const save = await page.evaluate(() => JSON.parse(localStorage.getItem('lanternmere.save.book')));
   expect(save.storyChoices['longnight:winter-duty']).toBe('archive');
   expect(save.clues).toContain('lake');
-  await context.setOffline(false);
 });
 
 test('First Thaw pays off winter research, presents the inscription offline, and teaches a voluntary return', async ({
   page,
-  context,
 }) => {
   await reachBookChapter(page, 5, 1);
   await expect(page.locator('[data-story-beat="archive-result"]')).toBeVisible();
@@ -162,8 +153,6 @@ test('First Thaw pays off winter research, presents the inscription offline, and
     '/art/candlestones-inscription.webp',
   );
   await expect(dialog.locator('.speech-text')).toContainText('A space for whoever comes next.');
-  await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
-  await context.setOffline(true);
   await page.reload();
   await page.getByRole('button', { name: 'Continue your story' }).click();
   await page.getByRole('button', { name: 'Play scene', exact: true }).click();
@@ -205,7 +194,6 @@ test('First Thaw pays off winter research, presents the inscription offline, and
   expect(save.spells).toContain('thread');
   expect(save.clues).toContain('stones');
   expect(save.storyChoices['thaw:rejoining']).toBe('space');
-  await context.setOffline(false);
 });
 
 test('Bloomtide stages the rehearsal and saves a private conversation and a concrete lantern plan', async ({

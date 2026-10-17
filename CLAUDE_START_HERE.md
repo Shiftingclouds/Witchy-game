@@ -65,7 +65,7 @@ npm run count:words
 npm run check:story-export
 ```
 
-`npm run check:story-length` intentionally fails below 250,000 words. A real AI provider is still unconfigured; mock provider tests do not prove live-model behavior.
+`npm run check:story-length` intentionally fails below 250,000 words. AI play is being rebuilt on Claude Code (`claude -p`); Prebuilt modes use prepared dialogue only. See [the design](docs/superpowers/specs/2026-10-16-desktop-and-ai-modes-design.md).
 
 ## Architecture and canon that must survive
 
@@ -75,9 +75,9 @@ npm run check:story-export
 - Story introductions are explicit in `src/story/choices.mjs`. A portrait being visible is not proof of meeting or overhearing a private conversation.
 - Early Echosight cannot unlock the lake before chapter index 4 or the stones before index 5. Gates use story progress, not season; old discoveries remain valid.
 - Original uploaded PNGs and abandoned-project documents are preserved. The original README and JSON sidecars do not define the new game. Follow the user's art-led, cozy-mysterious brief.
-- New art sources live in `art/`; `npm run build` prepares ignored WebP derivatives and the offline cache. No API credentials or `.local` configuration belong in Git.
+- New art sources live in `art/`; `npm run build` prepares ignored WebP derivatives. No credentials, saves, logs or build output belong in Git.
 
-Read [PROGRESS.md](PROGRESS.md), [YEAR_CONTINUITY.md](docs/YEAR_CONTINUITY.md), [STORY_AUTHORING.md](docs/STORY_AUTHORING.md), and [PRODUCTION_PLAN.md](docs/PRODUCTION_PLAN.md) for details. [START_HERE.md](START_HERE.md) covers running the app and AI setup.
+Read [PROGRESS.md](PROGRESS.md), [YEAR_CONTINUITY.md](docs/YEAR_CONTINUITY.md), [STORY_AUTHORING.md](docs/STORY_AUTHORING.md), and [PRODUCTION_PLAN.md](docs/PRODUCTION_PLAN.md) for details. [START_HERE.md](START_HERE.md) covers running the app.
 
 ## Git and publication
 

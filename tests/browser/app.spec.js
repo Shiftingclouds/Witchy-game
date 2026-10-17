@@ -51,31 +51,6 @@ test('book mode reaches a complete ending through all authored scenes and eight 
   expect(state.ending).toBe('shared');
   expect(state.spells).toHaveLength(3);
 });
-test('fully cached app reloads offline and serves artwork and gameplay', async ({
-  page,
-  context,
-}) => {
-  await page.goto('/');
-  await page.getByRole('button', { name: 'Live the world', exact: false }).click();
-  await page.waitForFunction(
-    () => navigator.serviceWorker.controller !== null,
-    {},
-    { timeout: 60000 },
-  );
-  await expect(page.getByText('Saved for offline', { exact: true })).toBeVisible();
-  await context.setOffline(true);
-  await page.reload();
-  await page.getByRole('button', { name: 'Continue your life' }).click();
-  await page.getByRole('button', { name: 'World map', exact: true }).click();
-  await expect(page.locator('.atlas>img')).toBeVisible();
-  await page.waitForFunction(() => document.querySelector('.atlas>img')?.naturalWidth > 0);
-  await page.getByLabel('Find a place').fill('Glasshouses');
-  await page.locator('.location-tile').first().click();
-  await page.getByRole('button', { name: 'Tend moonflowers' }).click();
-  const save = await page.evaluate(() => JSON.parse(localStorage.getItem('lanternmere.save.live')));
-  expect(save.clues).toContain('flower');
-  await context.setOffline(false);
-});
 test('mobile layout, navigation, map and conversations remain usable', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
@@ -92,14 +67,9 @@ test('mobile layout, navigation, map and conversations remain usable', async ({ 
   await page.getByRole('button', { name: 'Close dialog' }).click();
   await page.screenshot({ path: 'test-results/people-mobile.png', fullPage: true });
 });
-test('gathering choices persist offline and the next day offers a new event', async ({
-  page,
-  context,
-}) => {
+test('gathering choices persist offline and the next day offers a new event', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('button', { name: 'Live the world', exact: false }).click();
-  await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
-  await context.setOffline(true);
   await page.getByRole('button', { name: 'Take part', exact: true }).click();
   await page.getByRole('button', { name: /Make room at your table/ }).click();
   await expect(page.getByText('A little memory made today')).toBeVisible();
@@ -113,7 +83,6 @@ test('gathering choices persist offline and the next day offers a new event', as
   );
   expect(state.date).toBe('2026-09-02');
   expect(state.daily.event).toBeNull();
-  await context.setOffline(false);
 });
 test('profiles find moving characters and daily friendship is limited to once a day', async ({
   page,
@@ -187,22 +156,4 @@ test('export and import transfer progress and invalid imports leave the save int
     await page.evaluate(() => JSON.parse(localStorage.getItem('lanternmere.save.live')).points),
   ).toBe(3);
   expect(await page.evaluate(() => localStorage.getItem('lanternmere.import-backup'))).toBeTruthy();
-});
-test('a reply from any AI can be pasted with a supported expression, without changing progress', async ({
-  page,
-}) => {
-  await page.goto('/');
-  await page.getByRole('button', { name: 'Live the world', exact: false }).click();
-  await page.getByRole('button', { name: 'Talk to Rowan', exact: true }).first().click();
-  await page.getByRole('button', { name: 'Use ChatGPT or another AI' }).click();
-  await page
-    .getByRole('textbox', { name: 'Paste the AI’s reply' })
-    .fill('There is always another chair by the fire.');
-  await page.getByLabel('Expression', { exact: true }).selectOption('warm');
-  await page.getByRole('button', { name: 'Read their reply' }).click();
-  await expect(page.locator('blockquote')).toContainText('another chair by the fire');
-  await expect(page.getByRole('dialog').getByAltText('Rowan, warm expression')).toBeVisible();
-  expect(
-    await page.evaluate(() => JSON.parse(localStorage.getItem('lanternmere.save.live')).points),
-  ).toBe(0);
 });

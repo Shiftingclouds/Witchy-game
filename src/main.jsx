@@ -5,7 +5,7 @@ import { SettingsPanel } from './features/settings/SettingsPanel.jsx';
 import { endingCommon, endingVariants } from './features/story/epilogue.mjs';
 import { createSaveRepository, downloadSave } from './storage/saves.mjs';
 import { ErrorBoundary } from './ErrorBoundary.jsx';
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import {
   BookOpen,
@@ -70,9 +70,6 @@ import { SceneReader, ReadingControls, useReadingPreferences } from './dialogue-
 import './styles.css';
 import './dialogue-presentation.css';
 
-const AISetup = lazy(() =>
-  import('./features/ai/AISetup.jsx').then((module) => ({ default: module.AISetup })),
-);
 const saves = createSaveRepository({
   getItem: (key) => localStorage.getItem(key),
   setItem: (key, value) => localStorage.setItem(key, value),
@@ -117,7 +114,7 @@ function taskLocation(game, id) {
   return taskLocations[id];
 }
 
-function Landing({ onStart, offline, onSetup }) {
+function Landing({ onStart }) {
   const [name, setName] = useState('Avery'),
     [house, setHouse] = useState('owlcombe'),
     [familiar, setFamiliar] = useState('cat');
@@ -201,14 +198,9 @@ function Landing({ onStart, offline, onSetup }) {
             <ArrowRight size={20} />
           </button>
         </div>
-        <button className="text-button" onClick={onSetup}>
-          <Settings size={16} /> AI setup & connection help
-        </button>
         <p className="landing-foot">
           <Leaf size={14} />
-          {offline === 'ready'
-            ? 'Saved for offline adventures.'
-            : 'Both modes play without AI. Offline download prepares on first visit.'}
+          Every page plays on this computer, no connection needed.
           <br />
           <span>Two ways to belong. Separate saves. The same enchanted year.</span>
         </p>
@@ -221,13 +213,8 @@ function App() {
   const reading = useReadingPreferences();
   const [game, setGame] = useState(null),
     [view, setView] = useState('world'),
-    [modal, setModal] = useState(() =>
-      window.location.pathname === '/setup' ? { type: 'ai-setup' } : null,
-    ),
+    [modal, setModal] = useState(null),
     [toast, setToast] = useState(''),
-    [online, setOnline] = useState(navigator.onLine),
-    [offline, setOffline] = useState(import.meta.env.PROD ? 'preparing' : 'dev'),
-    [ai, setAi] = useState({ configured: false }),
     [mobileNav, setMobileNav] = useState(false),
     [manifest, setManifest] = useState([]),
     [saveError, setSaveError] = useState('');
@@ -236,25 +223,6 @@ function App() {
       .then((r) => r.json())
       .then(setManifest)
       .catch(() => {});
-    fetch('/api/status')
-      .then((r) => r.json())
-      .then(setAi)
-      .catch(() => {});
-    const on = () => setOnline(true),
-      off = () => setOnline(false);
-    window.addEventListener('online', on);
-    window.addEventListener('offline', off);
-    if (import.meta.env.PROD && 'serviceWorker' in navigator) {
-      navigator.serviceWorker
-        .register('/sw.js')
-        .then(() => navigator.serviceWorker.ready)
-        .then(() => setOffline('ready'))
-        .catch(() => setOffline('error'));
-    }
-    return () => {
-      window.removeEventListener('online', on);
-      window.removeEventListener('offline', off);
-    };
   }, []);
   useEffect(() => {
     if (!game) return;
@@ -314,30 +282,10 @@ function App() {
         setToast('This file is not a valid Lanternmere save. Your current progress is safe.'),
       );
   }
-  if (modal?.type === 'ai-setup')
-    return (
-      <Suspense
-        fallback={
-          <main className="setup-page">
-            <p role="status">Opening connection settings…</p>
-          </main>
-        }
-      >
-        <AISetup
-          ai={ai}
-          online={online}
-          onStatus={setAi}
-          onClose={() => {
-            setModal(null);
-            if (window.location.pathname === '/setup') window.history.replaceState(null, '', '/');
-          }}
-        />
-      </Suspense>
-    );
   if (!game)
     return (
       <>
-        <Landing onStart={start} offline={offline} onSetup={() => setModal({ type: 'ai-setup' })} />
+        <Landing onStart={start} />
         <div className="landing-import">
           <label className="text-button">
             <Upload size={14} /> Restore a saved game
@@ -433,8 +381,8 @@ function App() {
           </div>
           <div className="header-status">
             <span className="connection">
-              <i className={online ? '' : 'offline'} />
-              {!online ? 'Offline' : offline === 'ready' ? 'Saved for offline' : 'Local story'}
+              <i />
+              Local story
             </span>
             <button className="date-pill" onClick={() => navigate('calendar')}>
               <Sun size={16} />
@@ -485,9 +433,6 @@ function App() {
           id={modal.id}
           game={game}
           act={act}
-          ai={ai}
-          online={online}
-          notify={setToast}
           onClose={() => setModal(null)}
         />
       )}
@@ -534,9 +479,6 @@ function App() {
         <SettingsPanel
           reading={reading}
           game={game}
-          offline={offline}
-          ai={ai}
-          setAi={setAi}
           manifest={manifest}
           onClose={() => setModal(null)}
           importSave={importSave}
