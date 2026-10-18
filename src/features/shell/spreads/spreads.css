@@ -1,0 +1,403 @@
+/* The grimoire's spreads: Journal, Calendar, Spells, People and Story on parchment. */
+
+.gm-quiet,
+.gm-lede {
+  font-style: italic;
+  color: var(--gm-ink-soft);
+}
+.gm-small {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: var(--gm-ink-soft);
+}
+html .grimoire .gm-page .icon-button {
+  color: var(--gm-rubric);
+  background: none;
+  border: 1px solid color-mix(in srgb, var(--gm-gilt) 60%, transparent);
+  border-radius: 50%;
+}
+
+/* Journal */
+.gm-entry {
+  margin: 0 0 14px;
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 62ch;
+}
+.gm-entry time {
+  font-family: var(--lm-label);
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+html .grimoire .gm-page .gm-ruled {
+  display: block;
+  width: 100%;
+  min-height: 210px;
+  padding: 0;
+  font: italic 18px/30px var(--lm-read);
+  color: var(--gm-ink);
+  caret-color: var(--gm-rubric);
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0 29px,
+    color-mix(in srgb, var(--gm-parch-edge) 80%, transparent) 29px 30px
+  );
+  border: 0;
+  border-radius: 0;
+  resize: vertical;
+}
+html .grimoire .gm-page .gm-ruled:focus {
+  outline: none;
+  background-color: color-mix(in srgb, var(--gm-parch-light) 40%, transparent);
+}
+html .grimoire .gm-page .gm-ruled::placeholder {
+  color: color-mix(in srgb, var(--gm-ink-soft) 70%, transparent);
+}
+html .grimoire .gm-page .discoveries {
+  margin: 8px 0 18px;
+  padding: 0;
+  background: none;
+  border: 0;
+}
+html .grimoire .gm-page .discoveries > span {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  margin-right: 14px;
+  color: var(--gm-ink);
+}
+html .grimoire .gm-page .discoveries svg {
+  color: var(--gm-verdigris);
+}
+
+/* Calendar */
+html .grimoire .gm-page .calendar-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+html .grimoire .gm-page .calendar-heading > div {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+html .grimoire .gm-page .gm-month {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0;
+  margin: 0;
+  background: none;
+  border-top: 1px solid var(--gm-ink-soft);
+  border-left: 1px solid color-mix(in srgb, var(--gm-ink-soft) 40%, transparent);
+}
+html .grimoire .gm-page .gm-month > strong {
+  display: grid;
+  place-items: center;
+  height: 32px;
+  font-family: var(--lm-label);
+  font-size: 15px;
+  color: var(--gm-rubric);
+  border-right: 1px solid color-mix(in srgb, var(--gm-ink-soft) 40%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--gm-ink-soft) 40%, transparent);
+}
+html .grimoire .gm-page .gm-month .calendar-day {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 52px;
+  padding: 2px;
+  background: none;
+  border: 0;
+  border-right: 1px solid color-mix(in srgb, var(--gm-ink-soft) 40%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--gm-ink-soft) 40%, transparent);
+  border-radius: 0;
+  box-shadow: none;
+}
+html .grimoire .gm-page .gm-month .calendar-day span {
+  font-family: var(--lm-display);
+  font-size: 20px;
+  color: var(--gm-ink);
+}
+html .grimoire .gm-page .gm-month .calendar-day small {
+  position: absolute;
+  inset: auto 2px 3px;
+  overflow: hidden;
+  font-size: 11px;
+  line-height: 1.1;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--gm-gilt);
+}
+html .grimoire .gm-page .gm-month .calendar-day.past span {
+  color: color-mix(in srgb, var(--gm-ink-soft) 60%, transparent);
+}
+html .grimoire .gm-page .gm-month .calendar-day.today {
+  background: var(--gm-rubric);
+}
+html .grimoire .gm-page .gm-month .calendar-day.today span {
+  color: var(--gm-parch-light);
+  background: none;
+  border-radius: 0;
+}
+html .grimoire .gm-page .gm-month .calendar-day.today small {
+  color: var(--gm-parch-light);
+}
+html .grimoire .gm-page .gm-month .calendar-day.festival span {
+  color: var(--gm-gilt);
+  font-weight: 600;
+}
+html .grimoire .gm-page .gm-feasts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin: 0;
+}
+html .grimoire .gm-page .gm-feasts > div {
+  display: grid;
+  grid-template-columns: 58px 1fr auto;
+  gap: 14px;
+  align-items: start;
+  padding: 12px 0;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--gm-parch-edge) 80%, transparent);
+  border-radius: 0;
+  box-shadow: none;
+}
+.gm-feast-date {
+  display: grid;
+  justify-items: start;
+}
+.gm-feast-date strong {
+  font-family: var(--lm-display);
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--gm-rubric);
+}
+.gm-feast-date small {
+  font-family: var(--lm-label);
+  color: var(--gm-ink-soft);
+}
+html .grimoire .gm-page .gm-feasts h3 {
+  margin: 0;
+  font-family: var(--lm-display);
+  font-size: 21px;
+  font-weight: 600;
+  color: var(--gm-ink);
+}
+html .grimoire .gm-page .gm-feasts p {
+  margin: 2px 0 0;
+  font-style: italic;
+  color: var(--gm-ink-soft);
+}
+
+/* Spells */
+.gm-count {
+  font-family: var(--lm-label);
+  letter-spacing: 0.08em;
+  color: var(--gm-rubric);
+}
+html .grimoire .gm-page .gm-spell {
+  margin: 20px 0 0;
+  padding: 0;
+  text-align: center;
+  color: var(--gm-ink);
+  background: none;
+  border: 0;
+  box-shadow: none;
+}
+html .grimoire .gm-page .gm-spell h2 {
+  margin: 6px 0 0;
+  font-family: var(--lm-display);
+  font-weight: 500;
+  font-size: 32px;
+  color: var(--gm-ink);
+}
+html .grimoire .gm-page .gm-spell p {
+  margin: 8px auto 0;
+  max-width: 52ch;
+  color: var(--gm-ink);
+  line-height: 1.55;
+}
+html .grimoire .gm-page .gm-spell .spell-gesture {
+  padding: 0;
+  font-style: normal;
+  background: none;
+  border: 0;
+}
+html .grimoire .gm-page .gm-school {
+  font-family: var(--lm-label);
+  letter-spacing: 0.14em;
+  color: var(--gm-rubric);
+}
+.gm-question {
+  font-style: italic;
+}
+.gm-sigil {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 110px;
+  height: 110px;
+  margin: 0 auto;
+  color: var(--gm-rubric);
+}
+.gm-sigil > svg:first-child {
+  position: absolute;
+  inset: 0;
+  fill: none;
+  stroke: var(--gm-gilt);
+  stroke-width: 1.2;
+}
+.gm-sigil .thin {
+  stroke-width: 0.6;
+  stroke-dasharray: 2 4;
+}
+html .grimoire .gm-page .learned-label {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  margin: 12px 12px 0 0;
+  color: var(--gm-verdigris);
+}
+.gm-blank {
+  margin-top: 26px;
+  text-align: center;
+}
+html .grimoire .gm-page .grimoire-empty {
+  font-style: italic;
+  color: var(--gm-ink-soft);
+  background: none;
+  border: 0;
+}
+
+/* People */
+html .grimoire .gm-page .filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin: 0 0 18px;
+  background: none;
+  border: 0;
+}
+html .grimoire .gm-page .tabs button {
+  color: var(--gm-ink-soft);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  border-radius: 0;
+}
+html .grimoire .gm-page .tabs button.active {
+  color: var(--gm-rubric);
+  border-bottom-color: var(--gm-rubric);
+}
+html .grimoire .gm-page .search {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  padding: 4px 0;
+  color: var(--gm-ink-soft);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--gm-parch-edge) 90%, transparent);
+  border-radius: 0;
+}
+html .grimoire .gm-page .search input {
+  font: italic 16px var(--lm-read);
+  color: var(--gm-ink);
+  background: none;
+  border: 0;
+}
+html .grimoire .gm-page .people-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+html .grimoire .gm-page .gm-person {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 18px;
+  align-items: center;
+  padding: 0;
+  text-align: left;
+  color: var(--gm-ink);
+  background: none;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: none;
+}
+html .grimoire .gm-page .gm-person .person-portrait {
+  width: 96px;
+  height: 126px;
+  border-radius: 48px 48px 2px 2px;
+  background: none;
+}
+html .grimoire .gm-page .gm-person .portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+html .grimoire .gm-page .gm-person:hover .gm-arch {
+  outline-color: var(--gm-rubric);
+}
+html .grimoire .gm-page .gm-person .person-info {
+  display: grid;
+  gap: 2px;
+}
+html .grimoire .gm-page .gm-person h3 {
+  margin: 0;
+  font-family: var(--lm-display);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--gm-ink);
+}
+html .grimoire .gm-page .gm-person p {
+  margin: 0;
+  font-style: italic;
+  color: var(--gm-ink-soft);
+}
+.gm-mark {
+  font-family: var(--lm-label);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
+  color: var(--gm-rubric);
+}
+.gm-leaves {
+  display: flex;
+  gap: 2px;
+  margin: 2px 0;
+  color: color-mix(in srgb, var(--gm-parch-edge) 90%, transparent);
+}
+.gm-leaves .on {
+  color: var(--gm-verdigris);
+  fill: color-mix(in srgb, var(--gm-verdigris) 60%, transparent);
+}
+html .grimoire .gm-page .gm-person small,
+html .grimoire .gm-page .gm-person .person-where {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  min-height: 0;
+  margin: 0;
+  font-size: 14px;
+  color: var(--gm-ink-soft);
+}
+
+/* Story */
+html .grimoire .gm-page .story-return {
+  display: block;
+  padding: 0;
+  background: none;
+}
+html .grimoire .gm-page .story-return h1 {
+  margin-top: 40px;
+}

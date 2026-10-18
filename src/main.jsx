@@ -81,6 +81,11 @@ import { Soundscape } from './features/audio/Soundscape.jsx';
 import { useChronicle } from './features/ai/useTurn.mjs';
 import { AiStory, ThreadsCard } from './features/ai/AiStory.jsx';
 import { Book, Desk, Leaf, Ribbons } from './features/shell/Grimoire.jsx';
+import { JournalSpread } from './features/shell/spreads/JournalSpread.jsx';
+import { CalendarSpread } from './features/shell/spreads/CalendarSpread.jsx';
+import { SpellsSpread } from './features/shell/spreads/SpellsSpread.jsx';
+import { PeopleSpread } from './features/shell/spreads/PeopleSpread.jsx';
+import { StorySpread } from './features/shell/spreads/StorySpread.jsx';
 import { PatternShowcase } from './features/patterns/PatternShowcase.jsx';
 import './features/shell/grimoire.css';
 import { CharacterCreation } from './features/opening/CharacterCreation.jsx';
@@ -395,39 +400,39 @@ function App() {
                 <AiStory game={game} act={act} />
               </Leaf>
             )}
-            {view === 'book' && game.mode !== 'sandbox' && !scenePlaying && (
+            {view === 'book' && game.mode !== 'sandbox' && !scenePlaying && game.ending && (
               <Leaf>
-                <Story
-                  onPlayScene={() => setSceneDismissed(false)}
+                <Epilogue
                   game={game}
-                  act={act}
-                  visit={visit}
-                  open={setModal}
-                  reading={reading}
                   leave={() => (isLiveLike(game.mode) ? navigate('world') : setGame(null))}
                 />
               </Leaf>
             )}
+            {view === 'book' && game.mode !== 'sandbox' && !scenePlaying && !game.ending && (
+              <StorySpread game={game} onPlayScene={() => setSceneDismissed(false)} />
+            )}
             {view === 'people' && (
-              <Leaf>
-                <People game={game} open={setModal} />
-              </Leaf>
+              <PeopleSpread game={game} open={setModal} live={isLiveLike(game.mode)} />
             )}
             {view === 'spells' && (
-              <Leaf>
-                <Grimoire game={game} visit={visit} open={setModal} act={act} />
-              </Leaf>
+              <SpellsSpread
+                game={game}
+                act={act}
+                visit={visit}
+                open={setModal}
+                live={isLiveLike(game.mode)}
+              />
             )}
             {view === 'calendar' && (
-              <Leaf>
-                <Calendar game={game} act={act} visit={visit} open={setModal} />
-              </Leaf>
+              <CalendarSpread
+                game={game}
+                act={act}
+                visit={visit}
+                open={setModal}
+                live={isLiveLike(game.mode)}
+              />
             )}
-            {view === 'journal' && (
-              <Leaf>
-                <Journal game={game} act={act} visit={visit} />
-              </Leaf>
-            )}
+            {view === 'journal' && <JournalSpread game={game} act={act} />}
           </Book>
         </Desk>
       </div>
@@ -701,104 +706,6 @@ function Epilogue({ game, leave }) {
   );
 }
 
-/** Between scenes: the place the story is in, and a way back into it. (Finished games show the epilogue.) */
-function Story({ game, leave, onPlayScene }) {
-  const ch = chapters[game.chapter];
-  if (game.ending) return <Epilogue game={game} leave={leave} />;
-  return (
-    <div className="story-return">
-      <img src={art(sceneArt({ ...game, location: ch.scene }))} alt={locationById[ch.scene].name} />
-      <div className="story-return-card">
-        <Eyebrow>{dateLabel(game.date)}</Eyebrow>
-        <h1>Your story is waiting.</h1>
-        <VineButton
-          title="Return to the story"
-          subline={locationById[ch.scene].name}
-          onClick={onPlayScene}
-        />
-      </div>
-    </div>
-  );
-}
-
-function People({ game, open }) {
-  const [query, setQuery] = useState(''),
-    [onlyFriends, setOnlyFriends] = useState(false);
-  // Nobody appears here until you have actually come across them.
-  const met = metCharacters(game);
-  const known = characters.filter((c) => met.has(c.id));
-  const shown = known.filter(
-    (c) => c.name.toLowerCase().includes(query.toLowerCase()) && (!onlyFriends || game.bonds[c.id]),
-  );
-  return (
-    <>
-      <PageHeading
-        eyebrow="THE PEOPLE WHO MAKE A PLACE"
-        title="A world of familiar faces."
-        description="Some friendships begin with a grand adventure. Most begin with hello."
-      />
-      <div className="filter-bar">
-        <div className="tabs">
-          <button className={!onlyFriends ? 'active' : ''} onClick={() => setOnlyFriends(false)}>
-            People you’ve met · {known.length}
-          </button>
-          <button className={onlyFriends ? 'active' : ''} onClick={() => setOnlyFriends(true)}>
-            Friends
-          </button>
-        </div>
-        <label className="search">
-          <Search size={15} />
-          <input
-            aria-label="Find a person"
-            placeholder="Find a familiar face…"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-        </label>
-      </div>
-      <div className="people-grid">
-        {shown.map((c, i) => (
-          <button
-            className={'person-card ' + (c.index <= 3 ? 'companion' : '')}
-            key={c.id}
-            onClick={() => open({ type: 'profile', id: c.id })}
-          >
-            <div
-              className="person-portrait"
-              style={{ '--portrait-tint': ['#d9c5b2', '#d4ccd9', '#d0d5bc', '#c9d5d1'][i % 4] }}
-            >
-              <Portrait id={c.id} emotion={game.bonds[c.id] > 0 ? 'warm' : 'neutral'} />
-              {c.index <= 3 && <span>YOUR STORY</span>}
-            </div>
-            <div className="person-info">
-              <h3>{c.name}</h3>
-              <p>{c.role}</p>
-              <div className="friendship-meter">
-                <i style={{ width: (game.bonds[c.id] || 0) + '%' }} />
-              </div>
-              {isLiveLike(game.mode) && (
-                <div className="person-where">
-                  <MapPin size={12} />
-                  {locationById[characterLocation(game, c.id)].name}
-                </div>
-              )}
-              <small>
-                <Heart size={12} />
-                {relationshipLabel(game.bonds[c.id] || 0)} <span>{game.bonds[c.id] || 0}/100</span>
-              </small>
-            </div>
-          </button>
-        ))}
-      </div>
-      {!shown.length && (
-        <p className="empty-state">
-          A friendship is waiting to begin. Say hello to someone in the academy.
-        </p>
-      )}
-    </>
-  );
-}
-
 function Lesson({ spell, game, act, onClose }) {
   const [chosen, setChosen] = useState(null),
     [result, setResult] = useState(null);
@@ -851,287 +758,6 @@ function Lesson({ spell, game, act, onClose }) {
     </Modal>
   );
 }
-function Grimoire({ game, visit, open, act }) {
-  return (
-    <>
-      <PageHeading
-        eyebrow="THINGS YOU ARE LEARNING"
-        title="A little book of practical magic."
-        description="Not every spell has to change the world. Some just make it warmer."
-      />
-      <div className="spell-intro">
-        <img src={art('warding-hall')} alt="The golden circles of Warding Hall" />
-        <div>
-          <Sparkles size={25} />
-          <h2>Magic begins with attention.</h2>
-          <p>
-            Learn a spell in its classroom, then carry it into the world. Your knowledge stays with
-            you.
-          </p>
-          <span>
-            {game.spells.length === 1 ? '1 spell learned' : `${game.spells.length} spells learned`}
-          </span>
-        </div>
-      </div>
-      {/* A spell only appears once you have taken its class. */}
-      {!game.spells.length && (
-        <p className="grimoire-empty">
-          The pages are still blank. Spells are learned in class; each one you master will be
-          written here.
-        </p>
-      )}
-      <div className="spell-grid">
-        {spells
-          .filter((s) => game.spells.includes(s.id))
-          .map((s) => (
-            <section
-              className={'spell-card ' + (game.spells.includes(s.id) ? 'learned' : '')}
-              key={s.id}
-            >
-              <span className="spell-icon">
-                {s.id === spells[0].id ? <Flame /> : s.id === spells[1]?.id ? <Eye /> : <Shield />}
-              </span>
-              <Eyebrow>{s.school}</Eyebrow>
-              <h2>{s.name}</h2>
-              <p>{s.description}</p>
-              <div className="spell-gesture">{s.gesture}</div>
-              {game.spells.includes(s.id) ? (
-                <>
-                  <span className="learned-label">
-                    <CheckCircle2 size={14} /> In your grimoire
-                  </span>
-                  {isLiveLike(game.mode) && (
-                    <Button onClick={() => act({ type: 'cast', id: s.id })}>
-                      Cast at {locationById[game.location].name}
-                    </Button>
-                  )}
-                </>
-              ) : isBookLike(game.mode) ? (
-                <span className="muted">Learned as your story unfolds</span>
-              ) : (
-                <Button
-                  icon={GraduationCap}
-                  onClick={() =>
-                    game.location === s.location
-                      ? open({ type: 'lesson', id: s.id })
-                      : visit(s.location)
-                  }
-                >
-                  {game.location === s.location
-                    ? 'Begin the lesson'
-                    : 'Visit ' + locationById[s.location].name}
-                </Button>
-              )}
-            </section>
-          ))}
-      </div>
-    </>
-  );
-}
-
-/** Festivals still ahead of today (never today or the past), soonest first, with their next date. */
-function upcomingFestivals(today) {
-  const year = Number(today.slice(0, 4));
-  return festivals
-    .map((f) => {
-      const pad = (n) => String(n).padStart(2, '0');
-      let date = `${year}-${pad(f.month)}-${pad(f.day)}`;
-      if (date <= today) date = `${year + 1}-${pad(f.month)}-${pad(f.day)}`;
-      return { ...f, date };
-    })
-    .sort((a, b) => a.date.localeCompare(b.date));
-}
-
-function Calendar({ game, act, visit, open }) {
-  const [month, setMonth] = useState(game.date.slice(0, 7));
-  const [y, m] = month.split('-').map(Number);
-  const first = new Date(Date.UTC(y, m - 1, 1));
-  const offset = (first.getUTCDay() + 6) % 7;
-  const days = new Date(Date.UTC(y, m, 0)).getUTCDate();
-  const cells = Array.from({ length: offset + days }, (_, i) =>
-    i < offset ? null : i - offset + 1,
-  );
-  const monthEvents = festivals.filter((f) => f.month === m);
-  function move(n) {
-    const d = new Date(Date.UTC(y, m - 1 + n, 1));
-    setMonth(d.toISOString().slice(0, 7));
-  }
-  return (
-    <>
-      <PageHeading
-        eyebrow="LET THE YEAR UNFOLD"
-        title="A season for everything."
-        description="Lessons, festivals, and ordinary days that turn out to matter."
-      />
-      <>{isLiveLike(game.mode) && <DailyCard game={game} visit={visit} open={open} />}</>
-      <div className="calendar-layout">
-        <section className="calendar-card">
-          <div className="calendar-heading">
-            <h2>
-              {new Intl.DateTimeFormat('en-GB', {
-                month: 'long',
-                year: 'numeric',
-                timeZone: 'UTC',
-              }).format(first)}
-            </h2>
-            <div>
-              <button className="text-button" onClick={() => setMonth(game.date.slice(0, 7))}>
-                Today
-              </button>
-              <button className="icon-button" aria-label="Previous month" onClick={() => move(-1)}>
-                <ChevronLeft size={18} />
-              </button>
-              <button className="icon-button" aria-label="Next month" onClick={() => move(1)}>
-                <ChevronRight size={18} />
-              </button>
-            </div>
-          </div>
-          <div className="calendar-grid">
-            {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((d) => (
-              <strong key={d}>{d}</strong>
-            ))}
-            {cells.map((d, i) => {
-              const event = festivals.find((f) => f.month === m && f.day === d);
-              const date = month + '-' + String(d).padStart(2, '0');
-              return (
-                <div
-                  key={i}
-                  className={
-                    'calendar-day ' +
-                    (date === game.date ? 'today ' : '') +
-                    (event ? 'festival' : '')
-                  }
-                >
-                  <span>{d}</span>
-                  {event && (
-                    <small>
-                      <Flame size={10} />
-                      {event.name}
-                    </small>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </section>
-        <aside>
-          <div className="season-card">
-            <img
-              src={art(season(month + '-01') === 'Winter' ? 'mere-frozen' : 'mere-day')}
-              alt={`${season(month + '-01')} by the mere`}
-            />
-            <div>
-              <Eyebrow>THE TURNING YEAR</Eyebrow>
-              <h3>{season(month + '-01')} at Lanternmere</h3>
-              <p>
-                {monthEvents.length
-                  ? monthEvents.map((e) => e.description).join(' ')
-                  : 'A quieter month. Leave room for small adventures.'}
-              </p>
-            </div>
-          </div>
-          <div className="calendar-note">
-            <Sun size={20} />
-            <p>
-              It’s {dateLabel(game.date)}, {periods[game.period].toLowerCase()}. Conversations and
-              lessons move the day along; story milestones turn the season.
-            </p>
-            {isLiveLike(game.mode) && (
-              <Button icon={Moon} onClick={() => act({ type: 'rest' })}>
-                Rest until tomorrow
-              </Button>
-            )}
-          </div>
-        </aside>
-      </div>
-      <h2 className="section-heading">Dates to look forward to</h2>
-      <div className="festival-list">
-        {upcomingFestivals(game.date).map((f) => (
-          <div key={f.name}>
-            <span>
-              <small>
-                {new Intl.DateTimeFormat('en', { month: 'short', timeZone: 'UTC' }).format(
-                  new Date(Date.UTC(2026, f.month - 1, f.day)),
-                )}
-              </small>
-              <strong>{f.day}</strong>
-            </span>
-            <div>
-              <h3>{f.name}</h3>
-              <p>{f.description}</p>
-            </div>
-            <Flame size={19} />
-          </div>
-        ))}
-      </div>
-    </>
-  );
-}
-
-function Journal({ game, act, visit }) {
-  return (
-    <>
-      <PageHeading
-        eyebrow="KEEP THE LITTLE THINGS"
-        title={`${game.name}’s journal.`}
-        description="A place for the things you don’t want to forget."
-      >
-        <Button icon={Download} onClick={() => downloadSave(game)}>
-          Export your save
-        </Button>
-      </PageHeading>
-      <div className="journal-layout">
-        <section className="journal-pages">
-          <Eyebrow>YOUR YEAR, IN MOMENTS</Eyebrow>
-          {[...game.journal].reverse().map((entry, i) => (
-            <article key={i}>
-              <span className="journal-dot" />
-              <time>{dateLabel(entry.date)}</time>
-              <p>{entry.text}</p>
-            </article>
-          ))}
-        </section>
-        <aside>
-          <div className="personal-notes">
-            <Feather size={22} />
-            <h3>A page just for you</h3>
-            <p>Thoughts, names, things to ask tomorrow.</p>
-            <textarea
-              aria-label="Personal journal notes"
-              maxLength={12000}
-              value={game.notes}
-              onChange={(e) => act({ type: 'notes', value: e.target.value })}
-              placeholder="Today I noticed…"
-            />
-            <small>Saved on this device with your story.</small>
-          </div>
-          <section className="discoveries">
-            <h3>Little discoveries</h3>
-            <p>
-              {game.visited.length} {game.visited.length === 1 ? 'place' : 'places'} visited ·{' '}
-              {game.clues.length} {game.clues.length === 1 ? 'clue' : 'clues'} gathered
-            </p>
-            {game.clues.map((c) => (
-              <span key={c}>
-                <CheckCircle2 size={13} />
-                {
-                  {
-                    archive: 'The old register',
-                    flower: 'A moonflower petal',
-                    lake: 'The lake’s memory',
-                    stones: 'The first keepers’ circle',
-                    restored: 'The Heartfire, renewed',
-                  }[c]
-                }
-              </span>
-            ))}
-          </section>
-        </aside>
-      </div>
-    </>
-  );
-}
-
 function Gallery({ manifest, onClose }) {
   const [kind, setKind] = useState('environment'),
     [query, setQuery] = useState(''),
