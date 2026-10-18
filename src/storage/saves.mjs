@@ -24,6 +24,12 @@ export function createSaveRepository(storage) {
     write(game) {
       storage.setItem(saveSlot(game.mode), JSON.stringify({ ...game, feedback: '' }));
     },
+    /** Start a new game in this mode's slot; any game already there is kept as a backup first. */
+    beginAgain(game) {
+      const previous = storage.getItem(saveSlot(game.mode));
+      if (previous !== null) storage.setItem('lanternmere.replaced-backup.' + game.mode, previous);
+      storage.setItem(saveSlot(game.mode), JSON.stringify({ ...game, feedback: '' }));
+    },
     import(raw, current = null) {
       if (typeof raw !== 'string' || new TextEncoder().encode(raw).length > MAX_SAVE_BYTES)
         throw new Error('That save file is too large. Choose a Lanternmere JSON export.');

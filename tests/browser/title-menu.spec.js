@@ -148,3 +148,28 @@ test('browser shortcuts with Ctrl do not wake the title', async ({ page }) => {
   await page.keyboard.press('Control+b');
   await expect(page.getByText('Press any key')).toBeVisible();
 });
+
+test('New game starts over in a mode that already has a save, after asking', async ({ page }) => {
+  await page.goto('/');
+  await enterMode(page, 'book', { name: 'Wren' });
+  await page.reload();
+  await page.keyboard.press('Enter');
+  await page.getByRole('button', { name: /New game/ }).click();
+  const book = page.getByRole('button', { name: /Read the book/ });
+  await expect(book).toContainText(/Wren/);
+  await book.click();
+  await expect(page.getByText(/set aside as a backup/i)).toBeVisible();
+  await page.getByRole('button', { name: /Keep my save/ }).click();
+  await expect(page.getByRole('heading', { name: 'Who are you?' })).toHaveCount(0);
+  await book.click();
+  await page.getByRole('button', { name: /Start over/ }).click();
+  await page.getByLabel('Your name').fill('Avery');
+  await page.getByRole('button', { name: /Begin your story/ }).click();
+  await expect(page.locator('.scene-player.opening')).toBeVisible();
+  const [save, backup] = await page.evaluate(() => [
+    JSON.parse(localStorage.getItem('lanternmere.save.book')),
+    JSON.parse(localStorage.getItem('lanternmere.replaced-backup.book')),
+  ]);
+  expect(save.name).toBe('Avery');
+  expect(backup.name).toBe('Wren');
+});

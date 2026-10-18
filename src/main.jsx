@@ -153,6 +153,7 @@ function App() {
     [view, setView] = useState('world'),
     [modal, setModal] = useState(null),
     [creating, setCreating] = useState(null),
+    [freshStart, setFreshStart] = useState(false),
     [toast, setToast] = useState(''),
     [mobileNav, setMobileNav] = useState(false),
     [manifest, setManifest] = useState([]),
@@ -269,15 +270,29 @@ function App() {
           lastMode={lastMode()}
           onContinue={(mode) => start(mode)}
           onChooseMode={chooseMode}
+          onNewGame={(mode) => {
+            setFreshStart(slotStatus(mode) !== 'empty');
+            setCreating(mode);
+          }}
           onImport={importSave}
           onSettings={() => setModal({ type: 'reading' })}
         >
           {creating && (
             <CharacterCreation
               mode={creating}
-              onBack={() => setCreating(null)}
+              onBack={() => {
+                setCreating(null);
+                setFreshStart(false);
+              }}
               onBegin={(name, timeMode) => {
-                start(creating, name, timeMode);
+                if (freshStart) {
+                  // New game over an existing save: the old one is kept as a backup.
+                  const fresh = initialState(creating, name, null, null, { timeMode });
+                  saves.beginAgain(fresh);
+                  setGame(fresh);
+                  setView(isBookLike(creating) ? 'book' : 'world');
+                } else start(creating, name, timeMode);
+                setFreshStart(false);
                 setCreating(null);
               }}
             />

@@ -361,3 +361,30 @@ html[data-reading-mode] .title-name {
   margin: 0;
   text-align: center;
 }
+
+/* New game: a quiet link under the ways to play, and a plain confirmation before replacing a save. */
+.title-confirm {
+  display: grid;
+  gap: 16px;
+  justify-items: center;
+  max-width: 520px;
+  padding: 20px 26px;
+  text-align: center;
+  color: var(--lm-ink);
+  background: linear-gradient(180deg, rgba(36, 16, 10, 0.72), rgba(22, 9, 5, 0.82));
+  border: 1px solid rgba(232, 191, 110, 0.55);
+  outline: 1px solid rgba(232, 191, 110, 0.2);
+  outline-offset: -5px;
+  backdrop-filter: blur(6px);
+}
+.title-confirm p {
+  margin: 0;
+  font-family: var(--lm-read);
+  font-size: 19px;
+  line-height: 1.5;
+}
+.title-confirm-actions {
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+}
