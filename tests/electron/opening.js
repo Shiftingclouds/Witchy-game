@@ -29,5 +29,6 @@ export async function finishOpening(win) {
   await win.getByText('Press any key').waitFor();
   await win.keyboard.press('Enter');
   await win.getByRole('button', { name: /^Continue/ }).click();
+  await win.locator('.title-menu .vine-button').first().click();
   await win.locator('.app-shell').waitFor();
 }

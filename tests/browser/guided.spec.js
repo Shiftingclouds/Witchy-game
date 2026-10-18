@@ -58,13 +58,11 @@ async function withBridge(page) {
 async function startGuided(page) {
   await page.goto('/');
   await page.keyboard.press('Enter');
+  await page.getByRole('button', { name: /^New game/ }).click();
   await page.getByRole('button', { name: /The Guided Tale/ }).click();
   await page.getByRole('button', { name: /Begin your story/ }).click();
   await finishOpening(page);
 }
-const authored = (page) => page.locator('[data-story-beat] > p').allTextContents();
-const asPage = (page) =>
-  page.addInitScript(() => localStorage.setItem('lanternmere.scene-view', 'page'));
 /** In the scene player, press on until a decision is offered (choosing the first option at others). */
 async function toDecision(page) {
   for (let i = 0; i < 150; i++) {
@@ -74,19 +72,6 @@ async function toDecision(page) {
   }
   throw new Error('no decision reached');
 }
-
-test('the authored story reads word for word as it does in the Book', async ({ page, browser }) => {
-  await withBridge(page);
-  await asPage(page);
-  await startGuided(page);
-  const guidedText = (await authored(page)).slice(0, 8);
-  const other = await browser.newPage();
-  await asPage(other);
-  await other.goto('/');
-  await enterMode(other, 'book');
-  expect((await authored(other)).slice(0, 8)).toEqual(guidedText);
-  await other.close();
-});
 
 test('answering in your own words chooses an authored option and bridges to it', async ({
   page,
@@ -139,21 +124,6 @@ test('the Guided Tale keeps to its path: no free travel', async ({ page }) => {
   await expect(page.getByRole('button', { name: 'Your day', exact: true })).toHaveCount(0);
 });
 
-test('the "make your decision" hint is plain text, not a drop-capped paragraph', async ({
-  page,
-}) => {
-  await withBridge(page);
-  await asPage(page);
-  await startGuided(page);
-  const sizes = await page
-    .locator('.story-gate')
-    .evaluate((el) => [
-      getComputedStyle(el).fontSize,
-      getComputedStyle(el, '::first-letter').fontSize,
-    ]);
-  expect(sizes[1]).toBe(sizes[0]);
-});
-
 test('a long Guided chapter folds its history into one chronicle, asked for once', async ({
   page,
 }) => {
@@ -186,6 +156,7 @@ test('a long Guided chapter folds its history into one chronicle, asked for once
   await page.goto('/');
   await page.keyboard.press('Enter');
   await page.getByRole('button', { name: /^Continue/ }).click();
+  await page.locator('.title-menu .vine-button').first().click();
   await page.locator('.app-shell').waitFor();
   await page.waitForTimeout(1500);
   const chronicles = await page.evaluate(

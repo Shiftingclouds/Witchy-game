@@ -1,5 +1,3 @@
-import { AuthoredChapter } from './features/story/AuthoredChapter.jsx';
-import { pendingStoryChoice } from './scene-beats.mjs';
 import { Conversation } from './features/dialogue/Conversation.jsx';
 import { SettingsPanel } from './features/settings/SettingsPanel.jsx';
 import { endingCommon, endingVariants } from './features/story/epilogue.mjs';
@@ -78,7 +76,6 @@ import { VineButton } from './features/opening/VineButton.jsx';
 import { metCharacters, needsOpening } from './engine/selectors.mjs';
 import { AiScene } from './features/ai/AiScene.jsx';
 import { ScenePlayer } from './features/scene/ScenePlayer.jsx';
-import { SceneMenu } from './features/scene/SceneMenu.jsx';
 import { useChronicle } from './features/ai/useTurn.mjs';
 import { AiStory, ThreadsCard } from './features/ai/AiStory.jsx';
 import { useSidebarState } from './features/shell/sidebar.mjs';
@@ -158,24 +155,9 @@ function App() {
     [mobileNav, setMobileNav] = useState(false),
     [manifest, setManifest] = useState([]),
     [saveError, setSaveError] = useState('');
-  // The story plays as a full-screen scene unless the player chose to read it as a page.
-  const [sceneView, setSceneViewState] = useState(() => {
-    try {
-      return localStorage.getItem('lanternmere.scene-view') === 'page' ? 'page' : 'play';
-    } catch {
-      return 'play';
-    }
-  });
-  const setSceneView = (value) => {
-    setSceneViewState(value);
-    try {
-      localStorage.setItem('lanternmere.scene-view', value);
-    } catch {
-      /* the choice just won't be remembered */
-    }
-  };
+  // The story plays as a full-screen scene; leaving it shows a card to return to it.
   const [sceneDismissed, setSceneDismissed] = useState(false);
-  const scenePlaying = Boolean(game) && !game.ending && sceneView === 'play' && !sceneDismissed;
+  const scenePlaying = Boolean(game) && !game.ending && !sceneDismissed;
   useEffect(() => setSceneDismissed(false), [game?.chapter, game?.mode]);
   // One chronicle keeper per playthrough (AI modes only; it does nothing for Book and Live).
   useChronicle(game, act);
@@ -268,8 +250,7 @@ function App() {
           saves={Object.fromEntries(MODES.map((m) => [m, load(m)]))}
           slots={Object.fromEntries(MODES.map((m) => [m, slotStatus(m)]))}
           lastMode={lastMode()}
-          onContinue={(mode) => start(mode)}
-          onChooseMode={chooseMode}
+          onContinue={chooseMode}
           onNewGame={(mode) => {
             setFreshStart(slotStatus(mode) !== 'empty');
             setCreating(mode);
@@ -318,14 +299,7 @@ function App() {
         data-reading-size={reading.size}
         data-reduced-motion={reading.reduced}
       >
-        <ScenePlayer
-          key="opening"
-          opening
-          game={game}
-          act={act}
-          reading={reading}
-          onReadAsPage={() => setSceneView('page')}
-        />
+        <ScenePlayer key="opening" opening game={game} act={act} reading={reading} />
         {toast && (
           <div className="toast" role="status">
             {toast}
@@ -486,16 +460,12 @@ function App() {
               act={act}
               reading={reading}
               onExit={() => (isLiveLike(game.mode) ? navigate('world') : setSceneDismissed(true))}
-              onReadAsPage={() => setSceneView('page')}
+              onVisit={(task) => visit(taskLocation(game, task))}
             />
           )}
           {view === 'book' && game.mode !== 'sandbox' && !scenePlaying && (
             <Story
-              sceneView={sceneView}
-              onPlayScene={() => {
-                setSceneView('play');
-                setSceneDismissed(false);
-              }}
+              onPlayScene={() => setSceneDismissed(false)}
               game={game}
               act={act}
               visit={visit}
@@ -773,108 +743,23 @@ function Epilogue({ game, leave }) {
   );
 }
 
-function Story({ game, act, visit, open, reading, leave, sceneView, onPlayScene }) {
+/** Between scenes: the place the story is in, and a way back into it. (Finished games show the epilogue.) */
+function Story({ game, leave, onPlayScene }) {
   const ch = chapters[game.chapter];
   if (game.ending) return <Epilogue game={game} leave={leave} />;
   return (
-    <>
-      <PageHeading
-        eyebrow={isBookLike(game.mode) ? 'READ THE BOOK · AN ILLUSTRATED YEAR' : 'THE STORY SO FAR'}
-        title="The light we leave behind."
-        description={
-          isBookLike(game.mode)
-            ? 'Settle in. The world can wait while you turn the page.'
-            : 'Your days become a story. Your choices give it meaning.'
-        }
-      />
-      <div className="book-layout">
-        <div className="book-art">
-          <img
-            src={art(sceneArt({ ...game, location: ch.scene }))}
-            alt={locationById[ch.scene].name}
-          />
-          <Portrait id={ch.speaker} emotion={ch.emotion} />
-          <span>{locationById[ch.scene].name}</span>
-        </div>
-        <article className="book-page">
-          {!game.ending && (
-            <div className="book-page-corner">
-              <Eyebrow>{dateLabel(ch.date)}</Eyebrow>
-              {sceneView === 'play' && (
-                <Button className="primary" onClick={onPlayScene}>
-                  Return to the scene
-                </Button>
-              )}
-              <SceneMenu reading={reading} view="page" onSwitchView={onPlayScene} />
-            </div>
-          )}
-          {game.ending && <h2>A home made of light</h2>}
-          <div className="book-ornament">— ✧ —</div>
-          {game.ending ? (
-            <>
-              <p>{endingCommon[0]}</p>
-              <p>{endingVariants[game.ending]}</p>
-              <p>{endingCommon[1]}</p>
-              <p className="ending-line">{endingCommon[2]}</p>
-              <div className="ending-stats">
-                <span>
-                  <Heart /> {Object.values(game.bonds).filter((v) => v >= 10).length} friendships
-                </span>
-                <span>
-                  <Sparkles /> {game.spells.length} spells
-                </span>
-                <span>
-                  <Shield /> {game.points} house points
-                </span>
-              </div>
-            </>
-          ) : (
-            <>
-              <AuthoredChapter game={game} act={act} reduced={reading.reduced} />
-              {pendingStoryChoice(game) ? (
-                <p className="story-gate">Make your decision in the scene above to continue.</p>
-              ) : isLiveLike(game.mode) && !canAdvance(game) ? (
-                <div className="story-gate">
-                  <strong>
-                    <Compass size={16} /> Before the next page
-                  </strong>
-                  {requirements(game)
-                    .filter((r) => !r.done)
-                    .map((r) => (
-                      <button key={r.id} onClick={() => visit(taskLocation(game, r.id))}>
-                        {r.label}
-                        <ArrowRight size={14} />
-                      </button>
-                    ))}
-                </div>
-              ) : (
-                <div className="story-choices">
-                  <Eyebrow>WHAT WILL YOU DO?</Eyebrow>
-                  {ch.choices.map((c, i) => (
-                    <button key={i} onClick={() => act({ type: 'chapter', choice: i })}>
-                      <span>{String(i + 1).padStart(2, '0')}</span>
-                      {c[0]}
-                      <ArrowRight size={17} />
-                    </button>
-                  ))}
-                </div>
-              )}
-            </>
-          )}
-        </article>
+    <div className="story-return">
+      <img src={art(sceneArt({ ...game, location: ch.scene }))} alt={locationById[ch.scene].name} />
+      <div className="story-return-card">
+        <Eyebrow>{dateLabel(game.date)}</Eyebrow>
+        <h1>Your story is waiting.</h1>
+        <VineButton
+          title="Return to the story"
+          subline={locationById[ch.scene].name}
+          onClick={onPlayScene}
+        />
       </div>
-      <div className="chapter-trail">
-        {chapters.map((c, i) => (
-          <span
-            key={c.title}
-            className={i === game.chapter ? 'current' : i < game.chapter ? 'complete' : ''}
-            title={c.title}
-          >
-            {i < game.chapter ? <Check size={14} /> : i + 1}
-          </span>
-        ))}
-      </div>
-    </>
+    </div>
   );
 }
 

@@ -38,6 +38,7 @@ test('an Open World turn survives quitting, and no log is written unless asked',
   let win = await app.firstWindow();
   await win.getByText('Press any key').waitFor();
   await win.keyboard.press('Enter');
+  await win.getByRole('button', { name: /^New game/ }).click();
   await win.getByRole('button', { name: /The Open World/ }).click();
   await win.getByRole('button', { name: /Begin your story/ }).click();
   await finishOpening(win);
@@ -56,6 +57,7 @@ test('an Open World turn survives quitting, and no log is written unless asked',
   await win.getByText('Press any key').waitFor();
   await win.keyboard.press('Enter');
   await win.getByRole('button', { name: /^Continue/ }).click();
+  await win.locator('.title-menu .vine-button').first().click();
   await expect(win.getByText('The mere is glass-still under the evening.')).toBeVisible();
   await app.close();
 });
@@ -66,6 +68,7 @@ test('with the debug log turned on, exchanges are logged under userData', async 
   const win = await app.firstWindow();
   await win.getByText('Press any key').waitFor();
   await win.keyboard.press('Enter');
+  await win.getByRole('button', { name: /^New game/ }).click();
   await win.getByRole('button', { name: /The Open World/ }).click();
   await win.getByRole('button', { name: /Begin your story/ }).click();
   await finishOpening(win);

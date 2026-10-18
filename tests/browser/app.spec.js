@@ -1,8 +1,10 @@
 import {
   chooseRemainingScenes,
   continueGame,
+  decide,
   enterMode,
   leaveScene,
+  nextChapter,
   playScene,
   startOnPage,
 } from './story-helpers.js';
@@ -50,8 +52,8 @@ test('book mode reaches a complete ending through all authored scenes and eight 
   await enterMode(page, 'book');
   for (let i = 0; i < 8; i++) {
     await chooseRemainingScenes(page);
-    await expect(page.locator('.story-choices button')).toHaveCount(2);
-    await page.locator('.story-choices button').first().click();
+    await expect(page.locator('.scene-exits button')).toHaveCount(2);
+    await nextChapter(page, 0);
   }
   await expect(page.getByText('For now, this is enough. This is home.')).toBeVisible();
   const state = await page.evaluate(() =>
@@ -109,6 +111,7 @@ test('profiles find moving characters and daily friendship is limited to once a 
   await page.reload();
   await page.keyboard.press('Enter');
   await page.getByRole('button', { name: /^Continue/ }).click();
+  await page.locator('.title-menu .vine-button').first().click();
   await page.getByRole('button', { name: 'People', exact: true }).click();
   await page.getByLabel('Find a person').fill('Noor');
   await page.locator('.person-card').click();

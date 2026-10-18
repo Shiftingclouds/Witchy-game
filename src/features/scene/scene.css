@@ -416,3 +416,71 @@
   transform: translateX(-50%);
   z-index: 70;
 }
+
+/* The end of a chapter: its ways forward, in the same panel as a decision. */
+.scene-exits button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 16px;
+  text-align: left;
+  font-family: var(--lm-read);
+  font-size: 18px;
+  color: var(--lm-ink);
+  background: color-mix(in srgb, var(--lm-surface) 80%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 40%, transparent);
+  border-radius: 2px;
+  cursor: pointer;
+}
+.scene-exits button:hover,
+.scene-exits button:focus-visible {
+  border-color: var(--lm-gold-bright);
+}
+.scene-exits-lead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-family: var(--lm-label);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--lm-gold);
+}
+
+/* Between scenes in the book: the place, and a way back in. */
+.story-return {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: calc(100vh - 160px);
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 30%, transparent);
+}
+.story-return img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7);
+}
+.story-return-card {
+  position: relative;
+  display: grid;
+  gap: 14px;
+  justify-items: center;
+  padding: 28px 36px;
+  text-align: center;
+  background: rgb(from var(--lm-backing) r g b / 0.86);
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 50%, transparent);
+  outline: 1px solid color-mix(in srgb, var(--lm-gold) 20%, transparent);
+  outline-offset: -5px;
+}
+.story-return-card h1 {
+  margin: 0;
+  font-size: 32px;
+}

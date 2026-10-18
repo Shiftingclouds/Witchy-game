@@ -2,8 +2,10 @@ import { test, expect } from '@playwright/test';
 import {
   chooseRemainingScenes,
   continueGame,
+  decide,
   enterMode,
   leaveScene,
+  nextChapter,
   playScene,
   playSection,
   setInGear,
@@ -17,25 +19,15 @@ async function openRegister(page) {
   await enterMode(page, 'book');
   for (let chapter = 0; chapter < 2; chapter++) {
     await chooseRemainingScenes(page);
-    await page.locator('.story-choices button').first().click();
+    await nextChapter(page, 0);
   }
-  await expect(page.locator('[data-choice="register:search-method"]')).toBeVisible();
-  await page.locator('[data-choice="register:search-method"] button').first().click();
+  await decide(page, 'register:search-method', 0);
 }
 
-test('register illustration and its written evidence resume offline in both readers on a narrow phone', async ({
+test('register illustration and its written evidence resume offline in the scene', async ({
   page,
 }) => {
   await openRegister(page);
-  const bookArt = page.locator('.story-illustration img');
-  await bookArt.scrollIntoViewIfNeeded();
-  await expect(bookArt).toBeVisible();
-  await expect
-    .poll(() => bookArt.evaluate((img) => img.complete && img.naturalWidth > 0))
-    .toBe(true);
-  await expect(page.locator('[data-story-beat="register-detail"]')).toContainText(
-    'This page shows omissions.',
-  );
   await playSection(page, 'What the page does not say');
   const dialog = page.getByRole('dialog');
   await dialog.getByRole('button', { name: 'Next', exact: true }).click();

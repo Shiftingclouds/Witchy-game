@@ -37,6 +37,7 @@ const scene = (beats, proposals = [], extra = {}) => ({
 async function startOpenWorld(page, timeMode = 'Timeless') {
   await page.goto('/');
   await page.keyboard.press('Enter');
+  await page.getByRole('button', { name: /^New game/ }).click();
   await page.getByRole('button', { name: /The Open World/ }).click();
   await page.getByRole('radio', { name: new RegExp(timeMode) }).click();
   await page.getByRole('button', { name: /Begin your story/ }).click();

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { OpeningScene } from './OpeningScene.jsx';
 import { VineButton } from './VineButton.jsx';
-import { continueTarget, MODE_LABELS } from './menu-model.mjs';
+import { MODE_LABELS, saveLine } from './menu-model.mjs';
 import { aiAvailable } from '../../ai/claude.mjs';
 import './title.css';
 
@@ -24,7 +24,7 @@ function Title() {
 
 /**
  * The opening: "Press any key", then the menu over the living scene.
- * Menu states: 'title' → 'menu' → 'story' (Read the book / Live the world).
+ * Menu states: 'title' → 'menu' (Continue / New game) → 'continue' (your saves) or 'new' (ways to play).
  */
 const slotLine = (status, saved, empty) =>
   status === 'unreadable' ? 'This save could not be read' : status === 'ok' ? saved : empty;
@@ -41,6 +41,32 @@ const NEW_GAME_LINES = {
   guided: 'The same path, alive around you',
   sandbox: 'Go anywhere. Make a life.',
 };
+
+/** Continue: each save by name, most recently played first. */
+function ContinueList({ saves, slots, lastMode, onPick, onBack }) {
+  const modes = Object.keys(MODE_LABELS)
+    .filter((mode) => slots[mode] !== 'empty')
+    .sort((a, b) => (b === lastMode) - (a === lastMode));
+  return (
+    <>
+      <div className="title-modes three">
+        {modes.map((mode) => (
+          <VineButton
+            key={mode}
+            title={MODE_LABELS[mode]}
+            subline={
+              slots[mode] === 'unreadable' ? 'This save could not be read' : saveLine(saves[mode])
+            }
+            onClick={() => onPick(mode)}
+          />
+        ))}
+      </div>
+      <button className="title-quiet" onClick={onBack}>
+        Back
+      </button>
+    </>
+  );
+}
 
 /** Choose a way to play from the beginning; replacing an existing save asks first. */
 function NewGame({ saves, slots, ai, confirming, onPick, onConfirm, onCancel, onBack }) {
@@ -63,7 +89,7 @@ function NewGame({ saves, slots, ai, confirming, onPick, onConfirm, onCancel, on
     );
   return (
     <>
-      <div className={'title-modes' + (modes.length > 2 ? ' three' : '')}>
+      <div className="title-modes three">
         {modes.map((mode) => (
           <VineButton
             key={mode}
@@ -77,6 +103,9 @@ function NewGame({ saves, slots, ai, confirming, onPick, onConfirm, onCancel, on
           />
         ))}
       </div>
+      {!ai && (
+        <p className="title-note">The Guided Tale and the Open World run in the desktop app.</p>
+      )}
       <button className="title-quiet" onClick={onBack}>
         Back
       </button>
@@ -91,7 +120,6 @@ export function TitleScreen({
   slots,
   lastMode,
   onContinue,
-  onChooseMode,
   onNewGame,
   onImport,
   onSettings,
@@ -102,7 +130,7 @@ export function TitleScreen({
   const [confirming, setConfirming] = useState(null);
   const menu = useRef(null);
   const fileInput = useRef(null);
-  const target = continueTarget({ lastMode, saves });
+  const anySave = Object.values(slots).some((status) => status !== 'empty');
   const desktop = typeof window !== 'undefined' && Boolean(window.lanternmere?.storage);
   const ai = aiAvailable();
 
@@ -120,8 +148,8 @@ export function TitleScreen({
   }, [stage]);
 
   useEffect(() => {
-    if (stage === 'story' || stage === 'new') menu.current?.querySelector('button')?.focus();
-    if (stage !== 'story' && stage !== 'new') return;
+    if (stage === 'continue' || stage === 'new') menu.current?.querySelector('button')?.focus();
+    if (stage !== 'continue' && stage !== 'new') return;
     const back = (event) => event.key === 'Escape' && (setConfirming(null), setStage('menu'));
     addEventListener('keydown', back);
     return () => removeEventListener('keydown', back);
@@ -140,46 +168,27 @@ export function TitleScreen({
           <nav className="title-menu" aria-label="Choose how to play" ref={menu}>
             {stage === 'menu' ? (
               <>
-                {target && (
+                {anySave && (
                   <VineButton
-                    lead
                     title="Continue"
-                    subline={target.label}
-                    onClick={() => onContinue(target.mode)}
+                    subline="Return to a story you have begun"
+                    onClick={() => setStage('continue')}
                   />
                 )}
-                <div className={'title-modes' + (ai ? ' three' : '')}>
-                  <VineButton
-                    lead={!target}
-                    title="The Story"
-                    subline="The tale as it was written"
-                    onClick={() => setStage('story')}
-                  />
-                  {ai && (
-                    <>
-                      <VineButton
-                        title={MODE_LABELS.guided}
-                        subline={slotLine(
-                          slots.guided,
-                          'Continue your tale',
-                          'The same path, alive around you',
-                        )}
-                        onClick={() => onChooseMode('guided')}
-                      />
-                      <VineButton
-                        title={MODE_LABELS.sandbox}
-                        subline={slotLine(
-                          slots.sandbox,
-                          'Continue your life',
-                          'Go anywhere. Make a life.',
-                        )}
-                        onClick={() => onChooseMode('sandbox')}
-                      />
-                    </>
-                  )}
-                </div>
-                {!ai && <p className="title-note">AI modes run in the desktop app.</p>}
+                <VineButton
+                  title="New game"
+                  subline="Begin at the lake, with a lantern of your own"
+                  onClick={() => setStage('new')}
+                />
               </>
+            ) : stage === 'continue' ? (
+              <ContinueList
+                saves={saves}
+                slots={slots}
+                lastMode={lastMode}
+                onPick={onContinue}
+                onBack={() => setStage('menu')}
+              />
             ) : stage === 'new' ? (
               <NewGame
                 saves={saves}
@@ -197,37 +206,12 @@ export function TitleScreen({
                   setStage('menu');
                 }}
               />
-            ) : (
-              <>
-                <VineButton
-                  title={MODE_LABELS.book}
-                  subline={slotLine(
-                    slots.book,
-                    'Continue your book',
-                    'An illustrated story, one page at a time',
-                  )}
-                  onClick={() => onChooseMode('book')}
-                />
-                <VineButton
-                  title={MODE_LABELS.live}
-                  subline={slotLine(slots.live, 'Continue your life', 'Explore at your own pace')}
-                  onClick={() => onChooseMode('live')}
-                />
-                <button className="title-quiet" onClick={() => setStage('menu')}>
-                  Back
-                </button>
-              </>
-            )}
+            ) : null}
           </nav>
         )}
         {!awake && <p className="title-press">Press any key</p>}
         {awake && (
           <div className="title-corner">
-            {Object.values(slots).some((status) => status !== 'empty') && (
-              <button className="title-quiet" onClick={() => setStage('new')}>
-                New game
-              </button>
-            )}
             <button className="title-quiet" onClick={onSettings}>
               Settings
             </button>

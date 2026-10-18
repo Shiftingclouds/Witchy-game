@@ -2,8 +2,10 @@ import { test, expect } from '@playwright/test';
 import {
   chooseRemainingScenes,
   continueGame,
+  decide,
   enterMode,
   leaveScene,
+  nextChapter,
   playScene,
   playSection,
   setInGear,
@@ -29,13 +31,8 @@ test('book decisions reveal only the chosen branch and resume in the staged read
   const { branch, label } = await firstObservation();
   await page.goto('/');
   await enterMode(page, 'book');
-  await expect(page.locator('.story-choices button')).toHaveCount(0);
-  await page.getByRole('button', { name: label('record'), exact: false }).click();
-  await expect(page.locator(`[data-story-beat="${branch('record').id}"]`)).toBeVisible();
-  await expect(page.locator(`[data-story-beat="${branch('frame').id}"]`)).toHaveCount(0);
-  await expect(
-    page.locator('[data-choice="arrival:first-observation"] button').first(),
-  ).toBeDisabled();
+  await expect(page.locator('.scene-exits')).toHaveCount(0);
+  await decide(page, 'arrival:first-observation', 1);
   await page.reload();
   await continueGame(page);
   await playScene(page);
@@ -80,7 +77,7 @@ test('large text and motion preferences persist and keep a two-person lesson usa
   await setInGear(page, 'Story text size', 'largest');
   await setInGear(page, 'Reading motion', 'reduce');
   await chooseRemainingScenes(page, 1);
-  await page.locator('.story-choices button').first().click();
+  await nextChapter(page, 0);
   await playScene(page);
   const dialog = page.getByRole('dialog');
   for (let index = 0; index < 5; index++)

@@ -30,29 +30,6 @@ for (const mode of ['lamplight', 'parchment', 'night']) {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/');
     await enterMode(page, 'book');
-    const paragraph = page.locator('.authored-chapter p').first();
-    await expect(paragraph).toBeVisible();
-    const { family, width, probe } = await paragraph.evaluate((p) => {
-      const s = document.createElement('span');
-      s.style.cssText = `font:${getComputedStyle(p).font};white-space:nowrap;position:absolute;visibility:hidden`;
-      s.textContent =
-        'Your name is written on the handle of a small brass lantern. You turn it ove';
-      document.body.append(s);
-      const probeWidth = s.getBoundingClientRect().width;
-      s.remove();
-      return {
-        family: getComputedStyle(p).fontFamily,
-        width: p.getBoundingClientRect().width,
-        probe: probeWidth,
-      };
-    });
-    expect(family).toMatch(/^"?EB Garamond/);
-    const pageBg = await page
-      .locator('.book-page')
-      .evaluate((el) => getComputedStyle(el).backgroundColor);
-    expect(rgb(pageBg).slice(0, 3)).toEqual(hexRgb(tokens[mode].backing));
-    expect(width).toBeLessThanOrEqual(probe * 1.05);
-
     await playSection(page, 'A place at the table');
     const box = page.locator('.dialogue-box');
     await expect(box).toBeVisible();
@@ -66,11 +43,3 @@ for (const mode of ['lamplight', 'parchment', 'night']) {
     expect(ratio(rgb(fg), background)).toBeGreaterThanOrEqual(4.5);
   });
 }
-
-test('in the book, what people say is set in quotation marks', async ({ page }) => {
-  await page.goto('/');
-  await enterMode(page, 'book');
-  const line = page.locator('.authored-dialogue').first();
-  await expect(line).toContainText('“');
-  await expect(line).toContainText('”');
-});

@@ -1,8 +1,10 @@
 import { test, expect } from '@playwright/test';
 import {
   continueGame,
+  decide,
   enterMode,
   leaveScene,
+  nextChapter,
   playScene,
   playSection,
   reachBookChapter,
@@ -16,9 +18,7 @@ test('Emberfall uses night scenery and new portraits, then resumes its petal com
   page,
 }) => {
   await reachBookChapter(page, 3, 1);
-  await page.locator('[data-choice="emberfall:work-plan"] button').nth(1).click();
-  await expect(page.locator('[data-story-beat="shared-handover"]')).toBeVisible();
-  await expect(page.locator('[data-story-beat="simple-handover"]')).toHaveCount(0);
+  await decide(page, 'emberfall:work-plan', 1);
   await playSection(page, 'The flowers keep their own hour');
   const dialog = page.getByRole('dialog');
   await expect(dialog.locator('.scene-painting')).toHaveAttribute(
@@ -93,7 +93,7 @@ test('Longnight loads winter art, preserves a seven-light reading offline, and c
   await dialog.getByRole('button', { name: 'Next', exact: true }).click();
   await expect(dialog.getByAltText('Tully, warm expression')).toBeVisible();
   await leaveScene(page);
-  await page.locator('[data-choice="longnight:shore-work"] button').nth(1).click();
+  await decide(page, 'longnight:shore-work', 1);
   await playSection(page, 'What the water has kept');
   for (let i = 0; i < 3; i++)
     await dialog.getByRole('button', { name: 'Next', exact: true }).click();
@@ -124,14 +124,13 @@ test('Longnight loads winter art, preserves a seven-light reading offline, and c
     animations: 'disabled',
   });
   await leaveScene(page);
-  await page.locator('[data-choice="longnight:echo-record"] button').nth(1).click();
+  await decide(page, 'longnight:echo-record', 1);
   await playSection(page, 'What the school would lose');
   await dialog.getByRole('button', { name: 'Next', exact: true }).click();
   await expect(dialog.getByAltText('Kestrel, grave expression')).toBeVisible();
   await leaveScene(page);
-  await page.locator('[data-choice="longnight:winter-duty"] button').nth(1).click();
-  await expect(page.locator('[data-story-beat="archive-start"]')).toBeVisible();
-  await page.locator('.story-choices button').nth(1).click();
+  await decide(page, 'longnight:winter-duty', 1);
+  await nextChapter(page, 1);
   const save = await page.evaluate(() => JSON.parse(localStorage.getItem('lanternmere.save.book')));
   expect(save.chapter).toBe(5);
   expect(save.storyChoices['longnight:winter-duty']).toBe('archive');
@@ -142,9 +141,7 @@ test('First Thaw pays off winter research, presents the inscription offline, and
   page,
 }) => {
   await reachBookChapter(page, 5, 1);
-  await expect(page.locator('[data-story-beat="archive-result"]')).toBeVisible();
-  await expect(page.locator('[data-story-beat="handover-result"]')).toHaveCount(0);
-  await page.locator('[data-choice="thaw:reading-method"] button').nth(1).click();
+  await decide(page, 'thaw:reading-method', 1);
   await playSection(page, 'The words weather left behind');
   const dialog = page.getByRole('dialog');
   await expect(dialog.locator('.scene-painting')).toHaveAttribute(
@@ -186,11 +183,9 @@ test('First Thaw pays off winter research, presents the inscription offline, and
   await dialog.getByRole('button', { name: 'Next', exact: true }).click();
   await expect(dialog.getByAltText('Kestrel, warm expression')).toBeVisible();
   await leaveScene(page);
-  await page.locator('[data-choice="thaw:practice-role"] button').nth(1).click();
-  await expect(page.locator('[data-story-beat="holding-first"]')).toBeVisible();
-  await page.locator('[data-choice="thaw:rejoining"] button').nth(1).click();
-  await expect(page.locator('[data-story-beat="space-card"]')).toBeVisible();
-  await page.locator('.story-choices button').first().click();
+  await decide(page, 'thaw:practice-role', 1);
+  await decide(page, 'thaw:rejoining', 1);
+  await nextChapter(page, 0);
   const save = await page.evaluate(() => JSON.parse(localStorage.getItem('lanternmere.save.book')));
   expect(save.chapter).toBe(6);
   expect(save.spells).toContain('thread');
@@ -219,11 +214,9 @@ test('Bloomtide stages the rehearsal and saves a private conversation and a conc
     animations: 'disabled',
   });
   await leaveScene(page);
-  await page.locator('[data-choice="bloom:rehearsal-plan"] button').nth(1).click();
-  await expect(page.locator('[data-story-beat="relay-payoff"]')).toBeVisible();
-  await page.locator('[data-choice="bloom:rowan-support"] button').nth(1).click();
-  await expect(page.locator('[data-story-beat="stay-company"]')).toBeVisible();
-  await page.locator('[data-choice="bloom:lantern-use"] button').first().click();
+  await decide(page, 'bloom:rehearsal-plan', 1);
+  await decide(page, 'bloom:rowan-support', 1);
+  await decide(page, 'bloom:lantern-use', 0);
   const save = await page.evaluate(() => JSON.parse(localStorage.getItem('lanternmere.save.book')));
   expect(save.storyChoices['bloom:lantern-use']).toBe('welcome');
   expect(save.characterMemories.rowan.map((memory) => memory.key)).toContain(
@@ -232,7 +225,7 @@ test('Bloomtide stages the rehearsal and saves a private conversation and a conc
   expect(save.characterMemories.saoirse.map((memory) => memory.key)).not.toContain(
     'scene:bloom:rowan-support:stay',
   );
-  await page.locator('.story-choices button').first().click();
+  await nextChapter(page, 0);
   // Chapter titles are no longer shown; the save confirms Midsummer has begun.
   expect(
     await page.evaluate(() => JSON.parse(localStorage.getItem('lanternmere.save.book')).chapter),

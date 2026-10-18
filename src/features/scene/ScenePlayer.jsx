@@ -6,6 +6,7 @@ import { SceneDecision, OwnWords } from '../story/AuthoredChapter.jsx';
 import { Interlude } from '../ai/Interlude.jsx';
 import { DialogueBox } from './DialogueBox.jsx';
 import { useLineReveal } from './useLineReveal.mjs';
+import { ChapterEnd } from './ChapterEnd.jsx';
 import { PortraitFrame } from './PortraitFrame.jsx';
 import { SceneMenu } from './SceneMenu.jsx';
 import { X } from 'lucide-react';
@@ -13,7 +14,7 @@ import { emotionOf, endsSection, sectionCast, sectionText, staging, timeOfDay } 
 import './scene.css';
 
 /** The story, played full screen one line at a time over the place it happens in. */
-export function ScenePlayer({ game, act, reading, onExit, onReadAsPage, opening = false }) {
+export function ScenePlayer({ game, act, reading, onExit, onVisit, opening = false }) {
   const chapter = chapters[game.chapter];
   const beats = useMemo(() => chapterBeats(game.chapter, game), [game.chapter, game.storyChoices]);
   const sceneId = chapterSceneId(game.chapter);
@@ -84,7 +85,8 @@ export function ScenePlayer({ game, act, reading, onExit, onReadAsPage, opening 
       return;
     }
     if (s.pending) return;
-    if (s.last) return opening ? undefined : onExit?.();
+    // The last line waits for the chapter's way forward (shown below), not a click on Next.
+    if (s.last) return;
     live.current = { ...s, index: s.index + 1, reveal: { complete: false, reveal() {} } };
     go(s.index + 1);
   }
@@ -139,8 +141,6 @@ export function ScenePlayer({ game, act, reading, onExit, onReadAsPage, opening 
             ? { ...b, chosen: b.choice.options.find((o) => o.id === picked)?.label }
             : b;
         })}
-        view="play"
-        onSwitchView={onReadAsPage}
       />
       <div className={`scene-stage ${stage}`}>
         {game.mode === 'guided' && reveal.complete && endsSection(beats, index) && (
@@ -213,6 +213,9 @@ export function ScenePlayer({ game, act, reading, onExit, onReadAsPage, opening 
                 />
               )}
             </div>
+          )}
+          {index === beats.length - 1 && reveal.complete && !pending && !bridge && !opening && (
+            <ChapterEnd game={game} act={act} onVisit={onVisit} onExit={onExit} />
           )}
         </DialogueBox>
       </div>

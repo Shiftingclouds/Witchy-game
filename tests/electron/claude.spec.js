@@ -19,7 +19,7 @@ const launch = (userData, mode) =>
 async function openSettings(win) {
   await win.getByText('Press any key').waitFor();
   await win.keyboard.press('Enter');
-  await win.getByRole('button', { name: /The Story/ }).click();
+  await win.getByRole('button', { name: /^New game/ }).click();
   await win.getByRole('button', { name: /Read the book/ }).click();
   await win.getByRole('button', { name: /Begin your story/ }).click();
   await finishOpening(win);

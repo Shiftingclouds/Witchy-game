@@ -17,7 +17,7 @@ test('book save survives a restart and lands in the user data folder', async () 
   let win = await app.firstWindow();
   await win.getByText('Press any key').waitFor();
   await win.keyboard.press('Enter');
-  await win.getByRole('button', { name: /The Story/ }).click();
+  await win.getByRole('button', { name: /^New game/ }).click();
   await win.getByRole('button', { name: /Read the book/ }).click();
   await win.getByRole('button', { name: /Begin your story/ }).click();
   await expect(win.locator('.scene-player')).toBeVisible();
@@ -27,7 +27,8 @@ test('book save survives a restart and lands in the user data folder', async () 
   win = await app.firstWindow();
   await win.getByText('Press any key').waitFor();
   await win.keyboard.press('Enter');
-  await expect(win.getByRole('button', { name: /^Continue.*Read the book/ })).toBeVisible();
+  await win.getByRole('button', { name: /^Continue/ }).click();
+  await expect(win.getByRole('button', { name: /Read the book/ })).toBeVisible();
   await app.close();
 });
 

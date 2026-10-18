@@ -1,14 +1,13 @@
 import { useState } from 'react';
-import { BookOpen, ScrollText, Settings2, Theater } from 'lucide-react';
+import { ScrollText, Settings2 } from 'lucide-react';
 import { characterById } from '../../content.mjs';
 import { spoken } from '../../scene-beats.mjs';
 import { ReadingControls } from '../../dialogue-presentation.jsx';
 
 /**
- * The scene's quiet corner controls: the lines so far, and a gear for reading settings and for
- * switching between playing the scene and reading it as a page.
+ * The scene's quiet corner controls: the lines so far, and a gear for reading settings.
  */
-export function SceneMenu({ reading, lines = null, view = 'play', onSwitchView }) {
+export function SceneMenu({ reading, lines = null }) {
   const [open, setOpen] = useState(null);
   const toggle = (which) => {
     const closing = open === which;
@@ -41,10 +40,6 @@ export function SceneMenu({ reading, lines = null, view = 'play', onSwitchView }
       {open === 'settings' && (
         <div className="scene-menu" role="group" aria-label="Scene settings">
           <ReadingControls reading={reading} />
-          <button type="button" className="scene-switch" onClick={onSwitchView}>
-            {view === 'play' ? <BookOpen size={15} /> : <Theater size={15} />}
-            {view === 'play' ? 'Read as a page' : 'Play as a scene'}
-          </button>
         </div>
       )}
       {open === 'history' && lines && (

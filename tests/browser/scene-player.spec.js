@@ -146,6 +146,7 @@ test('narration-only scenes show no frames and a full-width box', async ({ page 
   await page.goto('/');
   await page.keyboard.press('Enter');
   await page.getByRole('button', { name: /^Continue/ }).click();
+  await page.locator('.title-menu .vine-button').first().click();
   const play = page.getByRole('button', { name: /Play scene/ });
   if (await play.count()) await play.click();
   await page.locator('.scene-player').waitFor();
@@ -160,19 +161,12 @@ test('the story opens as a full-screen scene by default', async ({ page }) => {
   await expect(page.getByRole('button', { name: /Play scene/ })).toHaveCount(0);
 });
 
-test('the gear switches to reading as a page, and that choice is remembered', async ({ page }) => {
+test('the gear holds reading settings, and there is no page view', async ({ page }) => {
   await openScene(page);
   await expect(page.locator('.scene-player .reading-controls')).toHaveCount(0);
   await page.getByRole('button', { name: 'Scene settings' }).click();
   await expect(page.locator('.scene-menu .reading-controls')).toBeVisible();
-  await page.getByRole('button', { name: 'Read as a page' }).click();
-  await expect(page.locator('.scene-player')).toHaveCount(0);
-  await expect(page.locator('.book-page')).toBeVisible();
-  await page.reload();
-  await page.keyboard.press('Enter');
-  await page.getByRole('button', { name: /^Continue/ }).click();
-  await expect(page.locator('.book-page')).toBeVisible();
-  await expect(page.locator('.scene-player')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: /Read as a page/ })).toHaveCount(0);
 });
 
 test('Esc leaves the scene for the page, and history lists the lines so far', async ({ page }) => {
@@ -186,15 +180,14 @@ test('Esc leaves the scene for the page, and history lists the lines so far', as
   await page.getByRole('button', { name: 'Lines so far' }).click();
   await page.keyboard.press('Escape');
   await expect(page.locator('.scene-player')).toHaveCount(0);
-  await expect(page.getByRole('button', { name: /Return to the scene/ })).toBeVisible();
+  await expect(page.getByRole('button', { name: /Return to the story/ })).toBeVisible();
 });
 
 test('no chapter names on the page or in the footer', async ({ page }) => {
   await openScene(page);
   await page.keyboard.press('Escape');
-  await expect(page.locator('.book-layout')).not.toContainText(/Chapter/);
+  await expect(page.locator('.story-return')).not.toContainText(/Chapter/);
   await expect(page.locator('.app-footer')).not.toContainText(/Chapter|Arrival/);
-  await expect(page.locator('.page-heading')).not.toContainText(/Chapter/);
 });
 
 test('a conversation shows the person in a framed portrait over the place', async ({ page }) => {
@@ -209,7 +202,7 @@ test('creation asks only your name, then the story begins on the lake with no wa
 }) => {
   await page.goto('/');
   await page.keyboard.press('Enter');
-  await page.getByRole('button', { name: /The Story/ }).click();
+  await page.getByRole('button', { name: /^New game/ }).click();
   await page.getByRole('button', { name: /Read the book/ }).click();
   await expect(page.getByLabel('Your name')).toBeVisible();
   await expect(page.getByLabel('Your house')).toHaveCount(0);
@@ -225,7 +218,7 @@ test('choosing a house and a familiar in the story opens the world', async ({ pa
   await page.addInitScript(() => localStorage.setItem('lanternmere.text-speed', 'instant'));
   await page.goto('/');
   await page.keyboard.press('Enter');
-  await page.getByRole('button', { name: /The Story/ }).click();
+  await page.getByRole('button', { name: /^New game/ }).click();
   await page.getByRole('button', { name: /Live the world/ }).click();
   await page.getByRole('button', { name: /Begin your story/ }).click();
   const pick = async (text) => {

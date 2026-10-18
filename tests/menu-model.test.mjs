@@ -1,49 +1,15 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { continueTarget, MODE_LABELS } from '../src/features/opening/menu-model.mjs';
+import { MODE_LABELS, saveLine } from '../src/features/opening/menu-model.mjs';
 import { initialState } from '../src/engine.mjs';
 
-const g = (mode) => initialState(mode, 'Avery', 'owlcombe', 'cat');
-
-test('continue prefers the last played save', () => {
-  assert.equal(
-    continueTarget({ lastMode: 'book', saves: { book: g('book'), live: g('live') } }).mode,
-    'book',
-  );
-  assert.equal(
-    continueTarget({ lastMode: 'live', saves: { book: g('book'), live: g('live') } }).mode,
-    'live',
-  );
+test('the four ways to play are labelled', () => {
+  assert.deepEqual(Object.keys(MODE_LABELS), ['book', 'live', 'guided', 'sandbox']);
 });
 
-test('continue falls back when the last played save is missing or unreadable', () => {
-  assert.equal(
-    continueTarget({ lastMode: 'book', saves: { book: null, live: g('live') } }).mode,
-    'live',
-  );
-  assert.equal(
-    continueTarget({ lastMode: 'nonsense', saves: { book: g('book'), live: null } }).mode,
-    'book',
-  );
-});
-
-test('no saves, no continue', () => {
-  assert.equal(continueTarget({ lastMode: null, saves: { book: null, live: null } }), null);
-});
-
-test('label names the player, mode and chapter', () => {
-  const t = continueTarget({ lastMode: 'live', saves: { book: null, live: g('live') } });
-  assert.match(t.label, /^Avery · Live the world · \S/);
-  assert.equal(MODE_LABELS.book, 'Read the book');
-});
-
-test('continue covers the AI modes too', () => {
-  const s = initialState('sandbox', 'Wren', 'heronmere', 'fox', { timeMode: 'timed' });
-  const t = continueTarget({
-    lastMode: 'sandbox',
-    saves: { book: g('book'), live: null, guided: null, sandbox: s },
-  });
-  assert.equal(t.mode, 'sandbox');
-  assert.match(t.label, /^Wren · The Open World · /);
-  assert.equal(MODE_LABELS.guided, 'The Guided Tale');
+test('a save is named by who and when, never by a spoiler chapter title', () => {
+  const g = initialState('book', 'Wren', 'rookhallow', 'owl');
+  assert.equal(saveLine(g), 'Wren · 1 September');
+  assert.equal(saveLine({ ...g, ending: 'shared' }), 'Wren · First year complete');
+  assert.equal(saveLine(null), '');
 });
