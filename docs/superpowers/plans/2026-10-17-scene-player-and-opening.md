@@ -325,3 +325,25 @@ ChatGPT writes the authored story; Claude writes the living moments in the AI mo
 - [ ] **Step 2:** `npm run design:screens` and `npm run design:detect`. Read every new screen in all three reading modes at both sizes. Run the Impeccable critique on the scene player. Fix real findings and log them in REVIEW.md.
 - [ ] **Step 3:** `npm run check`, `npm run test:browser` and `npm run test:electron`. Expected: all pass.
 - [ ] **Step 4:** Commit "Review and document the scene player and opening".
+
+---
+
+## Added on 17 October (owner requests while playing)
+
+Done already: arrival paintings (Task 6); characters step on stage at their first line; **on narrator lines nobody is on screen, only the box**; the two-button title menu (Continue / New game); Read as a page removed.
+
+### Task 12: Places for the new beginning
+
+Add `home-kitchen`, `home-street` and `train-carriage` as story-only places (art `home-kitchen`, `home-street-night`, `train-carriage`; region "Away"), excluded from the map, travel, routines and the AI's place list. Add the three new paintings (`train-carriage`, `cg-acceptance-letter`, `journey-countryside`) to the art slots so they show "ART NEEDED" placeholders. Test: importing a scene that uses these places passes; the map and the AI place list do not include them.
+
+### Task 13: Honoria's house questionnaire
+
+ChatGPT writes 5–10 questions (`arrival:sorting-1…N`, options are the four house ids). The game tallies the answers; at the final `arrival:house` decision the leading house is shown first and marked "Honoria's suggestion" (ties: the earliest-answered leader). The player still chooses. Old saves and games that already know their house treat the questions as answered. Test: answers leaning Heronmere mark Heronmere; choosing another house still sets that house.
+
+### Task 14: Sound and music list
+
+Write `docs/design/SOUND_AND_MUSIC.md`: for every scene and place (title screen, the letter, the train, the platform, the crossing, Lantern Hall, each house common room, the village, the glasshouses, the mere at night, festivals, the mystery's key moments, the endings), list the instrumental track and ambient sounds it needs, with filename, mood, instruments, tempo, loop or one-shot, and a ready-to-paste prompt for Suno/Udio plus free-library search terms (Pixabay, FreePD, Incompetech). Also the small sounds (page turn, choice, lantern lighting, a familiar's sound per animal). This list feeds the later music player (see `docs/BACKLOG.md`).
+
+### Then
+
+Task 7 (house crests and framed familiar pictures), importing ChatGPT's rewritten chapters as they arrive (Task 9), Task 10 (Claude learns ChatGPT's voice) and Task 11 (design review).

@@ -36,8 +36,9 @@ The owner chose you because they love your prose. Make it yours.
 4. **The player is a newcomer.** Nobody knows them at first. Friendships grow over time and are earned. Never write a character greeting the player as an old friend before they have met.
 5. **Speech and action stay separate.** Speech lines contain only what is said; describe actions in their own narration line.
 6. **Cosy, not saccharine. Mysterious, not grim.** The magic is practical and gentle; the mystery is quiet and real.
-7. **Second person, present tense** for narration ("You step onto the boat.").
-8. Keep the player's own feelings light: suggest them, don't dictate them, and never put words in the player's mouth.
+7. **Your house and familiar matter.** The player's house and familiar are the answers to \`arrival:house\` (owlcombe, rookhallow, heronmere, larkspire) and \`arrival:familiar\` (cat, owl, fox, hare, moth, raven, ferret, toad). Branch on them with short \`[IF arrival:house = …]\` and \`[IF arrival:familiar = …]\` moments in most chapters, so each playthrough feels its own. Keep each variation a few lines long, then rejoin.
+8. **Second person, present tense** for narration ("You step onto the boat.").
+9. Keep the player's own feelings light: suggest them, don't dictate them, and never put words in the player's mouth.
 
 ## The format (please follow exactly)
 
@@ -70,8 +71,8 @@ Write every scene in this plain format, one item per line:
 ## How to reply
 
 - **One scene per reply,** in a single code block, starting with its \`=== SCENE\` line.
-- **Start with the opening** (scene \`arrival\`: the new skeleton plus the existing supper sections). Then stop and wait: the owner will play it in the game and tell you whether the voice is right.
-- After that, when the owner says **"next"**, rewrite the next scene, in order.
+- **The owner has approved your voice.** The opening is done; first send the new beginning described in [CHATGPT_PROLOGUE.md](CHATGPT_PROLOGUE.md) (the letter, the journey, the platform, and Honoria's house questions), then rewrite **every remaining scene in order**, through both epilogues.
+- Save each scene in \`story-drafts/\` on the \`scene-player\` branch if you can (names are listed in CHATGPT_PROLOGUE.md), otherwise reply in chat.
 - At the end of each scene, also rewrite that chapter's two **exit choices** as \`[EXIT 0] …\` and \`[EXIT 1] …\` lines.
 
 `);

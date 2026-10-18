@@ -68,6 +68,29 @@ Then continue straight into your revised `crossing`.
 - `[IMAGE cg-acceptance-letter] The letter from Lanternmere unfolded on the kitchen table, its gold lantern seal broken.` just after the player first opens the letter;
 - `[IMAGE journey-countryside] Hills, pine woods and a long lake passing the train window in the late gold light.` when the view changes on the train.
 
+## Also: Honoria's house questions
+
+Replace the single house question with **a short questionnaire of 5 to 10 questions** that helps Headmistress Honoria place the player. It happens in the `house` section, before the existing final decision.
+
+- Each question is its own decision, keyed `arrival:sorting-1`, `arrival:sorting-2`, … in order.
+- **Every question has exactly four options, and their ids are the four house ids:** `owlcombe` (Curiosity), `rookhallow` (Courage), `heronmere` (Kindness), `larkspire` (Wonder). Each option is how someone of that house would answer, but never name or hint the house in the option text. Answers should feel like real, human choices, not a personality test.
+- Honoria asks them aloud, warmly, one at a time, and reacts briefly to each answer in general terms (her reaction must work for any answer).
+- Then keep the existing final decision `arrival:house` (the same four option ids). Honoria says the answers lean somewhere and asks which lantern calls to the player. The game will mark the house the answers point to as her suggestion, but the player decides.
+- Options need hints only on the final `arrival:house` question (house name · virtue, as now). Journal lines are optional on the questions.
+
 ## When you are done
 
-Reply with the full scene in one code block. Thank you!
+Reply with the full scene in one code block. Then carry on with the rest of the story (below). Thank you!
+
+## The rest of the story
+
+The owner loves your voice, so please now rewrite **the whole story**, scene by scene, using [CHATGPT_STORY_REWRITE.md](CHATGPT_STORY_REWRITE.md): every chapter after the opening, then both epilogues. Chapter 8 (Midsummer) is still compact; expand it into full sections like the others, keeping what happens and the two endings.
+
+- One scene per reply (or per file), in the same format, keeping every section, decision, option and branch.
+- If you can save files to the repository, put each scene in `story-drafts/` on the `scene-player` branch, named in order: `02-first-kindle-chatgpt.txt`, `03-register-chatgpt.txt`, `04-emberfall-chatgpt.txt`, `05-longnight-chatgpt.txt`, `06-thaw-chatgpt.txt`, `07-bloom-chatgpt.txt`, `08-midsummer-chatgpt.txt`, `09-epilogues-chatgpt.txt`. Otherwise reply in chat and the owner will save them.
+- **Make the player's house and familiar matter, all the way through.** Give each house and each familiar its own moments so every playthrough feels different:
+  - Branch with gates on those decisions, e.g. `[IF arrival:house = rookhallow]` … `[END IF]` or `[IF arrival:familiar = raven]` … `[END IF]`. They work in any later scene.
+  - Ideas: housemates and the house prefect greeting you differently; your common room in its own light; a teacher noticing your familiar; your familiar reacting to the dark lantern, the moonflowers or the Mere in its own way (a cat refusing the stairs, a raven stealing a page, a moth drawn to the dead lantern); a friend who is in your house sharing something they wouldn't otherwise.
+  - Keep each variation **short and self-contained** (a few lines inside one gate that then rejoin the main path), so the game's route checker stays fast. Cover all four houses and all eight familiars somewhere across the story, a little in most chapters rather than a lot in one.
+  - Rowan is in Rookhallow and Imogen in Owlcombe; Toby is Larkspire and Cas Rookhallow. If you share a house with someone, it can show.
+- Later chapters may refer back to the new beginning (the letter, the train, meeting Toby and Cas on the platform, the house questions), but never contradict it.
