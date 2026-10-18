@@ -34,7 +34,7 @@ html .grimoire .gm-page .icon-button {
 html .grimoire .gm-page .gm-ruled {
   display: block;
   width: 100%;
-  min-height: 210px;
+  min-height: 390px;
   padding: 0;
   font: italic 18px/30px var(--lm-read);
   color: var(--gm-ink);
@@ -46,14 +46,23 @@ html .grimoire .gm-page .gm-ruled {
   );
   border: 0;
   border-radius: 0;
-  resize: vertical;
+  resize: none;
+  field-sizing: content;
 }
 html .grimoire .gm-page .gm-ruled:focus {
   outline: none;
   background-color: color-mix(in srgb, var(--gm-parch-light) 40%, transparent);
 }
-html .grimoire .gm-page .gm-ruled::placeholder {
-  color: color-mix(in srgb, var(--gm-ink-soft) 70%, transparent);
+html .grimoire .gm-page .gm-ruled::placeholder,
+html .grimoire .gm-page .search input::placeholder {
+  color: var(--gm-ink-soft);
+  opacity: 1;
+}
+.gm-export {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  margin-top: 18px;
 }
 html .grimoire .gm-page .discoveries {
   margin: 8px 0 18px;
@@ -75,9 +84,15 @@ html .grimoire .gm-page .discoveries svg {
 /* Calendar */
 html .grimoire .gm-page .calendar-heading {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: baseline;
-  gap: 12px;
+  gap: 4px 12px;
+  margin: 0;
+  padding: 0;
+}
+html .grimoire .gm-page .calendar-heading h1 {
+  white-space: nowrap;
 }
 html .grimoire .gm-page .calendar-heading > div {
   display: flex;
@@ -130,25 +145,46 @@ html .grimoire .gm-page .gm-month .calendar-day small {
   text-align: center;
   white-space: nowrap;
   text-overflow: ellipsis;
-  color: var(--gm-gilt);
+  color: var(--gm-rubric);
 }
 html .grimoire .gm-page .gm-month .calendar-day.past span {
   color: color-mix(in srgb, var(--gm-ink-soft) 60%, transparent);
 }
-html .grimoire .gm-page .gm-month .calendar-day.today {
-  background: var(--gm-rubric);
-}
-html .grimoire .gm-page .gm-month .calendar-day.today span {
-  color: var(--gm-parch-light);
-  background: none;
-  border-radius: 0;
-}
-html .grimoire .gm-page .gm-month .calendar-day.today small {
-  color: var(--gm-parch-light);
-}
 html .grimoire .gm-page .gm-month .calendar-day.festival span {
-  color: var(--gm-gilt);
+  color: var(--gm-rubric);
   font-weight: 600;
+}
+/* a gold-leaf dot on feast days */
+html .grimoire .gm-page .gm-month .calendar-day.festival::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gm-gilt);
+}
+/* today: the numeral ringed in red ink, as if circled by hand */
+html .grimoire .gm-page .gm-month .calendar-day.today span {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 34px;
+  color: var(--gm-rubric);
+  font-weight: 600;
+  background: none;
+  border: 1.5px solid var(--gm-rubric);
+  border-radius: 52% 48% 55% 45% / 50% 54% 46% 50%;
+  rotate: -4deg;
+}
+@media (max-width: 1180px) {
+  html .grimoire .gm-page .gm-month .calendar-day small {
+    display: none;
+  }
+  html .grimoire .gm-page .calendar-heading h1 {
+    font-size: 28px;
+  }
 }
 html .grimoire .gm-page .gm-feasts {
   display: grid;
@@ -183,7 +219,11 @@ html .grimoire .gm-page .gm-feasts > div {
   font-family: var(--lm-label);
   color: var(--gm-ink-soft);
 }
-html .grimoire .gm-page .gm-feasts h3 {
+.gm-moon-caption {
+  margin-top: 0;
+  font-style: italic;
+}
+html .grimoire .gm-page .gm-feasts h2 {
   margin: 0;
   font-family: var(--lm-display);
   font-size: 21px;
@@ -199,7 +239,10 @@ html .grimoire .gm-page .gm-feasts p {
 /* Spells */
 .gm-count {
   font-family: var(--lm-label);
+  font-size: 15px;
+  font-weight: 600;
   letter-spacing: 0.08em;
+  text-transform: lowercase;
   color: var(--gm-rubric);
 }
 html .grimoire .gm-page .gm-spell {
@@ -269,6 +312,24 @@ html .grimoire .gm-page .learned-label {
   margin-top: 26px;
   text-align: center;
 }
+.gm-blank p {
+  margin-inline: auto;
+  max-width: 44ch;
+}
+.gm-blank-leaves {
+  display: grid;
+  gap: 22px;
+  margin-bottom: 22px;
+}
+.gm-blank-leaf p {
+  margin: 8px auto 0;
+  color: var(--gm-ink-soft);
+}
+.gm-sigil.faint {
+  width: 84px;
+  height: 84px;
+  opacity: 0.9;
+}
 html .grimoire .gm-page .grimoire-empty {
   font-style: italic;
   color: var(--gm-ink-soft);
@@ -324,7 +385,7 @@ html .grimoire .gm-page .gm-person {
   grid-template-columns: 96px 1fr;
   gap: 18px;
   align-items: center;
-  padding: 0;
+  padding: 0 0 0 6px;
   text-align: left;
   color: var(--gm-ink);
   background: none;
@@ -351,7 +412,7 @@ html .grimoire .gm-page .gm-person .person-info {
   display: grid;
   gap: 2px;
 }
-html .grimoire .gm-page .gm-person h3 {
+html .grimoire .gm-page .gm-person h2 {
   margin: 0;
   font-family: var(--lm-display);
   font-size: 24px;
@@ -365,7 +426,7 @@ html .grimoire .gm-page .gm-person p {
 }
 .gm-mark {
   font-family: var(--lm-label);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: lowercase;
@@ -375,7 +436,7 @@ html .grimoire .gm-page .gm-person p {
   display: flex;
   gap: 2px;
   margin: 2px 0;
-  color: color-mix(in srgb, var(--gm-parch-edge) 90%, transparent);
+  color: color-mix(in srgb, var(--gm-ink-soft) 55%, transparent);
 }
 .gm-leaves .on {
   color: var(--gm-verdigris);
@@ -400,4 +461,31 @@ html .grimoire .gm-page .story-return {
 }
 html .grimoire .gm-page .story-return h1 {
   margin-top: 40px;
+}
+
+html .grimoire .gm-page .gm-visited {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin: 8px 0;
+  padding: 0;
+  list-style: none;
+  font-style: italic;
+}
+html .grimoire .gm-page .gm-visited li {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+}
+html .grimoire .gm-page .gm-visited svg {
+  color: var(--gm-rubric);
+}
+.gm-first-lesson {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  margin: 46px 0 0;
+}
+.gm-sigil.faint svg {
+  stroke: var(--gm-ink-soft);
 }

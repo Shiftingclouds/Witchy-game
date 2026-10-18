@@ -342,15 +342,15 @@ html[data-reading-mode='night'] .app-shell.grimoire {
   z-index: 1;
   min-height: 0;
   overflow-y: auto;
-  padding: 50px 62px 56px;
+  padding: 50px 62px 72px;
   scrollbar-width: thin;
-  /* text fades under the running head and the folio as the page scrolls */
+  /* text fades under the running head, and is gone before it reaches the folio */
   mask-image: linear-gradient(
     180deg,
     transparent 0,
     #000 44px,
-    #000 calc(100% - 50px),
-    transparent calc(100% - 14px)
+    #000 calc(100% - 64px),
+    transparent calc(100% - 40px)
   );
   scrollbar-color: color-mix(in srgb, var(--gm-parch-edge) 80%, transparent) transparent;
 }
@@ -417,12 +417,12 @@ html[data-reading-mode='night'] .app-shell.grimoire {
   position: relative;
   width: 166px;
   height: 42px;
-  padding: 0 16px 0 70px;
+  padding: 0 26px 0 70px;
   text-align: left;
   font-family: var(--lm-label);
   font-weight: 600;
   font-size: 14px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.09em;
   color: #f6e7c4;
   cursor: pointer;
   background:
@@ -442,7 +442,7 @@ html[data-reading-mode='night'] .app-shell.grimoire {
 }
 .gm-ribbons button.on {
   transform: translateX(14px);
-  filter: brightness(1.2) drop-shadow(0 0 10px color-mix(in srgb, #f6d48e 70%, transparent));
+  filter: brightness(1.1) drop-shadow(0 0 10px color-mix(in srgb, #f6d48e 70%, transparent));
 }
 .gm-ribbons button:focus-visible {
   outline: 2px solid #f6d48e;
@@ -486,7 +486,8 @@ html[data-reading-mode='night'] .app-shell.grimoire {
   font-weight: 600;
   font-size: 62px;
   line-height: 1;
-  color: var(--gm-gilt);
+  /* deep enough gold to read against the parchment */
+  color: color-mix(in srgb, var(--gm-gilt) 55%, var(--gm-ink));
 }
 .gm-initial svg {
   position: absolute;
@@ -623,8 +624,12 @@ html .grimoire .gm-page :is(.button, .gm-button):disabled {
   width: 70px;
   rotate: 24deg;
 }
+.gm-page .mg-leaf {
+  opacity: 0.85;
+  filter: drop-shadow(1px 3px 3px rgba(40, 24, 10, 0.35));
+}
 .gm-page .mg-leaf .fill {
-  fill: color-mix(in srgb, #b4562a 55%, var(--gm-parch));
+  fill: color-mix(in srgb, #9a5a34 38%, var(--gm-parch));
   stroke: color-mix(in srgb, #7a3418 80%, transparent);
   stroke-width: 1;
 }
@@ -653,9 +658,28 @@ html .grimoire .gm-page :is(.button, .gm-button):disabled {
   gap: 14px;
   margin: 4px 0 6px;
 }
+.gm-page .mg-moon {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+}
 .gm-page .mg-moons svg {
   width: 26px;
   height: 26px;
+}
+.gm-page .mg-moon small {
+  font-family: var(--lm-display);
+  font-size: 13px;
+  color: var(--gm-ink-soft);
+}
+.gm-page .mg-moon.tonight svg {
+  border-radius: 50%;
+  outline: 1px solid var(--gm-rubric);
+  outline-offset: 3px;
+}
+.gm-page .mg-moon.tonight small {
+  color: var(--gm-rubric);
+  font-weight: 600;
 }
 .gm-page .mg-moons .ring {
   fill: color-mix(in srgb, var(--gm-parch-edge) 30%, transparent);
@@ -754,6 +778,10 @@ html .grimoire .gm-page :is(.button, .gm-button):disabled {
   }
   .gm-gutter {
     height: 18px;
+    background: linear-gradient(180deg, #c9ae7e, #9b7d50 45%, #6e5536 50%, #9b7d50 55%, #c9ae7e);
+  }
+  .gm-page.has-foot {
+    grid-template-rows: auto auto;
   }
   .gm-page-body {
     overflow: visible;
@@ -783,6 +811,103 @@ html .grimoire .gm-page :is(.button, .gm-button):disabled {
   }
 }
 
+/* the right page's foot: the day's closing actions, always in reach above the folio */
+.gm-page.has-foot {
+  grid-template-rows: 1fr auto;
+}
+.gm-page-foot {
+  position: relative;
+  z-index: 1;
+  margin: 0 62px;
+  padding: 12px 0 46px;
+  border-top: 1px solid color-mix(in srgb, var(--gm-parch-edge) 70%, transparent);
+}
+.gm-page.has-foot .gm-page-body {
+  padding-bottom: 28px;
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0,
+    #000 44px,
+    #000 calc(100% - 22px),
+    transparent
+  );
+}
+@media (max-width: 1180px) {
+  .gm-page-foot {
+    margin: 0 40px;
+  }
+}
+@media (max-width: 900px) {
+  .gm-page-foot {
+    margin: 0 20px;
+  }
+}
+
+/* the atlas, as a plate across the leaf */
+.gm-page.wide .gm-running {
+  display: flex;
+  justify-content: space-between;
+}
+html .grimoire .gm-map .atlas {
+  max-height: none;
+  border: 0;
+  border-radius: 2px;
+  outline: 1px solid color-mix(in srgb, var(--gm-gilt) 55%, transparent);
+  outline-offset: 5px;
+  box-shadow: 0 10px 18px -8px rgba(30, 18, 8, 0.6);
+}
+html .grimoire .gm-map .atlas > img {
+  max-height: calc(100vh - 290px);
+  min-height: 320px;
+}
+html .grimoire .gm-map .map-pin {
+  padding: 4px 10px;
+  font-family: var(--lm-display);
+  font-style: italic;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gm-ink);
+  background: color-mix(in srgb, var(--gm-parch-light) 88%, transparent);
+  border: 1px solid color-mix(in srgb, var(--gm-gilt) 70%, transparent);
+  border-radius: 2px;
+  box-shadow: 0 2px 6px rgba(30, 18, 8, 0.35);
+}
+html .grimoire .gm-map .map-pin svg {
+  color: var(--gm-rubric);
+}
+html .grimoire .gm-map .map-pin:hover,
+html .grimoire .gm-map .map-pin.current {
+  color: var(--gm-rubric);
+  background: var(--gm-parch-light);
+  border-color: var(--gm-rubric);
+}
+html .grimoire .gm-map .location-tile {
+  color: var(--gm-ink);
+  background: none;
+  border: 0;
+  border-bottom: 1px dotted color-mix(in srgb, var(--gm-parch-edge) 80%, transparent);
+  border-radius: 0;
+  box-shadow: none;
+}
+html .grimoire .gm-map .location-tile img {
+  border-radius: 999px 999px 2px 2px / 46% 46% 2px 2px;
+  border: 1px solid color-mix(in srgb, var(--gm-gilt) 60%, transparent);
+}
+html .grimoire .gm-map .location-tile strong {
+  font-family: var(--lm-display);
+  color: var(--gm-ink);
+}
+html .grimoire .gm-map .location-tile :is(small, span) {
+  color: var(--gm-ink-soft);
+}
+html .grimoire .gm-map .location-tile > svg {
+  color: var(--gm-rubric);
+}
+html .grimoire .gm-map .visited-label {
+  color: var(--gm-parch-light);
+  background: var(--gm-verdigris);
+}
+
 /* ---------- Today ---------- */
 html .grimoire .gm-page .section-label {
   display: flex;
@@ -790,9 +915,9 @@ html .grimoire .gm-page .section-label {
   align-items: center;
   margin: 0 0 8px;
   font-family: var(--lm-label);
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: lowercase;
   color: var(--gm-rubric);
 }
@@ -950,7 +1075,7 @@ html .grimoire .gm-page :is(.quest-card, .daily-card, .company-card, .house-card
   border-radius: 0;
   box-shadow: none;
 }
-html .grimoire .gm-page :is(.quest-card, .daily-card, .company-card) h3 {
+html .grimoire .gm-page :is(.quest-card, .daily-card, .company-card) :is(h2, h3) {
   font-family: var(--lm-display);
   font-weight: 500;
   font-size: 26px;
@@ -959,12 +1084,64 @@ html .grimoire .gm-page :is(.quest-card, .daily-card, .company-card) h3 {
 html .grimoire .gm-page :is(.quest-card, .daily-card, .company-card) p {
   color: var(--gm-ink);
 }
-html .grimoire .gm-page .quest-progress {
-  height: 3px;
-  background: color-mix(in srgb, var(--gm-parch-edge) 40%, transparent);
+html .grimoire .gm-page .quest-card h2,
+html .grimoire .gm-page .daily-card h2 {
+  margin: 0;
+  line-height: 1.15;
 }
-html .grimoire .gm-page .quest-progress i {
-  background: var(--gm-rubric);
+.gm-chapter-count {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin: 4px 0 10px;
+  font-style: italic;
+  color: var(--gm-rubric);
+}
+/* the festival: heading and copy on the text margin, the host's portrait set into the corner */
+html .grimoire .gm-page .daily-card {
+  display: flow-root;
+}
+html .grimoire .gm-page .daily-card .daily-host {
+  float: right;
+  width: 84px;
+  height: 108px;
+  margin: 4px 0 10px 18px;
+  overflow: hidden;
+}
+html .grimoire .gm-page .daily-card .daily-host .portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+html .grimoire .gm-page .daily-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin: 6px 0 12px;
+  font-style: italic;
+  color: var(--gm-ink-soft);
+}
+html .grimoire .gm-page .daily-meta span {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+}
+/* empty requirement boxes are inked squares, not form checkboxes */
+html .grimoire .gm-page .task-list button {
+  color: var(--gm-ink);
+  background: none;
+  border: 0;
+}
+html .grimoire .gm-page .task-list .empty-check {
+  width: 12px;
+  height: 12px;
+  border: 1.2px solid var(--gm-ink-soft);
+  border-radius: 1px;
+  background: none;
+}
+html .grimoire .gm-page .task-list svg {
+  color: var(--gm-verdigris);
 }
 html .grimoire .gm-page .daily-host {
   background: none;
@@ -1005,7 +1182,6 @@ html .grimoire .gm-page .passing-time {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 22px;
 }
 html .grimoire .gm-page .passing-time > .rest-button {
   color: var(--gm-ink);
@@ -1022,9 +1198,9 @@ html .grimoire .gm-page .gm-actions {
 }
 html .grimoire .gm-page .eyebrow {
   font-family: var(--lm-label);
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: lowercase;
   color: var(--gm-rubric);
 }
@@ -1035,4 +1211,13 @@ html .grimoire .gm-page .eyebrow {
   font-weight: 500;
   font-size: 26px;
   color: var(--gm-rubric);
+}
+html .grimoire .gm-map .gm-lede {
+  margin: -6px 0 22px;
+}
+@media (max-width: 900px) {
+  .gm-plate {
+    max-width: 520px;
+    margin-inline: auto;
+  }
 }

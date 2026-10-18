@@ -4,15 +4,14 @@ import {
   Eye,
   Expand,
   Flower2,
-  Heart,
   MessageCircle,
   Moon,
   Sparkles,
 } from 'lucide-react';
 import { art, houses, locations, locationById, spells } from './content.mjs';
-import { holiday, periods, relationshipLabel, sceneArt } from './engine.mjs';
+import { holiday, periods, sceneArt } from './engine.mjs';
 import { peopleHere } from './life.mjs';
-import { Button, Portrait } from './components.jsx';
+import { Button } from './components.jsx';
 import { DailyCard, Residents } from './daily-life.jsx';
 import { HouseCrest } from './components/lamplight/HouseCrest.jsx';
 import { LanternSketch, MarginNote } from './components/lamplight/marginalia.jsx';
@@ -133,36 +132,16 @@ export default function World({ game, act, visit, navigate, open, quest, aiScene
       {aiScene}
       {quest}
       <DailyCard game={game} visit={visit} open={open} />
-      <section className="company-card">
-        {person ? (
-          <div className="company-person">
-            <span className="gm-arch">
-              <Portrait id={person.id} emotion={game.bonds[person.id] > 0 ? 'warm' : 'neutral'} />
-            </span>
-            <div>
-              <h3>{person.name}</h3>
-              <p>{person.role}</p>
-              <span>
-                <Heart size={12} />
-                {relationshipLabel(game.bonds[person.id] || 0)}
-              </span>
-              <button
-                className="text-button"
-                onClick={() => open({ type: 'profile', id: person.id })}
-              >
-                Get to know {person.name} <ArrowRight size={14} />
-              </button>
-            </div>
-          </div>
-        ) : (
+      {!person && (
+        <section className="company-card">
           <p className="quiet-room">
             Everyone is elsewhere for now. Enjoy the stillness, or{' '}
             <button className="text-button" onClick={() => navigate('people')}>
               find a familiar face <ArrowRight size={14} />
             </button>
           </p>
-        )}
-      </section>
+        </section>
+      )}
       {house && (
         <section className="house-card">
           <div className="house-crest">
@@ -173,15 +152,19 @@ export default function World({ game, act, visit, navigate, open, quest, aiScene
           </p>
         </section>
       )}
-      <div className="passing-time">
-        <Button icon={Clock} onClick={() => act({ type: 'wait' })}>
-          Wait until {periods[(game.period + 1) % 4].toLowerCase()}
-        </Button>
-        <Button className="rest-button" icon={Moon} onClick={() => act({ type: 'rest' })}>
-          Rest until tomorrow
-        </Button>
-      </div>
     </>
   );
-  return <Spread className="gm-today" folio={42} left={left} right={right} />;
+  const foot = (
+    <div className="passing-time">
+      <Button icon={Clock} onClick={() => act({ type: 'wait' })}>
+        Wait until {periods[(game.period + 1) % 4].toLowerCase()}
+      </Button>
+      <Button className="rest-button" icon={Moon} onClick={() => act({ type: 'rest' })}>
+        Rest until tomorrow
+      </Button>
+    </div>
+  );
+  return (
+    <Spread className="gm-today" folio={2} title="Your Day" left={left} right={right} foot={foot} />
+  );
 }

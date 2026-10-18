@@ -18,7 +18,6 @@ import {
   ChevronsLeft,
   Flame,
   ArrowRight,
-  ChevronRight,
   ChevronLeft,
   Check,
   CheckCircle2,
@@ -391,7 +390,7 @@ function App() {
               />
             )}
             {view === 'map' && (
-              <Leaf>
+              <Leaf folio={14} title="The Atlas" className="gm-map">
                 <Atlas game={game} visit={visit} />
               </Leaf>
             )}
@@ -531,36 +530,23 @@ function App() {
   );
 }
 
-function PageHeading({ eyebrow, title, description, children }) {
-  return (
-    <div className="page-heading">
-      <div>
-        <Eyebrow>{eyebrow}</Eyebrow>
-        <h1>{title}</h1>
-        {description && <p>{description}</p>}
-      </div>
-      {children}
-    </div>
-  );
-}
+const CHAPTER_WORDS = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'];
 function QuestCard({ game, visit, navigate }) {
   const chapter = chapters[game.chapter];
   return (
     <section className="quest-card">
-      <div className="section-label">
-        <Bookmark size={16} />
-        <span>YOUR STORY</span>
-        <span className="chapter-number">{game.chapter + 1} / 8</span>
-      </div>
-      <h3>{game.ending ? 'A home made of light' : chapter.title}</h3>
+      <h2>{game.ending ? 'A home made of light' : chapter.title}</h2>
+      <p className="gm-chapter-count">
+        <Bookmark size={14} />
+        {game.ending
+          ? 'Your story, all eight chapters'
+          : `Chapter ${CHAPTER_WORDS[game.chapter]} of eight`}
+      </p>
       <p>
         {game.ending
           ? 'The Heartfire is restored. There are still books to read, places to find, and friends to sit beside.'
           : chapter.goal}
       </p>
-      <div className="quest-progress">
-        <i style={{ width: `${game.ending ? 100 : (game.chapter / 8) * 100}%` }} />
-      </div>
       {!game.ending && (
         <div className="task-list">
           {requirements(game).map((r) => (
@@ -571,7 +557,6 @@ function QuestCard({ game, visit, navigate }) {
             >
               {r.done ? <CheckCircle2 size={15} /> : <span className="empty-check" />}
               <span>{r.label}</span>
-              {!r.done && <ChevronRight size={13} />}
             </button>
           ))}
         </div>
@@ -603,11 +588,10 @@ function Atlas({ game, visit }) {
   );
   return (
     <>
-      <PageHeading
-        eyebrow="A WORLD WORTH WANDERING"
-        title="Take the long way home."
-        description={`${game.visited.length} of ${locations.length} places discovered. There is no wrong turn.`}
-      />
+      <h1>A world worth wandering</h1>
+      <p className="gm-lede">
+        {game.visited.length} of {locations.length} places discovered. There is no wrong turn.
+      </p>
       <div className="atlas">
         <img
           src={art('academy-map')}

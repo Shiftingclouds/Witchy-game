@@ -2,7 +2,7 @@ import './spreads.css';
 import { CheckCircle2, Eye, Flame, GraduationCap, Shield } from 'lucide-react';
 import { locationById, spells } from '../../../content.mjs';
 import { Button } from '../../../components.jsx';
-import { GestureSketch } from '../../../components/lamplight/marginalia.jsx';
+import { GestureSketch, MarginNote } from '../../../components/lamplight/marginalia.jsx';
 import { DropCap, Spread } from '../Grimoire.jsx';
 
 const ICON = { kindle: Flame, echo: Eye, thread: Shield };
@@ -45,6 +45,26 @@ function SpellEntry({ spell, game, live, act }) {
   );
 }
 
+/** A leaf still blank: a faint ring where a sigil will go, and where its lesson is taught. */
+function BlankLeaf({ spell }) {
+  const room = locationById[spell.location].name;
+  return (
+    <div className="gm-blank-leaf">
+      <div className="gm-sigil faint" aria-hidden="true">
+        <svg viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="54" className="thin" />
+          <circle cx="60" cy="60" r="40" className="thin" />
+        </svg>
+      </div>
+      <p>
+        <span className="gm-school">{spell.school}</span>
+        <br />
+        <em>Taught in {room.startsWith('The ') ? 'the ' + room.slice(4) : 'the ' + room}</em>
+      </p>
+    </div>
+  );
+}
+
 /** The grimoire: learned spells only, one to a page; the rest are blank leaves. */
 export function SpellsSpread({ game, act, visit, open, live }) {
   const learned = spells.filter((s) => game.spells.includes(s.id));
@@ -59,9 +79,21 @@ export function SpellsSpread({ game, act, visit, open, live }) {
         classroom, then carry it into the world. Your knowledge stays with you.
       </DropCap>
       <p className="gm-count">
-        {learned.length === 1 ? '1 spell learned' : `${learned.length} spells learned`}
+        {learned.length === 0
+          ? 'No spells learned yet'
+          : learned.length === 1
+            ? 'One spell learned'
+            : `${learned.length} spells learned`}
       </p>
       {first && <SpellEntry spell={first} game={game} live={live} act={act} />}
+      {!first && next && (
+        <figure className="gm-first-lesson">
+          {GESTURE[next.id] && <GestureSketch kind={GESTURE[next.id]} />}
+          <MarginNote tilt={-2}>
+            {next.school}, the first lesson. {next.gesture}
+          </MarginNote>
+        </figure>
+      )}
     </>
   );
   const right = (
@@ -71,6 +103,13 @@ export function SpellsSpread({ game, act, visit, open, live }) {
       ))}
       {blank > 0 && (
         <div className="gm-blank">
+          <div className="gm-blank-leaves">
+            {spells
+              .filter((s) => !game.spells.includes(s.id))
+              .map((s) => (
+                <BlankLeaf key={s.id} spell={s} />
+              ))}
+          </div>
           <p className="grimoire-empty">
             {learned.length
               ? `${blank} ${blank === 1 ? 'leaf is' : 'leaves are'} still blank, waiting for a lesson.`
@@ -94,5 +133,7 @@ export function SpellsSpread({ game, act, visit, open, live }) {
       )}
     </>
   );
-  return <Spread className="gm-spells" folio={88} left={left} right={right} />;
+  return (
+    <Spread className="gm-spells" folio={50} title="Practical Magic" left={left} right={right} />
+  );
 }

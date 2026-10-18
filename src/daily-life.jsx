@@ -71,13 +71,13 @@ export function DailyCard({ game, visit, open }) {
         <Portrait id={host.id} emotion="warm" />
       </div>
       <div className="daily-copy">
-        <Eyebrow>
-          <CalendarDays size={13} />
-          {event.month ? 'A FESTIVAL DAY' : 'TODAY AT LANTERNMERE'}
-        </Eyebrow>
-        <h3>{event.title}</h3>
+        <h2>{event.title}</h2>
         <p>{completed ? event.choices[game.daily.event.choice].outcome : event.intro}</p>
         <div className="daily-meta">
+          <span>
+            <CalendarDays size={12} />
+            {event.month ? 'A festival day' : 'Today at Lanternmere'}
+          </span>
           <span>
             <MapPin size={12} />
             {locationById[event.location].name}

@@ -4,13 +4,12 @@ import { ChevronLeft, ChevronRight, Moon } from 'lucide-react';
 import { festivals } from '../../../content.mjs';
 import { dateLabel, periods, season } from '../../../engine.mjs';
 import { Button } from '../../../components.jsx';
-import { DailyCard } from '../../../daily-life.jsx';
 import { MarginNote, Moons } from '../../../components/lamplight/marginalia.jsx';
 import { Sparkle } from '../../../components/lamplight/ornaments.jsx';
 import { Spread } from '../Grimoire.jsx';
 import { moonWeek } from '../moon.mjs';
 
-/** Festivals still ahead of today (never today or the past), soonest first, with their next date. */
+/** Festivals still ahead of today (never today, which Today shows), soonest first, with their next date. */
 export function upcomingFestivals(today) {
   const year = Number(today.slice(0, 4));
   const pad = (n) => String(n).padStart(2, '0');
@@ -24,7 +23,7 @@ export function upcomingFestivals(today) {
 }
 
 /** The calendar as a spread: a hand-ruled month and the moon on the left, what's ahead on the right. */
-export function CalendarSpread({ game, act, visit, open, live }) {
+export function CalendarSpread({ game, act, live }) {
   const [month, setMonth] = useState(game.date.slice(0, 7));
   const [y, m] = month.split('-').map(Number);
   const first = new Date(Date.UTC(y, m - 1, 1));
@@ -85,6 +84,7 @@ export function CalendarSpread({ game, act, visit, open, live }) {
         <span className="gm-rubric">The moon</span> over the Mere
       </h2>
       <Moons nights={moonWeek(game.date, 8)} />
+      <p className="gm-small gm-moon-caption">Tonight and the seven nights after.</p>
       <MarginNote tilt={-2}>
         {season(month + '-01')} at Lanternmere.{' '}
         {monthEvents.length
@@ -108,26 +108,34 @@ export function CalendarSpread({ game, act, visit, open, live }) {
               </small>
             </span>
             <div>
-              <h3>{f.name}</h3>
+              <h2>{f.name}</h2>
               <p>{f.description}</p>
             </div>
             <Sparkle size={13} />
           </div>
         ))}
       </div>
-      {live && <DailyCard game={game} visit={visit} open={open} />}
       <MarginNote arrow tilt={1.5}>
         It’s {dateLabel(game.date)}, {periods[game.period].toLowerCase()}. Conversations and lessons
         move the day along; story milestones turn the season.
       </MarginNote>
-      {live && (
-        <div className="passing-time">
-          <Button icon={Moon} onClick={() => act({ type: 'rest' })}>
-            Rest until tomorrow
-          </Button>
-        </div>
-      )}
     </>
   );
-  return <Spread className="gm-calendar" folio={60} left={left} right={right} />;
+  const foot = live && (
+    <div className="passing-time">
+      <Button icon={Moon} onClick={() => act({ type: 'rest' })}>
+        Rest until tomorrow
+      </Button>
+    </div>
+  );
+  return (
+    <Spread
+      className="gm-calendar"
+      folio={62}
+      title="The Turning Year"
+      left={left}
+      right={right}
+      foot={foot}
+    />
+  );
 }

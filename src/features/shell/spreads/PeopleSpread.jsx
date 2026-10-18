@@ -21,7 +21,7 @@ function PersonEntry({ c, game, live, open }) {
       </span>
       <span className="person-info">
         {c.index <= 3 && <span className="gm-mark">YOUR STORY</span>}
-        <h3>{c.name}</h3>
+        <h2>{c.name}</h2>
         <p>{c.role}</p>
         <span className="gm-leaves" aria-hidden="true">
           {Array.from({ length: 10 }, (_, i) => (
@@ -34,9 +34,9 @@ function PersonEntry({ c, game, live, open }) {
             {locationById[characterLocation(game, c.id)].name}
           </span>
         )}
-        <small>
+        <small title={`Friendship ${bond} of 100`}>
           <Heart size={12} />
-          {relationshipLabel(bond)} <span>{bond}/100</span>
+          {bond ? relationshipLabel(bond) : 'A new face'}
         </small>
       </span>
     </button>
@@ -52,7 +52,8 @@ export function PeopleSpread({ game, open, live }) {
   const shown = known.filter(
     (c) => c.name.toLowerCase().includes(query.toLowerCase()) && (!onlyFriends || game.bonds[c.id]),
   );
-  const half = Math.ceil(shown.length / 2);
+  // The left page also carries the heading and filters, so it takes the smaller half.
+  const half = Math.floor(shown.length / 2);
   const entry = (c) => <PersonEntry key={c.id} c={c} game={game} live={live} open={open} />;
   const left = (
     <>
@@ -92,5 +93,7 @@ export function PeopleSpread({ game, open, live }) {
       </MarginNote>
     </>
   );
-  return <Spread className="gm-people" folio={24} left={left} right={right} />;
+  return (
+    <Spread className="gm-people" folio={38} title="Familiar Faces" left={left} right={right} />
+  );
 }

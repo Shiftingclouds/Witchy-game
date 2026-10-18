@@ -1,6 +1,6 @@
 // The game shell as an illuminated grimoire: an open book on a lamplit desk, ribbon bookmarks for
 // navigation (docs/design/grimoire-reference, DESIGN_PLAN.md).
-import { Flame, LogOut, Menu, Settings, Sun } from 'lucide-react';
+import { DoorOpen, Flame, Menu, Settings, Sun } from 'lucide-react';
 import { art } from '../../content.mjs';
 import { Motes, Vine } from '../../components/lamplight/ornaments.jsx';
 
@@ -59,7 +59,7 @@ export function Desk({
           <Settings size={18} />
         </button>
         <button className="gm-round" onClick={onMenu} aria-label="Main menu" title="Main menu">
-          <LogOut size={17} />
+          <DoorOpen size={17} />
         </button>
       </header>
       {children}
@@ -105,8 +105,11 @@ export function Book({ children, ribbons, view }) {
   );
 }
 
-/** A two-page spread. Each page scrolls on its own when its content is long. */
-export function Spread({ left, right, folio = 1, className = '' }) {
+/**
+ * A two-page spread. Each page scrolls on its own when its content is long; `title` heads the right
+ * page, and `foot` stays put at the bottom of the right page (the day's closing actions).
+ */
+export function Spread({ left, right, folio = 1, title = 'The Quiet Arts', foot, className = '' }) {
   return (
     <div className={'gm-spread ' + className}>
       <section className="gm-page left">
@@ -118,12 +121,13 @@ export function Spread({ left, right, folio = 1, className = '' }) {
         <span className="gm-folio">{folio}</span>
       </section>
       <div className="gm-gutter" aria-hidden="true" />
-      <section className="gm-page right">
+      <section className={'gm-page right' + (foot ? ' has-foot' : '')}>
         <div className="gm-running r">
-          <em>The Quiet Arts</em>
+          <em>{title}</em>
         </div>
         <Vine length={720} className="gm-margin-vine right" flip />
         <div className="gm-page-body">{right}</div>
+        {foot && <div className="gm-page-foot">{foot}</div>}
         <span className="gm-folio">{folio + 1}</span>
       </section>
     </div>
@@ -131,10 +135,16 @@ export function Spread({ left, right, folio = 1, className = '' }) {
 }
 
 /** One wide leaf across the whole book (the map, and pages not yet laid out as spreads). */
-export function Leaf({ children, folio = 1, className = '' }) {
+export function Leaf({ children, folio = 1, title, className = '' }) {
   return (
     <div className={'gm-spread gm-leaf ' + className}>
       <section className="gm-page wide">
+        {title && (
+          <div className="gm-running">
+            <em>Lanternmere</em>
+            <em>{title}</em>
+          </div>
+        )}
         <div className="gm-page-body">{children}</div>
         <span className="gm-folio">{folio}</span>
       </section>

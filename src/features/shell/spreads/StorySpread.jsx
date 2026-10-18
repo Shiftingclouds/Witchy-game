@@ -32,5 +32,5 @@ export function StorySpread({ game, onPlayScene }) {
       </div>
     </div>
   );
-  return <Spread className="gm-story" folio={2} left={left} right={right} />;
+  return <Spread className="gm-story" folio={26} title="The Story" left={left} right={right} />;
 }

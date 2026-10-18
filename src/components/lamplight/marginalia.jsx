@@ -70,18 +70,21 @@ export function MarginNote({ children, tilt = -2, arrow = false, className = '' 
 export function Moons({ nights = [], className = '' }) {
   return (
     <div className={`mg-moons ${className}`} aria-hidden="true">
-      {nights.map(({ date, phase }) => {
+      {nights.map(({ date, phase }, i) => {
         const waxing = phase < 0.5;
         const rx = (8 * Math.abs(Math.cos(2 * Math.PI * phase))).toFixed(2);
         const inner = waxing ? (phase < 0.25 ? 0 : 1) : phase < 0.75 ? 0 : 1;
         return (
-          <svg key={date} viewBox="0 0 20 20">
-            <circle cx="10" cy="10" r="8" className="ring" />
-            <path
-              className="lit"
-              d={`M10 2 A8 8 0 0 ${waxing ? 1 : 0} 10 18 A${rx} 8 0 0 ${inner} 10 2 Z`}
-            />
-          </svg>
+          <span key={date} className={'mg-moon' + (i === 0 ? ' tonight' : '')}>
+            <svg viewBox="0 0 20 20">
+              <circle cx="10" cy="10" r="8" className="ring" />
+              <path
+                className="lit"
+                d={`M10 2 A8 8 0 0 ${waxing ? 1 : 0} 10 18 A${rx} 8 0 0 ${inner} 10 2 Z`}
+              />
+            </svg>
+            <small>{Number(date.slice(8))}</small>
+          </span>
         );
       })}
     </div>

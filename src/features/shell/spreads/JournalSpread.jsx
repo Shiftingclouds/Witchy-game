@@ -1,7 +1,7 @@
 import './spreads.css';
-import { CheckCircle2, Download } from 'lucide-react';
+import { CheckCircle2, Download, MapPin } from 'lucide-react';
+import { locationById } from '../../../content.mjs';
 import { dateLabel } from '../../../engine.mjs';
-import { Button } from '../../../components.jsx';
 import { downloadSave } from '../../../storage/saves.mjs';
 import { MarginNote, PressedLeaf } from '../../../components/lamplight/marginalia.jsx';
 import { Spread } from '../Grimoire.jsx';
@@ -34,6 +34,29 @@ export function JournalSpread({ game, act }) {
       ) : (
         <p className="gm-quiet">The pages are waiting for your first evening.</p>
       )}
+      <section className="discoveries">
+        <h2 className="gm-sub">
+          <span className="gm-rubric">Little</span> discoveries
+        </h2>
+        <p>
+          {game.visited.length} {game.visited.length === 1 ? 'place' : 'places'} visited ·{' '}
+          {game.clues.length} {game.clues.length === 1 ? 'clue' : 'clues'} gathered
+        </p>
+        <ul className="gm-visited">
+          {game.visited.map((id) => (
+            <li key={id}>
+              <MapPin size={13} />
+              {locationById[id]?.name}
+            </li>
+          ))}
+        </ul>
+        {game.clues.map((c) => (
+          <span key={c}>
+            <CheckCircle2 size={13} />
+            {CLUES[c]}
+          </span>
+        ))}
+      </section>
       <div className="mg-row">
         <PressedLeaf />
         <MarginNote tilt={-3}>A place for the things you don’t want to forget.</MarginNote>
@@ -57,25 +80,12 @@ export function JournalSpread({ game, act }) {
         placeholder="Today I noticed…"
       />
       <p className="gm-small">Saved on this device with your story.</p>
-      <section className="discoveries">
-        <h2 className="gm-sub">
-          <span className="gm-rubric">Little</span> discoveries
-        </h2>
-        <p>
-          {game.visited.length} {game.visited.length === 1 ? 'place' : 'places'} visited ·{' '}
-          {game.clues.length} {game.clues.length === 1 ? 'clue' : 'clues'} gathered
-        </p>
-        {game.clues.map((c) => (
-          <span key={c}>
-            <CheckCircle2 size={13} />
-            {CLUES[c]}
-          </span>
-        ))}
-      </section>
-      <Button icon={Download} onClick={() => downloadSave(game)}>
-        Export your save
-      </Button>
+      <button className="text-button gm-export" onClick={() => downloadSave(game)}>
+        <Download size={14} /> Export your save
+      </button>
     </>
   );
-  return <Spread className="gm-journal" folio={12} left={left} right={right} />;
+  return (
+    <Spread className="gm-journal" folio={74} title="Notes & Moments" left={left} right={right} />
+  );
 }
