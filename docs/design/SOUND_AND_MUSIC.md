@@ -4,6 +4,23 @@ Every piece of music and sound the game could use, scene by scene and place by p
 
 The game has no music player yet; it is in the backlog. When it is built, files dropped into `audio/` with these names will play automatically, the same way the art works. Start with the ★ items: they cover most of play.
 
+## Received so far (17 October)
+
+Files in `audio/` (`.mp3` is fine; any filename here can be `.mp3` or `.ogg`):
+
+| File | From | Notes |
+| --- | --- | --- |
+| `audio/music/moment-the-crossing.mp3` | "Shadowed Lake" (3:12) | Also suits `place-mere-night` |
+| `audio/music/moment-the-journey.mp3` | "Whimsy in the Wind" (2:10) | Could also suit `place-village-day` |
+| `audio/ambience/amb-lake.mp3` | soft distant spring lake (0:30) | |
+| `audio/ambience/amb-lake-close.mp3` | gentle lapping water (0:10) | Water up close: boathouse, the boat |
+| `audio/ambience/amb-hall.mp3` | full dining hall (0:22) | |
+| `audio/ambience/amb-boathouse.mp3` | wooden boats tied up (0:09) | |
+| `audio/sfx/sfx-lantern-light.mp3` | glowing lantern (0:07) | |
+| `audio/sfx/sfx-orb.mp3`, `sfx-orb-2.mp3` | magical orb of light, two takes (0:04) | For the opening's floating orbs |
+
+Still to come: everything else below, starting with the ★ items (especially `theme-lanternmere`, `moment-the-hall` and the four house themes).
+
 ## How to make the tracks
 
 - **Always instrumental, no vocals,** and ask for it to be **loopable** (no fade-in or fade-out, ending where it began).
