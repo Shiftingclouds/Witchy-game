@@ -2,6 +2,7 @@ import { test, expect, _electron } from '@playwright/test';
 import { mkdtempSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { finishOpening } from './opening.js';
 
 const fake = path.resolve('tests/fixtures/fake-claude.mjs');
 const launch = (userData, mode) =>
@@ -21,6 +22,7 @@ async function openSettings(win) {
   await win.getByRole('button', { name: /The Story/ }).click();
   await win.getByRole('button', { name: /Read the book/ }).click();
   await win.getByRole('button', { name: /Begin your story/ }).click();
+  await finishOpening(win);
   await win.getByRole('button', { name: 'Leave the scene' }).click();
   await win.getByRole('button', { name: 'Settings & saves' }).click();
 }

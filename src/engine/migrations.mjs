@@ -5,6 +5,23 @@ import { SAVE_VERSION } from './state.mjs';
 const migrations = new Map([
   [3, (state) => ({ ...state, version: 4, storyChoices: {} })],
   [4, (state) => ({ ...state, version: 5, ai: null })],
+  // v6 chooses house and familiar inside the story; older saves already have both, so their
+  // new opening decisions count as answered.
+  [
+    5,
+    (state) => ({
+      ...state,
+      version: 6,
+      storyChoices: state.house
+        ? {
+            'arrival:crossing': 'castle',
+            'arrival:house': state.house,
+            'arrival:familiar': state.familiar,
+            ...state.storyChoices,
+          }
+        : state.storyChoices,
+    }),
+  ],
   [
     1,
     (state) => ({ ...state, version: 2, daily: { date: state.date, checkins: [], event: null } }),

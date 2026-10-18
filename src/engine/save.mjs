@@ -32,8 +32,8 @@ export function parseSave(value) {
     typeof s.name !== 'string' ||
     !s.name.trim() ||
     s.name.length > 24 ||
-    !houses.some((h) => h.id === s.house) ||
-    !familiars.includes(s.familiar) ||
+    (s.house !== null && !houses.some((h) => h.id === s.house)) ||
+    (s.familiar !== null && !familiars.includes(s.familiar)) ||
     !Object.hasOwn(locationById, s.location)
   )
     throw new Error('This is not a supported Lanternmere save.');

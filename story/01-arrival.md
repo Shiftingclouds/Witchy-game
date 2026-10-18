@@ -4,6 +4,101 @@ Chapter I · Arrival · 2026-09-01
 
 Generated from [the game source](../src/story/arrival.mjs) by `npm run export:story`. Edit the source and regenerate. All alternatives are included and labelled below; a player sees only their selected path.
 
+## The crossing
+
+*2026-09-01 · mere*
+
+Dusk on Lantern Mere. A small boat moves across the water without oars.
+
+You hold a small brass lantern. Your name is engraved on its handle. It is not lit.
+
+**Tully (warm):** Sit easy. The crossing takes as long as it takes.
+
+Two other new students share the boat: Toby, dropping crumbs for the fish, and Cas, counting a folded list.
+
+**Toby (neutral):** Want some? The fish here are very polite.
+
+Mist lies on the water ahead. Somewhere inside it, a single window lights up.
+
+**Choice — Where does your attention go?**
+
+Decision: `arrival:crossing`
+
+1. Sit with Toby and his crumbs. (`toby`)
+2. Watch the castle come out of the mist. (`castle`)
+
+> Branch: Sit with Toby and his crumbs. (`arrival:crossing` = `toby`).
+
+Toby talks about his grandmother’s hens. Cas pretends not to listen.
+
+> Branch: Watch the castle come out of the mist. (`arrival:crossing` = `castle`).
+
+The castle comes out of the mist one window at a time.
+
+> All routes rejoin here.
+
+The boat bumps gently against the boathouse steps.
+
+## The landing
+
+*2026-09-01 · boathouse*
+
+**Tully (neutral):** Leave your trunks. Lanterns stay with you.
+
+A lantern-lit path climbs through dark pines to the castle doors.
+
+**Grey (neutral):** Name? There you are. In you go.
+
+## The hall
+
+*2026-09-01 · lantern-hall*
+
+Lantern Hall: hundreds of small lanterns floating under a high ceiling, a great window over the lake.
+
+**Honoria (neutral):** Welcome to Lanternmere. Tonight you will find your house, by your own answer.
+
+## Your house
+
+*2026-09-01 · lantern-hall*
+
+Four tall house lanterns stand at the front of the hall, each marked with its crest.
+
+It is your turn. Honoria looks at you kindly, not at your dark lantern.
+
+**Choice — Honoria asks: “When something is lost, what do you do first?”**
+
+Decision: `arrival:house`
+
+1. Look for the answer. (`owlcombe`)
+2. Go after it, even if it is dark. (`rookhallow`)
+3. Make sure no one has to look for it alone. (`heronmere`)
+4. Wonder where it went, and what it found there. (`larkspire`)
+
+Your house table makes room for you.
+
+## Your familiar
+
+*2026-09-01 · lantern-hall*
+
+A side door opens. The familiars wander in between the tables.
+
+Several come close. One stays.
+
+**Choice — Which one stays with you?**
+
+Decision: `arrival:familiar`
+
+1. A black cat who sits on your foot as if it has always belonged there. (`cat`)
+2. A ferret who climbs into your coat pocket. (`ferret`)
+3. A young fox who noses your lantern, then your hand. (`fox`)
+4. A brown hare who settles under the bench by your feet. (`hare`)
+5. A pale moth, larger than your palm, who rests on your lantern. (`moth`)
+6. A small owl who lands on the back of your chair. (`owl`)
+7. A raven who walks the length of the table to stand beside you. (`raven`)
+8. A green toad who sits by your plate, entirely calm. (`toad`)
+
+Your familiar settles beside you. You feel a little less alone.
+
 ## A place at the table
 
 *2026-09-01 · lantern-hall*

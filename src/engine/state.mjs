@@ -1,20 +1,26 @@
 import { houses, familiars } from '../content.mjs';
 import { emptyAi } from './ai-state.mjs';
 import { isAiMode } from './modes.mjs';
-export const SAVE_VERSION = 5;
+export const SAVE_VERSION = 6;
+/** Who you are is chosen on arrival night; a game that already knows both skips those decisions. */
+export const openingAnswered = (house, familiar) =>
+  houses.some((h) => h.id === house) && familiars.includes(familiar)
+    ? { 'arrival:crossing': 'castle', 'arrival:house': house, 'arrival:familiar': familiar }
+    : {};
 export const periods = ['Morning', 'Afternoon', 'Evening', 'Night'];
 export const initialState = (
   mode = 'live',
   name = 'Avery',
-  house = 'owlcombe',
-  familiar = 'cat',
+  house = null,
+  familiar = null,
   { timeMode = null } = {},
 ) => ({
   version: SAVE_VERSION,
   mode,
   name: name.trim().slice(0, 24) || 'Avery',
-  house: houses.some((h) => h.id === house) ? house : 'owlcombe',
-  familiar: familiars.includes(familiar) ? familiar : 'cat',
+  // Chosen inside the story on arrival night; null until then.
+  house: houses.some((h) => h.id === house) ? house : null,
+  familiar: familiars.includes(familiar) ? familiar : null,
   date: '2026-09-01',
   period: 0,
   location: 'lantern-hall',
@@ -31,7 +37,7 @@ export const initialState = (
   ],
   notes: '',
   bookmark: null,
-  storyChoices: {},
+  storyChoices: openingAnswered(house, familiar),
   characterMemories: {},
   conversations: {},
   conversationSequence: 0,

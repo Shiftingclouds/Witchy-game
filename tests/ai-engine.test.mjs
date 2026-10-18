@@ -19,7 +19,7 @@ test('modes group into book-like, live-like and AI', () => {
 });
 
 test('v4 Book and Live saves migrate to v5 untouched', () => {
-  assert.equal(SAVE_VERSION, 5);
+  assert.equal(SAVE_VERSION, 6);
   for (const mode of ['book', 'live']) {
     const v4 = { ...initialState(mode), version: 4 };
     delete v4.ai;

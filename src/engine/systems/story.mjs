@@ -1,5 +1,5 @@
 import { isBookLike } from '../modes.mjs';
-import { chapters } from '../../content.mjs';
+import { chapters, familiars, houses } from '../../content.mjs';
 import {
   chapterBeats,
   chapterSceneId,
@@ -38,6 +38,9 @@ export const storySystem = {
         refreshDay(s);
       } else if (s.date === storyDate) s.period = Math.max(s.period, storyPeriod);
       s.storyChoices[action.key] = option.id;
+      // Arrival-night choices that set who you are.
+      if (houses.some((h) => h.id === option.effects?.house)) s.house = option.effects.house;
+      if (familiars.includes(option.effects?.familiar)) s.familiar = option.effects.familiar;
       for (const id of introductions[action.key]?.people || []) {
         s.bonds[id] = Math.max(s.bonds[id] || 0, 1);
         rememberCharacter(s, id, `meeting:${action.key}`);

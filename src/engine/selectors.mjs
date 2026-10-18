@@ -89,3 +89,6 @@ export function metCharacters(s) {
   for (const id of Object.keys(s.ai?.memories || {})) met.add(id);
   return met;
 }
+
+/** A new game plays its opening (crossing to familiar) before anything else. */
+export const needsOpening = (s) => !s.house || !s.familiar;

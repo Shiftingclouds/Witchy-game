@@ -69,7 +69,8 @@ test('mobile layout, navigation, map and conversations remain usable', async ({ 
   await page.getByRole('button', { name: 'Toggle navigation' }).click();
   await page.getByRole('button', { name: 'People', exact: true }).click();
   await page.getByRole('button', { name: /YOUR STORY Imogen/ }).click();
-  await page.getByRole('button', { name: 'Join Imogen at The Library' }).click();
+  // Live games now begin on arrival evening, so people may be somewhere else than at dawn.
+  await page.getByRole('button', { name: /^Join Imogen at/ }).click();
   await page.getByRole('button', { name: 'Talk to Imogen', exact: true }).first().click();
   await page.getByRole('button', { name: 'Get to know them' }).click();
   await expect(page.getByRole('dialog').getByAltText('Imogen, attentive expression')).toBeVisible();
@@ -102,6 +103,7 @@ test('profiles find moving characters and daily friendship is limited to once a 
   await page.evaluate(() => {
     const save = JSON.parse(localStorage.getItem('lanternmere.save.live'));
     save.conversations = { ...save.conversations, noor: [] };
+    save.period = 0; // this test follows Noor's daytime routine
     localStorage.setItem('lanternmere.save.live', JSON.stringify(save));
   });
   await page.reload();
@@ -111,7 +113,7 @@ test('profiles find moving characters and daily friendship is limited to once a 
   await page.getByLabel('Find a person').fill('Noor');
   await page.locator('.person-card').click();
   await expect(page.getByRole('dialog')).toContainText('Where to find them today');
-  await page.getByRole('button', { name: 'Join Noor at The Rookery' }).click();
+  await page.getByRole('button', { name: /^Join Noor at/ }).click();
   await page.getByRole('button', { name: 'Talk to Noor', exact: true }).first().click();
   await page.getByRole('button', { name: 'Get to know them' }).click();
   await expect(page.locator('blockquote')).toContainText('promising perch');
@@ -144,7 +146,7 @@ test('a version-one save resumes in the browser with its progress preserved', as
     'A memory from before the update.',
   );
   const save = await page.evaluate(() => JSON.parse(localStorage.getItem('lanternmere.save.live')));
-  expect(save.version).toBe(5);
+  expect(save.version).toBe(6);
   expect(save.points).toBe(3);
   expect(save.daily.date).toBe(save.date);
 });

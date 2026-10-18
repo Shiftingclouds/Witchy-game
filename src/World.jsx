@@ -202,18 +202,20 @@ export default function World({ game, act, visit, navigate, open, quest, aiScene
               </>
             )}
           </section>
-          <section className="house-card">
-            <div className="house-crest" style={{ color: house.color }}>
-              <Shield size={32} />
-            </div>
-            <div>
-              <small>FOR {house.name.toUpperCase()}</small>
-              <strong>
-                {game.points} <span>house points</span>
-              </strong>
-              <p>Little kindnesses add up.</p>
-            </div>
-          </section>
+          {house && (
+            <section className="house-card">
+              <div className="house-crest" style={{ color: house.color }}>
+                <Shield size={32} />
+              </div>
+              <div>
+                <small>FOR {house.name.toUpperCase()}</small>
+                <strong>
+                  {game.points} <span>house points</span>
+                </strong>
+                <p>Little kindnesses add up.</p>
+              </div>
+            </section>
+          )}
           <div className="passing-time">
             <Button icon={Clock} onClick={() => act({ type: 'wait' })}>
               Wait until {periods[(game.period + 1) % 4].toLowerCase()}

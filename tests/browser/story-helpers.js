@@ -18,8 +18,31 @@ export async function enterMode(page, mode, { name } = {}) {
   if (await page.locator('.character-creation').count()) {
     if (name) await page.getByLabel('Your name').fill(name);
     await page.getByRole('button', { name: /Begin your story/ }).click();
+    await finishOpening(page);
   }
   await page.locator('.app-shell').waitFor();
+}
+
+/**
+ * Play through arrival night (crossing, house, familiar), taking the first option at each decision,
+ * so a test starts where games did before the opening existed: Owlcombe, a cat, and, in a scene,
+ * the first line of supper.
+ */
+export async function finishOpening(page) {
+  await page.locator('.scene-player.opening').waitFor();
+  for (let i = 0; i < 200 && (await page.locator('.scene-player.opening').count()); i++) {
+    const option = page.locator('.scene-choice-panel .scene-decision button:not([disabled])');
+    if (await option.count()) await option.first().click();
+    else await page.keyboard.press('Enter');
+  }
+  await page.locator('.app-shell').waitFor();
+  for (let i = 0; i < 40; i++) {
+    // Only a playing scene has a section; on Your day there is nothing to advance.
+    if (!(await page.locator('.scene-player').count())) break;
+    const at = await page.locator('.scene-player').getAttribute('data-section');
+    if (at === 'place-at-table') break;
+    await page.keyboard.press('Enter');
+  }
 }
 
 /** From the title screen: wake it and choose Continue. */

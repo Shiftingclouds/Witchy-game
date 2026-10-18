@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { finishOpening } from './story-helpers.js';
 
 // The desktop preload exposes window.lanternmere.ai; in the browser a test can provide a stand-in.
 const withBridge = (page) =>
@@ -35,7 +36,7 @@ test('starting the Open World asks how time should pass and remembers it', async
   await expect(page.getByRole('heading', { name: 'Who are you?' })).toBeVisible();
   await page.getByRole('radio', { name: /Timed/ }).click();
   await page.getByRole('button', { name: /Begin your story/ }).click();
-  await page.locator('.app-shell').waitFor();
+  await finishOpening(page);
   const save = await page.evaluate(() =>
     JSON.parse(localStorage.getItem('lanternmere.save.sandbox')),
   );
@@ -53,7 +54,7 @@ test('starting the Guided Tale goes straight to creating a character', async ({ 
   await page.getByRole('button', { name: /The Guided Tale/ }).click();
   await expect(page.getByRole('radio')).toHaveCount(0);
   await page.getByRole('button', { name: /Begin your story/ }).click();
-  await page.locator('.app-shell').waitFor();
+  await finishOpening(page);
   expect(
     await page.evaluate(() => JSON.parse(localStorage.getItem('lanternmere.save.guided')).mode),
   ).toBe('guided');

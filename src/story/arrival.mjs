@@ -1,5 +1,6 @@
 import { arrivalOrientation } from './arrival-orientation.mjs';
 import { arrivalEvening } from './arrival-evening.mjs';
+import { arrivalPrologue } from './arrival-prologue.mjs';
 import { chapters } from '../content.mjs';
 // These are authored performance directions, not emotion guesses from keywords.
 const rowan = (emotion = 'warm') => ({ id: 'rowan', emotion });
@@ -156,3 +157,6 @@ arrivalScene.beats.forEach((beat) => {
 });
 
 arrivalScene.beats.push(...arrivalOrientation);
+
+// The opening before supper: the crossing, the landing, the hall, house and familiar.
+arrivalScene.beats.unshift(...arrivalPrologue);

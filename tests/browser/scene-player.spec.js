@@ -176,9 +176,12 @@ test('the gear switches to reading as a page, and that choice is remembered', as
 
 test('Esc leaves the scene for the page, and history lists the lines so far', async ({ page }) => {
   await openScene(page);
+  await page.getByRole('button', { name: 'Lines so far' }).click();
+  const before = await page.locator('.scene-history li').count();
+  await page.getByRole('button', { name: 'Lines so far' }).click();
   await finishAndAdvance(page);
   await page.getByRole('button', { name: 'Lines so far' }).click();
-  await expect(page.locator('.scene-history li')).toHaveCount(2);
+  await expect(page.locator('.scene-history li')).toHaveCount(before + 1);
   await page.getByRole('button', { name: 'Lines so far' }).click();
   await page.keyboard.press('Escape');
   await expect(page.locator('.scene-player')).toHaveCount(0);
@@ -198,4 +201,42 @@ test('a conversation shows the person in a framed portrait over the place', asyn
   await enterMode(page, 'live');
   await page.getByRole('button', { name: 'Talk to Rowan', exact: true }).first().click();
   await expect(page.getByRole('dialog').locator('.portrait-frame')).toBeVisible();
+});
+
+test('creation asks only your name, then the story begins on the lake with no way out', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page.keyboard.press('Enter');
+  await page.getByRole('button', { name: /The Story/ }).click();
+  await page.getByRole('button', { name: /Read the book/ }).click();
+  await expect(page.getByLabel('Your name')).toBeVisible();
+  await expect(page.getByLabel('Your house')).toHaveCount(0);
+  await expect(page.getByLabel('Your familiar')).toHaveCount(0);
+  await page.getByRole('button', { name: /Begin your story/ }).click();
+  await expect(page.locator('.scene-player.opening')).toBeVisible();
+  await expect(page.locator('.scene-player')).toHaveAttribute('data-section', 'crossing');
+  await expect(page.getByRole('button', { name: 'Leave the scene' })).toHaveCount(0);
+  await expect(page.locator('.app-shell')).toHaveCount(0);
+});
+
+test('choosing a house and a familiar in the story opens the world', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('lanternmere.text-speed', 'instant'));
+  await page.goto('/');
+  await page.keyboard.press('Enter');
+  await page.getByRole('button', { name: /The Story/ }).click();
+  await page.getByRole('button', { name: /Live the world/ }).click();
+  await page.getByRole('button', { name: /Begin your story/ }).click();
+  const pick = async (text) => {
+    for (let i = 0; i < 40 && !(await page.getByRole('button', { name: text }).count()); i++)
+      await page.keyboard.press('Enter');
+    await page.getByRole('button', { name: text }).click();
+  };
+  await pick(/Watch the castle/);
+  await pick(/Make sure no one has to look for it alone/);
+  await expect(page.locator('.scene-player.opening')).toBeVisible();
+  await pick(/A young fox/);
+  await expect(page.locator('.app-shell')).toBeVisible();
+  const save = await page.evaluate(() => JSON.parse(localStorage.getItem('lanternmere.save.live')));
+  expect([save.house, save.familiar]).toEqual(['heronmere', 'fox']);
 });

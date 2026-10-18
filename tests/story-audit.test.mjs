@@ -41,7 +41,8 @@ test('compressed audit matches exhaustive authored routes, whole-field deduplica
   // Keep the exhaustive oracle bounded as later chapters grow. Full-library
   // coverage is checked by story.test.mjs using the exact compressed audit.
   compareExhaustive(
-    stagedScenes.filter((scene) => scene.chapter < 2),
+    // Chapter 1 only: the arrival-night house and familiar choices multiply routes by 64.
+    stagedScenes.filter((scene) => scene.chapter < 1),
     ['A repeated line.'],
   );
 });

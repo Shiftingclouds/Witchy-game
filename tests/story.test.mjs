@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { initialState, transition, parseSave, canAdvance, SAVE_VERSION } from '../src/engine.mjs';
+import { openingAnswered } from '../src/engine/state.mjs';
 import { chapterBeats, stagedScenes } from '../src/scene-beats.mjs';
 import { auditStory } from '../src/story/audit.mjs';
 import { characterInput, buildCharacterContext } from '../src/character-context.mjs';
@@ -9,7 +10,7 @@ const choose = (state, key, option) => transition(state, { type: 'story-choice',
 
 test('unanswered decisions gate both modes, reject out-of-order actions, and cannot be replayed', () => {
   for (const mode of ['book', 'live']) {
-    const before = initialState(mode);
+    const before = initialState(mode, 'Avery', 'owlcombe', 'cat');
     assert.equal(canAdvance(before), false);
     for (const [key, option] of [
       ['arrival:corridor-job', 'trunk'],
@@ -19,7 +20,7 @@ test('unanswered decisions gate both modes, reject out-of-order actions, and can
       assert.equal(choose(before, key, option), before);
     const next = choose(before, 'arrival:first-observation', 'record');
     assert.equal(next.storyChoices['arrival:first-observation'], 'record');
-    assert.deepEqual(before.storyChoices, {});
+    assert.deepEqual(before.storyChoices, openingAnswered('owlcombe', 'cat'));
     assert.equal(next.points, before.points);
     assert.deepEqual(next.bonds, { rowan: 1, imogen: 1 });
     assert.equal(next.bookmark.beat, 'record-columns');
@@ -45,7 +46,7 @@ test('unanswered decisions gate both modes, reject out-of-order actions, and can
 test('routes covering every authored beat and option reach both endings with their selected memories', () => {
   for (const path of auditStory(stagedScenes).coverage) {
     for (const ending of [0, 1]) {
-      let state = initialState('book');
+      let state = initialState('book', 'Avery');
       for (const scene of stagedScenes) {
         for (const beat of scene.beats) {
           const key = `${scene.id}:${beat.id}`;
@@ -72,11 +73,12 @@ test('routes covering every authored beat and option reach both endings with the
 
 test('old saves migrate without invented decisions and current imports reject contradictory choices', () => {
   for (const version of [1, 2, 3]) {
-    const old = { ...initialState('book'), version, chapter: 1 };
+    const old = { ...initialState('book', 'Avery', 'owlcombe', 'cat'), version, chapter: 1 };
     delete old.storyChoices;
     const migrated = parseSave(old);
     assert.equal(migrated.version, SAVE_VERSION);
-    assert.deepEqual(migrated.storyChoices, {});
+    // Only the arrival-night answers implied by the save's own house and familiar.
+    assert.deepEqual(migrated.storyChoices, openingAnswered('owlcombe', 'cat'));
     assert.ok(chapterBeats(1, migrated).some((beat) => beat.id === 'intention-legacy'));
     assert.equal(
       transition(finishSceneChoices(migrated), { type: 'chapter', choice: 0 }).chapter,
@@ -86,7 +88,11 @@ test('old saves migrate without invented decisions and current imports reject co
 });
 
 test('imported bookmarks and AI memories cannot claim an unchosen branch', () => {
-  const state = choose(initialState('book'), 'arrival:first-observation', 'frame');
+  const state = choose(
+    initialState('book', 'Avery', 'owlcombe', 'cat'),
+    'arrival:first-observation',
+    'frame',
+  );
   assert.equal(
     parseSave({ ...state, bookmark: { scene: 'arrival', beat: 'record-columns' } }).bookmark,
     null,
@@ -113,7 +119,7 @@ test('imported bookmarks and AI memories cannot claim an unchosen branch', () =>
 });
 
 test('dated story choices advance early saves, reset daily activity, and never rewind world time', () => {
-  let state = initialState('book');
+  let state = initialState('book', 'Avery', 'owlcombe', 'cat');
   for (const [key, option] of [
     ['arrival:first-observation', 'record'],
     ['arrival:corridor-job', 'trunk'],
@@ -144,7 +150,7 @@ test('dated story choices advance early saves, reset daily activity, and never r
 });
 
 test('authored introductions satisfy meeting requirements and enter only the selected character context', () => {
-  const state = finishSceneChoices(initialState('live'));
+  const state = finishSceneChoices(initialState('live', 'Avery', 'owlcombe', 'cat'));
   assert.equal(canAdvance(state), true);
   assert.equal(state.bonds.rowan, 1);
   assert.equal(state.bonds.saoirse, 1);
@@ -162,7 +168,7 @@ test('authored introductions satisfy meeting requirements and enter only the sel
 });
 
 test('register decisions preserve private support, new faculty memories, and evidence knowledge gates', () => {
-  let state = initialState('book');
+  let state = initialState('book', 'Avery', 'owlcombe', 'cat');
   for (let chapter = 0; chapter < 2; chapter++)
     state = transition(finishSceneChoices(state), { type: 'chapter', choice: 0 });
   const early = buildCharacterContext('maelin-quill', characterInput(state, 'maelin-quill'));
@@ -200,7 +206,7 @@ test('register decisions preserve private support, new faculty memories, and evi
   assert.ok(later.world.knownPublicEvents.some((fact) => fact.includes('remain unproven')));
   assert.deepEqual(later.character.allowedExpressions, ['neutral', 'reflective']);
   const legacy = parseSave({
-    ...initialState('book'),
+    ...initialState('book', 'Avery', 'owlcombe', 'cat'),
     chapter: 2,
     date: '2026-09-18',
     daily: { date: '2026-09-18', checkins: [], event: null },
@@ -210,7 +216,7 @@ test('register decisions preserve private support, new faculty memories, and evi
 });
 
 test('Emberfall can be caught up after its date and its private conversation stays with Saoirse', () => {
-  let state = initialState('book');
+  let state = initialState('book', 'Avery', 'owlcombe', 'cat');
   for (let chapter = 0; chapter < 3; chapter++)
     state = transition(finishSceneChoices(state), { type: 'chapter', choice: 0 });
   state = {
@@ -246,7 +252,7 @@ test('Emberfall can be caught up after its date and its private conversation sta
 });
 
 test('Longnight records shared work, gates later knowledge, and imports without invented winter choices', () => {
-  let state = initialState('book');
+  let state = initialState('book', 'Avery', 'owlcombe', 'cat');
   for (let chapter = 0; chapter < 4; chapter++)
     state = transition(finishSceneChoices(state), { type: 'chapter', choice: 0 });
   const before = buildCharacterContext('kestrel', characterInput(state, 'kestrel'));
@@ -281,7 +287,7 @@ test('Longnight records shared work, gates later knowledge, and imports without 
   const later = buildCharacterContext('kestrel', characterInput(state, 'kestrel'));
   assert.ok(later.character.knownFacts.some((fact) => fact.includes('cycle records')));
   const legacy = parseSave({
-    ...initialState('book'),
+    ...initialState('book', 'Avery', 'owlcombe', 'cat'),
     chapter: 4,
     date: '2026-12-21',
     daily: { date: '2026-12-21', checkins: [], event: null },
@@ -292,7 +298,7 @@ test('Longnight records shared work, gates later knowledge, and imports without 
 
 test('First Thaw pays off both winter tasks and keeps practical outcomes and later knowledge consistent', () => {
   for (const option of [0, 1]) {
-    let state = initialState('book');
+    let state = initialState('book', 'Avery', 'owlcombe', 'cat');
     for (let chapter = 0; chapter < 5; chapter++)
       state = transition(finishSceneChoices(state, option), { type: 'chapter', choice: option });
     const initial = chapterBeats(5, state);
@@ -325,7 +331,7 @@ test('First Thaw pays off both winter tasks and keeps practical outcomes and lat
     assert.ok(after.character.knownFacts.some((fact) => fact.includes('Larger rehearsals')));
   }
   const old = parseSave({
-    ...initialState('book'),
+    ...initialState('book', 'Avery', 'owlcombe', 'cat'),
     chapter: 5,
     date: '2027-03-20',
     daily: { date: '2027-03-20', checkins: [], event: null },
@@ -335,7 +341,7 @@ test('First Thaw pays off both winter tasks and keeps practical outcomes and lat
 });
 
 test('Bloomtide keeps private support private and records the actual rehearsal and lantern plans', () => {
-  let state = initialState('book');
+  let state = initialState('book', 'Avery', 'owlcombe', 'cat');
   for (let chapter = 0; chapter < 6; chapter++)
     state = transition(finishSceneChoices(state, 1), { type: 'chapter', choice: 0 });
   state = choose(state, 'bloom:rehearsal-plan', 'relay');

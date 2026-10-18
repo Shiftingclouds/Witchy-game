@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { enterMode } from './story-helpers.js';
+import { enterMode, finishOpening } from './story-helpers.js';
 
 // Stand-in bridge: answers decisions with the first authored option, everything else with a small moment.
 async function withBridge(page) {
@@ -60,7 +60,7 @@ async function startGuided(page) {
   await page.keyboard.press('Enter');
   await page.getByRole('button', { name: /The Guided Tale/ }).click();
   await page.getByRole('button', { name: /Begin your story/ }).click();
-  await page.locator('.app-shell, .scene-player').first().waitFor();
+  await finishOpening(page);
 }
 const authored = (page) => page.locator('[data-story-beat] > p').allTextContents();
 const asPage = (page) =>

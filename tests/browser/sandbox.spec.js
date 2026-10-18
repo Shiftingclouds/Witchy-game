@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { finishOpening } from './story-helpers.js';
 
 // A stand-in for the desktop Claude bridge: replies come from a queue the test fills.
 async function withBridge(page) {
@@ -39,7 +40,7 @@ async function startOpenWorld(page, timeMode = 'Timeless') {
   await page.getByRole('button', { name: /The Open World/ }).click();
   await page.getByRole('radio', { name: new RegExp(timeMode) }).click();
   await page.getByRole('button', { name: /Begin your story/ }).click();
-  await page.locator('.app-shell').waitFor();
+  await finishOpening(page);
 }
 const input = (page) => page.getByRole('textbox', { name: 'What do you do?' });
 const save = (page) =>

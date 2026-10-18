@@ -75,7 +75,7 @@ import { applyReadingMode } from './theme/apply.mjs';
 import { OpeningScene } from './features/opening/OpeningScene.jsx';
 import { TitleScreen } from './features/opening/TitleScreen.jsx';
 import { VineButton } from './features/opening/VineButton.jsx';
-import { metCharacters } from './engine/selectors.mjs';
+import { metCharacters, needsOpening } from './engine/selectors.mjs';
 import { AiScene } from './features/ai/AiScene.jsx';
 import { ScenePlayer } from './features/scene/ScenePlayer.jsx';
 import { SceneMenu } from './features/scene/SceneMenu.jsx';
@@ -227,9 +227,9 @@ function App() {
     else if (status === 'ok') start(mode);
     else setCreating(mode);
   }
-  function start(mode, name, house, familiar, timeMode) {
+  function start(mode, name, timeMode) {
     try {
-      setGame(saves.read(mode) || initialState(mode, name, house, familiar, { timeMode }));
+      setGame(saves.read(mode) || initialState(mode, name, null, null, { timeMode }));
       setView(isBookLike(mode) ? 'book' : 'world');
     } catch (error) {
       setToast(error.message);
@@ -276,8 +276,8 @@ function App() {
             <CharacterCreation
               mode={creating}
               onBack={() => setCreating(null)}
-              onBegin={(name, house, familiar, timeMode) => {
-                start(creating, name, house, familiar, timeMode);
+              onBegin={(name, timeMode) => {
+                start(creating, name, timeMode);
                 setCreating(null);
               }}
             />
@@ -294,6 +294,29 @@ function App() {
           </div>
         )}
       </>
+    );
+  // Arrival night: the crossing, the hall, house and familiar, played before anything else.
+  if (needsOpening(game))
+    return (
+      <div
+        className="opening-story"
+        data-reading-size={reading.size}
+        data-reduced-motion={reading.reduced}
+      >
+        <ScenePlayer
+          key="opening"
+          opening
+          game={game}
+          act={act}
+          reading={reading}
+          onReadAsPage={() => setSceneView('page')}
+        />
+        {toast && (
+          <div className="toast" role="status">
+            {toast}
+          </div>
+        )}
+      </div>
     );
   const house = houses.find((h) => h.id === game.house),
     chapter = chapters[game.chapter];

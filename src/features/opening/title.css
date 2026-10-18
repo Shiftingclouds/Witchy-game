@@ -350,3 +350,14 @@ html[data-reading-mode] .title-name {
     margin-top: 16px;
   }
 }
+/* Creation now asks only for a name; house and familiar come in the story. */
+.creation-fields.name-only {
+  display: grid;
+  gap: 12px;
+  max-width: 420px;
+  margin: 8px auto 4px;
+}
+.creation-fields.name-only .creation-motto {
+  margin: 0;
+  text-align: center;
+}

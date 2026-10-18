@@ -219,7 +219,7 @@ Browser test: creation asks only "Your name" (no house or familiar selects), the
 - [ ] **Step 4:** Run. Expected: PASS.
 - [ ] **Step 5:** Commit "Show each new place full screen on arrival".
 
-### Task 7: House crests
+### Task 7: House crests, and pictures beside the arrival choices
 
 **Files:**
 - Create: `src/components/lamplight/HouseCrest.jsx`
@@ -231,6 +231,12 @@ Browser test: creation asks only "Your name" (no house or familiar selects), the
   - It renders `art('crest-' + house)` when the art manifest entry exists and is not a placeholder.
   - Otherwise it renders an inline SVG fallback: a gold hairline shield with the house's bird name initial in Cormorant SC, on `--lm-backing`.
   - Files requested: `crest-owlcombe.png`, `crest-rookhallow.png`, `crest-heronmere.png`, `crest-larkspire.png` (1024×1024, transparent, gold-and-ink heraldic badge featuring the house bird: owl, rook, heron, lark).
+
+- **Owner request (17 October): pictures beside the arrival choices.**
+  - When choosing your familiar, each option shows that familiar's painting (`fam-<id>`, the art already in the game) in a small framed box (gold double hairline, the same frame style as portraits) beside its label.
+  - The house decision shows each house's crest (`HouseCrest`) beside its option the same way.
+  - A decision option may carry `image: <art id>` or `crest: <house id>`. `SceneDecision` renders the framed picture to the left of the label, in both the scene player and the page view. Options without one are unchanged.
+- Test (add to Step 1): the familiar decision shows eight `.choice-picture img` (one per familiar, alt "<Familiar>"); the house decision shows four `.choice-picture` crests.
 
 - [ ] **Step 1: Failing test:** the house card on Your day contains `.house-crest svg` (fallback) for a new Live game whose house is chosen; `slots.json` includes the four crest files.
 - [ ] **Step 2:** Run. Expected: FAIL.

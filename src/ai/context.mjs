@@ -124,7 +124,7 @@ function sections({ game, mode, input, focus = {} }) {
   out.push({
     title: 'PLAYED RECORD',
     items: [
-      `Player: ${game.name} of ${game.house}, familiar: ${game.familiar}.`,
+      `Player: ${game.name} of ${game.house || 'no house yet'}, familiar: ${game.familiar || 'none yet'}.`,
       `Now: ${game.date}, ${PERIODS[game.period]}, at ${game.location} (${locationById[game.location]?.name}).`,
       `Friendships: ${
         Object.entries(game.bonds)

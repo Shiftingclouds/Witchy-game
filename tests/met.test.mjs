@@ -6,7 +6,8 @@ import { metCharacters } from '../src/engine/selectors.mjs';
 test('a new game has met only the people who speak in the opening', () => {
   const met = metCharacters(initialState('live', 'A', 'owlcombe', 'cat'));
   assert.ok(met.has('rowan') && met.has('imogen'));
-  assert.ok(!met.has('honoria') && !met.has('fitch'));
+  assert.ok(met.has('honoria') && met.has('tully'));
+  assert.ok(!met.has('fitch') && !met.has('kestrel'));
 });
 
 test('talking to someone, or hearing them in an AI scene, means you have met them', () => {

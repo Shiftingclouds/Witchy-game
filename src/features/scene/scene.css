@@ -387,3 +387,22 @@
   object-fit: contain;
   background: radial-gradient(ellipse at center, #2a1810, #120905);
 }
+/* Long decisions (the familiar choice has eight) stay inside the window: two columns, and the panel
+   scrolls rather than rising off the top of the screen. */
+.scene-choice-panel {
+  max-height: calc(100vh - 230px - 96px);
+  overflow-y: auto;
+}
+.scene-choice-panel .scene-decision:has(> button:nth-of-type(5)) {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.scene-choice-panel .scene-decision:has(> button:nth-of-type(5)) legend {
+  grid-column: 1 / -1;
+}
+@media (max-height: 760px) {
+  .scene-choice-panel {
+    max-height: calc(100vh - 200px - 72px);
+  }
+}

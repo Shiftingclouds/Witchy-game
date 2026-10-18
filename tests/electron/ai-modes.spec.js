@@ -2,6 +2,7 @@ import { test, expect, _electron } from '@playwright/test';
 import { existsSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { finishOpening } from './opening.js';
 
 const fake = path.resolve('tests/fixtures/fake-claude.mjs');
 const replyFile = path.join(mkdtempSync(path.join(os.tmpdir(), 'lm-reply-')), 'reply.json');
@@ -39,6 +40,7 @@ test('an Open World turn survives quitting, and no log is written unless asked',
   await win.keyboard.press('Enter');
   await win.getByRole('button', { name: /The Open World/ }).click();
   await win.getByRole('button', { name: /Begin your story/ }).click();
+  await finishOpening(win);
   const box = win.getByRole('textbox', { name: 'What do you do?' });
   await box.fill('I walk down to the water.');
   await box.press('Enter');
@@ -66,6 +68,7 @@ test('with the debug log turned on, exchanges are logged under userData', async 
   await win.keyboard.press('Enter');
   await win.getByRole('button', { name: /The Open World/ }).click();
   await win.getByRole('button', { name: /Begin your story/ }).click();
+  await finishOpening(win);
   await win.getByRole('button', { name: 'Settings & saves' }).click();
   await win.getByRole('combobox', { name: 'Debug log' }).selectOption('on');
   await win.keyboard.press('Escape');

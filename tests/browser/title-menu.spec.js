@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { enterMode, continueGame } from './story-helpers.js';
+import { continueGame, enterMode, finishOpening } from './story-helpers.js';
 
 test('Enter or Space wakes the title and shows the menu', async ({ page }) => {
   for (const key of ['Enter', 'Space']) {
@@ -36,6 +36,7 @@ test('a new player creates a character, and Continue later opens that save', asy
   await expect(page.getByRole('heading', { name: 'Who are you?' })).toBeVisible();
   await page.getByLabel('Your name').fill('Wren');
   await page.getByRole('button', { name: /Begin your story/ }).click();
+  await finishOpening(page);
   await expect(page.getByRole('heading', { name: 'Lantern Hall', exact: true })).toBeVisible();
   await page.reload();
   await page.keyboard.press('Enter');

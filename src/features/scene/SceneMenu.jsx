@@ -10,7 +10,12 @@ import { ReadingControls } from '../../dialogue-presentation.jsx';
  */
 export function SceneMenu({ reading, lines = null, view = 'play', onSwitchView }) {
   const [open, setOpen] = useState(null);
-  const toggle = (which) => setOpen(open === which ? null : which);
+  const toggle = (which) => {
+    const closing = open === which;
+    setOpen(closing ? null : which);
+    // Closing a panel hands the keyboard back to the story, so Enter continues it.
+    if (closing) document.querySelector('.dialogue-text')?.focus();
+  };
   return (
     <div className="scene-corner">
       {lines && (

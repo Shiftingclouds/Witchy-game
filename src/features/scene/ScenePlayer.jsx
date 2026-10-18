@@ -13,7 +13,7 @@ import { emotionOf, endsSection, sectionCast, sectionText, staging, timeOfDay } 
 import './scene.css';
 
 /** The story, played full screen one line at a time over the place it happens in. */
-export function ScenePlayer({ game, act, reading, onExit, onReadAsPage }) {
+export function ScenePlayer({ game, act, reading, onExit, onReadAsPage, opening = false }) {
   const chapter = chapters[game.chapter];
   const beats = useMemo(() => chapterBeats(game.chapter, game), [game.chapter, game.storyChoices]);
   const sceneId = chapterSceneId(game.chapter);
@@ -84,7 +84,7 @@ export function ScenePlayer({ game, act, reading, onExit, onReadAsPage }) {
       return;
     }
     if (s.pending) return;
-    if (s.last) return onExit?.();
+    if (s.last) return opening ? undefined : onExit?.();
     live.current = { ...s, index: s.index + 1, reveal: { complete: false, reveal() {} } };
     go(s.index + 1);
   }
@@ -101,7 +101,7 @@ export function ScenePlayer({ game, act, reading, onExit, onReadAsPage }) {
       } else if (e.key === 'Backspace') {
         e.preventDefault();
         back();
-      } else if (e.key === 'Escape') onExit?.();
+      } else if (e.key === 'Escape' && !opening) onExit?.();
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
@@ -109,7 +109,8 @@ export function ScenePlayer({ game, act, reading, onExit, onReadAsPage }) {
 
   return (
     <div
-      className="scene-player"
+      className={'scene-player' + (opening ? ' opening' : '')}
+      data-section={current.section?.id}
       role="dialog"
       aria-modal="true"
       aria-label={locationById[location].name}
@@ -120,14 +121,16 @@ export function ScenePlayer({ game, act, reading, onExit, onReadAsPage }) {
         alt={current.illustration?.alt || locationById[location].description}
       />
       <div className="scene-shade" aria-hidden="true" />
-      <button
-        type="button"
-        className="scene-icon scene-exit"
-        aria-label="Leave the scene"
-        onClick={onExit}
-      >
-        <X size={18} />
-      </button>
+      {!opening && (
+        <button
+          type="button"
+          className="scene-icon scene-exit"
+          aria-label="Leave the scene"
+          onClick={onExit}
+        >
+          <X size={18} />
+        </button>
+      )}
       <SceneMenu
         reading={reading}
         lines={beats.slice(0, index + 1).map((b) => {

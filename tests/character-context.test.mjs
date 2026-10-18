@@ -173,7 +173,7 @@ test('old saves retain bonds and recover only known topic events without inventi
     delete old.conversationSequence;
     if (version === 1) delete old.daily;
     const migrated = parseSave(old);
-    assert.equal(migrated.version, 5);
+    assert.equal(migrated.version, 6);
     assert.equal(migrated.bonds.rowan, 32);
     assert.equal(migrated.notes, old.notes);
     assert.deepEqual(migrated.characterMemories.rowan, [{ key: 'talk:hello', date: null }]);
