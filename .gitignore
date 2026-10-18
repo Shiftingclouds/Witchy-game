@@ -17,3 +17,4 @@ logs/
 .superdesign/
 build/icon.png
 userdropoff/
+public/audio/

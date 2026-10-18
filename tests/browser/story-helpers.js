@@ -53,6 +53,7 @@ export async function nextChapter(page, index = 0) {
  * (skipping the opening for tests that only need to be past it).
  */
 export async function enterMode(page, mode, { name } = {}) {
+  await page.getByText('Press any key').waitFor();
   await page.keyboard.press('Enter');
   const resume = page.getByRole('button', { name: /^Continue/ });
   if (await resume.count()) {
@@ -120,6 +121,7 @@ export async function finishOpening(page) {
 
 /** From the title screen: Continue, then the most recently played save. */
 export async function continueGame(page) {
+  await page.getByText('Press any key').waitFor();
   await page.keyboard.press('Enter');
   await page.getByRole('button', { name: /^Continue/ }).click();
   await page.locator('.title-menu .vine-button').first().click();

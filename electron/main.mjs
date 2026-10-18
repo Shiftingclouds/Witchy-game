@@ -7,6 +7,9 @@ import { assertOutsideRepo, saveDirectory } from './paths.mjs';
 import { appendFileSync, mkdirSync } from 'node:fs';
 import { createClaudeBridge } from './claude-bridge.mjs';
 
+// Let the game's music start without waiting for a click (it is a local, personal app).
+app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required');
+
 const here = path.dirname(fileURLToPath(import.meta.url));
 const APP_URL = 'app://lanternmere/';
 

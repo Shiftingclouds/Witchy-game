@@ -77,6 +77,7 @@ import { metCharacters, needsOpening } from './engine/selectors.mjs';
 import { AiScene } from './features/ai/AiScene.jsx';
 import { ScenePlayer } from './features/scene/ScenePlayer.jsx';
 import { ArrivalPainting } from './features/scene/ArrivalPainting.jsx';
+import { Soundscape } from './features/audio/Soundscape.jsx';
 import { useChronicle } from './features/ai/useTurn.mjs';
 import { AiStory, ThreadsCard } from './features/ai/AiStory.jsx';
 import { useSidebarState } from './features/shell/sidebar.mjs';
@@ -153,6 +154,7 @@ function App() {
     [creating, setCreating] = useState(null),
     [freshStart, setFreshStart] = useState(false),
     [arrival, setArrival] = useState(null),
+    [sceneSound, setSceneSound] = useState(null),
     [toast, setToast] = useState(''),
     [mobileNav, setMobileNav] = useState(false),
     [manifest, setManifest] = useState([]),
@@ -245,9 +247,17 @@ function App() {
   // Stand-alone view of the opening scene (used by the scene's own browser tests).
   if (new URLSearchParams(window.location.search).has('opening'))
     return <OpeningScene reduced={reading.reduced} awake={false} />;
+  // What should be playing: the title theme, a story moment, or the place you are in.
+  const soundContext = !game
+    ? { screen: 'title' }
+    : (needsOpening(game) || (scenePlaying && view === 'book')) && sceneSound
+      ? { screen: 'scene', ...sceneSound, date: game.date }
+      : { screen: 'world', location: game.location, period: game.period, date: game.date };
+  const soundscape = <Soundscape context={soundContext} />;
   if (!game)
     return (
       <>
+        {soundscape}
         <TitleScreen
           reduced={reading.reduced}
           saves={Object.fromEntries(MODES.map((m) => [m, load(m)]))}
@@ -302,7 +312,15 @@ function App() {
         data-reading-size={reading.size}
         data-reduced-motion={reading.reduced}
       >
-        <ScenePlayer key="opening" opening game={game} act={act} reading={reading} />
+        {soundscape}
+        <ScenePlayer
+          key="opening"
+          opening
+          game={game}
+          act={act}
+          reading={reading}
+          onSound={setSceneSound}
+        />
         {toast && (
           <div className="toast" role="status">
             {toast}
@@ -320,6 +338,7 @@ function App() {
       data-sidebar={sidebar.state}
       style={{ '--scene-art': `url(${art(sceneArt(game))})` }}
     >
+      {soundscape}
       {sidebar.state === 'hidden' && (
         <button
           className="sidebar-show"
@@ -459,6 +478,7 @@ function App() {
           {view === 'book' && game.mode !== 'sandbox' && scenePlaying && (
             <ScenePlayer
               key={game.chapter}
+              onSound={setSceneSound}
               game={game}
               act={act}
               reading={reading}

@@ -15,6 +15,7 @@ import {
   spoken,
 } from './scene-beats.mjs';
 import { READING_MODES } from './theme/tokens.mjs';
+import { setVolume, useVolumes } from './features/audio/settings.mjs';
 
 const readPreference = (key, allowed, fallback) => {
   try {
@@ -71,9 +72,44 @@ export function useReadingPreferences() {
   };
 }
 
+/** Music and sound volume (shared everywhere reading settings appear). */
+function SoundControls() {
+  const volumes = useVolumes();
+  const levels = [
+    ['off', 'Off'],
+    ['low', 'Low'],
+    ['medium', 'Medium'],
+    ['high', 'High'],
+  ];
+  return (
+    <>
+      {[
+        ['music', 'Music'],
+        ['sound', 'Sounds'],
+      ].map(([key, label]) => (
+        <label key={key}>
+          {label}{' '}
+          <select
+            aria-label={`${label} volume`}
+            value={volumes[key]}
+            onChange={(e) => setVolume(key, e.target.value)}
+          >
+            {levels.map(([value, name]) => (
+              <option key={value} value={value}>
+                {name}
+              </option>
+            ))}
+          </select>
+        </label>
+      ))}
+    </>
+  );
+}
+
 export function ReadingControls({ reading }) {
   return (
     <div className="reading-controls">
+      <SoundControls />
       <label>
         Reading mode{' '}
         <select

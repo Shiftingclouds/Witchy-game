@@ -8,6 +8,7 @@ import { DialogueBox } from './DialogueBox.jsx';
 import { useLineReveal } from './useLineReveal.mjs';
 import { ChapterEnd } from './ChapterEnd.jsx';
 import { ArrivalPainting } from './ArrivalPainting.jsx';
+import { playSfx } from '../audio/Soundscape.jsx';
 import { PortraitFrame } from './PortraitFrame.jsx';
 import { SceneMenu } from './SceneMenu.jsx';
 import { X } from 'lucide-react';
@@ -15,7 +16,7 @@ import { emotionOf, endsSection, sectionCast, sectionText, staging, timeOfDay } 
 import './scene.css';
 
 /** The story, played full screen one line at a time over the place it happens in. */
-export function ScenePlayer({ game, act, reading, onExit, onVisit, opening = false }) {
+export function ScenePlayer({ game, act, reading, onExit, onVisit, onSound, opening = false }) {
   const chapter = chapters[game.chapter];
   const beats = useMemo(() => chapterBeats(game.chapter, game), [game.chapter, game.storyChoices]);
   const sceneId = chapterSceneId(game.chapter);
@@ -62,6 +63,10 @@ export function ScenePlayer({ game, act, reading, onExit, onVisit, opening = fal
   );
 
   // Each key press acts on the newest state exactly once, however fast the presses come.
+  // Tell the soundscape which moment of the story is playing.
+  useEffect(() => {
+    onSound?.({ section: current.section?.id, location, period });
+  }, [current.section?.id, location, period]);
   // Each new place is first seen on its own, full screen.
   const [arrived, setArrived] = useState(null);
   const arriving = location !== arrived && !current.illustration;
@@ -192,6 +197,7 @@ export function ScenePlayer({ game, act, reading, onExit, onVisit, opening = fal
                 game={game}
                 onSelect={(key, option) => {
                   choiceMade.current = true;
+                  playSfx('sfx-choice');
                   act({ type: 'story-choice', key, option });
                   setPosition(index + 1);
                 }}

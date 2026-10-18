@@ -2,7 +2,7 @@
 
 Every piece of music and sound the game could use, scene by scene and place by place. Each entry has a **filename** (save the file with exactly this name), **when it plays**, the **mood and instruments**, whether it **loops**, a **prompt to paste into Suno or Udio**, and **search words** for the free libraries (Pixabay Music, FreePD, Incompetech).
 
-The game has no music player yet; it is in the backlog. When it is built, files dropped into `audio/` with these names will play automatically, the same way the art works. Start with the ★ items: they cover most of play.
+The music player is built: drop files into `audio/music`, `audio/ambience` or `audio/sfx` with these names (`.mp3` or `.ogg`), run `npm run build` (or `npm run app`), and they play automatically. Anything missing stays silent or uses a fallback. Start with the ★ items: they cover most of play.
 
 ## Received so far (17 October)
 

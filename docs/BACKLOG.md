@@ -8,4 +8,4 @@ Things the owner asked for that are deliberately scheduled for later. Newest at 
 
 ## Sound
 
-- **Music player** (requested 17 October 2026): tracks that change with the place and time of day, soft crossfades, ambient sound beds, small interface sounds, and music/sound volume and mute in Settings, with placeholders until the files arrive. Built from the list in `docs/design/SOUND_AND_MUSIC.md` (plan Task 14).
+- ~~**Music player**~~ **Built 17 October 2026** (`src/features/audio/`): music follows the scene, place, time of day and festivals; ambient beds layer under it; small sounds for arrivals and choices; Music and Sounds volume in every settings panel. Drop files into `audio/music`, `audio/ambience`, `audio/sfx` with the names in `docs/design/SOUND_AND_MUSIC.md` and rebuild. Originally requested 17 October 2026: tracks that change with the place and time of day, soft crossfades, ambient sound beds, small interface sounds, and music/sound volume and mute in Settings, with placeholders until the files arrive. Built from the list in `docs/design/SOUND_AND_MUSIC.md` (plan Task 14).

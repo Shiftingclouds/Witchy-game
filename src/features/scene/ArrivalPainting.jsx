@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { art, locationById } from '../../content.mjs';
+import { playSfx } from '../audio/Soundscape.jsx';
 
 /**
  * Arriving somewhere new: the place's painting fills the screen with only its name. The next click or
@@ -11,6 +12,7 @@ export function ArrivalPainting({ location, src, reduced, onDone }) {
   const finish = () => {
     if (done.current) return;
     done.current = true;
+    playSfx('sfx-arrive');
     if (reduced) return onDone();
     setLeaving(true);
     setTimeout(onDone, 700);
