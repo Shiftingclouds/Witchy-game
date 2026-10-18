@@ -65,9 +65,10 @@ async function startGuided(page) {
 }
 /** In the scene player, press on until a decision is offered (choosing the first option at others). */
 async function toDecision(page) {
-  for (let i = 0; i < 150; i++) {
+  for (let i = 0; i < 400; i++) {
     if (await page.locator('.scene-choice-panel textarea, .scene-choice-panel input').count())
       return;
+    await page.locator('.arrival-painting').waitFor({ state: 'detached' });
     await page.keyboard.press('Enter');
   }
   throw new Error('no decision reached');

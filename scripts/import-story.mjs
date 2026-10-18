@@ -4,7 +4,7 @@
 // option and branch of the scene it replaces. --check validates without writing.
 import { readFileSync, readdirSync, writeFileSync as writeRaw, mkdirSync } from 'node:fs';
 import * as prettier from 'prettier';
-import { characters, expressions, locations } from '../src/content.mjs';
+import { characters, expressions, locations, storyPlaces } from '../src/content.mjs';
 import { stagedScenes } from '../src/scene-beats.mjs';
 import { parseStoryScript, compareStructure, mergeMetadata } from './story-parse.mjs';
 
@@ -34,7 +34,7 @@ if (scene && current) {
   if (current.chapter !== scene.chapter)
     errors.push(`Scene ${scene.id} is chapter ${current.chapter}, not ${scene.chapter}.`);
   errors.push(...compareStructure(current, scene));
-  const places = new Set(locations.map((l) => l.id));
+  const places = new Set([...locations, ...storyPlaces].map((l) => l.id));
   for (const b of scene.beats)
     if (!places.has(b.section.location))
       errors.push(`SECTION ${b.section.id}: unknown place "${b.section.location}"`);

@@ -325,7 +325,42 @@ export const locations = rows.map(([id, name, region, subtitle, description, per
   description,
   person,
 }));
-export const locationById = Object.fromEntries(locations.map((l) => [l.id, l]));
+// Places from the player's life before Lanternmere. They appear in scenes only: never on the map,
+// in travel, in routines, or in the places the AI storyteller may use.
+export const storyPlaces = [
+  {
+    id: 'home-kitchen',
+    name: 'Home',
+    region: 'Away',
+    subtitle: 'Before Lanternmere',
+    description: 'The kitchen at home on an ordinary grey morning.',
+    person: null,
+    art: 'home-kitchen',
+  },
+  {
+    id: 'home-street',
+    name: 'The street outside',
+    region: 'Away',
+    subtitle: 'Before dawn',
+    description: 'The street outside your home, still dark, one window lit.',
+    person: null,
+    art: 'home-street-night',
+  },
+  {
+    id: 'train-carriage',
+    name: 'The green train',
+    region: 'Away',
+    subtitle: 'On the way to the lake',
+    description: 'A compartment on the green train, warm wood and worn velvet.',
+    person: null,
+    art: 'train-carriage',
+  },
+];
+/** Places in the world itself (not the story-only places of the player's old life). */
+export const isWorldPlace = (id) => locations.some((l) => l.id === id);
+export const locationById = Object.fromEntries(
+  [...locations, ...storyPlaces].map((l) => [l.id, l]),
+);
 const names = [
   'rowan',
   'imogen',

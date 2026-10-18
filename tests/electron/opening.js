@@ -32,3 +32,12 @@ export async function finishOpening(win) {
   await win.locator('.title-menu .vine-button').first().click();
   await win.locator('.app-shell').waitFor();
 }
+
+/** Click away an arrival painting (and wait for its fade) so the scene underneath can be used. */
+export async function pastArrival(win) {
+  const painting = win.locator('.arrival-painting');
+  if (await painting.count()) {
+    await painting.click();
+    await painting.waitFor({ state: 'detached' });
+  }
+}

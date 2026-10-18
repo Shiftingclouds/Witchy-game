@@ -57,6 +57,16 @@ Later (only once they speak a lot): `warm` and `grave` for the remaining 27 supp
 
 The 14 new people for a living world now have full character sheets and their own request list (some renamed): see **[CHARACTER_ART_REQUESTS.md](CHARACTER_ART_REQUESTS.md)**.
 
+## Batch 3b — The new beginning (letter, journey) — wanted
+
+Requested in one file for ChatGPT: [CHATGPT_PROLOGUE_ART.md](CHATGPT_PROLOGUE_ART.md).
+
+| File | What | Where |
+| --- | --- | --- |
+| `train-carriage.png` | Inside the green train, late afternoon | The `train` section of the opening |
+| `cg-acceptance-letter.png` | Close-up of the Lanternmere letter on the kitchen table | After the letter is opened |
+| `journey-countryside.png` | Hills, pines and the lake from the train window | During the train journey |
+
 ## Batch 4 — Places (seasonal variants from the existing plan) — wanted
 
 | File                                                       | Reference to attach              | Brief                                                                                                                                |

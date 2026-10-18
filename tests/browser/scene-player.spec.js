@@ -270,3 +270,18 @@ test.describe('arrival paintings', () => {
     await expect(painting).toHaveCount(0, { timeout: 100 });
   });
 });
+
+test('on a narrator line nobody is on screen, only the box', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('lanternmere.text-speed', 'instant'));
+  await openScene(page);
+  let checked = 0;
+  for (let i = 0; i < 40 && checked < 3; i++) {
+    const speaking = await page.locator('.dialogue-text .revealed-text').innerText();
+    if (!speaking.trim().startsWith('“')) {
+      await expect(page.locator('.portrait-frame')).toHaveCount(0);
+      checked++;
+    }
+    await finishAndAdvance(page);
+  }
+  expect(checked).toBe(3);
+});

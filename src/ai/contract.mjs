@@ -1,6 +1,6 @@
 // The reply contract: the one shape Claude answers in, and the validator that keeps canon safe.
 // Claude never edits state; every effect is a typed proposal the engine may accept or refuse.
-import { characterById, expressions, locationById } from '../content.mjs';
+import { characterById, expressions, isWorldPlace } from '../content.mjs';
 
 const PROPOSAL_TYPES = [
   'bond',
@@ -168,7 +168,7 @@ function checkProposal(p, { game, mode, newPeople }) {
         ? [{ type: 'time', advance: p.advance }]
         : [null, 'unknown time step'];
     case 'move':
-      return Object.hasOwn(locationById, p.location)
+      return isWorldPlace(p.location)
         ? [{ type: 'move', location: p.location }]
         : [null, 'unknown location'];
     case 'memory':
@@ -176,8 +176,7 @@ function checkProposal(p, { game, mode, newPeople }) {
         ? [{ type: 'memory', who: p.who, text: str(p.text, 300) }]
         : [null, 'unknown person'];
     case 'person':
-      if (!str(p.name, 40) || !Object.hasOwn(locationById, p.home))
-        return [null, 'incomplete person'];
+      if (!str(p.name, 40) || !isWorldPlace(p.home)) return [null, 'incomplete person'];
       return [
         {
           type: 'person',
@@ -252,7 +251,7 @@ export function validateReply(raw, { game, mode, decision = null }) {
   return {
     reply: {
       beats,
-      location: Object.hasOwn(locationById, raw.location) ? raw.location : game.location,
+      location: isWorldPlace(raw.location) ? raw.location : game.location,
       present: [...new Set([...present, ...beats.map((b) => b.speaker).filter(Boolean)])],
       suggestions: (Array.isArray(raw.suggestions) ? raw.suggestions : [])
         .map((s) => str(s, 120))

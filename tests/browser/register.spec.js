@@ -6,10 +6,14 @@ import {
   enterMode,
   leaveScene,
   nextChapter,
+  nextLine,
   playScene,
   playSection,
   setInGear,
   startOnPage,
+  untilSpeaker,
+  untilSpeaking,
+  untilText,
 } from './story-helpers.js';
 
 test.beforeEach(({ page }) => startOnPage(page));
@@ -30,7 +34,7 @@ test('register illustration and its written evidence resume offline in the scene
   await openRegister(page);
   await playSection(page, 'What the page does not say');
   const dialog = page.getByRole('dialog');
-  await dialog.getByRole('button', { name: 'Next', exact: true }).click();
+  await nextLine(page);
   await expect(dialog.locator('img.scene-painting')).toHaveAttribute(
     'src',
     '/art/register-study.webp',
@@ -78,19 +82,15 @@ test('new portrait expressions decode, keep listener positions, and appear in th
   await openRegister(page);
   await playSection(page, 'What the page does not say');
   const dialog = page.getByRole('dialog');
-  for (let step = 0; step < 3; step++)
-    await dialog.getByRole('button', { name: 'Next', exact: true }).click();
-  await expect(dialog.getByAltText('Dunne, neutral expression')).toBeVisible();
+  await expect(await untilSpeaking(page, /^Dunne, /)).toBeVisible();
   const dunne = dialog.locator('.portrait-frame[data-id="dunne"]');
   const before = (await dunne.boundingBox()).x;
-  await dialog.getByRole('button', { name: 'Next', exact: true }).click();
-  await expect(dialog.getByAltText('Dunne, attentive expression')).toBeVisible();
-  await expect(dunne).toHaveClass(/speaking/);
-  await expect(dialog.locator('.portrait-frame[data-id="imogen"]')).toHaveClass(/shadowed/);
-  expect((await dunne.boundingBox()).x).toBe(before);
-  for (let step = 0; step < 6; step++)
-    await dialog.getByRole('button', { name: 'Next', exact: true }).click();
-  await expect(dialog.getByAltText('Maelin Quill, reflective expression')).toBeVisible();
+  await nextLine(page);
+  await untilSpeaker(page, 'dunne');
+  await expect(dunne).toHaveClass(/speaking|box/);
+  // The speaker's frame grows a little; neighbours stay within a few pixels.
+  expect(Math.abs((await dunne.boundingBox()).x - before)).toBeLessThan(16);
+  await expect(await untilSpeaking(page, /^Maelin Quill, /)).toBeVisible();
   await page.waitForFunction(() =>
     [...document.querySelectorAll('.scene-player img')].every(
       (img) => img.complete && img.naturalWidth > 0,

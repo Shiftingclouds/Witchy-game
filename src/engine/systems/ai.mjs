@@ -1,4 +1,4 @@
-import { characterById, locationById, chapters } from '../../content.mjs';
+import { characterById, chapters, isWorldPlace } from '../../content.mjs';
 import { advanceTime } from '../time.mjs';
 import { isAiMode, isLiveLike } from '../modes.mjs';
 import { AI_LIMITS } from '../ai-state.mjs';
@@ -106,7 +106,7 @@ function apply(s, p, used) {
       return true;
     }
     case 'move': {
-      if (!isLiveLike(s.mode) || !Object.hasOwn(locationById, p.location)) return false;
+      if (!isLiveLike(s.mode) || !isWorldPlace(p.location)) return false;
       s.location = p.location;
       if (!s.visited.includes(p.location)) s.visited.push(p.location);
       return true;
@@ -122,8 +122,7 @@ function apply(s, p, used) {
     case 'person': {
       if (s.mode !== 'sandbox' || ai.people.length >= AI_LIMITS.people) return false;
       const name = str(p.name, 40);
-      if (!name || !Object.hasOwn(locationById, p.home) || ai.people.some((x) => x.name === name))
-        return false;
+      if (!name || !isWorldPlace(p.home) || ai.people.some((x) => x.name === name)) return false;
       ai.people.push({
         id: 'p-' + slug(name),
         name,

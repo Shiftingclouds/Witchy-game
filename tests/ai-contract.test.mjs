@@ -154,3 +154,20 @@ test('a malformed involves list is dropped, not thrown', () => {
   };
   assert.doesNotThrow(() => validateReply(raw, { game: sandbox(), mode: 'sandbox' }));
 });
+
+test('the AI can never use the story-only places of the player’s old life', () => {
+  const raw = {
+    beats: [{ speaker: null, text: 'You blink.', expression: 'neutral' }],
+    location: 'home-kitchen',
+    present: [],
+    suggestions: [],
+    proposals: [
+      { type: 'move', location: 'train-carriage' },
+      { type: 'person', name: 'Mo', description: 'A baker.', role: 'baker', home: 'home-street' },
+    ],
+    memoryNotes: '',
+  };
+  const { reply } = validateReply(raw, { game: sandbox(), mode: 'sandbox' });
+  assert.notEqual(reply.location, 'home-kitchen');
+  assert.equal(reply.proposals.length, 0);
+});

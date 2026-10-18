@@ -180,3 +180,33 @@ export async function setInGear(page, label, value) {
   await page.getByLabel(label).selectOption(value);
   await page.getByRole('button', { name: 'Scene settings' }).click();
 }
+
+/** Play on until this portrait is on screen (narration lines show nobody, so speakers come and go). */
+export async function untilSpeaking(page, alt, lines = 40) {
+  const portrait = page.getByRole('dialog').getByAltText(alt);
+  for (let i = 0; i < lines && !(await portrait.count()); i++) {
+    await page.locator('.arrival-painting').waitFor({ state: 'detached' });
+    await page.keyboard.press('Enter');
+  }
+  return portrait;
+}
+
+/** One step on in the scene (harmless at a decision, which waits for its choice). */
+export async function nextLine(page) {
+  await page.locator('.arrival-painting').waitFor({ state: 'detached' });
+  await page.keyboard.press('Enter');
+}
+
+/** Play on until the dialogue box shows this text. */
+export async function untilText(page, text, lines = 60) {
+  const box = page.locator('.dialogue-text .revealed-text');
+  for (let i = 0; i < lines && !(await box.innerText()).includes(text); i++) await nextLine(page);
+}
+
+/** Play on until this person is the one speaking. */
+export async function untilSpeaker(page, id, lines = 60) {
+  const frame = page.locator(
+    `.portrait-frame.speaking[data-id="${id}"], .portrait-frame.box[data-id="${id}"]`,
+  );
+  for (let i = 0; i < lines && !(await frame.count()); i++) await nextLine(page);
+}

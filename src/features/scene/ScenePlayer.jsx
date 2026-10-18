@@ -44,7 +44,9 @@ export function ScenePlayer({ game, act, reading, onExit, onVisit, opening = fal
   );
   const cast = sectionCast(beats, index);
   // A close-up illustration (a clue, a page of evidence) is shown on its own, without frames over it.
-  const stage = current.illustration ? 'none' : staging(cast);
+  // Narration is the narrator's voice alone: nobody is on screen until someone speaks.
+  const stage =
+    current.illustration || (!current.speaker && !bridgeLine?.name) ? 'none' : staging(cast);
   const time = timeOfDay(period);
   const frame = (id, size) => (
     <PortraitFrame

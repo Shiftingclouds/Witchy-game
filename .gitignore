@@ -16,3 +16,4 @@ logs/
 *.jsonl
 .superdesign/
 build/icon.png
+userdropoff/

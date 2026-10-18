@@ -252,6 +252,24 @@
     "placement": "art/c46-honoria-tired.png; register \"tired\" in characters/*/honoria.json presentation.expressions, then npm run sync:characters"
   },
   {
+    "file": "train-carriage.png",
+    "kind": "environment",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 3b \u2014 The new beginning (letter, journey) \u2014 wanted",
+    "placement": "art/train-carriage.png; location background (new places: add a row to src/content.mjs locations)"
+  },
+  {
+    "file": "cg-acceptance-letter.png",
+    "kind": "closeup",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 3b \u2014 The new beginning (letter, journey) \u2014 wanted",
+    "placement": "art/cg-acceptance-letter.png; beat illustration in the matching src/story/ scene"
+  },
+  {
+    "file": "journey-countryside.png",
+    "kind": "environment",
+    "request": "WORLD_ART_REQUESTS.md \u2014 Batch 3b \u2014 The new beginning (letter, journey) \u2014 wanted",
+    "placement": "art/journey-countryside.png; location background (new places: add a row to src/content.mjs locations)"
+  },
+  {
     "file": "dormitory-evening.png",
     "kind": "environment",
     "request": "WORLD_ART_REQUESTS.md \u2014 Batch 4 \u2014 Places (seasonal variants from the existing plan) \u2014 wanted",

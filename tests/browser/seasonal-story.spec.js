@@ -5,11 +5,15 @@ import {
   enterMode,
   leaveScene,
   nextChapter,
+  nextLine,
   playScene,
   playSection,
   reachBookChapter,
   setInGear,
   startOnPage,
+  untilSpeaker,
+  untilSpeaking,
+  untilText,
 } from './story-helpers.js';
 
 test.beforeEach(({ page }) => startOnPage(page));
@@ -25,10 +29,10 @@ test('Emberfall uses night scenery and new portraits, then resumes its petal com
     'src',
     '/art/glasshouses-night.webp',
   );
-  await dialog.getByRole('button', { name: 'Next', exact: true }).click();
-  await expect(dialog.getByAltText('Rhys, warm expression')).toBeVisible();
-  await dialog.getByRole('button', { name: 'Next', exact: true }).click();
-  await expect(dialog.getByAltText('Saoirse, attentive expression')).toBeVisible();
+  await nextLine(page);
+  await expect(await untilSpeaking(page, /^Rhys, /)).toBeVisible();
+  await nextLine(page);
+  await expect(await untilSpeaking(page, /^Saoirse, /)).toBeVisible();
   await page.waitForFunction(() =>
     [...document.querySelectorAll('.scene-player img')].every(
       (img) => img.complete && img.naturalWidth > 0,
@@ -39,8 +43,7 @@ test('Emberfall uses night scenery and new portraits, then resumes its petal com
     path: '/tmp/lanternmere-review/emberfall-cast.png',
     animations: 'disabled',
   });
-  for (let step = 0; step < 4; step++)
-    await dialog.getByRole('button', { name: 'Next', exact: true }).click();
+  await untilText(page, 'Two fallen petals lie');
   await expect(dialog.locator('.scene-painting')).toHaveAttribute(
     'src',
     '/art/moonflower-study.webp',
@@ -67,7 +70,7 @@ test('Emberfall uses night scenery and new portraits, then resumes its petal com
     path: '/tmp/lanternmere-review/emberfall-mobile.png',
     animations: 'disabled',
   });
-  await dialog.getByRole('button', { name: 'Next', exact: true }).click();
+  await nextLine(page);
   await dialog
     .getByRole('button', { name: 'Exchange the saucers, then shade the lamp.', exact: false })
     .click();
@@ -89,14 +92,13 @@ test('Longnight loads winter art, preserves a seven-light reading offline, and c
     'src',
     '/art/tully-cottage-winter.webp',
   );
-  await dialog.getByRole('button', { name: 'Next', exact: true }).click();
-  await dialog.getByRole('button', { name: 'Next', exact: true }).click();
-  await expect(dialog.getByAltText('Tully, warm expression')).toBeVisible();
+  await nextLine(page);
+  await nextLine(page);
+  await expect(await untilSpeaking(page, /^Tully, /)).toBeVisible();
   await leaveScene(page);
   await decide(page, 'longnight:shore-work', 1);
   await playSection(page, 'What the water has kept');
-  for (let i = 0; i < 3; i++)
-    await dialog.getByRole('button', { name: 'Next', exact: true }).click();
+  for (let i = 0; i < 3; i++) await nextLine(page);
   await expect(dialog.locator('.scene-painting')).toHaveAttribute(
     'src',
     '/art/lake-seven-lights.webp',
@@ -126,8 +128,8 @@ test('Longnight loads winter art, preserves a seven-light reading offline, and c
   await leaveScene(page);
   await decide(page, 'longnight:echo-record', 1);
   await playSection(page, 'What the school would lose');
-  await dialog.getByRole('button', { name: 'Next', exact: true }).click();
-  await expect(dialog.getByAltText('Kestrel, grave expression')).toBeVisible();
+  await nextLine(page);
+  await expect(await untilSpeaking(page, /^Kestrel, /)).toBeVisible();
   await leaveScene(page);
   await decide(page, 'longnight:winter-duty', 1);
   await nextChapter(page, 1);
@@ -148,8 +150,7 @@ test('First Thaw pays off winter research, presents the inscription offline, and
     'src',
     '/art/candlestones-day.webp',
   );
-  for (let step = 0; step < 5; step++)
-    await dialog.getByRole('button', { name: 'Next', exact: true }).click();
+  await untilText(page, 'A space for whoever comes next.');
   await expect(dialog.locator('.scene-painting')).toHaveAttribute(
     'src',
     '/art/candlestones-inscription.webp',
@@ -180,8 +181,8 @@ test('First Thaw pays off winter research, presents the inscription offline, and
   });
   await leaveScene(page);
   await playSection(page, 'A lesson with a way out');
-  await dialog.getByRole('button', { name: 'Next', exact: true }).click();
-  await expect(dialog.getByAltText('Kestrel, warm expression')).toBeVisible();
+  await nextLine(page);
+  await expect(await untilSpeaking(page, /^Kestrel, /)).toBeVisible();
   await leaveScene(page);
   await decide(page, 'thaw:practice-role', 1);
   await decide(page, 'thaw:rejoining', 1);
@@ -199,10 +200,8 @@ test('Bloomtide stages the rehearsal and saves a private conversation and a conc
   await reachBookChapter(page, 6, 1);
   await playSection(page, 'An invitation that can be accepted');
   const dialog = page.getByRole('dialog');
-  for (let step = 0; step < 5; step++)
-    await dialog.getByRole('button', { name: 'Next', exact: true }).click();
-  await expect(dialog.getByAltText('Okoro, warm expression')).toBeVisible();
-  await expect(dialog.getByAltText('Grey, attentive expression')).toBeVisible();
+  await expect(await untilSpeaking(page, /^Okoro, /)).toBeVisible();
+  await expect(await untilSpeaking(page, /^Grey, /)).toBeVisible();
   await page.waitForFunction(() =>
     [...document.querySelectorAll('.scene-player img')].every(
       (img) => img.complete && img.naturalWidth > 0,

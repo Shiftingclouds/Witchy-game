@@ -1,9 +1,11 @@
 import { isBookLike } from './modes.mjs';
-import { chapters, dialogues } from '../content.mjs';
+import { chapters, dialogues, storyPlaces } from '../content.mjs';
 import { castDetails, supportingDialogues } from '../cast.mjs';
 import { season, holiday } from './time.mjs';
 import { chapterBeats, pendingStoryChoice } from '../scene-beats.mjs';
 export function sceneArt(state, id = state.location) {
+  const away = storyPlaces.find((p) => p.id === id);
+  if (away) return away.art;
   if (id === 'mere')
     return season(state.date) === 'Winter'
       ? 'mere-frozen'
