@@ -232,20 +232,6 @@ html[data-reading-mode] .title-name {
   font-style: italic;
   color: #e4cfa6;
 }
-.creation-body {
-  display: grid;
-  grid-template-columns: 132px 1fr;
-  gap: 24px;
-  align-items: center;
-  text-align: left;
-}
-.creation-familiar {
-  width: 132px;
-  height: 160px;
-  object-fit: contain;
-  border: 1px solid rgba(232, 191, 110, 0.35);
-  background: rgba(60, 30, 16, 0.5);
-}
 .creation-fields {
   display: grid;
   gap: 12px;
@@ -293,10 +279,6 @@ html[data-reading-mode] .title-name {
   .title-menu {
     top: 30vh;
   }
-  .creation-body {
-    grid-template-columns: 1fr;
-    justify-items: center;
-  }
   .title-corner {
     right: 12px;
     gap: 14px;
@@ -335,13 +317,6 @@ html[data-reading-mode] .title-name {
   }
   .character-creation .creation-lede {
     margin: 2px 0 12px;
-  }
-  .creation-familiar {
-    width: 104px;
-    height: 124px;
-  }
-  .creation-body {
-    grid-template-columns: 104px 1fr;
   }
   .creation-fields {
     gap: 8px;

@@ -303,20 +303,6 @@
   gap: 10px;
   margin: 0;
 }
-.scene-switch {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  justify-self: start;
-  padding: 6px 0;
-  font-family: var(--lm-display);
-  font-size: 17px;
-  color: var(--lm-ink);
-  background: none;
-  border: 0;
-  border-bottom: 1px solid color-mix(in srgb, var(--lm-gold) 45%, transparent);
-  cursor: pointer;
-}
 .scene-history {
   width: min(460px, calc(100vw - 44px));
 }
@@ -339,18 +325,6 @@
   line-height: 1.5;
 }
 /* The page view keeps the same small gear, in its corner. */
-.book-page-corner {
-  position: relative;
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  align-items: center;
-}
-.book-page-corner .scene-corner {
-  position: relative;
-  top: 0;
-  right: 0;
-}
 .portrait-frame.conversation {
   width: 100%;
   box-shadow: none;
@@ -467,22 +441,6 @@
   height: 100%;
   object-fit: cover;
   filter: brightness(0.7);
-}
-.story-return-card {
-  position: relative;
-  display: grid;
-  gap: 14px;
-  justify-items: center;
-  padding: 28px 36px;
-  text-align: center;
-  background: rgb(from var(--lm-backing) r g b / 0.86);
-  border: 1px solid color-mix(in srgb, var(--lm-gold) 50%, transparent);
-  outline: 1px solid color-mix(in srgb, var(--lm-gold) 20%, transparent);
-  outline-offset: -5px;
-}
-.story-return-card h1 {
-  margin: 0;
-  font-size: 32px;
 }
 
 /* Arriving somewhere: the place alone, full screen, with only its name. */
