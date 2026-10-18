@@ -1,13 +1,18 @@
 // Who is on stage, how they are staged, and the light they are seen in. Pure, so it is easy to test.
 
-/** Everyone who speaks or is present anywhere in the current line's section, in order of first appearance. */
+/**
+ * Who is on stage at this line: everyone who has spoken or appeared so far in the current section,
+ * in order of first appearance. Nobody stands on stage before their first line; once there, they stay.
+ */
 export function sectionCast(beats, index) {
   const sectionId = beats[index]?.section?.id;
-  const inSection = sectionId ? beats.filter((b) => b.section?.id === sectionId) : beats;
   const cast = [];
-  for (const beat of inSection)
+  for (let i = 0; i <= index; i++) {
+    const beat = beats[i];
+    if (sectionId && beat.section?.id !== sectionId) continue;
     for (const id of [beat.speaker, ...(beat.actors || []).map((a) => a.id)])
       if (id && !cast.includes(id)) cast.push(id);
+  }
   return cast;
 }
 

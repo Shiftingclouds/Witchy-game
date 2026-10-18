@@ -7,9 +7,9 @@ const LABELS = {
 
 /** Make sure the current chapter is playing as a scene (from the return card if needed). */
 async function ensureScene(page) {
-  if (await page.locator('.scene-player').count()) return;
-  await page.getByRole('button', { name: /Return to the story/ }).click();
-  await page.locator('.scene-player').waitFor();
+  if (!(await page.locator('.scene-player').count()))
+    await page.getByRole('button', { name: /Return to the story/ }).click();
+  await page.locator('.scene-player .dialogue-box').waitFor();
 }
 
 /**
@@ -20,6 +20,7 @@ export async function chooseRemainingScenes(page, optionIndex = 0) {
   await ensureScene(page);
   for (let safety = 0; safety < 800; safety++) {
     if (await page.locator('.scene-exits').count()) return;
+    await page.locator('.arrival-painting').waitFor({ state: 'detached' });
     const options = page.locator('.scene-choice-panel .scene-decision button:not([disabled])');
     const n = await options.count();
     if (n) await options.nth(Math.min(optionIndex, n - 1)).click();
@@ -33,6 +34,7 @@ export async function decide(page, key, index = 0) {
   await ensureScene(page);
   const decision = page.locator(`.scene-choice-panel .scene-decision[data-choice="${key}"]`);
   for (let safety = 0; safety < 800 && !(await decision.count()); safety++) {
+    await page.locator('.arrival-painting').waitFor({ state: 'detached' });
     const other = page.locator('.scene-choice-panel .scene-decision button:not([disabled])');
     if (await other.count()) await other.first().click();
     else await page.keyboard.press('Enter');

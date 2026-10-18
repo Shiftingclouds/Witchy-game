@@ -1,12 +1,12 @@
 import { enterMode, continueGame } from './story-helpers.js';
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures.js';
 
 test.use({ viewport: { width: 1440, height: 900 } });
 
 async function openScene(page) {
   await page.goto('/');
   await enterMode(page, 'book');
-  await page.locator('.scene-player').waitFor();
+  await page.locator('.scene-player .dialogue-box').waitFor();
 }
 const save = (page) =>
   page.evaluate(() => JSON.parse(localStorage.getItem('lanternmere.save.book')));
@@ -78,6 +78,8 @@ test('reduced motion shows whole lines and keeps the frames still', async ({ pag
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await openScene(page);
   await expect(page.locator('.dialogue-box')).toHaveAttribute('data-revealing', 'false');
+  for (let i = 0; i < 60 && !(await page.locator('.portrait-frame').count()); i++)
+    await advance(page, 1);
   expect(
     await page
       .locator('.portrait-frame')

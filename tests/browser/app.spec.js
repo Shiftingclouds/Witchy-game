@@ -8,7 +8,7 @@ import {
   playScene,
   startOnPage,
 } from './story-helpers.js';
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures.js';
 
 test.beforeEach(({ page }) => startOnPage(page));
 test('world navigation, expressions, lessons, journal, and save restore', async ({ page }) => {

@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures.js';
 import { enterMode } from './story-helpers.js';
 
 test.use({ viewport: { width: 1440, height: 900 } });
@@ -8,7 +8,7 @@ export async function openScene(page) {
   await enterMode(page, 'book');
   const play = page.getByRole('button', { name: /Play scene/ });
   if (await play.count()) await play.click();
-  await page.locator('.scene-player').waitFor();
+  await page.locator('.scene-player .dialogue-box').waitFor();
 }
 const lineId = (page) => page.locator('.dialogue-box').getAttribute('data-line');
 async function finishAndAdvance(page) {
@@ -80,32 +80,25 @@ test('speech in the dialogue box is set in quotation marks', async ({ page }) =>
   await expect(page.locator('.dialogue-text')).toContainText('“');
 });
 
-async function toSpeaker(page, name) {
-  for (let i = 0; i < 40; i++) {
-    if (
-      (
-        await page
-          .locator('.dialogue-box .name-plate, .stage-row .speaking .name-plate')
-          .allInnerTexts()
-      ).some((t) => t.includes(name))
-    )
-      return;
-    await finishAndAdvance(page);
-  }
-  throw new Error('never reached ' + name);
-}
 const overlap = (a, b) =>
   a.x < b.x + b.width && b.x < a.x + a.width && a.y < b.y + b.height && b.y < a.y + a.height;
 
-test('Imogen is on stage at supper from its very first line', async ({ page }) => {
+test('at supper, people step onto the stage at their first line and stay', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('lanternmere.text-speed', 'instant'));
   await openScene(page);
+  await expect(page.locator('.portrait-frame[data-id="imogen"]')).toHaveCount(0);
+  for (let i = 0; i < 60 && !(await page.locator('.portrait-frame[data-id="imogen"]').count()); i++)
+    await finishAndAdvance(page);
   await expect(page.locator('.portrait-frame[data-id="imogen"]')).toBeVisible();
   await expect(page.locator('.portrait-frame[data-id="rowan"]')).toBeVisible();
+  await finishAndAdvance(page);
+  await expect(page.locator('.portrait-frame[data-id="imogen"]')).toBeVisible();
 });
 
 test('a group scene seats every frame on the dialogue box, name plates clear', async ({ page }) => {
   await openScene(page);
-  await toSpeaker(page, 'Rowan');
+  for (let i = 0; i < 80 && (await page.locator('.stage-row .portrait-frame').count()) < 2; i++)
+    await finishAndAdvance(page);
   const box = await page.locator('.dialogue-box').boundingBox();
   const frames = page.locator('.stage-row .portrait-frame');
   expect(await frames.count()).toBeGreaterThanOrEqual(2);
@@ -222,8 +215,11 @@ test('choosing a house and a familiar in the story opens the world', async ({ pa
   await page.getByRole('button', { name: /Live the world/ }).click();
   await page.getByRole('button', { name: /Begin your story/ }).click();
   const pick = async (text) => {
-    for (let i = 0; i < 200 && !(await page.getByRole('button', { name: text }).count()); i++)
+    for (let i = 0; i < 300 && !(await page.getByRole('button', { name: text }).count()); i++) {
+      // Key presses are not for the story while a place's painting is still fading.
+      await page.locator('.arrival-painting').waitFor({ state: 'detached' });
       await page.keyboard.press('Enter');
+    }
     await page.getByRole('button', { name: text }).click();
   };
   await pick(/Watch for the academy/);
@@ -233,4 +229,44 @@ test('choosing a house and a familiar in the story opens the world', async ({ pa
   await expect(page.locator('.app-shell')).toBeVisible();
   const save = await page.evaluate(() => JSON.parse(localStorage.getItem('lanternmere.save.live')));
   expect([save.house, save.familiar]).toEqual(['heronmere', 'fox']);
+});
+
+test.describe('arrival paintings', () => {
+  test.use({ autoArrive: false });
+  test('a new game opens on the lake alone: no box and no people until the first click', async ({
+    page,
+  }) => {
+    await page.goto('/');
+    await page.keyboard.press('Enter');
+    await page.getByRole('button', { name: /^New game/ }).click();
+    await page.getByRole('button', { name: /Read the book/ }).click();
+    await page.getByRole('button', { name: /Begin your story/ }).click();
+    const painting = page.locator('.arrival-painting');
+    await expect(painting).toBeVisible();
+    await expect(painting).toContainText('The Mere');
+    await expect(page.locator('.portrait-frame')).toHaveCount(0);
+    await expect(page.locator('.dialogue-box')).toBeHidden();
+    await page.keyboard.press('Enter');
+    await expect(painting).toHaveCount(0);
+    await expect(page.locator('.dialogue-box')).toBeVisible();
+    await expect(page.locator('.portrait-frame')).toHaveCount(0);
+  });
+});
+
+test.describe('arrival paintings', () => {
+  test.use({ autoArrive: false });
+  test('travelling on Your day arrives with the place full screen first', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/');
+    await enterMode(page, 'live');
+    await page.getByRole('button', { name: 'World map', exact: true }).first().click();
+    await page
+      .getByRole('button', { name: /The Library/ })
+      .first()
+      .click();
+    const painting = page.locator('.arrival-painting');
+    await expect(painting).toContainText('The Library');
+    await page.mouse.click(400, 300);
+    await expect(painting).toHaveCount(0, { timeout: 100 });
+  });
 });

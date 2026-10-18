@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures.js';
 import { enterMode, finishOpening } from './story-helpers.js';
 
 // Stand-in bridge: answers decisions with the first authored option, everything else with a small moment.

@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures.js';
 import { enterMode, leaveScene, playScene, playSection, startOnPage } from './story-helpers.js';
 import { tokens } from '../../src/theme/tokens.mjs';
 

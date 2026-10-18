@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures.js';
 import { motion, frames, difference } from './pixels.js';
 
 // The camera push-in, glow, ripple rings, twinkle and sparks are paused so only the scene effects move.

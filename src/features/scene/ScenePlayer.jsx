@@ -7,6 +7,7 @@ import { Interlude } from '../ai/Interlude.jsx';
 import { DialogueBox } from './DialogueBox.jsx';
 import { useLineReveal } from './useLineReveal.mjs';
 import { ChapterEnd } from './ChapterEnd.jsx';
+import { ArrivalPainting } from './ArrivalPainting.jsx';
 import { PortraitFrame } from './PortraitFrame.jsx';
 import { SceneMenu } from './SceneMenu.jsx';
 import { X } from 'lucide-react';
@@ -59,6 +60,9 @@ export function ScenePlayer({ game, act, reading, onExit, onVisit, opening = fal
   );
 
   // Each key press acts on the newest state exactly once, however fast the presses come.
+  // Each new place is first seen on its own, full screen.
+  const [arrived, setArrived] = useState(null);
+  const arriving = location !== arrived && !current.illustration;
   const live = useRef(null);
   const textRef = useRef(null);
   const choiceMade = useRef(false);
@@ -67,7 +71,7 @@ export function ScenePlayer({ game, act, reading, onExit, onVisit, opening = fal
     choiceMade.current = false;
     textRef.current?.focus();
   }, [game.storyChoices]);
-  live.current = { index, reveal, pending, last: index >= beats.length - 1, bridge };
+  live.current = { index, reveal, pending, last: index >= beats.length - 1, bridge, arriving };
   function go(to) {
     setPosition(to);
     act({ type: 'bookmark', scene: sceneId, beat: beats[to].id });
@@ -95,6 +99,7 @@ export function ScenePlayer({ game, act, reading, onExit, onVisit, opening = fal
   }
   useEffect(() => {
     const onKey = (e) => {
+      if (live.current.arriving) return;
       if (e.target.closest?.('input, select, textarea')) return;
       if (e.key === 'Enter' || e.key === ' ') {
         if (e.target.closest?.('.scene-decision, .scene-menu, .scene-corner, .scene-exit')) return;
@@ -142,7 +147,7 @@ export function ScenePlayer({ game, act, reading, onExit, onVisit, opening = fal
             : b;
         })}
       />
-      <div className={`scene-stage ${stage}`}>
+      <div className={`scene-stage ${stage}`} hidden={arriving}>
         {game.mode === 'guided' && reveal.complete && endsSection(beats, index) && (
           <div className="scene-interlude">
             <Interlude
@@ -219,6 +224,15 @@ export function ScenePlayer({ game, act, reading, onExit, onVisit, opening = fal
           )}
         </DialogueBox>
       </div>
+      {arriving && (
+        <ArrivalPainting
+          key={location}
+          location={location}
+          src={painting}
+          reduced={reading.reduced}
+          onDone={() => setArrived(location)}
+        />
+      )}
     </div>
   );
 }

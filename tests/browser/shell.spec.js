@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures.js';
 import { enterMode, continueGame } from './story-helpers.js';
 
 const mainWidth = (page) =>

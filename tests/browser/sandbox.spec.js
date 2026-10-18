@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures.js';
 import { finishOpening } from './story-helpers.js';
 
 // A stand-in for the desktop Claude bridge: replies come from a queue the test fills.

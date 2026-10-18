@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures.js';
 import { continueGame, enterMode, finishOpening } from './story-helpers.js';
 
 test('Enter or Space wakes the title and shows the menu', async ({ page }) => {

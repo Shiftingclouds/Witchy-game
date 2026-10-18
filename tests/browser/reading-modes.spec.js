@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures.js';
 import { enterMode, continueGame } from './story-helpers.js';
 
 test('reading mode changes the whole page and survives reload', async ({ page }) => {

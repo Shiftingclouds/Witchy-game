@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures.js';
 
 for (const mode of ['lamplight', 'parchment', 'night']) {
   test(`AI-mode patterns work in ${mode}`, async ({ page }) => {

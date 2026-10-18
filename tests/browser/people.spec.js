@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures.js';
 import { enterMode } from './story-helpers.js';
 
 test('People lists only those you have met', async ({ page }) => {

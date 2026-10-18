@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures.js';
 import { finishOpening } from './story-helpers.js';
 
 // The desktop preload exposes window.lanternmere.ai; in the browser a test can provide a stand-in.

@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures.js';
 import { enterMode } from './story-helpers.js';
 
 // Coloured glow is reserved for light sources (DESIGN.md "Light has a source").

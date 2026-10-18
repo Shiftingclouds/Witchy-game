@@ -31,7 +31,7 @@ test('every staged beat has a unique stable id, an available expression, and an 
   }
   // Staging is per section now: everyone who speaks in a section stands on stage for all of it.
   const arrival = chapterBeats(0, initialState('book', 'A', 'owlcombe', 'cat'));
-  const supper = arrival.findIndex((b) => b.section?.id === 'place-at-table');
+  const supper = arrival.findLastIndex((b) => b.section?.id === 'place-at-table');
   assert.ok(['rowan', 'imogen'].every((id) => sectionCast(arrival, supper).includes(id)));
 });
 

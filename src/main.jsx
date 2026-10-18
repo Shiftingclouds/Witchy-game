@@ -76,6 +76,7 @@ import { VineButton } from './features/opening/VineButton.jsx';
 import { metCharacters, needsOpening } from './engine/selectors.mjs';
 import { AiScene } from './features/ai/AiScene.jsx';
 import { ScenePlayer } from './features/scene/ScenePlayer.jsx';
+import { ArrivalPainting } from './features/scene/ArrivalPainting.jsx';
 import { useChronicle } from './features/ai/useTurn.mjs';
 import { AiStory, ThreadsCard } from './features/ai/AiStory.jsx';
 import { useSidebarState } from './features/shell/sidebar.mjs';
@@ -151,6 +152,7 @@ function App() {
     [modal, setModal] = useState(null),
     [creating, setCreating] = useState(null),
     [freshStart, setFreshStart] = useState(false),
+    [arrival, setArrival] = useState(null),
     [toast, setToast] = useState(''),
     [mobileNav, setMobileNav] = useState(false),
     [manifest, setManifest] = useState([]),
@@ -198,6 +200,7 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }
   function visit(id) {
+    if (game && id !== game.location) setArrival(id);
     act({ type: 'visit', id });
     navigate('world');
   }
@@ -493,6 +496,15 @@ function App() {
           </span>
         </footer>
       </div>
+      {arrival && (
+        <ArrivalPainting
+          key={arrival}
+          location={arrival}
+          src={art(sceneArt({ ...game, location: arrival }))}
+          reduced={reading.reduced}
+          onDone={() => setArrival(null)}
+        />
+      )}
       {modal?.type === 'talk' && (
         <Conversation
           key={modal.id}
