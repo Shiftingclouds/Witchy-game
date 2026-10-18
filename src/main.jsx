@@ -340,6 +340,7 @@ function App() {
       id === 'book' && game.mode === 'sandbox' ? [id, 'Your story', 'Story'] : [id, label, short],
     );
   const storyScene = view === 'book' && game.mode !== 'sandbox' && scenePlaying;
+  const [firstView, firstLabel] = ribbons[0];
   return (
     <div
       className="app-shell grimoire"
@@ -352,7 +353,10 @@ function App() {
           game={game}
           dateText={`${dateLabel(game.date)} · ${periods[game.period]}`}
           reduced={reading.reduced}
-          onHome={() => setGame(null)}
+          onHome={() => navigate(firstView)}
+          homeLabel={'Back to ' + firstLabel.toLowerCase()}
+          section={ribbons.find(([id]) => id === view)?.[2]}
+          navOpen={mobileNav}
           onMenu={() => setGame(null)}
           onCalendar={() => navigate('calendar')}
           onSettings={() => setModal({ type: 'settings' })}

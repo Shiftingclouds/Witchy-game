@@ -16,8 +16,9 @@ const SILK = {
 };
 
 /**
- * The desk around the book: candle light, drifting motes, gold vines, the top line (home, date,
- * settings, main menu) and the familiar keeping you company.
+ * The desk around the book: candle light, drifting motes, gold vines, the top line (the wordmark
+ * opens the book's first section; then date, settings, main menu) and the familiar keeping you
+ * company. On a narrow window the menu toggle names the section you are reading.
  */
 export function Desk({
   game,
@@ -27,6 +28,9 @@ export function Desk({
   onSettings,
   onMenu,
   onToggleNav,
+  navOpen,
+  homeLabel,
+  section,
   reduced,
   children,
 }) {
@@ -41,11 +45,17 @@ export function Desk({
       <Vine length={1080} className="gm-desk-vine left" />
       <Vine length={1080} className="gm-desk-vine right" flip />
       <header className="gm-top">
-        <button className="gm-home" onClick={onHome} aria-label="Back to main menu">
+        <button className="gm-home" onClick={onHome} aria-label={homeLabel} title={homeLabel}>
           <Flame size={16} /> Lanternmere
         </button>
-        <button className="gm-menu-toggle" onClick={onToggleNav} aria-label="Toggle navigation">
+        <button
+          className="gm-menu-toggle"
+          onClick={onToggleNav}
+          aria-label="Toggle navigation"
+          aria-expanded={Boolean(navOpen)}
+        >
           <Menu size={18} />
+          {section && <span aria-hidden="true">{section}</span>}
         </button>
         <button className="gm-date" onClick={onCalendar}>
           <Sun size={15} /> {dateText}

@@ -745,14 +745,19 @@ html .grimoire .gm-page :is(.button, .gm-button):disabled {
     padding: 10px 16px;
   }
   .gm-menu-toggle {
-    display: grid;
-    place-items: center;
-    width: 42px;
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    min-width: 42px;
     height: 42px;
+    padding: 0 16px 0 12px;
+    font-family: var(--lm-label) !important;
+    font-size: 15px;
+    letter-spacing: 0.12em;
     color: #f6d48e;
     background: none;
     border: 1px solid color-mix(in srgb, #e8bf6e 55%, transparent);
-    border-radius: 50%;
+    border-radius: 21px;
   }
   .gm-date {
     margin-left: auto;
