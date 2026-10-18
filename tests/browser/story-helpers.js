@@ -24,25 +24,45 @@ export async function enterMode(page, mode, { name } = {}) {
 }
 
 /**
- * Play through arrival night (crossing, house, familiar), taking the first option at each decision,
- * so a test starts where games did before the opening existed: Owlcombe, a cat, and, in a scene,
- * the first line of supper.
+ * Skip arrival night for tests that only need to be past it: answer the three opening decisions in
+ * the save (watching the castle, Owlcombe, a cat), place the bookmark at supper, and continue.
+ * The opening itself is played for real in scene-player.spec.js.
  */
 export async function finishOpening(page) {
+  const { chapterBeats } = await import('../../src/scene-beats.mjs');
   await page.locator('.scene-player.opening').waitFor();
-  for (let i = 0; i < 200 && (await page.locator('.scene-player.opening').count()); i++) {
-    const option = page.locator('.scene-choice-panel .scene-decision button:not([disabled])');
-    if (await option.count()) await option.first().click();
-    else await page.keyboard.press('Enter');
-  }
-  await page.locator('.app-shell').waitFor();
-  for (let i = 0; i < 40; i++) {
-    // Only a playing scene has a section; on Your day there is nothing to advance.
-    if (!(await page.locator('.scene-player').count())) break;
-    const at = await page.locator('.scene-player').getAttribute('data-section');
-    if (at === 'place-at-table') break;
-    await page.keyboard.press('Enter');
-  }
+  await page.waitForFunction(() =>
+    Object.keys(localStorage).some((k) => k.startsWith('lanternmere.save.')),
+  );
+  const supper = (game) => chapterBeats(0, game).find((b) => b.section?.id === 'place-at-table');
+  const answered = {
+    'arrival:crossing': 'castle',
+    'arrival:house': 'owlcombe',
+    'arrival:familiar': 'cat',
+  };
+  const { first } = await page.evaluate((answers) => {
+    const key = Object.keys(localStorage).find((k) => k.startsWith('lanternmere.save.'));
+    const game = JSON.parse(localStorage.getItem(key));
+    Object.assign(game, { house: 'owlcombe', familiar: 'cat' });
+    game.storyChoices = { ...game.storyChoices, ...answers };
+    localStorage.setItem(key, JSON.stringify(game));
+    localStorage.setItem('lanternmere.last-mode', game.mode);
+    return { first: game };
+  }, answered);
+  const beat = supper({
+    ...first,
+    house: 'owlcombe',
+    familiar: 'cat',
+    storyChoices: { ...first.storyChoices, ...answered },
+  });
+  await page.evaluate((id) => {
+    const key = Object.keys(localStorage).find((k) => k.startsWith('lanternmere.save.'));
+    const game = JSON.parse(localStorage.getItem(key));
+    game.bookmark = { scene: 'arrival', beat: id };
+    localStorage.setItem(key, JSON.stringify(game));
+  }, beat.id);
+  await page.reload();
+  await continueGame(page);
 }
 
 /** From the title screen: wake it and choose Continue. */

@@ -12,22 +12,34 @@ import {
 
 test.beforeEach(({ page }) => startOnPage(page));
 
+// The opening's lines come from ChatGPT's draft; read them from the story rather than hard-coding prose.
+async function firstObservation() {
+  const { stagedScenes } = await import('../../src/scene-beats.mjs');
+  const beats = stagedScenes.find((s) => s.id === 'arrival').beats;
+  const branch = (option) =>
+    beats.find((b) => b.when?.choice === 'arrival:first-observation' && b.when.equals === option);
+  const decision = beats.find((b) => b.id === 'first-observation');
+  const label = (option) => decision.choice.options.find((o) => o.id === option).label;
+  return { branch, label };
+}
+
 test('book decisions reveal only the chosen branch and resume in the staged reader offline', async ({
   page,
 }) => {
+  const { branch, label } = await firstObservation();
   await page.goto('/');
   await enterMode(page, 'book');
   await expect(page.locator('.story-choices button')).toHaveCount(0);
-  await page.getByRole('button', { name: 'Make a record with Imogen.', exact: false }).click();
-  await expect(page.locator('[data-story-beat="record-columns"]')).toBeVisible();
-  await expect(page.locator('[data-story-beat="frame-touch"]')).toHaveCount(0);
+  await page.getByRole('button', { name: label('record'), exact: false }).click();
+  await expect(page.locator(`[data-story-beat="${branch('record').id}"]`)).toBeVisible();
+  await expect(page.locator(`[data-story-beat="${branch('frame').id}"]`)).toHaveCount(0);
   await expect(
     page.locator('[data-choice="arrival:first-observation"] button').first(),
   ).toBeDisabled();
   await page.reload();
   await continueGame(page);
   await playScene(page);
-  await expect(page.locator('.dialogue-text')).toContainText('Imogen rules three columns');
+  await expect(page.locator('.dialogue-text')).toContainText(branch('record').text.slice(0, 30));
   const state = await page.evaluate(() =>
     JSON.parse(localStorage.getItem('lanternmere.save.book')),
   );
@@ -40,28 +52,23 @@ test('book decisions reveal only the chosen branch and resume in the staged read
 test('staged choices work with keyboard focus and the transcript retains the decision', async ({
   page,
 }) => {
+  const { branch, label } = await firstObservation();
   await page.goto('/');
   await enterMode(page, 'book');
   await playScene(page);
   const dialog = page.getByRole('dialog');
-  for (let index = 0; index < 60; index++) {
+  for (let index = 0; index < 200; index++) {
     if (await dialog.locator('.scene-decision').count()) break;
     await dialog.getByRole('button', { name: 'Next', exact: true }).click();
   }
-  const decision = dialog.getByRole('button', {
-    name: 'Check the outside with Rowan.',
-    exact: false,
-  });
-  await decision.focus();
+  await dialog.getByRole('button', { name: label('frame'), exact: false }).focus();
   await page.keyboard.press('Enter');
-  await expect(dialog.locator('.dialogue-text')).toContainText('back of your fingers');
+  await expect(dialog.locator('.dialogue-text')).toContainText(branch('frame').text.slice(0, 30));
   await expect(dialog.locator('.dialogue-text')).toBeFocused();
   await dialog.getByRole('button', { name: 'Previous line', exact: true }).click();
   await expect(dialog.locator('.scene-decision button').first()).toBeDisabled();
   await dialog.getByRole('button', { name: 'Lines so far' }).click();
-  await expect(dialog.locator('.scene-history')).toContainText(
-    'Your choice: Check the outside with Rowan.',
-  );
+  await expect(dialog.locator('.scene-history')).toContainText(`Your choice: ${label('frame')}`);
 });
 
 test('large text and motion preferences persist and keep a two-person lesson usable on phones', async ({

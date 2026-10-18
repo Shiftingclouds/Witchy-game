@@ -47,16 +47,14 @@ test('each speaker shows their authored expression and frames hold their places'
   page.on('pageerror', (e) => errors.push(e.message));
   await page.addInitScript(() => localStorage.setItem('lanternmere.text-speed', 'instant'));
   await openScene(page);
-  await advance(page, 4);
-  await expect(page.locator('.stage-row .portrait-frame[data-id="imogen"]')).toHaveClass(
-    /speaking/,
-  );
+  const speaking = (id) => page.locator(`.stage-row .portrait-frame.speaking[data-id="${id}"]`);
+  for (let i = 0; i < 40 && !(await speaking('imogen').count()); i++) await advance(page, 1);
   await expect(page.locator('.stage-row .portrait-frame[data-id="rowan"]')).toHaveClass(/shadowed/);
-  await expect(page.getByAltText('Imogen, amused expression')).toBeVisible();
+  const imogenAlt = await speaking('imogen').locator('img.frame-portrait').getAttribute('alt');
+  expect(imogenAlt).toMatch(/^Imogen, \w+ expression$/);
   const rowanX = (await page.locator('.portrait-frame[data-id="rowan"]').boundingBox()).x;
-  await advance(page, 1);
-  await expect(page.locator('.portrait-frame[data-id="rowan"]')).toHaveClass(/speaking/);
-  await expect(page.getByAltText('Rowan, laugh expression')).toBeVisible();
+  for (let i = 0; i < 40 && !(await speaking('rowan').count()); i++) await advance(page, 1);
+  await expect(page.locator('.portrait-frame[data-id="imogen"]')).toHaveClass(/shadowed/);
   const movedX = (await page.locator('.portrait-frame[data-id="rowan"]').boundingBox()).x;
   expect(Math.abs(movedX - rowanX)).toBeLessThan(16);
   expect(errors).toEqual([]);

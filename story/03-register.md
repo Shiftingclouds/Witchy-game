@@ -18,11 +18,11 @@ The atlas contains a map of the mere. Tiny names follow the shore, squeezed into
 
 **Imogen (attentive):** The catalogue calls these dedication marks. I thought that meant the people who paid for the lanterns. But there is a cross-reference to a register, and the register has a cross-reference to maintenance. I would like to know why a dedication needs a maintenance record.
 
-> Branch: Make a record with Imogen. (`arrival:first-observation` = `record`).
+> Branch: Help Imogen write down what happened. (`arrival:first-observation` = `record`).
 
 **Imogen (warm):** I have kept the columns we made at supper: what happened, who noticed, what we still need to ask. There is a fourth one now. Where did we get that answer?
 
-> Branch: Check the outside with Rowan. (`arrival:first-observation` = `frame`).
+> Branch: Examine the outside of the lantern with Rowan. (`arrival:first-observation` = `frame`).
 
 You tell her that the frame above your supper place was cold before anyone tried to relight it. Imogen adds this beside the maintenance reference. She asks whether you wrote the time down. You did not. She leaves the space empty instead of supplying a time that would look tidy.
 
@@ -117,11 +117,11 @@ Dunne gives you a clean comparison slip for each reference. You copy the names e
 
 Grey is at the old cloisters with a toolbox open on the paving beside him. He has lifted a loose threshold strip and set it where nobody can tread on the nails. Before you mention the register, he asks you to stand at the turn in the passage while a pair of students carry a long box through. You hold your notes against your chest and become, briefly, a warning sign.
 
-> Branch: Help Cas fix the sign and the rug. (`arrival:corridor-job` = `sign`).
+> Branch: Help Cas put the sign back and secure the rug. (`arrival:corridor-job` = `sign`).
 
 **Grey (neutral):** You know this corner now. The sign you helped with has kept its arrow, even after somebody tried to hang a scarf over it. Let them past and I will have a look at your paper.
 
-> Branch: Help Toby get his luggage to the stairs. (`arrival:corridor-job` = `trunk`).
+> Branch: Help Toby get his trunk to the stairs. (`arrival:corridor-job` = `trunk`).
 
 **Grey (neutral):** You and Toby had the right of it with that trunk. Clear the turning space first. It remains excellent advice even when the luggage has become a wardrobe.
 

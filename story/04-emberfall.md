@@ -20,11 +20,11 @@ Rhys moves a tray of moonflowers away from the loose metal. White star-shaped bl
 
 Saoirse’s list says six frames, twelve frames, adjustable shutters, and travelling memory lamp. Each line has a different mark beside it. You ask which marks mean finished. She explains that one means parts found, another means probably possible, and the third is a blot she has been using as a tick. None of them means finished.
 
-> Branch: Measure where the water actually goes. (`arrival:watering-method` = `measure`).
+> Branch: Compare how much water reaches each pot. (`arrival:watering-method` = `measure`).
 
 The small marked watering tube from your first week is clipped to the shelf. Its measurements are still legible. Saoirse follows your glance and admits that the plant trial became more useful when she stopped changing three things between readings. Then she looks back at the four lines on today’s list, caught by her own example.
 
-> Branch: Help her try one outlet before rebuilding the whole system. (`arrival:watering-method` = `simplify`).
+> Branch: Try a single outlet before using the whole system. (`arrival:watering-method` = `simplify`).
 
 The plain reservoir from your first glasshouse errand sits beside a healthy tray. The decorative tubing has never returned. Saoirse says the seedlings have shown disappointingly little interest in its absence. When you look at the list of lantern improvements, she looks at the reservoir too, then sighs.
 

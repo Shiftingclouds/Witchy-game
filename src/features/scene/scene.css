@@ -406,3 +406,13 @@
     max-height: calc(100vh - 200px - 72px);
   }
 }
+
+/* During a scene, notes (journal, friendship) appear at the top, clear of the dialogue box. */
+:is(.app-shell, .opening-story):has(.scene-player) .toast {
+  top: 22px;
+  bottom: auto;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  z-index: 70;
+}

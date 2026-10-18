@@ -18,6 +18,10 @@ export const introductions = {
     people: ['saoirse', 'rhys', 'delphine'],
     text: 'We worked together on the Emberfall lantern frames and agreed which work could be finished before the supper bell.',
   },
+  'arrival:crossing': {
+    people: ['toby', 'cas', 'tully'],
+    text: 'We met on the boat across Lantern Mere on arrival night.',
+  },
   'arrival:first-observation': {
     people: ['rowan', 'imogen'],
     text: 'We met at the welcome supper and examined the extinguished hall lantern.',

@@ -8,7 +8,16 @@ import { longnightScene } from './story/longnight.mjs';
 import { thawScene } from './story/thaw.mjs';
 import { bloomScene } from './story/bloom.mjs';
 import { resolveBeats, choiceKey } from './story/choices.mjs';
+import { importedChapters } from './story/chapters/index.mjs';
 const beat = (text, speaker = null, actors = []) => ({ text, speaker, actors });
+// ChatGPT's rewritten chapters (src/story/chapters/, made by `npm run import:story`) take the place
+// of the hand-written scenes they replace; their exit choices replace the chapter's.
+const imported = Object.fromEntries(importedChapters.map((c) => [c.scene.chapter, c]));
+for (const c of importedChapters)
+  (c.exits || []).forEach((text, i) => {
+    if (text && chapters[c.scene.chapter]?.choices[i])
+      chapters[c.scene.chapter].choices[i][0] = text;
+  });
 export const stagedScenes = [
   arrivalScene,
   kindleScene,
@@ -17,7 +26,7 @@ export const stagedScenes = [
   longnightScene,
   thawScene,
   bloomScene,
-];
+].map((scene) => imported[scene.chapter]?.scene || scene);
 export { choiceKey } from './story/choices.mjs';
 export const chapterSceneId = (index) =>
   stagedScenes.find((scene) => scene.chapter === index)?.id || `chapter-${index + 1}`;

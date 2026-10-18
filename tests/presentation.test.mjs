@@ -11,6 +11,7 @@ import {
   resolveExpression,
 } from '../src/scene-beats.mjs';
 import { initialState, transition, parseSave } from '../src/engine.mjs';
+import { sectionCast } from '../src/features/scene/stage.mjs';
 
 test('every staged beat has a unique stable id, an available expression, and an on-stage speaker', () => {
   for (let chapter = 0; chapter < chapters.length; chapter++) {
@@ -28,9 +29,10 @@ test('every staged beat has a unique stable id, an available expression, and an 
       }
     }
   }
-  const arrival = chapterBeats(0);
-  assert.ok(arrival.some((b) => b.speaker === 'rowan' && b.actors.some((a) => a.id === 'imogen')));
-  assert.ok(arrival.some((b) => b.speaker === 'imogen' && b.actors.some((a) => a.id === 'rowan')));
+  // Staging is per section now: everyone who speaks in a section stands on stage for all of it.
+  const arrival = chapterBeats(0, initialState('book', 'A', 'owlcombe', 'cat'));
+  const supper = arrival.findIndex((b) => b.section?.id === 'place-at-table');
+  assert.ok(['rowan', 'imogen'].every((id) => sectionCast(arrival, supper).includes(id)));
 });
 
 test('derived scene views preserve the original prose and distinguish speech from narration', () => {

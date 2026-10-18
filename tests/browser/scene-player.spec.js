@@ -46,10 +46,11 @@ test('the first press finishes a line, the second moves on, and no line is ever 
 });
 
 test('mashing Enter never skips past a decision', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('lanternmere.text-speed', 'instant'));
   await openScene(page);
   for (
     let i = 0;
-    i < 120 && !(await page.locator('.scene-choice-panel .scene-decision').count());
+    i < 300 && !(await page.locator('.scene-choice-panel .scene-decision').count());
     i++
   )
     await page.keyboard.press('Enter');
@@ -228,14 +229,14 @@ test('choosing a house and a familiar in the story opens the world', async ({ pa
   await page.getByRole('button', { name: /Live the world/ }).click();
   await page.getByRole('button', { name: /Begin your story/ }).click();
   const pick = async (text) => {
-    for (let i = 0; i < 40 && !(await page.getByRole('button', { name: text }).count()); i++)
+    for (let i = 0; i < 200 && !(await page.getByRole('button', { name: text }).count()); i++)
       await page.keyboard.press('Enter');
     await page.getByRole('button', { name: text }).click();
   };
-  await pick(/Watch the castle/);
-  await pick(/Make sure no one has to look for it alone/);
+  await pick(/Watch for the academy/);
+  await pick(/Find out who needs help looking/);
   await expect(page.locator('.scene-player.opening')).toBeVisible();
-  await pick(/A young fox/);
+  await pick(/young fox/i);
   await expect(page.locator('.app-shell')).toBeVisible();
   const save = await page.evaluate(() => JSON.parse(localStorage.getItem('lanternmere.save.live')));
   expect([save.house, save.familiar]).toEqual(['heronmere', 'fox']);

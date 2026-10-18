@@ -23,7 +23,9 @@ test('unanswered decisions gate both modes, reject out-of-order actions, and can
     assert.deepEqual(before.storyChoices, openingAnswered('owlcombe', 'cat'));
     assert.equal(next.points, before.points);
     assert.deepEqual(next.bonds, { rowan: 1, imogen: 1 });
-    assert.equal(next.bookmark.beat, 'record-columns');
+    const path = chapterBeats(0, next);
+    const after = path[path.findIndex((b) => b.id === 'first-observation') + 1];
+    assert.equal(next.bookmark.beat, after.id);
     assert.equal(choose(next, 'arrival:first-observation', 'frame'), next);
     assert.ok(
       next.characterMemories.imogen.some(
@@ -36,9 +38,12 @@ test('unanswered decisions gate both modes, reject out-of-order actions, and can
       ),
     );
     assert.ok(!next.characterMemories.rowan.some((memory) => memory.key.startsWith('scene:')));
-    assert.ok(chapterBeats(0, next).some((b) => b.id === 'record-thanks'));
-    assert.ok(!chapterBeats(0, next).some((b) => b.id === 'frame-thanks'));
-    assert.ok(!chapterBeats(0, next).some((b) => b.id === 'night-key'));
+    // Only the chosen branch is reached, and nothing past the next unanswered decision.
+    const gated = (b, equals) =>
+      b.when?.choice === 'arrival:first-observation' && b.when.equals === equals;
+    assert.ok(chapterBeats(0, next).some((b) => gated(b, 'record')));
+    assert.ok(!chapterBeats(0, next).some((b) => gated(b, 'frame')));
+    assert.ok(!chapterBeats(0, next).some((b) => b.when?.choice === 'arrival:night-intention'));
     assert.deepEqual(parseSave(JSON.stringify(next)).storyChoices, next.storyChoices);
   }
 });

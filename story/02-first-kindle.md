@@ -28,13 +28,13 @@ He puts his lantern on the stone mat and moves the paper square close to the cas
 
 His fingers trace a small arc. The wick glows, steadies, and goes out under his thumb. It takes perhaps two breaths. Rowan watches with his head tilted, already rehearsing the movement against the edge of his desk. You saw a hand move and a light appear. The space between those events contains everything you do not know.
 
-> Branch: Ask a question before pretending I understand. (`arrival:night-intention` = `ask`).
+> Branch: Ask when I don't understand something. (`arrival:night-intention` = `ask`).
 
 The sentence from your first night returns with inconvenient clarity. One honest question counts. You ask what Elian was doing before his fingers moved. He pauses with his thumb still on the stop mark, then lowers the lantern. The pause lasts long enough for you to worry that this was the wrong question.
 
 **Elian Vale (neutral):** Choosing how much warmth I wanted. I left out the part I have been doing longest. Thank you. Let us put that part back into the demonstration.
 
-> Branch: Stay with a difficult task long enough to try again. (`arrival:night-intention` = `stay`).
+> Branch: Give a difficult task another try. (`arrival:night-intention` = `stay`).
 
 You start to copy the movement, stop, and put your hand flat on the desk. Giving this a second attempt will not help if you do not know what the first attempt is for. You ask Elian to repeat the moment before his fingers moved. A second attempt may need help. You are already making use of the small amendment in your notebook.
 
@@ -54,13 +54,13 @@ This time he speaks slowly. The desired result is warmth enough to kindle the pr
 
 *2026-09-04 · classroom*
 
-> Branch: Start with a quiet half hour, then invite conversation. (`arrival:common-room-rule` = `quiet`).
+> Branch: Set aside a quiet half hour before conversation starts. (`arrival:common-room-rule` = `quiet`).
 
 Before the partner work begins, Rowan asks whether you want him to talk through the instructions while you try. You remember how much clearer the study notice became when quiet had a beginning and an end. You ask for one silent attempt, then comments afterwards. Rowan agrees and puts the pencil across his notebook as a reminder. It is a small arrangement, easy to change if it does not help, and much easier than trying to concentrate while also wondering how to ask someone to stop speaking.
 
 **Rowan (warm):** One attempt, then observations. If I start narrating, point at the pencil. I am giving you permission before I discover how much I enjoy the sound of my own helpfulness.
 
-> Branch: Start by showing newcomers where and how to join. (`arrival:common-room-rule` = `welcome`).
+> Branch: Explain where newcomers can sit and how to join in. (`arrival:common-room-rule` = `welcome`).
 
 Before the partner work begins, you ask Rowan to describe what the observer is supposed to do. Making Noor’s invitation clearer taught you how much can hide inside a familiar word. Rowan checks the instruction card instead of guessing. The observer watches the paper, counts the breaths, and says stop if anything leaves the mat. You each repeat the list in your own words. You will still make mistakes, but at least neither of you has to make them while trying to infer the other person’s job.
 
@@ -103,13 +103,13 @@ It is useful. Your third attempt produces a small light, and Rowan is too busy c
 
 Elian comes to your desk after helping the student with the hiccupping lantern. He reads the observation sheet before looking at either flame. That order matters. Rowan does not have to begin by announcing whether he succeeded. There is already a record of what he tried and what changed.
 
-> Branch: Check the outside with Rowan. (`arrival:first-observation` = `frame`).
+> Branch: Examine the outside of the lantern with Rowan. (`arrival:first-observation` = `frame`).
 
 **Rowan (warm):** We did this with the hall lantern. Checked what we could touch, then wrote down what we could not explain. I think I forgot the second half when it was my own spell.
 
 **Elian Vale (neutral):** That is often when it gets difficult. Keep the observation and the explanation on different lines. You can revise one without throwing away the other.
 
-> Branch: Make a record with Imogen. (`arrival:first-observation` = `record`).
+> Branch: Help Imogen write down what happened. (`arrival:first-observation` = `record`).
 
 You show Elian the three columns Imogen used on the night of your arrival. Seen, heard, guessed. He asks permission to borrow the headings for the board. You give it, and he writes Imogen’s name in brackets beneath them. Rowan watches the chalk, then draws the same columns on your practice sheet.
 
@@ -182,13 +182,13 @@ The bell rings. Chairs scrape, bags are recovered, and the student near the wind
 
 *2026-09-04 · classroom*
 
-> Branch: Measure where the water actually goes. (`arrival:watering-method` = `measure`).
+> Branch: Compare how much water reaches each pot. (`arrival:watering-method` = `measure`).
 
 While packing your lantern, you remember the three pots on Saoirse’s bench. The amount leaving the tank did not prove how much reached a plant. In the same way, knowing what your hand intended does not establish where the voice began. You add a note beneath your account: the light stayed steady while the words were heard. It might matter later, or it might remain an ordinary detail beside a strange one. You hand the addition to Elian before leaving. He dates it and clips it to the first page.
 
 **Elian Vale (neutral):** Good. Keep adding observations as you remember them, and mark when you remembered. That lets us distinguish the account you made immediately from the details you recalled after thinking about it.
 
-> Branch: Help her try one outlet before rebuilding the whole system. (`arrival:watering-method` = `simplify`).
+> Branch: Try a single outlet before using the whole system. (`arrival:watering-method` = `simplify`).
 
 While packing your lantern, you remember how much easier Saoirse’s machine became to understand after two outlets were removed. You ask Elian whether he changed anything between his two attempts to reproduce the voice. He says he kept the lantern, mat, and gesture the same. The person casting was different from your attempt, of course. He writes that distinction down when you point it out. A question about the method has become something the teacher can use. You did not need to know more magic than he does to ask it.
 
@@ -206,11 +206,11 @@ Imogen is waiting beside the library noticeboard with the atlas against her hip.
 
 **Imogen (attentive):** And the teacher has both accounts? Good. I can look for the phrase without deciding it is a prophecy. Libraries contain quite enough bad poetry to make that an important distinction.
 
-> Branch: Help Cas fix the sign and the rug. (`arrival:corridor-job` = `sign`).
+> Branch: Help Cas put the sign back and secure the rug. (`arrival:corridor-job` = `sign`).
 
 Cas passes with a roll of fresh tape. He stops to tell you that the sign is still in place and that three luggage trolleys crossed the repaired rug this morning. He thought you might want to know. You do. The small report brings the corridor back into focus: a problem you helped with has stayed solved overnight.
 
-> Branch: Help Toby get his luggage to the stairs. (`arrival:corridor-job` = `trunk`).
+> Branch: Help Toby get his trunk to the stairs. (`arrival:corridor-job` = `trunk`).
 
 Toby passes with his bag properly buckled and no trunk in tow. The steward found a replacement hinge, he tells you. He has written your name on the spare biscuit wrapper so he will remember to save you a seat at supper. You tell him you do not require another biscuit. He considers that, then says he will save the seat anyway.
 
