@@ -1,0 +1,110 @@
+/* Variant F — C's grimoire with the owner's picks from A and B. */
+
+/* gold vines climbing the dark desk (A/B), green vines stay on the parchment (C) */
+.vf-desk-vine {
+  position: absolute;
+  top: 0;
+  pointer-events: none;
+  opacity: 0.8;
+}
+.vf-desk-vine.left {
+  left: 6px;
+}
+.vf-desk-vine.right {
+  right: 6px;
+}
+.vf .vf-desk-vine .vine-stem,
+.vf .vf-desk-vine .vine-curl {
+  stroke: var(--gilt-bright);
+  opacity: 0.7;
+}
+.vf .vf-desk-vine .vine-leaf {
+  fill: color-mix(in srgb, #8fa36a 55%, var(--gilt-bright));
+  opacity: 0.7;
+}
+.vf .vf-desk-vine .vine-bud {
+  fill: #f6d48e;
+  filter: drop-shadow(0 0 4px #f6d48e);
+}
+
+/* rose-tinted buttons (A/B): wine wash, gold light from above, thin gilt outline */
+.vf .vc-ink {
+  gap: 10px;
+  padding: 10px 20px;
+  font-family: 'EB Garamond', serif;
+  font-size: 17px;
+  font-weight: 400;
+  color: #fbf0d6;
+  background:
+    radial-gradient(
+      100% 140% at 50% 0%,
+      color-mix(in srgb, #e8bf6e 32%, transparent),
+      transparent 70%
+    ),
+    #6b2a38;
+  border: 1px solid var(--gilt);
+  border-radius: 2px;
+  box-shadow:
+    0 6px 14px -8px rgba(60, 20, 20, 0.7),
+    inset 0 1px 0 color-mix(in srgb, #f6d48e 35%, transparent);
+  transition:
+    box-shadow 0.25s ease-out,
+    filter 0.25s ease-out;
+}
+.vf .vc-ink svg {
+  color: #f6d48e;
+}
+.vf .vc-ink::after {
+  display: none;
+}
+.vf .vc-ink:hover {
+  filter: brightness(1.08);
+  box-shadow:
+    0 0 20px -2px color-mix(in srgb, #e8bf6e 60%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #f6d48e 45%, transparent);
+}
+.vf .vc-ink:focus-visible {
+  outline: 1px solid var(--rubric);
+  outline-offset: 3px;
+}
+
+/* rounded-window frames (B): arched tops, thin gold outlines */
+.vf .vc-vignette img {
+  width: 84px;
+  height: 112px;
+  border-radius: 42px 42px 2px 2px;
+  outline-offset: 4px;
+}
+.vf .vc-portrait {
+  grid-template-columns: 100px 1fr;
+}
+.vf .vc-portrait .oval {
+  width: 100px;
+  height: 132px;
+  border-radius: 50px 50px 2px 2px;
+}
+.vf .vc-plate-frame {
+  border-radius: 999px 999px 3px 3px / 220px 220px 3px 3px;
+  overflow: hidden;
+  outline: 0;
+  box-shadow:
+    0 0 0 5px var(--parch),
+    0 0 0 6px color-mix(in srgb, var(--gilt) 55%, transparent),
+    0 8px 16px -6px rgba(60, 35, 10, 0.6);
+}
+.vf .vc-plate img {
+  border-radius: 999px 999px 2px 2px / 212px 212px 2px 2px;
+}
+
+/* lighter settings button (B) */
+.vf .vc-desk-top button {
+  width: 44px;
+  height: 44px;
+  color: #f6d48e;
+  background: rgba(20, 10, 6, 0.7);
+  border: 1px solid color-mix(in srgb, #e8bf6e 55%, transparent);
+  transition: box-shadow 0.25s ease-out;
+}
+.vf .vc-desk-top button:hover {
+  box-shadow: 0 0 16px color-mix(in srgb, #e8bf6e 55%, transparent);
+}

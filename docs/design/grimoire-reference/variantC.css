@@ -1,0 +1,676 @@
+/* Variant C — "The Illuminated Grimoire": an open book on a lamplit desk. */
+.vc {
+  --desk: #140b07;
+  --parch: #f1e3c4;
+  --parch-deep: #e2cda2;
+  --parch-edge: #c9a874;
+  --ink: #2b1a10;
+  --ink-soft: #5a4230;
+  --rubric: #8a2b1e;
+  --gilt: #b07d2a;
+  --gilt-bright: #e8bf6e;
+  --verdigris: #4f6b45;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 17px;
+  color: var(--ink);
+  background:
+    radial-gradient(60% 70% at 50% 30%, #3a2214 0%, #1e110a 55%, #0c0604 100%), var(--desk);
+}
+.vc button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+.vc :focus-visible {
+  outline: 1px solid var(--rubric);
+  outline-offset: 3px;
+}
+.vc ::selection {
+  background: color-mix(in srgb, var(--gilt) 35%, transparent);
+}
+.vc-desk-light {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    40% 30% at 18% 0%,
+    color-mix(in srgb, var(--gilt-bright) 22%, transparent),
+    transparent 70%
+  );
+}
+.vc-desk-top {
+  position: relative;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 40px 6px;
+  color: #e4cfa6;
+}
+.vc-desk-top span {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  font-family: 'Cormorant SC', serif;
+  letter-spacing: 0.2em;
+  font-size: 15px;
+  color: var(--gilt-bright);
+}
+.vc-desk-top .when {
+  margin-left: auto;
+  letter-spacing: 0.1em;
+  color: #e4cfa6;
+}
+.vc-desk-top button {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  color: var(--gilt-bright);
+  background: none;
+  border: 1px solid color-mix(in srgb, var(--gilt-bright) 40%, transparent);
+  border-radius: 50%;
+}
+
+/* the book */
+.vc-book {
+  position: relative;
+  align-self: center;
+  justify-self: center;
+  width: min(1240px, calc(100% - 150px));
+  height: min(760px, calc(100% - 30px));
+  margin-right: 40px;
+  isolation: isolate;
+}
+.vc-pages {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  border-radius: 4px 4px 6px 6px;
+  /* stacked page edges and a leather cover peeking below */
+  box-shadow:
+    0 2px 0 #d9c39a,
+    0 4px 0 #c9b087,
+    0 6px 0 #b89c72,
+    0 8px 0 #4a1e18,
+    0 12px 0 #3a1612,
+    0 40px 60px -20px rgba(0, 0, 0, 0.95),
+    0 0 120px -30px color-mix(in srgb, var(--gilt-bright) 40%, transparent);
+  animation: vc-turn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes vc-turn {
+  from {
+    opacity: 0.55;
+    filter: brightness(0.92);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vc-pages {
+    animation: none;
+  }
+}
+.vc-spread {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 34px 1fr;
+  height: 100%;
+}
+.vc-page {
+  position: relative;
+  padding: 50px 62px 54px;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      120% 90% at 50% 50%,
+      transparent 60%,
+      color-mix(in srgb, var(--parch-edge) 55%, transparent) 100%
+    ),
+    radial-gradient(
+      30% 20% at 80% 85%,
+      color-mix(in srgb, var(--parch-edge) 30%, transparent),
+      transparent 70%
+    ),
+    var(--parch);
+}
+.vc-page.left {
+  border-radius: 4px 0 0 6px;
+  background-color: var(--parch);
+  box-shadow: inset -30px 0 40px -30px rgba(80, 50, 20, 0.5);
+}
+.vc-page.right {
+  border-radius: 0 4px 6px 0;
+  box-shadow: inset 30px 0 40px -30px rgba(80, 50, 20, 0.5);
+}
+.vc-gutter {
+  background: linear-gradient(90deg, #d3bb8c, #a88a5c 45%, #7a6040 50%, #a88a5c 55%, #d3bb8c);
+}
+.vc-running {
+  position: absolute;
+  top: 22px;
+  left: 62px;
+  right: 62px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  letter-spacing: 0.06em;
+}
+.vc-running.r {
+  text-align: right;
+}
+.vc-folio {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  translate: -50% 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+.vc-margin-vine {
+  position: absolute;
+  top: 60px;
+  opacity: 0.55;
+  pointer-events: none;
+}
+.vc-margin-vine.left {
+  left: -18px;
+}
+.vc-margin-vine.right {
+  right: -18px;
+}
+.vc .vine-stem,
+.vc .vine-curl {
+  fill: none;
+  stroke: var(--gilt);
+  stroke-width: 1;
+}
+.vc .vine-leaf {
+  fill: var(--verdigris);
+  opacity: 0.85;
+}
+.vc .vine-bud {
+  fill: var(--rubric);
+}
+.vc .sparkle {
+  fill: var(--gilt);
+}
+
+/* text */
+.vc-entry h1 {
+  margin: 0 0 18px;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: 34px;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+.vc-entry h2 {
+  margin: 22px 0 10px;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: 22px;
+}
+.vc-entry p {
+  margin: 0 0 12px;
+  line-height: 1.6;
+  max-width: 62ch;
+}
+.rubric {
+  color: var(--rubric);
+}
+.rubric.sc {
+  font-family: 'Cormorant SC', serif;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+.vc-drop {
+  font-size: 18px;
+}
+.vc-initial {
+  position: relative;
+  float: left;
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  margin: 4px 14px 0 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 62px;
+  line-height: 1;
+  color: var(--gilt);
+  text-shadow: 0 1px 0 #f8e6b4;
+}
+.vc-initial svg {
+  position: absolute;
+  inset: 0;
+  z-index: -0;
+  pointer-events: none;
+}
+.vc-initial .box {
+  fill: color-mix(in srgb, var(--rubric) 10%, transparent);
+  stroke: var(--gilt);
+  stroke-width: 1.2;
+}
+.vc-initial .curl {
+  fill: none;
+  stroke: var(--verdigris);
+  stroke-width: 1;
+}
+.vc-initial .leaf {
+  fill: var(--verdigris);
+}
+
+/* plate */
+.vc-plate {
+  margin: 30px 0 0;
+}
+.vc-plate-frame {
+  padding: 8px;
+  background: #e8d5ae;
+  border: 1px solid var(--gilt);
+  outline: 1px solid color-mix(in srgb, var(--gilt) 50%, transparent);
+  outline-offset: 5px;
+  box-shadow: 0 6px 14px -6px rgba(60, 35, 10, 0.6);
+}
+.vc-plate img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 4.6;
+  object-fit: cover;
+}
+.vc-plate figcaption {
+  margin-top: 18px;
+  text-align: center;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+.vc-present {
+  display: flex;
+  gap: 22px;
+}
+.vc-vignette {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding: 0;
+  background: none;
+  border: 0;
+}
+.vc-vignette img {
+  width: 76px;
+  height: 92px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 50%;
+  border: 1px solid var(--gilt);
+  outline: 1px solid color-mix(in srgb, var(--gilt) 45%, transparent);
+  outline-offset: 3px;
+  transition: outline-color 0.2s ease-out;
+}
+.vc-vignette:hover img {
+  outline-color: var(--rubric);
+}
+.vc-vignette span {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  font-weight: 600;
+}
+.vc-errand em {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+}
+.vc-acts {
+  display: flex;
+  gap: 22px;
+  margin-top: 16px;
+}
+.vc-ink {
+  position: relative;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding: 6px 2px 8px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--rubric);
+  background: none;
+  border: 0;
+}
+.vc-ink::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 8px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 8' preserveAspectRatio='none'%3E%3Cpath d='M0 4 C 20 0, 30 8, 50 4 S 80 0, 100 4' fill='none' stroke='%23b07d2a' stroke-width='1'/%3E%3C/svg%3E")
+    center / 100% 100% no-repeat;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: left;
+  transform: scaleX(0.6);
+}
+.vc-ink:hover::after {
+  transform: scaleX(1);
+}
+
+/* journal */
+.vc-log {
+  font-style: italic;
+}
+.vc-log .rubric {
+  font-style: normal;
+}
+.vc-ruled {
+  width: 100%;
+  min-height: 190px;
+  font:
+    italic 18px/30px 'EB Garamond',
+    serif;
+  color: var(--ink);
+  caret-color: var(--rubric);
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0 29px,
+    color-mix(in srgb, var(--parch-edge) 80%, transparent) 29px 30px
+  );
+  border: 0;
+  resize: none;
+}
+.vc-ruled:focus {
+  outline: none;
+}
+
+/* calendar */
+.vc-month {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-top: 1px solid var(--ink-soft);
+  border-left: 1px solid color-mix(in srgb, var(--ink-soft) 40%, transparent);
+}
+.vc-month span {
+  display: grid;
+  place-items: center;
+  height: 54px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  border-right: 1px solid color-mix(in srgb, var(--ink-soft) 40%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--ink-soft) 40%, transparent);
+}
+.vc-month .wd {
+  height: 34px;
+  font-family: 'Cormorant SC', serif;
+  font-size: 15px;
+  color: var(--rubric);
+}
+.vc-month .past {
+  color: color-mix(in srgb, var(--ink-soft) 55%, transparent);
+}
+.vc .d.today {
+  color: var(--parch);
+  background: var(--rubric);
+}
+.vc .d.event {
+  text-decoration: underline wavy var(--verdigris) 1px;
+  text-underline-offset: 5px;
+}
+.vc .d.festival {
+  color: var(--gilt);
+  font-weight: 600;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--gilt-bright) 45%, transparent),
+    transparent 70%
+  );
+}
+.vc-key {
+  margin-top: 14px;
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+.vc-key .d {
+  display: inline-block;
+  min-width: 26px;
+  padding: 0 4px;
+  text-align: center;
+}
+.vc-obs {
+  display: grid;
+  grid-template-columns: 54px 1fr auto;
+  gap: 14px;
+  align-items: start;
+  padding: 12px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--parch-edge) 90%, transparent);
+}
+.vc-obs .num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  line-height: 1;
+  color: var(--rubric);
+}
+.vc-obs strong {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 21px;
+  font-weight: 600;
+}
+.vc-obs em {
+  color: var(--ink-soft);
+}
+.vc-obs.festival .num {
+  color: var(--gilt);
+}
+
+/* grimoire */
+.vc-spell {
+  text-align: center;
+}
+.vc-spell .vc-drop {
+  text-align: left;
+}
+.vc-spell p {
+  margin-inline: auto;
+}
+.vc-sigil {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 10px;
+  color: var(--rubric);
+}
+.vc-sigil > svg:first-child {
+  position: absolute;
+  inset: 0;
+  fill: none;
+  stroke: var(--gilt);
+  stroke-width: 1.2;
+}
+.vc-sigil .thin {
+  stroke-width: 0.6;
+  stroke-dasharray: 2 4;
+}
+.vc-school {
+  font-family: 'Cormorant SC', serif;
+  letter-spacing: 0.14em;
+  color: var(--rubric);
+}
+.vc-blank {
+  margin-top: 30px;
+  text-align: center;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+/* people */
+.vc-gallery {
+  display: grid;
+  gap: 20px;
+}
+.vc-gallery.top {
+  margin-top: 52px;
+}
+.vc-portrait {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  grid-template-rows: auto auto auto;
+  column-gap: 20px;
+  align-items: center;
+  text-align: left;
+  padding: 0;
+  background: none;
+  border: 0;
+}
+.vc-portrait .oval {
+  grid-row: 1 / span 3;
+  width: 96px;
+  height: 120px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 1px solid var(--gilt);
+  outline: 1px solid color-mix(in srgb, var(--gilt) 45%, transparent);
+  outline-offset: 4px;
+}
+.vc-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+.vc-portrait strong {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 600;
+}
+.vc-portrait em {
+  color: var(--ink-soft);
+}
+.vc-portrait .leaves {
+  display: flex;
+  gap: 2px;
+  color: color-mix(in srgb, var(--parch-edge) 90%, transparent);
+}
+.vc-portrait .leaves .on {
+  color: var(--verdigris);
+  fill: color-mix(in srgb, var(--verdigris) 60%, transparent);
+}
+
+/* map */
+.vc-spread.map {
+  display: block;
+  background: var(--parch);
+  border-radius: 4px 4px 6px 6px;
+  padding: 40px;
+}
+.vc-spread.map .vc-gutter {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 17px);
+  width: 34px;
+  opacity: 0.55;
+  pointer-events: none;
+}
+.vc-mapplate {
+  position: relative;
+  height: 100%;
+}
+.vc-mapplate img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 1px solid var(--gilt);
+  filter: sepia(0.25) saturate(0.9);
+}
+.vc-pin {
+  position: absolute;
+  left: 48%;
+  top: 38%;
+  padding: 4px 10px;
+  font-style: italic;
+  color: var(--rubric);
+  background: var(--parch);
+  border: 1px solid var(--rubric);
+}
+
+/* story */
+.vc-toc {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.vc-toc li {
+  display: grid;
+  grid-template-columns: 48px auto 1fr auto;
+  gap: 8px;
+  align-items: baseline;
+  padding: 7px 0;
+  font-size: 19px;
+  color: var(--ink-soft);
+}
+.vc-toc .dots {
+  border-bottom: 1px dotted color-mix(in srgb, var(--ink-soft) 70%, transparent);
+}
+.vc-toc .done .t {
+  text-decoration: line-through color-mix(in srgb, var(--gilt) 60%, transparent);
+}
+.vc-toc .now {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ribbons */
+.vc-ribbons {
+  position: absolute;
+  top: 40px;
+  right: -104px;
+  display: grid;
+  gap: 8px;
+  z-index: 0;
+}
+.vc-ribbons button {
+  position: relative;
+  width: 164px;
+  height: 40px;
+  padding: 0 16px 0 68px;
+  text-align: left;
+  font-family: 'Cormorant SC', serif;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  font-size: 14px;
+  color: #f6e7c4;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14), transparent 40%, rgba(0, 0, 0, 0.25)),
+    var(--ribbon);
+  border: 0;
+  clip-path: polygon(0 0, 100% 0, 88% 50%, 100% 100%, 0 100%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.2s ease-out;
+}
+.vc-ribbons button:hover {
+  transform: translateX(6px);
+  filter: brightness(1.15);
+}
+.vc-ribbons button.on {
+  transform: translateX(14px);
+  filter: brightness(1.2)
+    drop-shadow(0 0 8px color-mix(in srgb, var(--gilt-bright) 60%, transparent));
+}
+
+/* the cat on the desk */
+.vc-cat {
+  position: absolute;
+  left: 6px;
+  bottom: -6px;
+  width: 170px;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.8));
+  pointer-events: none;
+}
