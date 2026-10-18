@@ -2,7 +2,7 @@
 
 Start here to read the implemented narrative. These chapter exports contain the prose and dialogue used by the game, including labelled alternative choices. They are not outlines. Read [CLAUDE_START_HERE.md](CLAUDE_START_HERE.md) for the development handoff.
 
-7 chapters are expanded into 43 scene sections. The table identifies any chapters still awaiting expansion. See [the current word audit](docs/WORD_COUNT.md) for progress toward the requested 250,000-word minimum. Exported copies do not increase the word count.
+7 chapters are expanded into 48 scene sections. The table identifies any chapters still awaiting expansion. See [the current word audit](docs/WORD_COUNT.md) for progress toward the requested 250,000-word minimum. Exported copies do not increase the word count.
 
 | Chapter | Readable prose | Editable game source | Status |
 | --- | --- | --- | --- |
