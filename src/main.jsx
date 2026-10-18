@@ -80,9 +80,9 @@ import { ArrivalPainting } from './features/scene/ArrivalPainting.jsx';
 import { Soundscape } from './features/audio/Soundscape.jsx';
 import { useChronicle } from './features/ai/useTurn.mjs';
 import { AiStory, ThreadsCard } from './features/ai/AiStory.jsx';
-import { useSidebarState } from './features/shell/sidebar.mjs';
+import { Book, Desk, Leaf, Ribbons } from './features/shell/Grimoire.jsx';
 import { PatternShowcase } from './features/patterns/PatternShowcase.jsx';
-import './features/shell/shell.css';
+import './features/shell/grimoire.css';
 import { CharacterCreation } from './features/opening/CharacterCreation.jsx';
 import { LAST_MODE_KEY, MODE_LABELS } from './features/opening/menu-model.mjs';
 import { isBookLike, isLiveLike, MODES } from './engine/modes.mjs';
@@ -111,14 +111,15 @@ function load(mode) {
     return null;
   }
 }
+// Sections of the grimoire: [view, accessible name, ribbon label].
 const navItems = [
-  ['world', 'Your day', Compass],
-  ['map', 'World map', Map],
-  ['book', 'The story', BookOpen],
-  ['people', 'People', Users],
-  ['spells', 'Grimoire', Sparkles],
-  ['calendar', 'Calendar', CalendarDays],
-  ['journal', 'Journal', Feather],
+  ['world', 'Your day', 'Today'],
+  ['map', 'World map', 'Map'],
+  ['book', 'The story', 'Story'],
+  ['people', 'People', 'People'],
+  ['spells', 'Grimoire', 'Spells'],
+  ['calendar', 'Calendar', 'Calendar'],
+  ['journal', 'Journal', 'Journal'],
 ];
 const taskLocations = {
   rowan: 'lantern-hall',
@@ -146,7 +147,6 @@ function taskLocation(game, id) {
 
 function App() {
   const reading = useReadingPreferences();
-  const sidebar = useSidebarState();
   useEffect(() => applyReadingMode(reading.mode), [reading.mode]);
   const [game, setGame] = useState(null),
     [view, setView] = useState('world'),
@@ -330,192 +330,118 @@ function App() {
     );
   const house = houses.find((h) => h.id === game.house),
     chapter = chapters[game.chapter];
+  const ribbons = navItems
+    .filter(([id]) => isLiveLike(game.mode) || !['world', 'map'].includes(id))
+    .map(([id, label, short]) =>
+      id === 'book' && game.mode === 'sandbox' ? [id, 'Your story', 'Story'] : [id, label, short],
+    );
+  const storyScene = view === 'book' && game.mode !== 'sandbox' && scenePlaying;
   return (
     <div
-      className="app-shell"
+      className="app-shell grimoire"
       data-reading-size={reading.size}
       data-reduced-motion={reading.reduced}
-      data-sidebar={sidebar.state}
-      style={{ '--scene-art': `url(${art(sceneArt(game))})` }}
     >
       {soundscape}
-      {sidebar.state === 'hidden' && (
-        <button
-          className="sidebar-show"
-          onClick={sidebar.show}
-          aria-label="Show sidebar"
-          title="Show sidebar (Ctrl+B)"
+      <div className="gm-inert" inert={Boolean(modal) || storyScene}>
+        <Desk
+          game={game}
+          dateText={`${dateLabel(game.date)} · ${periods[game.period]}`}
+          reduced={reading.reduced}
+          onHome={() => setGame(null)}
+          onMenu={() => setGame(null)}
+          onCalendar={() => navigate('calendar')}
+          onSettings={() => setModal({ type: 'settings' })}
+          onToggleNav={() => setMobileNav(!mobileNav)}
         >
-          <img src="/crest.svg" alt="" />
-        </button>
-      )}
-      <aside
-        className={'sidebar ' + (mobileNav ? 'open' : '')}
-        inert={Boolean(modal) || sidebar.state === 'hidden'}
-      >
-        <div className="sidebar-head">
-          <button className="brand" onClick={() => setGame(null)} aria-label="Back to main menu">
-            <img src="/crest.svg" alt="" />
-            <span className="nav-label">
-              Lanternmere<small>The Quiet Arts</small>
-            </span>
-          </button>
-          <button
-            className="sidebar-toggle"
-            onClick={sidebar.cycle}
-            aria-label={sidebar.state === 'open' ? 'Collapse sidebar' : 'Hide sidebar'}
-            title={
-              (sidebar.state === 'open' ? 'Collapse sidebar' : 'Hide sidebar') + ' (Ctrl+B hides)'
-            }
-          >
-            <ChevronsLeft size={17} />
-          </button>
-        </div>
-        <div className="sidebar-rule" />
-        <Eyebrow>YOUR LITTLE WORLD</Eyebrow>
-        <nav aria-label="Main navigation">
-          {navItems
-            .filter(([id]) => isLiveLike(game.mode) || !['world', 'map'].includes(id))
-            .map(([id, label, Icon]) => (
-              <button
-                key={id}
-                className={'nav-item ' + (view === id ? 'active' : '')}
-                onClick={() => navigate(id)}
-                aria-label={id === 'book' && game.mode === 'sandbox' ? 'Your story' : label}
-                title={sidebar.state === 'rail' ? label : undefined}
-              >
-                <Icon size={19} />
-                <span className="nav-label">
-                  {id === 'book' && game.mode === 'sandbox' ? 'Your story' : label}
-                </span>
-                {view === id && <span className="nav-dot" />}
-              </button>
-            ))}
-        </nav>
-        <div className="sidebar-bottom">
-          <div className="familiar-card">
-            <img src={art('fam-' + game.familiar)} alt={`Your ${game.familiar} familiar`} />
-            <div>
-              <small>A LITTLE COMPANY</small>
-              <p>
-                Your familiar is
-                <br />
-                glad you’re here.
-              </p>
+          {saveError && (
+            <div className="storage-warning" role="alert">
+              {saveError}
+              <button onClick={() => downloadSave(game)}>Export save</button>
             </div>
-          </div>
-          <button
-            className="nav-item secondary"
-            onClick={() => setModal({ type: 'settings' })}
-            aria-label="Settings & saves"
-            title={sidebar.state === 'rail' ? 'Settings & saves' : undefined}
-          >
-            <Settings size={17} /> <span className="nav-label">Settings & saves</span>
-          </button>
-          <button
-            className="nav-item secondary"
-            onClick={() => setGame(null)}
-            aria-label="Main menu"
-            title={sidebar.state === 'rail' ? 'Main menu' : undefined}
-          >
-            <LogOut size={17} /> <span className="nav-label">Main menu</span>
-          </button>
-        </div>
-      </aside>
-      <div className="workspace" inert={Boolean(modal)}>
-        <header className="topbar">
-          <button
-            className="icon-button mobile-menu"
-            onClick={() => setMobileNav(!mobileNav)}
-            aria-label="Toggle navigation"
-          >
-            <Menu size={20} />
-          </button>
-          <div className="breadcrumb">
-            LANTERNMERE ACADEMY <span>/</span> <strong>{MODE_LABELS[game.mode]}</strong>
-          </div>
-          <div className="header-status">
-            <span className="connection">
-              <i />
-              Saved on this computer
-            </span>
-            <button className="date-pill" onClick={() => navigate('calendar')}>
-              <Sun size={16} />
-              {dateLabel(game.date)} <span>· {periods[game.period]}</span>
-            </button>
-          </div>
-        </header>
-        {saveError && (
-          <div className="storage-warning" role="alert">
-            {saveError}
-            <button onClick={() => downloadSave(game)}>Export save</button>
-          </div>
-        )}
-        <main className="main-content" id="main">
-          {view === 'world' && (
-            <World
-              game={game}
-              act={act}
-              visit={visit}
-              navigate={navigate}
-              open={setModal}
-              quest={
-                game.mode === 'sandbox' ? (
-                  <ThreadsCard game={game} navigate={navigate} />
-                ) : (
-                  <QuestCard game={game} visit={visit} navigate={navigate} />
-                )
-              }
-              aiScene={
-                game.mode === 'sandbox' ? (
-                  <AiScene game={game} act={act} reduced={reading.reduced} />
-                ) : null
-              }
-            />
           )}
-          {view === 'map' && <Atlas game={game} visit={visit} />}
-          {view === 'book' && game.mode === 'sandbox' && <AiStory game={game} act={act} />}
-          {view === 'book' && game.mode !== 'sandbox' && scenePlaying && (
-            <ScenePlayer
-              key={game.chapter}
-              onSound={setSceneSound}
-              game={game}
-              act={act}
-              reading={reading}
-              onExit={() => (isLiveLike(game.mode) ? navigate('world') : setSceneDismissed(true))}
-              onVisit={(task) => visit(taskLocation(game, task))}
-            />
-          )}
-          {view === 'book' && game.mode !== 'sandbox' && !scenePlaying && (
-            <Story
-              onPlayScene={() => setSceneDismissed(false)}
-              game={game}
-              act={act}
-              visit={visit}
-              open={setModal}
-              reading={reading}
-              leave={() => (isLiveLike(game.mode) ? navigate('world') : setGame(null))}
-            />
-          )}
-          {view === 'people' && <People game={game} open={setModal} />}
-          {view === 'spells' && <Grimoire game={game} visit={visit} open={setModal} act={act} />}
-          {view === 'calendar' && <Calendar game={game} act={act} visit={visit} open={setModal} />}
-          {view === 'journal' && <Journal game={game} act={act} visit={visit} />}
-        </main>
-        <footer className="app-footer">
-          <span>
-            <Flame size={13} /> A little magic. A place to belong.
-          </span>
-          <span>
-            {game.ending && (
-              <>
-                First year complete <span className="footer-separator">·</span>{' '}
-              </>
+          <Book
+            view={view}
+            ribbons={<Ribbons items={ribbons} view={view} onChange={navigate} open={mobileNav} />}
+          >
+            {view === 'world' && (
+              <World
+                game={game}
+                act={act}
+                visit={visit}
+                navigate={navigate}
+                open={setModal}
+                quest={
+                  game.mode === 'sandbox' ? (
+                    <ThreadsCard game={game} navigate={navigate} />
+                  ) : (
+                    <QuestCard game={game} visit={visit} navigate={navigate} />
+                  )
+                }
+                aiScene={
+                  game.mode === 'sandbox' ? (
+                    <AiScene game={game} act={act} reduced={reading.reduced} />
+                  ) : null
+                }
+              />
             )}
-            Progress saved on this device
-          </span>
-        </footer>
+            {view === 'map' && (
+              <Leaf>
+                <Atlas game={game} visit={visit} />
+              </Leaf>
+            )}
+            {view === 'book' && game.mode === 'sandbox' && (
+              <Leaf>
+                <AiStory game={game} act={act} />
+              </Leaf>
+            )}
+            {view === 'book' && game.mode !== 'sandbox' && !scenePlaying && (
+              <Leaf>
+                <Story
+                  onPlayScene={() => setSceneDismissed(false)}
+                  game={game}
+                  act={act}
+                  visit={visit}
+                  open={setModal}
+                  reading={reading}
+                  leave={() => (isLiveLike(game.mode) ? navigate('world') : setGame(null))}
+                />
+              </Leaf>
+            )}
+            {view === 'people' && (
+              <Leaf>
+                <People game={game} open={setModal} />
+              </Leaf>
+            )}
+            {view === 'spells' && (
+              <Leaf>
+                <Grimoire game={game} visit={visit} open={setModal} act={act} />
+              </Leaf>
+            )}
+            {view === 'calendar' && (
+              <Leaf>
+                <Calendar game={game} act={act} visit={visit} open={setModal} />
+              </Leaf>
+            )}
+            {view === 'journal' && (
+              <Leaf>
+                <Journal game={game} act={act} visit={visit} />
+              </Leaf>
+            )}
+          </Book>
+        </Desk>
       </div>
+      {storyScene && (
+        <ScenePlayer
+          key={game.chapter}
+          onSound={setSceneSound}
+          game={game}
+          act={act}
+          reading={reading}
+          onExit={() => (isLiveLike(game.mode) ? navigate('world') : setSceneDismissed(true))}
+          onVisit={(task) => visit(taskLocation(game, task))}
+        />
+      )}
       {arrival && (
         <ArrivalPainting
           key={arrival}

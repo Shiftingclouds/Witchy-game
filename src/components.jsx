@@ -1,4 +1,5 @@
 import { useEffect, useRef, useId } from 'react';
+import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { portrait, characterById } from './content.mjs';
 
@@ -46,7 +47,9 @@ export function Modal({ title, children, onClose, wide = false, className = '' }
       prior?.focus();
     };
   }, []);
-  return (
+  // Dialogs render at the top of the document so nothing on the page (the book's pages, their fades)
+  // can cover or clip them.
+  return createPortal(
     <div className="modal-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
       <section
         ref={ref}
@@ -63,7 +66,8 @@ export function Modal({ title, children, onClose, wide = false, className = '' }
         </div>
         {children}
       </section>
-    </div>
+    </div>,
+    document.body,
   );
 }
 export function Portrait({ id, emotion = 'neutral', className = '' }) {

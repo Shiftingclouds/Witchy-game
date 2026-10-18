@@ -3,23 +3,25 @@ import {
   Clock,
   Eye,
   Expand,
-  Feather,
+  Flower2,
   Heart,
-  Leaf,
-  MapPin,
   MessageCircle,
   Moon,
   Sparkles,
-  Users,
-  Flower2,
 } from 'lucide-react';
 import { art, houses, locations, locationById, spells } from './content.mjs';
-import { holiday, periods, relationshipLabel, sceneArt, season } from './engine.mjs';
+import { holiday, periods, relationshipLabel, sceneArt } from './engine.mjs';
 import { peopleHere } from './life.mjs';
-import { Button, Eyebrow, Portrait } from './components.jsx';
+import { Button, Portrait } from './components.jsx';
 import { DailyCard, Residents } from './daily-life.jsx';
 import { HouseCrest } from './components/lamplight/HouseCrest.jsx';
+import { LanternSketch, MarginNote } from './components/lamplight/marginalia.jsx';
+import { DropCap, Spread } from './features/shell/Grimoire.jsx';
+import { longDate } from './features/shell/long-date.mjs';
 
+const GREETING = ['Good morning', 'Good afternoon', 'Good evening', 'Late as it is'];
+
+/** Your day as the grimoire's Today spread: the place as a plate on the left, the day on the right. */
 export default function World({ game, act, visit, navigate, open, quest, aiScene }) {
   const location = locationById[game.location],
     here = peopleHere(game),
@@ -30,202 +32,156 @@ export default function World({ game, act, visit, navigate, open, quest, aiScene
   const nearby = locations
     .filter((l) => l.region === location.region && l.id !== location.id)
     .slice(0, 4);
-  return (
+  const left = (
     <>
-      <div className="page-heading">
-        <div>
-          <Eyebrow>{season(game.date).toUpperCase()} · YOUR FIRST YEAR</Eyebrow>
-          <h1>Make a little room for magic, {game.name}.</h1>
-          <p>A new friendship, an old secret, or simply a very good cup of tea.</p>
-        </div>
-        <button className="season-label" onClick={() => navigate('calendar')}>
-          <Leaf size={17} />
-          {season(game.date)} at Lanternmere
-        </button>
-      </div>
-      <div className="world-layout">
-        <div className="world-main">
-          <section className="scene" aria-label={location.name}>
-            <img
-              className="scene-background"
-              src={art(sceneArt(game))}
-              alt={location.description}
-            />
-            <div className="scene-top">
+      <figure className="gm-plate">
+        <section className="scene gm-arch" aria-label={location.name}>
+          <img className="scene-background" src={art(sceneArt(game))} alt={location.description} />
+          <button
+            aria-label="View full artwork"
+            className="scene-expand"
+            onClick={() => open({ type: 'scene' })}
+          >
+            <Expand size={16} />
+          </button>
+        </section>
+        <figcaption>
+          <h2>{location.name}</h2>
+          {location.subtitle}, at {periods[game.period].toLowerCase()}
+        </figcaption>
+      </figure>
+      <Residents game={game} open={open} />
+      <h2 className="gm-sub">
+        <span className="gm-rubric">A little</span> further afield
+      </h2>
+      <ul className="gm-nearby">
+        {nearby.map((l) => (
+          <li key={l.id}>
+            <button className="place-card" onClick={() => visit(l.id)}>
+              <img src={art(sceneArt(game, l.id))} alt="" loading="lazy" />
               <span>
-                <MapPin size={13} />
-                {location.region.toUpperCase()}
+                <strong>{l.name}</strong>
+                <small>{l.subtitle}</small>
               </span>
-              <button
-                aria-label="View full artwork"
-                className="scene-expand"
-                onClick={() => open({ type: 'scene' })}
-              >
-                <Expand size={17} />
-              </button>
-            </div>
-            {person && (
-              <button
-                className="scene-person"
-                onClick={() => open({ type: 'talk', id: person.id })}
-                aria-label={'Talk to ' + person.name}
-              >
-                <span className="scene-person-avatar">
-                  <Portrait id={person.id} />
-                </span>
-                <span>
-                  <MessageCircle size={12} /> {person.name} is here
-                </span>
-              </button>
-            )}
-            <div className="scene-caption">
-              <Eyebrow>{location.subtitle}</Eyebrow>
-              <h2>{location.name}</h2>
-              <p>{location.description.split('. ')[0]}.</p>
-            </div>
-          </section>
-          <div className="scene-actions">
-            <Button icon={Eye} onClick={() => act({ type: 'inspect' })}>
-              Look around
-            </Button>
-            {person && (
-              <Button icon={MessageCircle} onClick={() => open({ type: 'talk', id: person.id })}>
-                Talk to {person.name}
-              </Button>
-            )}
-            {lesson && !game.spells.includes(lesson.id) && (
-              <Button
-                className="gold"
-                icon={Sparkles}
-                onClick={() => open({ type: 'lesson', id: lesson.id })}
-              >
-                Learn {lesson.name}
-              </Button>
-            )}
-            {game.location === 'glasshouses' && (
-              <Button icon={Flower2} onClick={() => act({ type: 'tend' })}>
-                Tend moonflowers
-              </Button>
-            )}
-            {game.spells.length > 0 && (
-              <div className="cast-select">
-                <Sparkles size={15} />
-                <select
-                  aria-label="Cast a spell"
-                  value=""
-                  onChange={(e) => {
-                    if (e.target.value) act({ type: 'cast', id: e.target.value });
-                  }}
-                >
-                  <option value="">Cast a spell</option>
-                  {spells
-                    .filter((s) => game.spells.includes(s.id))
-                    .map((s) => (
-                      <option key={s.id} value={s.id}>
-                        {s.name}
-                      </option>
-                    ))}
-                </select>
-              </div>
-            )}
-          </div>
-          {aiScene}
-          <Residents game={game} open={open} />
-          <DailyCard game={game} visit={visit} open={open} />
-          <div className="nearby-heading">
-            <h3>A little further afield</h3>
-            <button className="text-button" onClick={() => navigate('map')}>
-              Explore the map <ArrowRight size={14} />
+              <ArrowRight size={15} />
             </button>
-          </div>
-          <div className="nearby-grid">
-            {nearby.map((l) => (
-              <button className="place-card" key={l.id} onClick={() => visit(l.id)}>
-                <img src={art(sceneArt(game, l.id))} alt="" loading="lazy" />
-                <div>
-                  <strong>{l.name}</strong>
-                  <small>{l.subtitle}</small>
-                </div>
-                <ArrowRight size={15} />
-              </button>
-            ))}
-          </div>
-          <div className="quiet-note">
-            <Feather size={18} />
-            <p>
-              “
-              {today
-                ? today.description
-                : 'You don’t have to find your whole life today. Just the next small thing.'}
-              ”
-            </p>
-            <span>{today ? today.name : 'A NOTE LEFT IN THE MARGIN'}</span>
-          </div>
-        </div>
-        <aside className="world-aside">
-          {quest}
-          <section className="company-card">
-            <div className="section-label">
-              <Users size={16} /> {person ? 'A FAMILIAR FACE' : 'A QUIET CORNER'}
-            </div>
-            {person ? (
-              <>
-                <div className="company-person">
-                  <Portrait
-                    id={person.id}
-                    emotion={game.bonds[person.id] > 0 ? 'warm' : 'neutral'}
-                  />
-                  <div>
-                    <h3>{person.name}</h3>
-                    <p>{person.role}</p>
-                    <span>
-                      <Heart size={12} />
-                      {relationshipLabel(game.bonds[person.id] || 0)}
-                    </span>
-                  </div>
-                </div>
-                <button
-                  className="text-button"
-                  onClick={() => open({ type: 'profile', id: person.id })}
-                >
-                  Get to know {person.name} <ArrowRight size={14} />
-                </button>
-              </>
-            ) : (
-              <>
-                <p className="quiet-room">
-                  Everyone is elsewhere for now. Enjoy the stillness, or find a friend.
-                </p>
-                <button className="text-button" onClick={() => navigate('people')}>
-                  Find a familiar face <ArrowRight size={14} />
-                </button>
-              </>
-            )}
-          </section>
-          {house && (
-            <section className="house-card">
-              <div className="house-crest">
-                <HouseCrest house={house.id} size={48} />
-              </div>
-              <div>
-                <small>FOR {house.name.toUpperCase()}</small>
-                <strong>
-                  {game.points} <span>house points</span>
-                </strong>
-                <p>Little kindnesses add up.</p>
-              </div>
-            </section>
-          )}
-          <div className="passing-time">
-            <Button icon={Clock} onClick={() => act({ type: 'wait' })}>
-              Wait until {periods[(game.period + 1) % 4].toLowerCase()}
-            </Button>
-            <Button className="rest-button" icon={Moon} onClick={() => act({ type: 'rest' })}>
-              Rest until tomorrow
-            </Button>
-          </div>
-        </aside>
+          </li>
+        ))}
+      </ul>
+      <button className="text-button gm-more" onClick={() => navigate('map')}>
+        Explore the map <ArrowRight size={14} />
+      </button>
+      <div className="mg-row">
+        <LanternSketch />
+        <MarginNote tilt={-2}>
+          {today
+            ? `${today.name}. ${today.description}`
+            : 'You don’t have to find your whole life today. Just the next small thing.'}
+        </MarginNote>
       </div>
     </>
   );
+  const right = (
+    <>
+      <h1>{longDate(game.date)}</h1>
+      <DropCap>{`${GREETING[game.period]}, ${game.name}. ${location.description}`}</DropCap>
+      <div className="scene-actions gm-actions">
+        <Button icon={Eye} onClick={() => act({ type: 'inspect' })}>
+          Look around
+        </Button>
+        {person && (
+          <Button icon={MessageCircle} onClick={() => open({ type: 'talk', id: person.id })}>
+            Talk to {person.name}
+          </Button>
+        )}
+        {lesson && !game.spells.includes(lesson.id) && (
+          <Button
+            className="gold"
+            icon={Sparkles}
+            onClick={() => open({ type: 'lesson', id: lesson.id })}
+          >
+            Learn {lesson.name}
+          </Button>
+        )}
+        {game.location === 'glasshouses' && (
+          <Button icon={Flower2} onClick={() => act({ type: 'tend' })}>
+            Tend moonflowers
+          </Button>
+        )}
+        {game.spells.length > 0 && (
+          <div className="cast-select">
+            <Sparkles size={15} />
+            <select
+              aria-label="Cast a spell"
+              value=""
+              onChange={(e) => {
+                if (e.target.value) act({ type: 'cast', id: e.target.value });
+              }}
+            >
+              <option value="">Cast a spell</option>
+              {spells
+                .filter((s) => game.spells.includes(s.id))
+                .map((s) => (
+                  <option key={s.id} value={s.id}>
+                    {s.name}
+                  </option>
+                ))}
+            </select>
+          </div>
+        )}
+      </div>
+      {aiScene}
+      {quest}
+      <DailyCard game={game} visit={visit} open={open} />
+      <section className="company-card">
+        {person ? (
+          <div className="company-person">
+            <span className="gm-arch">
+              <Portrait id={person.id} emotion={game.bonds[person.id] > 0 ? 'warm' : 'neutral'} />
+            </span>
+            <div>
+              <h3>{person.name}</h3>
+              <p>{person.role}</p>
+              <span>
+                <Heart size={12} />
+                {relationshipLabel(game.bonds[person.id] || 0)}
+              </span>
+              <button
+                className="text-button"
+                onClick={() => open({ type: 'profile', id: person.id })}
+              >
+                Get to know {person.name} <ArrowRight size={14} />
+              </button>
+            </div>
+          </div>
+        ) : (
+          <p className="quiet-room">
+            Everyone is elsewhere for now. Enjoy the stillness, or{' '}
+            <button className="text-button" onClick={() => navigate('people')}>
+              find a familiar face <ArrowRight size={14} />
+            </button>
+          </p>
+        )}
+      </section>
+      {house && (
+        <section className="house-card">
+          <div className="house-crest">
+            <HouseCrest house={house.id} size={44} />
+          </div>
+          <p>
+            <strong>{game.points}</strong> house points for {house.name}. Little kindnesses add up.
+          </p>
+        </section>
+      )}
+      <div className="passing-time">
+        <Button icon={Clock} onClick={() => act({ type: 'wait' })}>
+          Wait until {periods[(game.period + 1) % 4].toLowerCase()}
+        </Button>
+        <Button className="rest-button" icon={Moon} onClick={() => act({ type: 'rest' })}>
+          Rest until tomorrow
+        </Button>
+      </div>
+    </>
+  );
+  return <Spread className="gm-today" folio={42} left={left} right={right} />;
 }

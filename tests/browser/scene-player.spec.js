@@ -180,7 +180,7 @@ test('no chapter names on the page or in the footer', async ({ page }) => {
   await openScene(page);
   await page.keyboard.press('Escape');
   await expect(page.locator('.story-return')).not.toContainText(/Chapter/);
-  await expect(page.locator('.app-footer')).not.toContainText(/Chapter|Arrival/);
+  await expect(page.locator('.gm-top')).not.toContainText(/Chapter|Arrival/);
 });
 
 test('a conversation shows the person in a framed portrait over the place', async ({ page }) => {

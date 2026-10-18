@@ -21,14 +21,15 @@ const chromaticShadows = (page) =>
 
 test.use({ viewport: { width: 1440, height: 900 } });
 
-test('your day leads with the scene; map, people and profiles speak Lamplight', async ({
+test('your day opens on the place as a plate; map, people and profiles speak Lamplight', async ({
   page,
 }) => {
   await page.goto('/');
   await enterMode(page, 'live');
-  const hero = await page.locator('.scene').first().boundingBox();
-  const content = await page.locator('.main-content').boundingBox();
-  expect(hero.width / content.width).toBeGreaterThan(0.6);
+  // The grimoire's Today spread: the place's painting fills the left page.
+  const plate = await page.locator('.scene').first().boundingBox();
+  const leftPage = await page.locator('.gm-page.left').boundingBox();
+  expect(plate.width / leftPage.width).toBeGreaterThan(0.7);
   expect(await chromaticShadows(page)).toEqual([]);
 
   await page.getByRole('button', { name: 'World map', exact: true }).click();

@@ -60,7 +60,8 @@ test('choosing a mode that already has a save continues it and never re-creates'
   await page.getByRole('button', { name: /^Continue/ }).click();
   await page.getByRole('button', { name: /Live the world/ }).click();
   await expect(page.getByRole('heading', { name: 'Who are you?' })).toHaveCount(0);
-  await expect(page.getByRole('heading', { name: /Wren/ }).first()).toBeVisible();
+  // Today's greeting names the player.
+  await expect(page.locator('.gm-drop')).toContainText('Wren');
 });
 
 test('the menu never covers the lantern at 1024×700', async ({ page }) => {
