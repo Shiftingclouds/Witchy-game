@@ -1,6 +1,6 @@
 # Lanternmere — art for the new beginning
 
-Hello! Three paintings for the new first scenes of the game: the letter arriving, and the journey on the green train. Please read this whole file first.
+Hello! Three paintings for the new first scenes of the game (the letter arriving, and the journey on the green train), plus the four house crests. Please read this whole file first.
 
 ## Attached with this file
 
@@ -27,6 +27,15 @@ A close-up on a kitchen table in soft grey morning light: a thick cream-coloured
 
 The view from a moving train at golden hour: a long valley of green hills and hedgerows giving way to tall dark pines, a long silver lake catching the sunset between the trees, and very far away, on a hill by the water, the tiny warm lights of a castle-like academy. A soft blur of motion at the edges. No people.
 
+### 4–7. The four house crests
+
+Four heraldic badges, one per house, shown when the player chooses their house and in their common room. **Square 1024×1024, transparent background**, each a shield-shaped badge in warm gold linework and soft painted colour, with the house's bird at its centre. Elegant and simple enough to read when small (about 48 pixels). No text.
+
+- `crest-owlcombe.png`: an owl, violet-grey and gold (Curiosity).
+- `crest-rookhallow.png`: a raven, deep red and gold (Courage).
+- `crest-heronmere.png`: a heron, teal and gold (Kindness).
+- `crest-larkspire.png`: a lark, yellow-gold (Wonder).
+
 ## When you are done
 
-Please list the three filenames you produced. Thank you!
+Please list the seven filenames you produced. Thank you!

@@ -9,6 +9,7 @@ import { useLineReveal } from './useLineReveal.mjs';
 import { ChapterEnd } from './ChapterEnd.jsx';
 import { ArrivalPainting } from './ArrivalPainting.jsx';
 import { playSfx } from '../audio/Soundscape.jsx';
+import { houseLeaning, sortingKeys } from '../../engine/sorting.mjs';
 import { PortraitFrame } from './PortraitFrame.jsx';
 import { SceneMenu } from './SceneMenu.jsx';
 import { X } from 'lucide-react';
@@ -192,6 +193,14 @@ export function ScenePlayer({ game, act, reading, onExit, onVisit, onSound, open
           {current.choice && reveal.complete && !bridge && (
             <div className="scene-choice-panel">
               <SceneDecision
+                suggested={
+                  sceneId === 'arrival' && current.id === 'house'
+                    ? houseLeaning(
+                        game.storyChoices,
+                        sortingKeys(beats.length ? { id: sceneId, beats } : null),
+                      )
+                    : null
+                }
                 beat={current}
                 sceneId={sceneId}
                 game={game}

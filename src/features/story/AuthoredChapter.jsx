@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { dateLabel } from '../../engine.mjs';
+import { orderBySuggestion } from '../../engine/sorting.mjs';
+import { HouseCrest } from '../../components/lamplight/HouseCrest.jsx';
 import { Interlude } from '../ai/Interlude.jsx';
 import { StoryInput } from '../../components/lamplight/StoryInput.jsx';
 import { ThinkingVeil } from '../../components/lamplight/ThinkingVeil.jsx';
@@ -8,13 +10,13 @@ import { ERROR_COPY } from '../../ai/claude.mjs';
 import { chapterBeats, chapterSceneId, choiceKey, spoken } from '../../scene-beats.mjs';
 import { art, characterById, locationById } from '../../content.mjs';
 
-export function SceneDecision({ beat, sceneId, game, onSelect }) {
+export function SceneDecision({ beat, sceneId, game, onSelect, suggested = null }) {
   const key = choiceKey(sceneId, beat.id),
     selected = game.storyChoices?.[key];
   return (
     <fieldset className="scene-decision" data-choice={key}>
       <legend>{beat.choice.prompt || 'What will you do?'}</legend>
-      {beat.choice.options.map((option) => (
+      {orderBySuggestion(beat.choice.options, suggested).map((option) => (
         <button
           type="button"
           key={option.id}
@@ -23,8 +25,24 @@ export function SceneDecision({ beat, sceneId, game, onSelect }) {
           aria-pressed={selected === option.id}
           onClick={() => onSelect(key, option.id)}
         >
+          {key === 'arrival:familiar' && (
+            <span className="choice-picture">
+              <img
+                src={art('fam-' + option.id)}
+                alt={option.id[0].toUpperCase() + option.id.slice(1)}
+              />
+            </span>
+          )}
+          {key === 'arrival:house' && (
+            <span className="choice-picture crest">
+              <HouseCrest house={option.id} size={44} />
+            </span>
+          )}
           <span>{option.label}</span>
           {option.hint && <small>{option.hint}</small>}
+          {option.suggested && !selected && (
+            <small className="decision-suggestion">Honoria’s suggestion</small>
+          )}
           {selected === option.id && <small>Chosen · saved in your story</small>}
         </button>
       ))}

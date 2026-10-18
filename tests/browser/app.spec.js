@@ -48,6 +48,8 @@ test('world navigation, expressions, lessons, journal, and save restore', async 
 test('book mode reaches a complete ending through all authored scenes and eight chapter decisions', async ({
   page,
 }) => {
+  // Plays the whole book, all eight chapters.
+  test.setTimeout(180_000);
   await page.goto('/');
   await enterMode(page, 'book');
   for (let i = 0; i < 8; i++) {

@@ -534,3 +534,51 @@
 .scene-stage[hidden] {
   display: none;
 }
+
+/* Honoria's suggestion at the house choice: a quiet gold mark, not a pre-selection. */
+.decision-suggestion {
+  color: var(--lm-gold);
+  font-family: var(--lm-label);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* Framed pictures beside the arrival choices: familiars' paintings and house crests. */
+.scene-choice-panel .scene-decision button:has(.choice-picture) {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  grid-auto-rows: auto;
+  column-gap: 14px;
+  align-items: center;
+  text-align: left;
+}
+.scene-choice-panel .scene-decision button:has(.choice-picture) > :not(.choice-picture) {
+  grid-column: 2;
+}
+.scene-choice-panel .choice-picture {
+  grid-column: 1;
+  grid-row: 1 / span 3;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--lm-backing) 90%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lm-gold) 55%, transparent);
+  outline: 1px solid color-mix(in srgb, var(--lm-gold) 20%, transparent);
+  outline-offset: -4px;
+  border-radius: 2px;
+}
+.scene-choice-panel .choice-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+.scene-choice-panel .choice-picture.crest {
+  background: none;
+  border: 0;
+  outline: 0;
+}

@@ -285,3 +285,38 @@ test('on a narrator line nobody is on screen, only the box', async ({ page }) =>
   }
   expect(checked).toBe(3);
 });
+
+test('the house and familiar choices show their crests and paintings in frames', async ({
+  page,
+}) => {
+  await page.addInitScript(() => localStorage.setItem('lanternmere.text-speed', 'instant'));
+  await page.goto('/');
+  await page.keyboard.press('Enter');
+  await page.getByRole('button', { name: /^New game/ }).click();
+  await page.getByRole('button', { name: /Live the world/ }).click();
+  await page.getByRole('button', { name: /Begin your story/ }).click();
+  const until = async (key) => {
+    const decision = page.locator(`.scene-decision[data-choice="${key}"]`);
+    for (let i = 0; i < 400 && !(await decision.count()); i++) {
+      const other = page.locator('.scene-choice-panel .scene-decision button:not([disabled])');
+      if (await other.count()) await other.first().click();
+      else {
+        await page.locator('.arrival-painting').waitFor({ state: 'detached' });
+        await page.keyboard.press('Enter');
+      }
+    }
+    return decision;
+  };
+  const house = await until('arrival:house');
+  await expect(house.locator('.choice-picture')).toHaveCount(4);
+  await house.locator('button').first().click();
+  const familiar = await until('arrival:familiar');
+  await expect(familiar.locator('.choice-picture img')).toHaveCount(8);
+  await expect(familiar.getByAltText('Fox')).toBeVisible();
+});
+
+test('Your day shows your house crest', async ({ page }) => {
+  await page.goto('/');
+  await enterMode(page, 'live');
+  await expect(page.locator('.house-card .house-crest-mark')).toBeVisible();
+});

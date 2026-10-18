@@ -22,9 +22,12 @@ import { initialState, SAVE_VERSION } from './state.mjs';
 import { MODES } from './modes.mjs';
 import { sanitizeAi } from './ai-state.mjs';
 import { migrateSave } from './migrations.mjs';
+import { fillSorting, sortingKeys } from './sorting.mjs';
 export function parseSave(value) {
   let s = migrateSave(typeof value === 'string' ? JSON.parse(value) : value);
   if (s && s.bookmark === undefined) s = { ...s, bookmark: null };
+  // Saves from before Honoria's house questions already know their house.
+  if (s?.house) s = fillSorting(s, sortingKeys(stagedScenes.find((x) => x.id === 'arrival')));
   if (
     !s ||
     s.version !== SAVE_VERSION ||

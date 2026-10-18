@@ -9,7 +9,6 @@ import {
   MapPin,
   MessageCircle,
   Moon,
-  Shield,
   Sparkles,
   Users,
   Flower2,
@@ -19,6 +18,7 @@ import { holiday, periods, relationshipLabel, sceneArt, season } from './engine.
 import { peopleHere } from './life.mjs';
 import { Button, Eyebrow, Portrait } from './components.jsx';
 import { DailyCard, Residents } from './daily-life.jsx';
+import { HouseCrest } from './components/lamplight/HouseCrest.jsx';
 
 export default function World({ game, act, visit, navigate, open, quest, aiScene }) {
   const location = locationById[game.location],
@@ -204,8 +204,8 @@ export default function World({ game, act, visit, navigate, open, quest, aiScene
           </section>
           {house && (
             <section className="house-card">
-              <div className="house-crest" style={{ color: house.color }}>
-                <Shield size={32} />
+              <div className="house-crest">
+                <HouseCrest house={house.id} size={48} />
               </div>
               <div>
                 <small>FOR {house.name.toUpperCase()}</small>

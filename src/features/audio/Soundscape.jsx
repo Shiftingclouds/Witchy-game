@@ -30,7 +30,8 @@ function fadeTo(audio, target, done) {
   const began = performance.now();
   const step = (now) => {
     const t = Math.min(1, (now - began) / FADE);
-    audio.volume = start + (target - start) * t;
+    // Clamp: rounding can land a hair outside 0–1, which browsers reject.
+    audio.volume = Math.min(1, Math.max(0, start + (target - start) * t));
     if (t < 1) requestAnimationFrame(step);
     else done?.();
   };

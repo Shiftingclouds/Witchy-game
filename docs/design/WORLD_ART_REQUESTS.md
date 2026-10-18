@@ -66,6 +66,10 @@ Requested in one file for ChatGPT: [CHATGPT_PROLOGUE_ART.md](CHATGPT_PROLOGUE_AR
 | `train-carriage.png` | Inside the green train, late afternoon | The `train` section of the opening |
 | `cg-acceptance-letter.png` | Close-up of the Lanternmere letter on the kitchen table | After the letter is opened |
 | `journey-countryside.png` | Hills, pines and the lake from the train window | During the train journey |
+| `crest-owlcombe.png` | Owlcombe crest (owl) | House choice, common room, Your day |
+| `crest-rookhallow.png` | Rookhallow crest (raven) | House choice, common room, Your day |
+| `crest-heronmere.png` | Heronmere crest (heron) | House choice, common room, Your day |
+| `crest-larkspire.png` | Larkspire crest (lark) | House choice, common room, Your day |
 
 ## Batch 4 — Places (seasonal variants from the existing plan) — wanted
 
