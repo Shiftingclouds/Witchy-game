@@ -526,7 +526,7 @@ html .grimoire .gm-page :is(.button, .gm-button) {
   gap: 9px;
   padding: 10px 18px;
   font-family: var(--lm-read);
-  font-size: 16px;
+  font-size: 17px;
   color: #fbf0d6;
   background:
     radial-gradient(
@@ -757,7 +757,7 @@ html .grimoire .gm-page :is(.button, .gm-button):disabled {
     color: #f6d48e;
     background: none;
     border: 1px solid color-mix(in srgb, #e8bf6e 55%, transparent);
-    border-radius: 21px;
+    border-radius: 999px;
   }
   .gm-date {
     margin-left: auto;
@@ -869,7 +869,7 @@ html .grimoire .gm-map .map-pin {
   padding: 4px 10px;
   font-family: var(--lm-display);
   font-style: italic;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--gm-ink);
   background: color-mix(in srgb, var(--gm-parch-light) 88%, transparent);
@@ -1180,7 +1180,7 @@ html .grimoire .gm-page .house-card p {
 }
 html .grimoire .gm-page .house-card strong {
   font-family: var(--lm-display);
-  font-size: 24px;
+  font-size: 23px;
   color: var(--gm-rubric);
 }
 html .grimoire .gm-page .passing-time {

@@ -1,36 +1,180 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-17T10:00:00Z",
+  "generatedAt": "2026-10-18T23:26:41.895438+00:00",
   "title": "Design System: Lanternmere — Lamplight",
   "extensions": {
     "colorMeta": {
-      "lamplight-bg": { "role": "neutral", "displayName": "Umber Night", "canonical": "#1a0f0a" },
-      "lamplight-surface": { "role": "neutral", "displayName": "Lamplit Panel", "canonical": "#26150d" },
-      "lamplight-ink": { "role": "neutral", "displayName": "Cream Ink", "canonical": "#fbf0d6" },
-      "lamplight-gold": { "role": "primary", "displayName": "Lantern Gold", "canonical": "#e8bf6e" },
-      "lamplight-wine": { "role": "secondary", "displayName": "Dusk Wine", "canonical": "#5b2433" },
-      "parchment-bg": { "role": "neutral", "displayName": "Parchment", "canonical": "#f1e6cf" },
-      "night-bg": { "role": "neutral", "displayName": "Deep Night", "canonical": "#0a0605" },
-      "painting-ink": { "role": "neutral", "displayName": "Ink over paintings (every mode)", "canonical": "#fbf0d6" }
+      "lamplight-bg": {
+        "role": "neutral",
+        "displayName": "Umber Night",
+        "canonical": "#1a0f0a"
+      },
+      "lamplight-surface": {
+        "role": "neutral",
+        "displayName": "Lamplit Panel",
+        "canonical": "#26150d"
+      },
+      "lamplight-ink": {
+        "role": "neutral",
+        "displayName": "Cream Ink",
+        "canonical": "#fbf0d6"
+      },
+      "lamplight-gold": {
+        "role": "primary",
+        "displayName": "Lantern Gold",
+        "canonical": "#e8bf6e"
+      },
+      "lamplight-wine": {
+        "role": "secondary",
+        "displayName": "Dusk Wine",
+        "canonical": "#5b2433"
+      },
+      "parchment-bg": {
+        "role": "neutral",
+        "displayName": "Parchment",
+        "canonical": "#f1e6cf"
+      },
+      "night-bg": {
+        "role": "neutral",
+        "displayName": "Deep Night",
+        "canonical": "#0a0605"
+      },
+      "painting-ink": {
+        "role": "neutral",
+        "displayName": "Ink over paintings (every mode)",
+        "canonical": "#fbf0d6"
+      },
+      "grimoire-parchment": {
+        "role": "neutral",
+        "displayName": "Aged Parchment",
+        "canonical": "#e4cfa3"
+      },
+      "grimoire-parchment-light": {
+        "role": "neutral",
+        "displayName": "Fresh Leaf",
+        "canonical": "#f0e0bd"
+      },
+      "grimoire-parchment-edge": {
+        "role": "neutral",
+        "displayName": "Foxed Edge",
+        "canonical": "#a07a45"
+      },
+      "grimoire-ink": {
+        "role": "neutral",
+        "displayName": "Iron-Gall Ink",
+        "canonical": "#2b1a10"
+      },
+      "grimoire-ink-soft": {
+        "role": "neutral",
+        "displayName": "Faded Ink",
+        "canonical": "#553c28"
+      },
+      "grimoire-rubric": {
+        "role": "secondary",
+        "displayName": "Rubric Red",
+        "canonical": "#8a2b1e"
+      },
+      "grimoire-gilt": {
+        "role": "primary",
+        "displayName": "Page Gilt",
+        "canonical": "#b07d2a"
+      },
+      "grimoire-verdigris": {
+        "role": "tertiary",
+        "displayName": "Verdigris Vine",
+        "canonical": "#4f6b45"
+      },
+      "grimoire-wine": {
+        "role": "secondary",
+        "displayName": "Page Wine",
+        "canonical": "#6b2a38"
+      }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "The title and screen headlines; Cormorant Garamond." },
-      "body": { "displayName": "Reading", "purpose": "Story text at 60–75 characters; EB Garamond." },
-      "label": { "displayName": "Label", "purpose": "Short small-caps labels only; Cormorant SC with wide tracking." }
+      "display": {
+        "displayName": "Display",
+        "purpose": "The title and screen headlines; Cormorant Garamond."
+      },
+      "body": {
+        "displayName": "Reading",
+        "purpose": "Story text at 60–75 characters; EB Garamond."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Short small-caps labels only; Cormorant SC with wide tracking."
+      },
+      "page-title": {
+        "displayName": "Page title",
+        "purpose": "The one h1 on each grimoire page."
+      },
+      "page-card-title": {
+        "displayName": "Card title",
+        "purpose": "Quest, festival and house titles on Today."
+      },
+      "page-body": {
+        "displayName": "Page body",
+        "purpose": "Reading text on parchment."
+      },
+      "page-label": {
+        "displayName": "Page label",
+        "purpose": "Every small-caps label, mark and count on the page; never above a heading."
+      },
+      "drop-initial": {
+        "displayName": "Drop capital",
+        "purpose": "A section's gilded opening initial."
+      }
     },
     "shadows": [
-      { "name": "panel", "value": "0 20px 60px rgba(0, 0, 0, 0.45)", "purpose": "Neutral elevation for book, dialogs and cards." },
-      { "name": "dialog", "value": "0 30px 80px rgba(0, 0, 0, 0.55)", "purpose": "Modal dialogs over the darkened page." },
-      { "name": "legibility", "value": "0 1px 2px rgba(0, 0, 0, 0.9), 0 0 12px rgba(0, 0, 0, 0.7)", "purpose": "Small links laid directly over paintings." }
+      {
+        "name": "panel",
+        "value": "0 20px 60px rgba(0, 0, 0, 0.45)",
+        "purpose": "Neutral elevation for book, dialogs and cards."
+      },
+      {
+        "name": "dialog",
+        "value": "0 30px 80px rgba(0, 0, 0, 0.55)",
+        "purpose": "Modal dialogs over the darkened page."
+      },
+      {
+        "name": "legibility",
+        "value": "0 1px 2px rgba(0, 0, 0, 0.9), 0 0 12px rgba(0, 0, 0, 0.7)",
+        "purpose": "Small links laid directly over paintings."
+      }
     ],
     "motion": [
-      { "name": "ease-lamplight", "value": "cubic-bezier(0.3, 0.7, 0.2, 1)", "purpose": "Sidebar, menu and panel transitions (≤300 ms for UI)." },
-      { "name": "vine-grow", "value": "clip-path 1.1s cubic-bezier(0.3, 0.6, 0.2, 1)", "purpose": "Vines growing on hover/focus." },
-      { "name": "ambient", "value": "38–200 s ease-in-out alternate", "purpose": "Opening scene life: clouds, fog, cloud light, push-in. Never on detailed pixels." }
+      {
+        "name": "ease-lamplight",
+        "value": "cubic-bezier(0.3, 0.7, 0.2, 1)",
+        "purpose": "Sidebar, menu and panel transitions (≤300 ms for UI)."
+      },
+      {
+        "name": "vine-grow",
+        "value": "clip-path 1.1s cubic-bezier(0.3, 0.6, 0.2, 1)",
+        "purpose": "Vines growing on hover/focus."
+      },
+      {
+        "name": "ambient",
+        "value": "38–200 s ease-in-out alternate",
+        "purpose": "Opening scene life: clouds, fog, cloud light, push-in. Never on detailed pixels."
+      }
     ],
     "breakpoints": [
-      { "name": "desktop-min", "value": "1024px" },
-      { "name": "drawer", "value": "760px" }
+      {
+        "name": "desktop-min",
+        "value": "1024px"
+      },
+      {
+        "name": "drawer",
+        "value": "760px"
+      },
+      {
+        "name": "book-narrow",
+        "value": "1180px"
+      },
+      {
+        "name": "book-single",
+        "value": "900px"
+      }
     ]
   },
   "components": [
@@ -59,41 +203,86 @@
       "css": ".ds-input { display: flex; border: 1px solid rgba(232,191,110,.45); background: #1f120c; } .ds-input textarea { flex: 1; resize: none; padding: 12px 14px; font: 19px/1.5 'EB Garamond', Georgia, serif; color: #fbf0d6; background: transparent; border: 0; outline: none; } .ds-input:focus-within { border-color: #f6d48e; } .ds-input button { width: 52px; color: #e8bf6e; background: rgba(91,36,51,.45); border: 0; border-left: 1px solid rgba(232,191,110,.35); }"
     },
     {
-      "name": "Sidebar Item",
-      "kind": "nav",
-      "refersTo": "nav-item",
-      "description": "Umber-glass sidebar navigation; active item in wine with a gold hairline.",
-      "html": "<button class=\"ds-nav active\">Your day</button><button class=\"ds-nav\">World map</button>",
-      "css": ".ds-nav { display: block; width: 200px; padding: 10px 12px; text-align: left; font: 17px 'EB Garamond', Georgia, serif; color: #e4cfa6; background: none; border: 1px solid transparent; border-radius: 1px; } .ds-nav:hover { color: #fbf0d6; background: rgba(232,191,110,.08); } .ds-nav.active { color: #fbf0d6; background: rgba(91,36,51,.55); border-color: rgba(232,191,110,.35); }"
-    },
-    {
       "name": "Lamplit Card",
       "kind": "card",
       "refersTo": "story-backing",
       "description": "Translucent umber panel with a single gold hairline.",
       "html": "<div class=\"ds-card\"><p class=\"ds-eyebrow\">Your story</p><h3>A place at the table</h3><p>Find Rowan and introduce yourself.</p></div>",
       "css": ".ds-card { width: 280px; padding: 22px; color: #fbf0d6; background: rgba(38,21,13,.9); border: 1px solid rgba(232,191,110,.35); border-radius: 1px; box-shadow: 0 20px 60px rgba(0,0,0,.45); } .ds-card h3 { margin: 6px 0; font: 500 28px 'Cormorant Garamond', Georgia, serif; } .ds-card p { font: 15px/1.5 'EB Garamond', Georgia, serif; color: #e4cfa6; } .ds-eyebrow { font: 600 13px 'Cormorant SC', Georgia, serif; letter-spacing: .2em; color: #e8bf6e; }"
+    },
+    {
+      "name": "Ribbon Bookmark",
+      "kind": "nav",
+      "refersTo": "ribbon",
+      "description": "One silk ribbon per section on the book's edge; the open one slides out and brightens.",
+      "html": "<nav class=\"ds-ribbons\"><button class=\"ds-ribbon\" style=\"--silk:#7d2a2a\">Today</button><button class=\"ds-ribbon on\" style=\"--silk:#5a3566\" aria-current=\"page\">Spells</button><button class=\"ds-ribbon\" style=\"--silk:#3c4a2a\">Journal</button></nav>",
+      "css": ".ds-ribbons{display:grid;gap:8px;justify-items:start}.ds-ribbon{width:166px;height:42px;padding:0 26px 0 70px;text-align:left;font-family:\"Cormorant SC\",Georgia,serif;font-weight:600;font-size:14px;letter-spacing:.09em;color:#fbf0d6;background:var(--silk);border:0;clip-path:polygon(0 0,100% 0,calc(100% - 14px) 50%,100% 100%,0 100%);transform:translateX(-24px);transition:transform .25s ease-out,filter .25s ease-out;cursor:pointer}.ds-ribbon:hover{transform:translateX(-12px)}.ds-ribbon.on{transform:none;filter:brightness(1.1)}.ds-ribbon:focus-visible{outline:1px solid #f6d48e;outline-offset:3px}"
+    },
+    {
+      "name": "Grimoire Page",
+      "kind": "card",
+      "refersTo": "grimoire-page",
+      "description": "A parchment page: running head, drop capital, rubric label and page number.",
+      "html": "<section class=\"ds-page\"><em class=\"ds-run\">The Turning Year</em><h1>A year of small festivals</h1><p class=\"ds-drop\"><span>T</span>he calendar turns slowly here. Feast days are marked in gold.</p><p class=\"ds-label\">Feasts ahead</p><span class=\"ds-folio\">63</span></section>",
+      "css": ".ds-page{position:relative;max-width:420px;padding:50px 48px 64px;background:#e4cfa3;color:#2b1a10;font-family:\"EB Garamond\",Georgia,serif;font-size:18px;line-height:1.6;box-shadow:inset -18px 0 30px -18px rgba(60,35,15,.45)}.ds-run{position:absolute;top:18px;right:48px;font-size:14px;color:#553c28}.ds-page h1{margin:0 0 18px;font-family:\"Cormorant Garamond\",Georgia,serif;font-weight:500;font-size:34px;line-height:1.1}.ds-drop span{float:left;width:64px;height:64px;margin:4px 12px 0 0;display:grid;place-items:center;font-family:\"Cormorant Garamond\",Georgia,serif;font-weight:600;font-size:54px;line-height:1;color:color-mix(in srgb,#b07d2a 55%,#2b1a10);border:1px solid #b07d2a}.ds-label{font-family:\"Cormorant SC\",Georgia,serif;font-weight:600;font-size:15px;letter-spacing:.08em;color:#8a2b1e}.ds-folio{position:absolute;bottom:20px;left:50%;font-size:14px;color:#553c28}"
     }
   ],
   "narrative": {
     "northStar": "A lamplit world",
-    "overview": "The illustrations are the light source of the whole game; interface surfaces recede into warm umber and wine shadows, framed by hairline gold. It should feel warm, comforting, mysterious and magical, never overwhelming.",
-    "keyCharacteristics": ["Art first", "Light has a source", "Reading is sacred", "One typographic voice", "Vines are an accent"],
+    "overview": "The illustrations are the light source of the whole game; interface surfaces recede into warm umber and wine shadows, framed by hairline gold. It should feel warm, comforting, mysterious and magical, never overwhelming. Outside the story the game is the illuminated grimoire: an open book on a dark, candlelit desk, with silk ribbons for navigation and every section a two-page parchment spread.",
+    "keyCharacteristics": [
+      "Art first",
+      "Light has a source",
+      "Reading is sacred",
+      "One typographic voice",
+      "Vines are an accent"
+    ],
     "rules": [
-      { "name": "Light has a source", "body": "Glow and warm bloom only on light sources (lantern, candles, sunset, spells, title) and special moments. Everything else uses neutral shadow.", "section": "colors" },
-      { "name": "Gold is jewellery", "body": "Thin lines, small caps labels, vines, the diamond. Never fills, never paragraphs.", "section": "colors" },
-      { "name": "No gradient text, ever", "body": "Solid cream or ink; warmth comes from light behind, not colour inside letters.", "section": "typography" }
+      {
+        "name": "Light has a source",
+        "body": "Glow and warm bloom only on light sources (lantern, candles, sunset, spells, title) and special moments. Everything else uses neutral shadow.",
+        "section": "colors"
+      },
+      {
+        "name": "Gold is jewellery",
+        "body": "Thin lines, small caps labels, vines, the diamond. Never fills, never paragraphs.",
+        "section": "colors"
+      },
+      {
+        "name": "No gradient text, ever",
+        "body": "Solid cream or ink; warmth comes from light behind, not colour inside letters.",
+        "section": "typography"
+      },
+      {
+        "name": "The Red Ink Rule",
+        "body": "Rubric marks what is dated, current or chosen: a day, a label, the place you stand. It never fills a box.",
+        "section": "colors"
+      },
+      {
+        "name": "No eyebrows",
+        "body": "A heading stands alone; a page label never sits above a title as a kicker.",
+        "section": "typography"
+      },
+      {
+        "name": "One page, one h1",
+        "body": "Page titles are h1, card and person titles h2; headings never skip a level.",
+        "section": "typography"
+      }
     ],
     "dos": [
       "Let illustrations carry colour; keep chrome quiet.",
       "Use the vine flourish for primary and focused actions only.",
       "Keep story text on solid backing with AA contrast in every mode.",
-      "Honour reduced motion everywhere."
+      "Honour reduced motion everywhere.",
+      "On the grimoire, write numbers the way a book would (\"Chapter one of eight\"; friendship as \"Friendship 40 of 100\" in a tooltip, not \"40/100\").",
+      "Keep the day's closing actions in the page foot."
     ],
     "donts": [
       "Glow on everything, gradient text, purple/blue neon, glass cards everywhere, icon-card grids.",
       "Animate trees, mountains, rocks, the castle or the lantern in the opening, or anything by displacing detailed pixels.",
-      "Use gold for paragraphs or wide tracking on body text."
+      "Use gold for paragraphs or wide tracking on body text.",
+      "Put kickers above headings, solid colour fills on calendar days, or chromatic shadows on the page (glow belongs to the desk's light sources).",
+      "Repeat the same person or card twice on one spread."
     ]
   }
 }

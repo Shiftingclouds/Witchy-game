@@ -133,19 +133,25 @@ html .grimoire .gm-page .gm-month .calendar-day {
 }
 html .grimoire .gm-page .gm-month .calendar-day span {
   font-family: var(--lm-display);
-  font-size: 20px;
+  font-size: 19px;
   color: var(--gm-ink);
 }
 html .grimoire .gm-page .gm-month .calendar-day small {
   position: absolute;
   inset: auto 2px 3px;
   overflow: hidden;
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.1;
   text-align: center;
   white-space: nowrap;
   text-overflow: ellipsis;
   color: var(--gm-rubric);
+}
+/* a labelled day lifts its numeral so the label sits clear beneath it */
+html .grimoire .gm-page .gm-month .calendar-day:has(small) {
+  place-items: start center;
+  min-height: 58px;
+  padding-top: 3px;
 }
 html .grimoire .gm-page .gm-month .calendar-day.past span {
   color: color-mix(in srgb, var(--gm-ink-soft) 60%, transparent);
@@ -182,6 +188,11 @@ html .grimoire .gm-page .gm-month .calendar-day.today span {
   html .grimoire .gm-page .gm-month .calendar-day small {
     display: none;
   }
+  html .grimoire .gm-page .gm-month .calendar-day:has(small) {
+    place-items: center;
+    min-height: 52px;
+    padding-top: 2px;
+  }
   html .grimoire .gm-page .calendar-heading h1 {
     font-size: 28px;
   }
@@ -210,7 +221,7 @@ html .grimoire .gm-page .gm-feasts > div {
 }
 .gm-feast-date strong {
   font-family: var(--lm-display);
-  font-size: 36px;
+  font-size: 34px;
   font-weight: 500;
   line-height: 1;
   color: var(--gm-rubric);
@@ -226,7 +237,7 @@ html .grimoire .gm-page .gm-feasts > div {
 html .grimoire .gm-page .gm-feasts h2 {
   margin: 0;
   font-family: var(--lm-display);
-  font-size: 21px;
+  font-size: 22px;
   font-weight: 600;
   color: var(--gm-ink);
 }
@@ -415,7 +426,7 @@ html .grimoire .gm-page .gm-person .person-info {
 html .grimoire .gm-page .gm-person h2 {
   margin: 0;
   font-family: var(--lm-display);
-  font-size: 24px;
+  font-size: 23px;
   font-weight: 600;
   color: var(--gm-ink);
 }
