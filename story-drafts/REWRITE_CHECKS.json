@@ -1,0 +1,148 @@
+{
+  "scope": "Authored manuscripts only. Symbolic route analysis is not a runtime import or a browser playthrough.",
+  "sourceBriefSha256": "3f81f477595c14e7325f333055be77f6e60569e62d70a59f18c9613d91694c54",
+  "manuscriptFiles": [
+    "01-arrival-chatgpt.txt",
+    "02-first-kindle-chatgpt.txt",
+    "03-register-chatgpt.txt",
+    "04-emberfall-chatgpt.txt",
+    "05-longnight-chatgpt.txt",
+    "06-thaw-chatgpt.txt",
+    "07-bloom-chatgpt.txt",
+    "08-midsummer-chatgpt.txt",
+    "09-epilogues-chatgpt.txt"
+  ],
+  "manuscriptSha256": {
+    "01-arrival-chatgpt.txt": "088aff051e2d5fe61a64233f93504ee3e7bd56f92c677074aa64aa0519dbe57c",
+    "02-first-kindle-chatgpt.txt": "d1bce3b41810d90ffa8db3e175767bcca7cc0190c1948100a69e9b7f97c0303f",
+    "03-register-chatgpt.txt": "f57f877050ad84216201538854bdb1283f42d04724adce4178f41d43251b0e55",
+    "04-emberfall-chatgpt.txt": "947bc6abddd137b713268c9880642ab49535ee68d8da862702e088face56204a",
+    "05-longnight-chatgpt.txt": "b588f97b38d12c89c974f65990ea3c878ae6f394ec0f6d0e2966d2d2d905fb11",
+    "06-thaw-chatgpt.txt": "25141ce4269586b4a7da9421dcd59c5263b01472a535b368e0b885fcbd2c2b33",
+    "07-bloom-chatgpt.txt": "788dcf0d15223e336539b224fa90285c62a3ad5fbf82163db03b5c23192ac6fd",
+    "08-midsummer-chatgpt.txt": "7f09d4e7358df757a923c7f7321d620ac6844943a592ddf40ea0612f72f6c29a",
+    "09-epilogues-chatgpt.txt": "df1eb9439f69b69a6644a981df73c18eaf74fe9990fc232f9f2548047d193e78"
+  },
+  "chapterCount": 8,
+  "endingCount": 8,
+  "decisionCount": 34,
+  "housePairs": {
+    "owlcombe": [
+      "Imogen",
+      "Idris"
+    ],
+    "rookhallow": [
+      "Rowan",
+      "Cas"
+    ],
+    "heronmere": [
+      "Noor",
+      "Petra"
+    ],
+    "larkspire": [
+      "Saoirse",
+      "Toby"
+    ]
+  },
+  "chaptersWithAllEightFamiliarBranches": [
+    "first-kindle",
+    "register",
+    "emberfall",
+    "thaw",
+    "heartfire-chapter-7"
+  ],
+  "authoredProseWords": 35701,
+  "wordCountDefinition": "Unique complete narration, speech, decision prompt, option-label and exit-label fields. Tags, hints, journals, plans and duplicated whole fields excluded. Route counts include all displayed option labels.",
+  "targetWholeGameWords": 250000,
+  "runtimeImported": false,
+  "endings": [
+    {
+      "id": "shared",
+      "title": "The Open Door",
+      "focus": "welcome",
+      "exit": 0,
+      "paths": "13194139533312",
+      "minimumRouteWords": 23517,
+      "maximumRouteWords": 24035,
+      "peakDependencyStates": 3072,
+      "coverageWitnesses": 132
+    },
+    {
+      "id": "keeper",
+      "title": "The First Lesson",
+      "focus": "welcome",
+      "exit": 1,
+      "paths": "13194139533312",
+      "minimumRouteWords": 23531,
+      "maximumRouteWords": 24016,
+      "peakDependencyStates": 3072,
+      "coverageWitnesses": 132
+    },
+    {
+      "id": "shared-records",
+      "title": "The Unfinished Book",
+      "focus": "records",
+      "exit": 0,
+      "paths": "13194139533312",
+      "minimumRouteWords": 23536,
+      "maximumRouteWords": 24031,
+      "peakDependencyStates": 3072,
+      "coverageWitnesses": 132
+    },
+    {
+      "id": "keeper-records",
+      "title": "The Names We Carry",
+      "focus": "records",
+      "exit": 1,
+      "paths": "13194139533312",
+      "minimumRouteWords": 23514,
+      "maximumRouteWords": 24023,
+      "peakDependencyStates": 3072,
+      "coverageWitnesses": 132
+    },
+    {
+      "id": "shared-roads",
+      "title": "Lights Along the Road",
+      "focus": "roads",
+      "exit": 0,
+      "paths": "13194139533312",
+      "minimumRouteWords": 23527,
+      "maximumRouteWords": 24038,
+      "peakDependencyStates": 3072,
+      "coverageWitnesses": 139
+    },
+    {
+      "id": "keeper-roads",
+      "title": "The Travelling Light",
+      "focus": "roads",
+      "exit": 1,
+      "paths": "13194139533312",
+      "minimumRouteWords": 23571,
+      "maximumRouteWords": 24074,
+      "peakDependencyStates": 3072,
+      "coverageWitnesses": 132
+    },
+    {
+      "id": "shared-everyday",
+      "title": "A Place at the Table",
+      "focus": "everyday",
+      "exit": 0,
+      "paths": "13194139533312",
+      "minimumRouteWords": 23442,
+      "maximumRouteWords": 23963,
+      "peakDependencyStates": 3072,
+      "coverageWitnesses": 129
+    },
+    {
+      "id": "keeper-everyday",
+      "title": "The Quiet Round",
+      "focus": "everyday",
+      "exit": 1,
+      "paths": "13194139533312",
+      "minimumRouteWords": 23587,
+      "maximumRouteWords": 24088,
+      "peakDependencyStates": 3072,
+      "coverageWitnesses": 132
+    }
+  ]
+}

@@ -194,5 +194,33 @@
 [Saoirse | warm] You may have half mine. After pudding I expect to feel quite capable.
 [N] Your own lantern stands beneath the bench, its practice wick cold. The handle still bears the name Priya asked you to check at the station.
 [N] There is time to choose what you want to say to the people around it before the dishes are cleared.
+[N] Honoria stops at the table with a second sheet beneath the rehearsal calendar.
+[Honoria | neutral] We've spent a great deal of time discussing how to reach June. I'd also like to know what you want to do afterwards.
+[N] Four suggestions have come from the term's work: help the next arrivals, open the working records to more contributors, strengthen the connection with the station and village, or make the academy's ordinary days easier to share.
+[Honoria | neutral] There may be shared work or a keeper's placement in any of these. For the route beyond the academy, I can also offer a supported term away. You would have a place here to return to. None of this needs to be settled tonight.
+[N] She leaves space for a provisional preference.
+[DECISION bloom:future-work] Which possibility would you like to explore after Midsummer?
+[OPTION welcome] Help the next students arrive and learn their first spells. | journal: I asked to explore helping the next arrivals, either through shared reception or a supported teaching role.
+[OPTION records] Keep recovering stories and opening the working records. | journal: I asked to explore the archive work, with room for contributions, corrections and stories still missing.
+[OPTION roads] Carry the work beyond the academy, through the station and village. | journal: I asked about the outward routes: a shared network and possible term away, or a travelling keeper placement.
+[OPTION everyday] Build a sustainable daily life here with friends and time to study. | journal: I asked to make everyday life central after June, through shared routines or a bounded practical keeper apprenticeship.
+[END DECISION]
+[IF bloom:future-work = welcome]
+[Rowan | warm] We could begin with the bit before the boat. Somewhere to put a bag. Someone who says where you're meant to stand.
+[N] Imogen adds introductory lessons beneath reception, leaving two possible forms of the work on the sheet.
+[END IF]
+[IF bloom:future-work = records]
+[Imogen | attentive] Dunne has room for a public contribution table. And Maelin wants help gathering accounts the books don't hold. Those would be different days. You could try both before choosing.
+[N] She writes down who to ask instead of deciding for them.
+[END IF]
+[IF bloom:future-work = roads]
+[Saoirse | warm] Priya asked whether someone could show the station volunteers the small lamp exercises. Tully knows the routes. You could start close enough to come back for supper.
+[N] Honoria notes the separate possibility of a term's exchange. The paper keeps a returning route beside the outward one.
+[END IF]
+[IF bloom:future-work = everyday]
+[Rowan | warm] I like that. I'd like there to be an afternoon next year when nobody asks us to save anything.
+[N] Honoria writes ordinary study beside the shared rota, and supervised rounds beside the keeper placement. Both leave evenings that belong to you.
+[END IF]
+[Honoria | neutral] We'll return to it after the restoration. Changing your mind will be quite in order.
 [EXIT 0] Thank them for helping make a home here with you.
 [EXIT 1] Promise to help the next arrivals find their place here too.

@@ -192,6 +192,7 @@
 [N] Your toad waits in its damp travelling dish on the cool sill. You close the ventilated carrier and settle it level in your bag before lifting the lantern.
 [END IF]
 [N] Rowan stays to help collect the unused mats. He carries two, checks that he can see his feet, and takes a second trip for the rest.
+[N] Before you close your notebook, you sketch the curled square beside Rowan's name and add Elian's reminder about your shoulders beside your own. You leave the next page for the next attempt.
 
 --- SECTION lesson-aftermath | place: corridor | time: morning | date: 2026-09-04 ---
 [N] Outside, the corridor is busy with the next class. You stand against the wall until the traffic thins.

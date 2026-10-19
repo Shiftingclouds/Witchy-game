@@ -906,5 +906,5 @@
 [N] Tomorrow's practical has a room, a time, and a route you can follow. Your lantern is waiting upstairs, ready to bring with you.
 [N] In the corridor beyond the common-room door, the lamps have begun to glow for the evening.
 
-[EXIT 0] Stay with Rowan to follow up on the dark lantern.
-[EXIT 1] Ask Rowan what his own first days here were like.
+[EXIT 0] Arrange to follow up on the dark lantern with Rowan.
+[EXIT 1] Find time to ask Rowan about his own first days here.

@@ -146,6 +146,31 @@
 [N] You put the Echosight account on a separate slip, with tonight's date. Dunne checks the binding and closes the ledger.
 [N] At the water stand, Imogen fills two cups. She gives you the fuller one without looking up from the stream.
 
+[IF arrival:familiar = cat]
+[N] Your cat waits in the reading-room window, outside the archive gate. As you pass, it places a paw on the notebook tucked under your arm and holds it still long enough to be noticed.
+[END IF]
+[IF arrival:familiar = owl]
+[N] Your owl turns on its perch by the reading-room door. Its eyes follow the water cup all the way to the table. Dunne moves a dry cloth into reach without interrupting the discussion.
+[END IF]
+[IF arrival:familiar = fox]
+[N] Your fox is waiting on the mat outside the archive gate. It rises when you pass, then lies down again when you return to the table, chin resting on your bag.
+[END IF]
+[IF arrival:familiar = hare]
+[N] Your hare waits in the sheltered space beside the coat rack. You pause there until it finishes inspecting your hand, then leave the route to its carrier clear when you return to the table.
+[END IF]
+[IF arrival:familiar = moth]
+[N] Your moth rests on the dark ribbon around your notebook. You ease the ribbon aside before opening the cover, keeping its pale wings clear of the old pages.
+[END IF]
+[IF arrival:familiar = raven]
+[N] Your raven watches from the reading-room perch with the unused label Dunne gave it. When you pass, it lays the label on your notebook as though returning something it has finished consulting.
+[END IF]
+[IF arrival:familiar = ferret]
+[N] Your ferret wakes in its carrier beside the coat rack as you collect your notebook. You offer a finger through the open top and wait through a lengthy investigation of the library's unfamiliar smells.
+[END IF]
+[IF arrival:familiar = toad]
+[N] Your toad's covered dish is level on the cool sill beyond the archive gate. You check its damp lining before returning to the books. It has remained unimpressed by every discovery made this evening.
+[END IF]
+
 --- SECTION correcting-claim | place: library | time: night | date: 2026-09-18 ---
 [N] When you return to the table, her first sentence waits at the top of the notebook: somebody rubbed the names out.
 [N] Beneath it she has written page intact. The second line is much smaller.

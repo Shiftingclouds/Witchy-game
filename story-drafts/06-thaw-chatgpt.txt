@@ -41,6 +41,32 @@
 [N] You mark it differently.
 [Imogen | attentive] The gap faces the landing. I walked it both ways. It's the same relationship as the winter sketch, though I wouldn't trust that sketch to build anything square.
 [END IF]
+[IF arrival:familiar = cat]
+[N] Your cat comes through the gap between the stones, sniffs the unlit hearth, and chooses a sun-warmed patch beyond it. You move the notebook case so it has room to stretch.
+[END IF]
+[IF arrival:familiar = owl]
+[N] Your owl lands on the carrying perch near the path. Its shadow falls across the opening in Imogen's sketch, and she moves the paper into clearer light before the reading.
+[END IF]
+[IF arrival:familiar = fox]
+[N] Your fox pauses beyond the gap, drawn by a scent beneath the new grass. You wait until it lifts its head before calling it back from the planted edge.
+[END IF]
+[IF arrival:familiar = hare]
+[N] Your hare hesitates at the narrowest part of the approach. When you move the case out of the way, it comes through and settles beside the dry rock where you will put the notebooks.
+[END IF]
+[IF arrival:familiar = moth]
+[N] Your moth rests in the shade of the carrying case. A breeze lifts its wings, and you turn the open flap into a little shelter before attending to the stone.
+[END IF]
+[IF arrival:familiar = raven]
+[N] Your raven picks up a dropped pencil stub. Imogen waits with her palm open until it decides to return the prize.
+[Imogen | amused] Three pencils. Apparently the right number.
+[END IF]
+[IF arrival:familiar = ferret]
+[N] Your ferret emerges from its carrier and noses the fastening of the notebook case. You check the empty compartment before closing it, leaving a more suitable place in the carrier for a nap.
+[END IF]
+[IF arrival:familiar = toad]
+[N] Meltwater runs beyond the dry rock. You keep your toad's carrier on level ground, away from the cold stream, while Imogen makes room beside it for the notebooks.
+[END IF]
+
 [N] Kestrel finds two positions where you and Imogen can stand without blocking each other's view. A flat rock holds the notebooks; the pencil case holds their corners against the wind.
 [Kestrel | neutral] Keep the reading on the surface. Let the marks come to you. Don't try to bring the whole place with them.
 [N] You begin Echosight.

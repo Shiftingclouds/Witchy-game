@@ -1,0 +1,260 @@
+=== SCENE heartfire-chapter-7 | chapter 7 ===
+
+--- SECTION main | place: heartfire | time: evening | date: 2027-06-21 ---
+[N] The last stair ends beneath the academy, in air that smells of cool stone and the faint mineral trace of water.
+[N] Above you, Midsummer evening still lies across the hall windows. Here, its light reaches only as far as the upper steps.
+[N] The Heartfire burns at the centre of the chamber.
+[N] It is scarcely taller than a candle.
+[N] You can see the hearth around it: the worn stone lip, a darker place where generations of hands have rested, empty space built to receive far more warmth than it holds tonight.
+[N] Kestrel has set the practice stands beyond the hearth. Okoro waits by the open approach. Neither has drawn a closed circle on the floor.
+[N] Your own named lantern is upstairs in the hall, on the shelf Grey prepared before the gathering. He checked its ordinary fitting with the others. Down here, you will use the practice light you know how to hold and release.
+[N] Imogen carries the register against her chest. Its protective paper is creased from a month of being put on real tables.
+[N] Saoirse pauses at the foot of the stairs long enough to let her eyes adjust.
+[Saoirse | attentive] It looked bigger from the doorway.
+[Kestrel | neutral] It was bigger yesterday. The renewal is close. We have this evening, and we've prepared for the strength we found at the last check.
+[N] She shows you the marked level on the hearth gauge. The flame is low, but still above it.
+[Kestrel | warm] Tell us if you need to stop. We'll work with the people who are able to continue.
+[N] Honoria comes down last with the current participation sheet. At the bottom of the stairs she asks for each person's answer again, using the names they have given for this gathering.
+[N] Some answer yes to casting. Some take the places reserved for observers. One person changes to carrying lamps, and the sheet is altered before they move.
+[Honoria | neutral] Thank you. If you change your answer again, tell us then.
+[N] Noor takes a seat by the approach. She has chosen to watch and help people find the steps. A clear passage remains beside her.
+[IF bloom:lantern-use = welcome]
+[N] Above, Saoirse's finished lantern stands with Grey at the hall landing. Its sheltered trace marks the turn without dazzling anyone coming in from the bright evening.
+[N] A late arrival appears at the stairs with a student escort. Grey's directions have brought them to the right door. Saoirse recognises the lamp's broad handle in the light above and leaves it in its keeper's hands.
+[Saoirse | warm] He didn't need me to come up. Good.
+[END IF]
+[IF bloom:lantern-use = handover]
+[N] Saoirse's lantern stands at Kestrel's outer practice station. A newcomer uses its steady light while trying a small Kindle for the second time.
+[N] Kestrel opens the cover without asking Saoirse to explain it. When the newcomer chooses to watch instead of casting, the ordinary lamp remains for the next person.
+[Saoirse | warm] That's the job. It doesn't have to persuade anybody.
+[END IF]
+[IF bloom:lantern-use = (none)]
+[N] Ordinary lamps mark the approach and the outer practice station. Saoirse checks their covers with Kestrel before taking her place. Everyone has a light to work by while they decide.
+[END IF]
+[IF bloom:rehearsal-plan = earlier]
+[N] Grey's relief takes over the upstairs route before the casting begins. The shorter practice sessions have taught everyone where a task ends. He comes down with time to look at the chamber before choosing his place.
+[END IF]
+[IF bloom:rehearsal-plan = relay]
+[N] The observers exchange their notes at the approach before the later group joins. Grey arrives after his handover, and the first group leaves room for him without beginning the instructions again from nothing.
+[END IF]
+[IF bloom:rehearsal-plan = (none)]
+[N] Okoro checks the handover at the approach. The people leaving their ordinary work have been relieved before joining the chamber. The upper route remains staffed.
+[END IF]
+
+--- SECTION before-the-offering | place: heartfire | time: evening | date: 2027-06-21 ---
+[N] You place your practice lamp on its stand. The stone beneath your shoes holds the day's cold.
+[N] Rowan stands beside you. He has checked the wick twice and is about to check it again when his hand stops.
+[IF bloom:rowan-support = share]
+[Rowan | shy] Can you take this part?
+[N] He offers you the final position check while he steadies his breathing. You sight along the stand, make the small adjustment, and leave him room to return his hand to the lamp.
+[Rowan | warm] Thank you. I'll do the next one when you're ready.
+[N] Nobody else is asked to understand what the sentence means between you.
+[END IF]
+[IF bloom:rowan-support = stay]
+[Rowan | small] Could you stay here a minute? I don't need anything done.
+[N] You remain beside the stand. A page turns behind you. Farther away, someone adjusts a chair until all four legs touch the floor.
+[N] Rowan's shoulders lower before he says he is ready.
+[Rowan | warm] All right. I'm here.
+[END IF]
+[IF bloom:rowan-support = (none)]
+[N] Rowan asks Okoro to check the stand while he takes a breath. Okoro does, then steps back without adding another task.
+[Rowan | neutral] Thank you. I can take it from here.
+[END IF]
+[IF arrival:house = owlcombe]
+[N] Idris joins you and Imogen beside the record stand. He has made a broad support that lets the register lie open without straining its spine, using the joint perfected on your common-room model.
+[Idris | neutral] I tested it with the heaviest dictionary. Twice, because Dunne asked what I meant by tested.
+[N] Imogen settles the book into it. The pages remain where she places them.
+[Imogen | warm] When we get upstairs, remind me to look at something that isn't written down.
+[N] Idris points towards the stairwell, where a moth circles the last of the daylight. She looks before returning to the page.
+[END IF]
+[IF arrival:house = rookhallow]
+[N] Cas checks the approach with you and Rowan. His list has room for a name beside each task, and a blank space where somebody may need relief.
+[Cas | neutral] I used to fill those before anyone could ask for something I hadn't thought of.
+[Rowan | warm] This way we can surprise you.
+[Cas | neutral] I am trying to consider that an advantage.
+[N] He folds the list and puts it away. The three of you take your places with no further inspection of one another.
+[END IF]
+[IF arrival:house = heronmere]
+[N] Petra joins you beside Noor's chair. She has copied the two sentences from the stones onto a card large enough to read in the dim chamber.
+[Petra | neutral] The words are plain. I'm resisting the urge to make my explanation longer than the inscription.
+[Noor | neutral] You've left enough space on the back if someone asks.
+[N] Noor shows you where she will guide anyone who wants to step out. Petra moves her bag away from that passage before taking a casting place. The three of you will be doing different parts of the same evening.
+[END IF]
+[IF arrival:house = larkspire]
+[N] Toby brings the last cooled lamp to you and Saoirse. He sets it down carefully, keeping the handle clear of the wick cover.
+[Toby | neutral] The carriers are settled upstairs. I left the window open a little, where nothing can get out by accident.
+[Saoirse | warm] Thank you. And our window?
+[Toby | neutral] Bowl full. Wheel turning. It can manage an evening without us.
+[N] She laughs once and lets him take the empty case. The three of you leave the small finished things to do their work while you begin this one.
+[END IF]
+[N] Honoria checks the clear approach, the record stand, the people waiting with their lights. She nods to Kestrel.
+
+--- SECTION names-and-light | place: heartfire | time: evening | date: 2027-06-21 ---
+[N] Kindle begins with a warmth you can remember in your hands.
+[N] You trace the short arc. Your wick catches, yellow and small. Beside you, Rowan's flame rises to a similar height and stays there.
+[N] Around the chamber, other lamps come alight. Some need a second attempt. Nobody begins Threadbind while a neighbour is still trying to see their own wick.
+[N] Imogen opens the register.
+[Imogen | attentive] These are the accounts we could check. Where the name is incomplete, we've kept it incomplete. We haven't assigned the later workers to the seven people we saw in the lake.
+[N] She reads M. Fen's repair and handover. A. Moss's shelter on the kitchen approach. The student's return with a mended lantern. More entries follow, each carrying its source.
+[N] Grey stands beside the record of a keeper waiting after a gathering, his hands empty for once.
+[N] At Kestrel's signal, you bring Echosight to the checked working accounts and their offered traces. Maelin and Dunne have prepared the material so the originals need not be handled here.
+[N] Warmth gathers against damp cloth. A sleeve moves. There is the brief pressure of a hand making room beside a light.
+[N] A voice reaches through the trace, quiet beneath the movement of cloth.
+[N] Remember the way home.
+[N] This time the words have a moment around them: a lamp held at a turning, the shift of someone preparing to leave it. You cannot recover the speaker's face. You can hear that someone once said the words to a traveller.
+[N] Rowan looks towards you without losing his small flame. Imogen writes the phrase beside the source of the trace, where a future reader can find how you heard it again.
+[N] You recognise the smallness of the actions before you recognise their connection to the chamber.
+[N] They belong to different people and different years. The spell does not put them in a room together. It lets the work be present long enough for the living people to answer it.
+[N] Imogen reaches an unresolved entry and reads the work without supplying a missing name.
+[Imogen | grave] We know this was done. We haven't found who did it.
+[N] The Heartfire stirs above its stone lip.
+[N] Kestrel waits until you have released the reading before asking for the next spell.
+[Kestrel | neutral] Offer the connection. Leave the approach open.
+[N] Threadbind extends from your light towards the next willing keeper. You wait for the answer you practised.
+[N] Rowan joins. Another light follows. Across the chamber, the curve gathers without closing over the path.
+[N] The Heartfire lifts by the width of a finger.
+
+--- SECTION the-change-in-warmth | place: heartfire | time: evening | date: 2027-06-21 ---
+[N] At the far side of the curve, a keeper lowers one hand.
+[N] Their fingers are trembling. They tell Okoro they need to stop.
+[N] The shared warmth drops as their light separates. A strand near the hearth pulls thin, brightens sharply, and breaks.
+[N] The Heartfire sinks.
+[N] For a moment you can hear the individual wicks: a small, dry crackling that had been lost inside the larger sound.
+[Okoro | neutral] Keep your own lights. Let the connection end.
+[N] Hands lower around the chamber. The practice lamps remain lit. Noor rises to guide the departing keeper to a chair near the stairs.
+[N] They begin an apology. She gives them water before they can finish it.
+[N] Rowan's flame has risen. His hand starts towards the thinning warmth, then turns back over his own wick.
+[N] He lets it become small again.
+[Kestrel | grave] We still have the reserve. Look at the gauge.
+[N] The Heartfire holds above the marked level. It is weak enough now that the shadows no longer reach the same places on the wall.
+[N] Okoro walks the open curve, examining the point where the strand tightened.
+[Okoro | neutral] We held the shape after the people changed. The next attempt begins with the people who are here now.
+[N] He moves one stand inward. The curve becomes smaller while the approach remains clear.
+[N] Imogen keeps her finger on the last entry she read.
+[Imogen | attentive] We don't need to begin their accounts again. We haven't lost what we learned.
+[N] Saoirse is looking at the hearth gauge. Her mouth opens as though another mechanism might be ready in it.
+[Saoirse | neutral] The lamps are doing their job. Leave them as they are.
+[N] She checks her own cover once and stops touching it.
+[N] Kestrel asks for fresh answers. The keeper in the chair chooses to watch. No place is saved on the casting line that they are expected to fill.
+[N] You settle your small flame. Around it are the things the year has made familiar: a paper square on a desk, a quiet interval beside a window, a partner waiting until you are ready.
+[N] When you offer Threadbind again, the invitation has farther to travel between some lamps and less distance between others.
+[N] You wait through the uneven answers.
+[N] The curve steadies.
+
+--- SECTION the-answer | place: heartfire | time: evening | date: 2027-06-21 ---
+[N] Warmth reaches the stone beneath your shoes.
+[N] The Heartfire rises slowly enough that you can follow its edge against the gauge. A low gold light reaches the underside of the record stand. Then Imogen's hands. Then the worn lip of the hearth.
+[N] No one has increased their flame to meet it.
+[N] The offered lights remain distinct inside the shared connection. When a keeper shifts their stance, the curve moves with them.
+[N] At the approach, the person who left watches with the water cup resting against their knees.
+[N] Honoria moves back so the way past her remains open.
+[N] The Heartfire draws one long breath of light.
+[N] Gold reaches the walls. The high stone seams appear one by one, carrying the warmth upwards towards the academy.
+[N] From somewhere above, a bell gives a single soft note as heated metal shifts. Footsteps stop on the stairs.
+[N] Grey looks up.
+[Grey | attentive] Hall lamps.
+[N] Kestrel watches the gauge through another full breath before nodding.
+[Kestrel | warm] It's holding. Release in the order we practised.
+[N] One connection opens, then another. Each keeper returns to their own small light. The Heartfire continues to burn.
+[N] Rowan lowers his hand. He looks at you, then at the flame, then back again, with no sentence ready for any of it.
+[N] Imogen closes the register with both palms against its cover.
+[N] Saoirse sits down on the nearest empty chair and laughs once, too softly to be a performance.
+[Saoirse | warm] I think I can feel my feet now.
+[N] Above the hearth, the open approach is bright enough to see all the way to the first stair.
+
+--- SECTION your-lantern | place: lantern-hall | time: evening | date: 2027-06-21 ---
+[N] You return to Lantern Hall while a narrow band of evening remains over the lake.
+[N] The red ribbons are still tied to the lantern chains. Above them, the recovered lights burn through their paper shades.
+[N] Grey touches the brass of the lamp that went cold over your first supper. This time he has to wait before resting his fingers on it.
+[Grey | attentive] I'll take the ribbons down after the final check.
+[N] Your lantern stands on the shelf beside the others. A clear gold light burns inside it.
+[N] Nobody has touched its stop mark. Nobody has prepared the practice wick.
+[N] You lift it by the handle. The engraved letters sit beneath your thumb exactly where they did at Platform Nought.
+[N] Across the hall, a door opens for someone bringing in bread. The light answers with a small, steady warmth against your hand.
+[N] Honoria pauses beside the shelf.
+[Honoria | neutral] The place was yours when I wrote the letter. I'm glad the light can answer properly now.
+[IF arrival:letter = keepsake]
+[N] Upstairs, the keepsake from home is still where you put it. There is no need to move it aside to make room for what has happened here.
+[END IF]
+[IF arrival:letter = book]
+[N] Your old book is upstairs with the academy's letter still between its pages. In the morning, you can read a familiar passage by this light.
+[END IF]
+[IF arrival:letter = nothing]
+[N] The bag you brought in September has acquired notes, borrowed books, and things you will have to return before packing. The space you left has been put to use.
+[END IF]
+[IF arrival:familiar = cat]
+[N] Your cat emerges from the quiet side room and presses its head against your ankle. When you set the lantern down, it chooses the warm patch beside it and begins to wash.
+[END IF]
+[IF arrival:familiar = owl]
+[N] Your owl comes from the side room to the back of your chair. Gold catches along the edges of its folded feathers. It gives the lantern one long look before settling.
+[END IF]
+[IF arrival:familiar = fox]
+[N] Your fox meets you at the side-room door. It noses the hand holding the lantern, then the other, before accepting that both have come back with you.
+[END IF]
+[IF arrival:familiar = hare]
+[N] Your hare waits beneath the quiet-room bench. You crouch without bringing the warm lantern too close, and it comes out far enough to touch your hand with its nose.
+[END IF]
+[IF arrival:familiar = moth]
+[N] Your moth opens its pale wings on the cool side of the lantern's handle. The first light it chose was dark. It rests with the same patience beside the gold.
+[END IF]
+[IF arrival:familiar = raven]
+[N] Your raven walks along the side-room sill and steps onto the offered perch. Its attention moves from your face to the bright lantern and finally to a crumb on the table.
+[END IF]
+[IF arrival:familiar = ferret]
+[N] Your ferret wakes in the carrier when you open the side-room door. It climbs into your free arm and investigates your sleeve with the serious attention of someone checking what you have been doing.
+[END IF]
+[IF arrival:familiar = toad]
+[N] Your toad sits in its damp dish on the cool side-room sill. You bring the carrier back to the table, leaving it beyond the lantern's warmth. It blinks once and remains entirely itself.
+[END IF]
+[N] Rowan makes room at the table. Imogen brings the book and puts it on a dry mat. Saoirse arrives with food for herself as well as for the people beside her.
+[N] The person who withdrew downstairs joins the meal. Noor moves a chair for them. Nobody asks them to explain their leaving before they eat.
+
+--- SECTION what-you-will-keep | place: lantern-hall | time: evening | date: 2027-06-21 ---
+[N] Later, Honoria brings a clean sheet to the table. Beside it she places the next year's calendar.
+[Honoria | neutral] We've restored the welcome. We still have to keep it. There will be rounds, records, lessons, and another renewal.
+[N] Grey names the places where ordinary lamp checks are already scheduled. Dunne has agreed to keep the working register accessible. Kestrel and Okoro will teach the small exercises before anyone is asked to join a larger one.
+[N] Honoria unfolds the sheet from Bloomtide beside the calendar.
+[IF bloom:future-work = welcome]
+[Honoria | neutral] You wanted to explore work with the next arrivals. Reception and a supported teaching placement are both possible. You can still choose another direction.
+[END IF]
+[IF bloom:future-work = records]
+[Honoria | neutral] You asked about the records. Dunne can host the shared archive work; Maelin can supervise a keeper gathering accounts and teaching from them. The other directions remain open.
+[END IF]
+[IF bloom:future-work = roads]
+[Honoria | neutral] Priya and Tully have agreed to help with the route beyond the academy. A term's supported exchange or a travelling teaching placement are possible. You needn't leave because you once thought you might like to.
+[END IF]
+[IF bloom:future-work = everyday]
+[Honoria | neutral] You wanted room for ordinary life. Shared routines would leave you free of an office; an apprenticeship on the daily rounds would have protected study time and relief. You may also choose something different now.
+[END IF]
+[IF bloom:future-work = (none)]
+[Honoria | neutral] There are four directions we can support: the next arrivals, the working records, the routes beyond the academy, or its everyday life. Each can be shared work or a keeper's placement.
+[END IF]
+[N] She gives you time to read the possible arrangements. A keeper's appointment lasts for the coming year, with supervision and a way to hand the work on. Shared stewardship distributes the responsibility without appointing you to that role.
+[Honoria | neutral] First, the part of the future you want to work towards. Then, how much of that work you want to take on yourself.
+[DECISION heartfire-chapter-7:future-focus] Which future do you choose?
+[OPTION welcome] Help the next arrivals find their place and learn. | hint: Shared reception, or a supervised teaching year. | journal: After the restoration, I chose work with the next arrivals as my direction for the coming year.
+[OPTION records] Make room for stories the academy has overlooked. | hint: A shared public archive, or a keeper's listening and teaching work. | journal: After the restoration, I chose to continue the work of recovering and sharing people's accounts.
+[OPTION roads] Follow the lights beyond the academy. | hint: A shared route and term away, or a travelling keeper placement. | journal: After the restoration, I chose the work connecting Lanternmere with the places beyond it.
+[OPTION everyday] Make a life here that can last beyond the crisis. | hint: Ordinary study with shared routines, or a practical keeper apprenticeship. | journal: After the restoration, I chose sustainable everyday life at the academy as my direction.
+[END DECISION]
+[IF heartfire-chapter-7:future-focus = welcome]
+[N] Honoria places the next intake's dates beside your choice. A rotating reception group would meet the boats together. A keeper would take supervised responsibility for teaching the newcomers' first small exercises.
+[END IF]
+[IF heartfire-chapter-7:future-focus = records]
+[N] Dunne's proposal leaves the archive open to shared contributions and corrections. The keeper placement would give you time to gather accounts in person and teach from them, with Maelin's help. Both leave the record open to revision.
+[END IF]
+[IF heartfire-chapter-7:future-focus = roads]
+[N] The shared route would connect the academy, station and village while you spend a supported term learning elsewhere before returning. A travelling keeper would teach along that route and come home each week. Honoria has put the costs and the return arrangements on the sheet.
+[END IF]
+[IF heartfire-chapter-7:future-focus = everyday]
+[N] Shared routines would let you continue ordinary study without taking an office. The keeper apprenticeship would give you defined rounds, a mentor and somebody to relieve you. In either life, your time off would remain on the calendar.
+[END IF]
+[N] Two arrangements have come out of the planning meetings. Under one, shared stewardship passes among willing people, and each new arrival is invited to add a story to the register. Under the other, you take a keeper's place for the coming year and help teach the ritual to others, with the same support and relief available to anyone doing the work.
+[N] Neither asks you to hold the Heartfire alone.
+[Rowan | warm] If you take a keeper's turn, put your days off on the sheet. I mean it.
+[Imogen | amused] I'll check his spelling. It becomes unreliable when he's sincere.
+[Saoirse | warm] And I'll make a second lantern when we've worked out where it's actually needed.
+[N] Through the round window, the last pale light leaves the water. The lamps along the shore keep its place.
+[N] Your lantern stands between the clean sheet and your plate. Its handle has room for your hand, and the table has room for the next chair.
+[EXIT 0] Choose shared stewardship, inviting each new arrival to add their own story.
+[EXIT 1] Become a keeper for the coming year and teach the ritual to others.

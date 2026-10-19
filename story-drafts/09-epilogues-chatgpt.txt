@@ -1,0 +1,362 @@
+=== EPILOGUE shared ===
+[N] The first September boat arrives late.
+[N] You are waiting at the boathouse with a trolley, two spare coats, and a reception sheet on which your name occupies one small square. Beyond your turn, other names carry the evening forward.
+[N] Tully brings the boat in beneath the arch. A new student stays seated while the others begin handing their bags ashore.
+[N] Their lantern is dark. They keep turning its handle away from the light.
+[N] You put the trolley within reach and show them the dry part of the step.
+[N] They ask whether they have missed something they were meant to do.
+[N] You explain that their name has been on the arrival list since the letter was answered. There will be time to learn about the lantern.
+[N] The student looks at the step again. This time they stand.
+[N] At the top of the path, the next reception pair takes over. One leads the way to supper; the other waits while a luggage strap is untangled. Your part of the route ends before the hall door.
+[N] You almost follow the new student to check they are all right. Then you see the person beside them slow to match their pace.
+[N] You carry the spare coat back instead.
+[N] Inside, the working register rests on a side table with room for each arrival to add a story when they choose. Someone has already drawn the train. Someone else has written only the name of the person who met them.
+[N] Imogen is cutting fresh slips, keeping the original pages clear of the supper traffic. Saoirse shows a volunteer how the lamp cover lifts, then steps away long enough to let them do it.
+[Rowan | warm] Your turn's finished. There's a plate here with no job attached to it.
+[IF arrival:house = owlcombe]
+[N] Idris has kept three places at the Owlcombe table. Imogen sits down beside you with a strip of paper still caught in her sleeve.
+[Idris | neutral] A first-year borrowed the roof model. I didn't have to explain the joint.
+[Imogen | amused] You'll have to find another reason to talk to people.
+[N] He asks the new students what they saw from the train. Imogen listens with her hands resting on the table, and you pass the bread to the person still finding words.
+[END IF]
+[IF arrival:house = rookhallow]
+[N] Rowan and Cas make room at the Rookhallow table. Cas's reception list is folded beside his plate, with the final square still blank.
+[Cas | neutral] That's for whoever comes when we aren't expecting anyone.
+[N] Rowan reads it, then gives him the bowl before he can draw another line.
+[N] The three of you eat while somebody else watches the door.
+[END IF]
+[IF arrival:house = heronmere]
+[N] Noor and Petra have kept the window end of the Heronmere table. Petra is speaking to a newcomer who knows a different version of the song from Emberfall.
+[Noor | neutral] We can learn it after supper. You don't need to audition while you're eating.
+[N] The newcomer laughs. Petra accepts the correction and turns the conversation towards the journey instead. Noor slides a clean cup towards you.
+[END IF]
+[IF arrival:house = larkspire]
+[N] Toby and Saoirse greet you at the Larkspire table. One of the new students is studying the paper birds Toby has folded from spare reception notices.
+[Toby | neutral] That one stands up. This one's still deciding.
+[N] Saoirse gives the wavering bird a broad paper foot, then leaves the student to make the other. You take the chair between your friends while the little bird finds its balance.
+[END IF]
+[N] Above the place where you first sat, the mended hall lantern burns through its pale shade. The red ribbon is gone, kept in Grey's file with the last inspection.
+[N] At the next table, a student lifts a hand uncertainly. Before you can rise, someone nearer turns towards them.
+[N] You remain with your supper, watching another conversation begin.
+
+=== EPILOGUE keeper ===
+[N] Your first teaching card has been rewritten so often that the paper is thinning along one edge.
+[N] Kestrel reads the final version in the empty classroom. She puts a small mark beside the finish time and hands it back.
+[Kestrel | warm] Keep that promise too.
+[N] The keeper's appointment covers the coming year. There is a supervisor's name, a relief arrangement, and afternoons reserved for your own lessons. You have not signed away the part of your life that needs teaching.
+[N] On the first morning, you set out the stone mats, sand dishes and squares of ordinary paper.
+[N] A newcomer chooses the chair closest to the door. Their first attempt at Kindle produces nothing. On the second, one corner of the paper curls.
+[N] They hide it beneath the mat.
+[N] You open your old practice notes beside the mat. A curled square fills one margin; beside your own name is a reminder to lower your shoulders.
+[N] The student looks at your name on the old page, then at the small title on today's card.
+[N] You ask them to show you the moment the paper moved.
+[N] Kestrel stays by the window, close enough to help and far enough that the next question comes to you.
+[N] By the end of the lesson, the student can hold a small flame and stop it deliberately. They leave the spoiled square on top of the mat.
+[N] You collect it with the rest of the observations.
+[N] In the corridor, Rowan is waiting with a cup for himself and one for you. Imogen has brought the teaching copies back from the library; Saoirse has found a way to stack the covers without trapping anyone's fingers.
+[Rowan | warm] How did it go?
+[N] You can answer without pretending the room was quiet every time you needed it to be.
+[IF arrival:house = owlcombe]
+[N] Idris listens while Imogen carries the cards back upstairs with you. You mention the sentence that confused the class.
+[Idris | neutral] Try it on me. Slowly.
+[N] Halfway through, you hear where it went wrong. Imogen gives you a pencil and waits until you have made the change.
+[Imogen | warm] There. Now put it away. We kept your place for lunch.
+[END IF]
+[IF arrival:house = rookhallow]
+[N] Cas has brought the lamp tray Rowan forgot. He puts it down before asking how many first attempts needed a second.
+[N] You give him the number.
+[Cas | neutral] Sensible. I still check a door twice when I know which room it is.
+[N] Rowan laughs, then asks whether the three of you can keep the common-room practice table for your own work once a week. Teaching has not used up everything there is to learn together.
+[END IF]
+[IF arrival:house = heronmere]
+[N] Noor and Petra meet you on the stairs. Petra asks which question the newcomers found hardest. Noor asks whether you have had a drink.
+[N] You answer both, in Noor's order.
+[Petra | neutral] Bring the wording to the window table later. I can help you shorten it.
+[Noor | neutral] After we've had an afternoon that isn't about work.
+[N] Petra checks your calendar before suggesting a time.
+[END IF]
+[IF arrival:house = larkspire]
+[N] Toby and Saoirse arrive to collect the spare equipment. Toby asks whether anyone cried; Saoirse asks whether anything caught fire. Both look relieved by the answers.
+[Toby | neutral] Good. We can go down to the water, then.
+[N] Saoirse leaves the cover she meant to improve on its shelf. The three of you have time before the next lesson, and she has brought no tools for the walk.
+[END IF]
+[N] At the classroom door, the student who sat nearest the exit returns for a forgotten notebook.
+[N] They ask whether they may try again at the next practice.
+[N] You give them the time, then move aside so they can reach their desk.
+[N] Behind them, daylight fills the place where the small flame stood.
+
+=== EPILOGUE shared-records ===
+[N] On the first open afternoon, the library contribution table receives a recipe, a repair bill, and three incompatible accounts of a glimmer match.
+[N] Imogen studies the pile with an expression you remember from September.
+[Imogen | attentive] I had imagined more orderly material.
+[Dunne | neutral] You invited people.
+[N] The working archive belongs to no single editor. Its notices explain how to add an account, ask for a correction, or keep something private. Your name sits on the rota between other contributors' names.
+[N] Grey brings a page from the old rounds book. Moll brings a kitchen account written on the back of a menu. A student puts down a story about the first person who showed them where to leave wet boots.
+[N] That last account occupies four lines.
+[N] You make room for it beside the longer papers.
+[N] The first disagreement concerns a signature. A visitor says the person credited with a repair could not have done it alone. Imogen reaches for a blank slip before reaching for an explanation.
+[Imogen | attentive] What do you remember? And may we record it beside this, with your name and today's date?
+[N] The visitor sits. Their account changes the entry without making the earlier paper vanish.
+[N] By closing, the register has become less tidy and more exact in several places. The recipe stays too; its writer has identified the kitchen where it was used and the people it fed.
+[N] Saoirse arrives to return the observation lamp. Rowan follows with supper wrapped so the bread will not shed crumbs into the archive.
+[Saoirse | amused] We had a detailed argument about greaseproof paper. You may appreciate the result without hearing the whole thing.
+[IF arrival:house = owlcombe]
+[N] Idris has spent the afternoon helping Imogen make the first index. When it grows too complicated, he tries finding an account with the table turned away from her.
+[Idris | neutral] I can't use the part that's still in your head.
+[N] She takes the point, changes a heading, and asks you to try next. The three of you end with directions that work without an editor standing beside every reader.
+[END IF]
+[IF arrival:house = rookhallow]
+[N] Cas and Rowan bring the account of the gloves donated last winter. Cas has put both names beneath it, with the unpicking and the extra row included.
+[Rowan | amused] He wanted to leave out the first attempt. I felt it was the most historically significant one.
+[Cas | neutral] You wanted to preserve the joke.
+[N] You give their page a place without asking either of them to become a more dignified version of themselves.
+[END IF]
+[IF arrival:house = heronmere]
+[N] Noor and Petra bring a recording of the shore refrain in two versions, written down rather than held by a spell. Petra has resisted choosing one as the original.
+[Petra | neutral] We know who sang each version. That's where the account begins.
+[N] Noor hums the first line while you check the words. By the second, Petra joins her, and the library acquires a small exception to its ordinary quiet.
+[END IF]
+[IF arrival:house = larkspire]
+[N] Toby submits the story of the weather wheel with a drawing of the water bowl beside it. Saoirse asks whether her six discarded designs need an appendix.
+[Toby | neutral] Only if they explain why the bowl stayed.
+[N] You and Saoirse look at the drawing. She writes one paragraph, then gives him the pencil to check it. His birds occupy as much space as her mechanism.
+[END IF]
+[N] On your way out, you pass the register that once seemed to contain three empty places and an answer waiting to be forced from them.
+[N] The old formal copy remains in its proper place. Beside it is the work that lets another reader see what it left out.
+[N] Dunne turns down the lamps after checking nobody is still writing at the contribution table.
+[N] One chair remains pulled out. Someone will sit there tomorrow with something the book does not yet know.
+
+=== EPILOGUE keeper-records ===
+[N] The first person you ask for an account says no.
+[N] You are in the old cloisters, with the keeper's notebook open on your knee and Maelin waiting at the far end of the bench. The retired worker across from you has brought a bag of mending and no desire to be interviewed.
+[N] They remember the lamp rounds. They do not wish to discuss them today.
+[N] You close the notebook.
+[N] For a while the three of you sit with the sound of thread passing through cloth. The worker asks whether the threshold still catches in wet weather.
+[N] You tell them Grey replaced the strip in September.
+[N] Their nod contains a small, private satisfaction. You leave it unrecorded.
+[N] Later, Maelin walks back to the library with you. Your placement gives you time to gather accounts, compare them, and teach the small magic that preserves a trace without pretending to restore a person. It does not promise a story every time you go out.
+[Maelin Quill | reflective] I used to come back with fuller pages. They weren't always better ones.
+[N] In the notebook you record the visit and the refusal, with no invented reason for it.
+[N] Imogen is waiting at the library table. She has traced one initial to a full name, with two sources that agree. Another initial remains unresolved.
+[Imogen | warm] We can finish this entry. The other can stay open.
+[N] You work on the one that can be checked. Outside the window, rain begins its patient tapping against the leaves.
+[N] Rowan brings back a borrowed chair from your small teaching session. Saoirse leaves the cooled observation lamp on its marked shelf. Each has somewhere else to be, and says when you will see them again.
+[IF arrival:house = owlcombe]
+[N] Idris helps you and Imogen put the sources away. He asks about the afternoon's visit, and you tell him there was no account to bring back.
+[Idris | neutral] You still found out what they wanted from the visit.
+[N] Imogen gives him a look, then removes a question from the top of tomorrow's list. You leave together before the library bell can ask you twice.
+[END IF]
+[IF arrival:house = rookhallow]
+[N] Cas and Rowan meet you in the corridor. Cas begins to ask whether the visit was productive, hears the answer, and changes the question.
+[Cas | neutral] Was it all right to be there?
+[N] You describe the mending and the question about the threshold. Rowan slows his pace so you can finish the account before reaching the stair.
+[END IF]
+[IF arrival:house = heronmere]
+[N] Noor and Petra have kept the window table for an evening with you. Noor reads a letter while Petra listens to your account of the cloisters.
+[Petra | neutral] We spend so long learning how to ask a question. We ought to spend some of that time on what follows an answer we didn't hope for.
+[N] She closes her dictionary before the thought can become a lesson. Noor pours the tea.
+[END IF]
+[IF arrival:house = larkspire]
+[N] Toby and Saoirse are waiting by the glasshouse path. Toby has been sitting with an injured bird that still will not take food from his hand.
+[Toby | neutral] It ate when I moved away.
+[N] Saoirse takes the notebook from you only long enough to free your hand for the gate. The three of you leave the bird its quiet and walk back towards supper.
+[END IF]
+[N] A week later, a note arrives asking whether you might return to the cloisters. There is one thing the retired worker would like to tell you, if you can bring no lamp and put the notebook away when asked.
+[N] You write back with a day and a time.
+[N] Then you leave a clean page ready, without giving it a title.
+
+=== EPILOGUE shared-roads ===
+[N] At the end of summer, you pack the bag you brought to Lanternmere.
+[N] The return arrangements for your term away are folded inside the exchange papers. Honoria has written the date in her own hand. A room will be kept ready when you come back.
+[N] The shared route has begun modestly: the academy landing, the village approach, Platform Nought. Each has a keeper, a relief arrangement, and a place to leave a correction. Nobody has drawn a line across the whole country and called the work finished.
+[N] Your turn is to travel, learn how another community receives people, and bring back what proves useful. The others will keep the route here while you are away.
+[N] Priya checks your ticket at the station counter. This time you know where the bags go, and the person beside you in the queue asks whether you can show them.
+[N] You point out the trolley before returning to the farewells.
+[N] Imogen has given you a notebook small enough to use on a train. Saoirse has checked your lantern's case without adding a single moving part. Rowan has packed food in paper that will survive the journey.
+[Rowan | warm] Write about the boring bits too. I want to know where you buy your bread.
+[Imogen | amused] He means it. He'll form opinions about the bread from the description alone.
+[Saoirse | warm] And tell us if something doesn't work. We can still be useful from here. Occasionally.
+[IF arrival:house = owlcombe]
+[N] Idris and Imogen walk you to the carriage. He has brought a folded drawing of the common-room shelf with a small space marked for whatever you bring back.
+[Idris | neutral] It doesn't have to be a model.
+[Imogen | warm] Or a discovery. Something you liked will do.
+[N] You put the drawing inside the notebook. When you look up, the two of them are still waiting for you to finish the small packing job before saying goodbye.
+[END IF]
+[IF arrival:house = rookhallow]
+[N] Cas checks the departure board while Rowan stands beside your bag. He does it once, then puts the timetable away.
+[Cas | neutral] We know when you're expected back. If it changes, tell us.
+[Rowan | warm] We'll save you the table. Cas can worry about the timetable; I'll make sure someone remembers supper.
+[N] Cas objects to neither part of the division.
+[END IF]
+[IF arrival:house = heronmere]
+[N] Noor gives you a stamped envelope addressed to the window table, Heronmere. Petra has added the academy's proper address underneath so the post will survive the joke.
+[Petra | neutral] Tell us one word people use differently there.
+[Noor | neutral] And whether you've found someone to sit with. Only if you want to tell us.
+[N] You tuck the envelope where it will be the first thing you find when unpacking.
+[END IF]
+[IF arrival:house = larkspire]
+[N] Toby brings the last roll in a carefully folded bag. Saoirse holds it while he ties the string twice.
+[Toby | neutral] That one won't fall through.
+[Saoirse | amused] We've developed a whole field of research around your lunch.
+[N] They stand back when the guard calls, leaving your way into the carriage clear. Toby lifts a hand; Saoirse keeps waving after you have taken your seat.
+[END IF]
+[IF arrival:familiar = cat]
+[N] Your cat settles in the open-topped travel basket beside you, then turns twice before accepting the arrangement.
+[END IF]
+[IF arrival:familiar = owl]
+[N] Your owl grips its travel perch beside the compartment wall. You check the shade and give it the quieter side of the seat.
+[END IF]
+[IF arrival:familiar = fox]
+[N] Your fox settles on its familiar blanket beneath the bench. You leave enough room for it to rise and turn when the train stops.
+[END IF]
+[IF arrival:familiar = hare]
+[N] Your hare waits in its sheltered carrier beside your feet. You check the fastening before the carriage begins to move.
+[END IF]
+[IF arrival:familiar = moth]
+[N] Your moth rests inside the mesh travel shelter clipped beside the window. You turn it out of the direct sun.
+[END IF]
+[IF arrival:familiar = raven]
+[N] Your raven waits on its travel perch and studies the guard with frank interest. You keep your ticket out of its reach.
+[END IF]
+[IF arrival:familiar = ferret]
+[N] Your ferret has already found the sleeping cloth in its carrier. The latch clicks shut under your thumb, leaving the ventilation clear.
+[END IF]
+[IF arrival:familiar = toad]
+[N] Your toad's damp carrier sits level in the padded corner of your bag. You check it once before putting the bag beneath the seat.
+[END IF]
+[N] The green train leaves with a small rattle of cups and luggage fittings.
+[N] Faces move past the window. The platform shortens, then the trees take it from view.
+[N] When the lake appears between the pines, you know the names of things on its far shore. You know which window belongs to the library and which turn takes you back to the boathouse.
+[N] Your lantern stands securely beside you. Its light is small in the afternoon sun, but it does not go out when the lake disappears.
+
+=== EPILOGUE keeper-roads ===
+[N] Priya has cleared a table at Platform Nought between the lost-property shelves and the window.
+[N] It is not an impressive place for a first travelling lesson. A single mitten occupies the chair you meant to use, and a train is expected before you will be finished.
+[Priya | neutral] We could put you somewhere quieter. Then the people doing the work wouldn't be able to come.
+[N] You move the mitten to its shelf and set out two small lamps.
+[N] Your keeper placement takes you along the receiving route with a supervisor for the first visits. At the end of the week you return to Lanternmere for your own classes and the people waiting there. The schedule names someone else for the nights you are away.
+[N] Today you are teaching a station volunteer how to offer and release a connection. They have lit railway lamps for years and have no trouble with Kindle. Waiting for another person's answer is the unfamiliar part.
+[N] The first strand pulls tight when a bell rings outside.
+[N] You release the exercise. Priya goes to meet the arriving passengers, and the volunteer follows to help with the bags.
+[N] The lamps remain on the table, separate and steady.
+[N] When the platform is clear, you begin again. This time the interruption becomes part of the practice. The volunteer releases without extinguishing either light and goes to answer a traveller's question.
+[N] There will be another lesson next week. You leave a card explaining where today's attempt stopped.
+[N] In the evening, Tully takes you back across the mere. Your lantern stands near the bow, its reflection broken by the boat's slow movement.
+[Tully | warm] How was the first day?
+[N] You tell him about the mitten, the train, the lesson that worked after it was interrupted.
+[Tully | neutral] Sounds like a station.
+[N] He turns the tiller towards the boathouse, letting you look at the windows until the steps come into reach.
+[N] Rowan is carrying plates through the hall when you arrive. Imogen lifts a hand from the table. Saoirse asks about the carrying case, then catches herself and asks about your day first.
+[IF arrival:house = owlcombe]
+[N] Idris and Imogen are waiting in the common room with the map open. Idris has marked your route with a loose thread so it can be moved when the plan changes.
+[Imogen | warm] Tell us the part you won't put in the report.
+[N] You begin with the mitten. Idris moves the thread aside so the three of you have room for supper beside the map.
+[END IF]
+[IF arrival:house = rookhallow]
+[N] Cas looks up from the common-room table when Rowan brings you in. He has kept the difficult practice card for your next free evening rather than working through your share without you.
+[Cas | neutral] We can leave it tonight.
+[Rowan | warm] He's been rehearsing that sentence. I thought it deserved witnesses.
+[N] Cas puts the card away and asks about the journey.
+[END IF]
+[IF arrival:house = heronmere]
+[N] Noor and Petra have left the window chair empty. Noor listens to your account of the station while Petra takes the travel papers from the tea tray and puts them somewhere dry.
+[Noor | neutral] Did they ask you back?
+[N] You give them the date. Petra checks it against the evening the three of you have kept free, then leaves the calendar closed.
+[END IF]
+[IF arrival:house = larkspire]
+[N] Toby hears your step before Saoirse notices the door. He has been listening for the weather wheel to rattle and looks pleased to have recognised something else.
+[Saoirse | warm] Home in time. Nothing needs mending before you sit down.
+[N] Toby makes room for the lamp case beneath the bench. You take the seat between them while the wheel turns quietly above the open window.
+[END IF]
+[N] Later, you unpack the lesson card and write the point where the next visit should begin.
+[N] You know the way to the station now. More quietly, through repetition, you are learning the pleasure of this other journey: the one that brings you back.
+
+=== EPILOGUE shared-everyday ===
+[N] On the first free afternoon of the new term, nobody is waiting for you to save anything.
+[N] Your timetable holds lessons, an ordinary turn on the shared common-room rota, and a wide blank space after lunch. You have declined an office. Honoria has signed the shared arrangement without leaving a question mark beside your name.
+[N] The working register is still being kept. New arrivals still add what they wish to it. The lamps have keepers and the keepers have relief. Several of those jobs are done by people you did not know in September.
+[N] You return a borrowed book to the library. Dunne finds the due date and stamps it without asking about the Heartfire.
+[Dunne | neutral] Back on time. Thank you.
+[N] Outside, sunlight lies along the corridor wall. You follow it towards the common room instead of the next investigation meeting.
+[N] Rowan has a class to attend. Imogen is reading something with no useful connection to the archive. Saoirse has finished a repair and left the tools where they belong. You will see them at supper, with other things to say.
+[IF arrival:house = owlcombe]
+[N] Idris and Imogen have taken the low table by the Owlcombe window. The book between them is a story, and they are disagreeing about a character who has not yet reached the end of it.
+[Imogen | amused] He says we ought to wait and see what happens. I object on principle.
+[Idris | neutral] She looked ahead.
+[N] You sit down with your own cup. Imogen moves her notes aside to make room, then turns back far enough that the three of you can discover the next page together.
+[END IF]
+[IF arrival:house = rookhallow]
+[N] Rowan and Cas have abandoned the practice table to a pair of new students. Your usual seats by the window are free.
+[Cas | neutral] I didn't straighten their notes.
+[Rowan | amused] He would like us to notice the achievement.
+[N] Cas laughs before he can object. Rowan asks whether you would like to walk down to the water later. The three of you spend several minutes deciding which path, though none of you needs to arrive anywhere at a particular time.
+[END IF]
+[IF arrival:house = heronmere]
+[N] Noor is writing at the Heronmere window table. Petra is beside her with a dictionary closed beneath one elbow.
+[Petra | neutral] I found the word. I'm refusing to look for a better one until tomorrow.
+[N] Noor finishes her sentence before greeting you. There is no performance of welcome: a chair drawn out, the kettle still warm, space on the table where your cup will fit.
+[N] You remain while the light moves across the pool, talking when there is something to say.
+[END IF]
+[IF arrival:house = larkspire]
+[N] Toby and Saoirse are watching a bird try to decide whether the window bowl belongs to it. The weather wheel turns beside the sill, making its small familiar sound.
+[Toby | neutral] The other one was here first.
+[Saoirse | amused] Perhaps they can agree on a rota.
+[N] He gives her a look, and she accepts that birds may prefer their own arrangements. You sit with them until one bird drinks and the other finds a place on the rail.
+[END IF]
+[IF arrival:letter = keepsake]
+[N] Later, you find the keepsake from home while clearing your desk. You set it beside the academy lantern, where both can stay.
+[END IF]
+[IF arrival:letter = book]
+[N] Later, you open the book you brought from home. The old familiar passage is still there. At the edge of the page, a new mark records where you stopped reading after someone knocked on your door.
+[END IF]
+[IF arrival:letter = nothing]
+[N] Later, you put your travelling bag away. It is empty again, ready for another journey whenever you choose one.
+[END IF]
+[N] At supper, a place is kept for you without anyone asking what you have accomplished that afternoon.
+[N] You put your lantern beneath the bench, where it lights the feet of people sitting beside you.
+[N] There is a conversation already in progress. You have time to join it.
+
+=== EPILOGUE keeper-everyday ===
+[N] Grey lets you carry the rounds book on the first evening of your apprenticeship. He keeps the tool bag, which is heavier than it looks.
+[Grey | neutral] You'll learn where things belong before I ask you to carry all of them.
+[N] Your keeper's agreement is folded inside the cover. It gives you a mentor, defined rounds, protected class time, and the name of the person who relieves you. The final line concerns how to hand the work on when the appointment ends.
+[N] At the landing, the second lamp has a loose cover.
+[N] You hear it before you see it: a faint tapping whenever the wind comes across the water.
+[N] Grey waits while you support the cold frame and test the catch. It closes with a convincing click. A gentle pull opens it again.
+[N] You take out the spare hook.
+[Grey | attentive] That's the one.
+[N] The repair takes longer than it would in his hands. He holds the lamp where you need it and answers the question you actually ask.
+[N] When it is secure, you light the wick. Beyond its ordinary flame, the restored welcome settles into the fitting, a warmth that seems to know the way up the path.
+[N] A late traveller appears at the turn carrying a bag by its broken strap.
+[N] You set the tool down before going to meet them.
+[N] They know the academy and have been away longer than they intended. You take the bag as far as the next lamp, where another keeper comes down to escort them in.
+[N] The rounds book receives the repair, the arrival, and the name of the person who takes over. Grey reads it without adding anything.
+[N] At the appointed hour, your relief arrives.
+[N] There is another small job you could do before leaving. You show it to the next keeper, pass them the book, and let the handover finish.
+[Grey | attentive] Good night. I'll see you at the teaching session tomorrow.
+[N] He stays with the work. You go up towards the hall.
+[N] At the service door, Saoirse is collecting a lamp case she promised to repair next week. Imogen passes with the register's latest additions. Neither needs to stop you on your way to supper.
+[IF arrival:house = owlcombe]
+[N] Idris and Imogen wait at the common-room table. Idris offers to look at the new rounds diagram on your next free afternoon.
+[Imogen | warm] Next free working afternoon. This one is already occupied.
+[N] She has kept a place in the book the three of you are reading. You sit while Idris finds the line, and the old model on the shelf casts its small roof-shaped shadow over the notes.
+[END IF]
+[IF arrival:house = rookhallow]
+[N] Rowan and Cas have saved you a plate. Cas asks whether the handover sheet worked. You give him the answer, and he puts his own list away.
+[Rowan | warm] Then that's the round finished. Come and tell us about something else.
+[N] He moves the bread within reach. The chair holds only a folded napkin, easily lifted, with room beneath the table for your wet boots.
+[END IF]
+[IF arrival:house = heronmere]
+[N] Noor looks up when you enter. Petra has left your place at the window table clear of dictionaries.
+[Noor | neutral] Someone took over?
+[N] You tell her who. She pours the tea while Petra begins a story about the afternoon, sparing you any obligation to make the evening interesting first.
+[N] You have missed the beginning. They are happy to tell it again.
+[END IF]
+[IF arrival:house = larkspire]
+[N] Saoirse reaches the common room before you, and Toby has already found a dry place for your coat. The weather wheel ticks softly at the window.
+[Toby | neutral] There's soup. We kept the bread separate so it wouldn't go soft.
+[N] Saoirse takes her own seat while you take yours. Nobody reaches for the tool bag you no longer carry.
+[END IF]
+[N] From the window, you can see the landing lamp you repaired. A person moves beside it, making the small checks that are theirs to make tonight.
+[N] Your own lantern warms the table at your elbow.
+[N] You turn back towards the voices in the room.

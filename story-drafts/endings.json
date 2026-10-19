@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "provisionalChoice": "bloom:future-work",
+  "focusChoice": "heartfire-chapter-7:future-focus",
+  "legacyFocus": "welcome",
+  "policies": { "0": "shared", "1": "keeper" },
+  "endings": [
+    { "id": "shared", "title": "The Open Door", "focus": "welcome", "exit": 0 },
+    { "id": "keeper", "title": "The First Lesson", "focus": "welcome", "exit": 1 },
+    { "id": "shared-records", "title": "The Unfinished Book", "focus": "records", "exit": 0 },
+    { "id": "keeper-records", "title": "The Names We Carry", "focus": "records", "exit": 1 },
+    { "id": "shared-roads", "title": "Lights Along the Road", "focus": "roads", "exit": 0 },
+    { "id": "keeper-roads", "title": "The Travelling Light", "focus": "roads", "exit": 1 },
+    { "id": "shared-everyday", "title": "A Place at the Table", "focus": "everyday", "exit": 0 },
+    { "id": "keeper-everyday", "title": "The Quiet Round", "focus": "everyday", "exit": 1 }
+  ]
+}

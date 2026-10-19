@@ -22,7 +22,7 @@ This pass follows the owner's uploaded `CHATGPT_STORY_REWRITE.md` and the linked
 6. First Thaw: use the winter work, read the inscription, and make withdrawal/rejoining visible in a spell. Do not make refusal a failed relationship test.
 7. Bloomtide: expose the practical costs of a shared plan. Keep Rowan's support conversation private, earn Imogen's finished register, and finally let Saoirse finish one useful object.
 8. Midsummer: stage the restoration in full, including arrival, preparation, a recoverable interruption, three distinct spells, withdrawal, recovery, and the player's lantern lighting. Pay off all Bloomtide choices. Keep both ending policies equally viable.
-9. Epilogues: show what each stewardship policy changes in ordinary life, visit the three central relationships, return to the first journey, and leave a credible next year.
+9. Epilogues: cross the two stewardship policies with four interests to deliver the eight endings the owner requested. Show distinct events and lives afterwards, revisit the central relationships and house friends, return to details from the first journey, and leave a credible next year. See [the ending storyboard](ENDING_STORYBOARD.md).
 10. Check tags, original decision/option/section/gate order, valid cast and expressions, all choice references, per-route continuity, house/familiar coverage, mystery timing, repeated phrasing, and truthful word counts. Publish manuscripts and a clear Claude handoff on `scene-player`.
 
 ## Character movement
