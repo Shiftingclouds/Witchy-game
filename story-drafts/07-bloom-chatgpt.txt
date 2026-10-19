@@ -1,0 +1,198 @@
+=== SCENE bloom | chapter 6 ===
+
+--- SECTION wrong-hour | place: warding-hall | time: afternoon | date: 2027-05-01 ---
+[N] At half past one on Bloomtide afternoon, Grey brings the rehearsal notice into Warding Hall.
+[N] Four o'clock is underlined. Beside it he has written service door, west passage, handover. Rowan reads the three items before looking up.
+[Grey | attentive] I can come before three, or after the next keeper relieves me. At four I'm doing all this.
+[Rowan | small] I checked the class timetable.
+[Grey | neutral] Mine isn't on it.
+[N] Outside the open windows, the first warm wind of May moves through the trees. Inside, the practice stands are ready for people who cannot all arrive when the notice says.
+[N] Okoro joins you with Kestrel's record board. He introduces himself as the teacher leading the larger exercise, then asks Grey how long he can stay.
+[Okoro | warm] We can finish a short session before three. Or keep four o'clock for one group and take the next after the handover. Tell me which you can actually attend.
+[N] Noor arrives with an unsigned card. She would like to watch, she says, and will need to leave for an expected letter.
+[N] Rowan begins to assure her she will be good at the spell. He stops before finishing the sentence.
+[Rowan | neutral] Would you rather sit by the opening?
+[Noor | neutral] Yes. I want to see what happens when someone leaves.
+[IF thaw:rejoining = signal]
+[N] Okoro checks the readiness signal on your card and adds a spoken alternative. Noor tries the words from her chair so the group can hear how quietly they can be said.
+[END IF]
+[IF thaw:rejoining = space]
+[N] Two arrivals have come specifically for the quiet practice time on your card. Okoro shows them where to wait and who to ask. Then he returns to the stands, leaving them time to decide.
+[END IF]
+[IF thaw:rejoining = (none)]
+[N] Okoro reads the invitation aloud and agrees on a readiness signal with the people present. Watching does not put a name on the casting list. Today's answer does not commit anyone to June.
+[END IF]
+[N] There is still time to correct the notices. The earlier session will need fewer exercises. The later groups will need an observer to carry the first group's findings into the second.
+[DECISION bloom:rehearsal-plan] How will you make the rehearsal possible?
+[OPTION earlier] Hold a shorter session before the service work begins. | journal: We moved the Bloomtide practice earlier and reduced its scope so it finished when promised.
+[OPTION relay] Use two smaller groups with a proper handover. | journal: We divided the rehearsal into two groups and arranged a handover so people could attend around their work.
+[END DECISION]
+[IF bloom:rehearsal-plan = earlier]
+[N] You write half past two to three on the corrected notice. Okoro removes the second exercise from the plan while Rowan carries copies to the original posting places.
+[N] Grey checks the finish time against his list and agrees. The hour before practice fills with small journeys to find the people who trusted the first card.
+[END IF]
+[IF bloom:rehearsal-plan = relay]
+[N] You draw two groups with a handover between them. Rowan checks names and times, asking rather than assigning.
+[N] Grey takes a place in the later group. One observer agrees to stay for the first few minutes of it, long enough to explain what the first attempt teaches you.
+[END IF]
+
+--- SECTION rehearsal-release | place: warding-hall | time: afternoon | date: 2027-05-01 ---
+[N] When the revised practice begins, five lamps stand within an open curve. Kestrel waits beyond it with the record board.
+[N] The flames differ in height. Okoro has each keeper steady their own before asking anyone to join.
+[N] Rowan smooths the edge of his sleeve with his free hand. When you ask whether he wants the first turn or the second, he chooses the second at once.
+[Okoro | neutral] One light at a time. Then a planned departure. Keep your attention on the lamp that is yours.
+[N] The first light joins. You offer yours after the agreed answer. Rowan follows, and the warmth changes as the fourth and fifth arrive.
+[N] Noor watches from the chair she chose. Her card remains folded on her knee.
+[N] At Okoro's request, one participant lowers their hand. Their light separates cleanly.
+[N] Rowan's flame rises. Across the curve, another keeper tightens their strand. The shared warmth trembles between them.
+[Okoro | neutral] Stop there.
+[N] Five hands lower. Five separate lamps remain.
+[N] Kestrel asks each person what they were trying to do. One thought the gap had broken the arrangement. Another believed five lights were required. Rowan looks at his wick before answering.
+[Rowan | grave] It felt colder. I tried to put back what we'd lost.
+[Okoro | warm] Next time we expect four lights to feel different from five. Let it change. See whether four can hold comfortably.
+[N] The next departure leaves a quieter warmth. Rowan's flame stays small. The open curve settles around the people still offering their light.
+[N] From her chair, Noor asks whether the person who left may return.
+[N] The invitation waits at the gap. After a fresh answer, the fifth light joins again.
+[Noor | neutral] I'd like another practice. Not tonight. My letter will be at the rookery soon.
+[N] Rowan opens the way for her chair without asking her to stay.
+[IF bloom:rehearsal-plan = earlier]
+[N] At three, Okoro ends the exercise. Grey reaches the service door with time to put away his coat before the next job.
+[Grey | attentive] Same arrangement next time, and I can come again.
+[N] Kestrel writes the finish time beneath the spell result.
+[END IF]
+[IF bloom:rehearsal-plan = relay]
+[N] At the handover, the observer describes the surge after the first departure. The second group begins knowing to expect the change in warmth.
+[N] Grey arrives after his relief takes the route. He enters the exercise without having to apologise for the work that brought him late to the room and on time to his group.
+[END IF]
+[N] Rowan starts to carry two cooled lamps away, then puts one back. You take it while he opens the cupboard.
+
+--- SECTION rowan-afterwards | place: lantern-hall | time: evening | date: 2027-05-01 ---
+[N] Flowers stand in plain jugs along the supper tables. Their stems show through the water, bent at different angles towards the light.
+[N] Rowan is arranging cups that are already straight.
+[N] He moves one towards you and leaves his hand beside it. Saoirse brings a covered plate, notices the pause, and asks whether you would like some room.
+[Rowan | neutral] For a little while. Thank you.
+[N] She takes her own cup farther down the table.
+[Rowan | small] I heard the instruction. I knew somebody was meant to leave. Then the warmth changed and I did exactly what we'd been told not to do.
+[N] He lifts the plate cover, sees the food, and lowers it again.
+[Rowan | grave] I like knowing what to do for people. Fetch a chair. Carry something. Make the awkward bit shorter.
+[N] A jug passes behind him. This time he lets someone else take it.
+[Rowan | small] When I need something, I don't know how to be the person sitting still while somebody helps. I feel as if I ought to get up and make myself worth the trouble.
+[N] The covered plate stands between his hands. Around the table, ordinary talk keeps the space small enough for him to finish.
+[DECISION bloom:rowan-support] What will you offer Rowan?
+[OPTION share] Agree on a simple way to ask each other to take over. | journal: Rowan and I agreed that Can you take this part? would be enough to ask for help, with room for an honest answer.
+[OPTION stay] Stay beside him without turning the moment into a task. | journal: I stayed with Rowan while he spoke about finding it hard to need help. We let the conversation remain unfinished without trying to repair him.
+[END DECISION]
+[IF bloom:rowan-support = share]
+[N] You agree on a request small enough to use in the middle of things: Can you take this part? Either person may accept, decline, or offer something smaller.
+[N] Rowan looks at the cups.
+[Rowan | shy] Can you move those while I make room for the plate?
+[N] You move them. He uncovers his supper.
+[Rowan | warm] I can manage that sentence. Use it with me too, will you?
+[END IF]
+[IF bloom:rowan-support = stay]
+[N] You remain beside him. He begins a joke, stops at the first few words, and looks towards the round window.
+[N] Evening has turned the lake violet at its edges.
+[Rowan | tired] I haven't a better explanation than that.
+[N] There is time for the sentence to remain where he put it.
+[N] After a while he uncovers the plate and breaks the bread between you.
+[Rowan | warm] Thank you for staying.
+[END IF]
+[N] The fear does not disappear over supper. When Saoirse looks over, Rowan waves her back with his cup. He does not repeat what he has told you.
+
+--- SECTION imogen-record | place: lantern-hall | time: evening | date: 2027-05-01 ---
+[N] Imogen arrives with a bound working register wrapped in clean paper. She waits until a dry space has been cleared before opening it.
+[N] Names stand beside the work that survives them. Some have been recovered in full. Some remain initials, with references beside them and space for a later reader to find more.
+[N] Dunne and Maelin have checked the sources. Grey has read the account of the keeping work. Their corrections remain visible.
+[Imogen | grave] I nearly stopped in February. Every reference led to another box. I wanted to finish somebody's story, and all I could find was the next place to look.
+[N] She turns to the entry for a keeper who waited after a gathering for people finishing work in the kitchens.
+[Imogen | attentive] Maelin sat with me and checked this one. Just this one. We knew more at the end of the afternoon than we had at the beginning.
+[N] Her fingertip rests beside the small, completed reference.
+[IF register:correction = private]
+[N] While Rowan fetches a spare mat, Imogen speaks quietly to you.
+[Imogen | warm] I gave another contributor time to work through a correction before the meeting. The way you did with me. It helped.
+[N] When the others return, she turns the page without explaining the private conversation.
+[END IF]
+[IF register:correction = together]
+[N] The register carries a short correction note describing what the first claim got wrong.
+[Imogen | warm] Reading the references beside you helped me say it plainly. I've kept the change in here. Somebody else may be tempted by the same explanation.
+[END IF]
+[IF register:correction = (none)]
+[N] A correction note distinguishes the omissions you can support from motives the sources cannot establish. Imogen keeps it with the first comparisons instead of hiding it at the back.
+[END IF]
+[N] The list of current participants stays in a separate folder. Beside each name is the part that person has accepted. Some will cast. Others will carry lamps, keep the approach clear, or watch.
+[N] The seven figures seen in the lake have not been assigned names from a different century simply to complete a page.
+[Imogen | attentive] We know what the early lights offered. We know some of the people who carried the work on. Where we don't know a name, the record says so.
+[N] She closes the book and returns it to its wrapper.
+[Imogen | amused] I'd like it to survive three days without a stain. A modest ambition. Almost unprecedented for anything I own.
+
+--- SECTION saoirse-finished | place: lantern-hall | time: evening | date: 2027-05-01 ---
+[N] Saoirse uncovers her lantern after the plates have been moved.
+[N] The handle is broad enough for a gloved hand. The moving parts sit inside the frame. A card identifies the people who made and tested it, followed by a short set of instructions.
+[Saoirse | warm] It works.
+[N] She leaves the sentence there, apparently waiting for herself to spoil it.
+[Saoirse | amused] That was the whole announcement. Difficult, but I managed.
+[N] She demonstrates the cover and the steady reference light. The instrument can briefly shelter an offered echo. It cannot reconstruct a life or speak for its source.
+[IF emberfall:work-plan = simple]
+[N] The plain removable cover keeps the fastening you chose in October. Its edge has been smoothed and widened. Nothing else has been added to it.
+[Saoirse | attentive] I made three drawings before accepting that this part was already finished.
+[END IF]
+[IF emberfall:work-plan = shared]
+[N] The adjustable shutter has a larger handle, answering the difficulty with winter gloves. Saoirse keeps the plain spare clipped inside the case.
+[Saoirse | attentive] That got us through the lake reading. It has earned a permanent place.
+[END IF]
+[IF emberfall:work-plan = (none)]
+[N] Saoirse shows the cover being removed for cleaning and replaced with gloves on. Delphine checked the washing method; Rhys checked the teaching samples. Their names stand beside those tasks.
+[END IF]
+[Saoirse | attentive] Grey can use it at the hall landing when people arrive after the first group goes down. Or Kestrel can have it at the outer practice station, for anyone who wants another try before deciding.
+[N] Both have agreed to the job. Saoirse has brought instructions for either placement.
+[DECISION bloom:lantern-use] Where should the finished lantern work at Midsummer?
+[OPTION welcome] At Grey's hall landing, helping later arrivals find the gathering. | journal: We assigned Saoirse's finished lantern to Grey at the hall landing for Midsummer's later arrivals.
+[OPTION handover] At Kestrel's outer practice station, as a steady reference light. | journal: We assigned Saoirse's finished lantern to Kestrel's outer practice station for people deciding whether to join.
+[END DECISION]
+[IF bloom:lantern-use = welcome]
+[Saoirse | warm] I'll take Grey the case tomorrow and let him try the cover himself. Then I shall attempt the advanced skill of not hovering.
+[END IF]
+[IF bloom:lantern-use = handover]
+[Saoirse | warm] I'll take it to Kestrel before the next practice. If she can use it without me explaining over her shoulder, we'll know I've written the instructions properly.
+[END IF]
+[N] She folds the cloth over the lantern and puts the screwdriver back in her pocket.
+
+--- SECTION table-before-june | place: lantern-hall | time: evening | date: 2027-05-01 ---
+[N] The table fills in uneven stages. Grey confirms the next practice time on his way through. Noor returns with her letter. A dish of pudding reaches the end of the bench with one spoon fewer than it needs.
+[N] Rowan gets up, catches your eye, and asks whether anyone else needs something from the cupboard before going.
+[IF arrival:house = owlcombe]
+[N] Idris sits with you and Imogen after taking the register to a dry shelf. The common-room model has come back with another repair and three pages of questions.
+[Idris | neutral] I answered two. I left the third for whoever knows more than I do.
+[Imogen | warm] We could do the same with the book.
+[N] She turns towards you both.
+[Imogen | neutral] Tomorrow's walk. I haven't forgotten. No research to carry.
+[N] Idris checks whether she means it, then asks which way the three of you should go.
+[END IF]
+[IF arrival:house = rookhallow]
+[N] Cas brings news from the landing: the gloves fit somebody who arrived without a pair. Rowan asks which one they used for the longer hand.
+[Cas | neutral] Neither. We fixed them, if you remember.
+[N] He is smiling when he says it.
+[N] The practice cards for your common-room table are still in his pocket, but he leaves them there. For once the three of you spend supper on a job that is finished.
+[END IF]
+[IF arrival:house = heronmere]
+[N] Petra joins you and Noor with a translation abandoned at the end of a sentence. She has decided it can remain a problem until morning.
+[Noor | neutral] Did you find the word?
+[Petra | neutral] I found four. I've stopped before I find a fifth.
+[N] Noor offers to listen to the whole passage tomorrow. Petra accepts, then asks about the letter without leaning over to see it.
+[N] Noor folds it once and tells the two of you the part she wants to share.
+[END IF]
+[IF arrival:house = larkspire]
+[N] Toby takes the chair beside you and tells Saoirse that the weather wheel turns in the spring wind. The water bowl beside it has acquired two regular visitors.
+[Saoirse | warm] Does it still rattle?
+[Toby | neutral] A little. You can leave it. The birds have decided it isn't dangerous.
+[N] She puts her hand over the screwdriver in her pocket and leaves it there. Toby passes you the pudding before anybody can improve the table.
+[END IF]
+[N] The next rehearsal is on the calendar. The sources are checked. Kestrel and Okoro are preparing the Heartfire approach. Tully will keep arrivals moving; Grey will check the ordinary lights. In June, every participant will be asked again.
+[N] Overhead, several lanterns still carry red ribbons.
+[Imogen | warm] I checked the inscription again. It doesn't require confidence.
+[Rowan | amused] Good. I've been trying to borrow some from everyone else.
+[Saoirse | warm] You may have half mine. After pudding I expect to feel quite capable.
+[N] Your own lantern stands beneath the bench, its practice wick cold. The handle still bears the name Priya asked you to check at the station.
+[N] There is time to choose what you want to say to the people around it before the dishes are cleared.
+[EXIT 0] Thank them for helping make a home here with you.
+[EXIT 1] Promise to help the next arrivals find their place here too.

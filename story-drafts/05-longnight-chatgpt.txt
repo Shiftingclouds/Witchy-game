@@ -1,0 +1,204 @@
+=== SCENE longnight | chapter 4 ===
+
+--- SECTION winter-round | place: tully-cottage | time: evening | date: 2026-12-21 ---
+[N] Snow has made Tully's cottage look smaller from the path. Up close, you see how much work keeps its door reachable: grit pressed into ice, a broom leaning within arm's reach, fresh shovel marks beside the step.
+[N] Beyond the tied boats, a dark strip of water moves against the frozen mere.
+[N] Saoirse carries the Emberfall lantern in a padded case. One tool protrudes from her coat pocket because the case, she explains, has developed unreasonable limits.
+[N] Tully finishes tightening a porch lamp before taking the case from her.
+[Tully | warm] Upper path was all right?
+[N] You stamp the snow from your boots and confirm the route. He ticks a line on his slate.
+[Tully | neutral] No boats in this weather. We meet people at the bridge and walk them round. Supper travels better under a cover than a visitor travels over that ice.
+[N] On the workbench, names and arrival times fill a sheet beside the kettle. He turns it face down before making room for your autumn notes.
+[IF emberfall:quiet-company = listen]
+[Saoirse | warm] A coat, a kettle, somebody watching for you. I should have spent an afternoon here before I drew the travelling lamp.
+[N] She opens the case without apologising for the smaller thing it can provide.
+[END IF]
+[IF emberfall:quiet-company = rest]
+[Saoirse | amused] I've kept the hour after supper free. You may ask me what for. I shall be very impressive and say I don't know.
+[END IF]
+[IF emberfall:quiet-company = (none)]
+[N] Saoirse has left the hour after supper empty. She tells you this while making room beside the case for two mugs.
+[END IF]
+[N] Kestrel comes up the path with a flat warding case beneath one arm. She introduces herself as the teacher conducting tonight's check, then asks Tully when the next bridge party is due.
+[Kestrel | neutral] Rhys sent the petal observations. We'll use Echosight from the old landing, inside the posts. I'll hold the boundary. If you need to stop, lower your hand.
+[N] The porch lamp flickers. Saoirse looks up at once.
+[N] Tully tightens the catch another quarter-turn. The light steadies.
+[Tully | neutral] Worn hook. That one's ordinary trouble.
+[N] He lays the old piece beside a box of replacements.
+[Tully | neutral] We still have to fix ordinary trouble. A perfectly good mystery won't light the step.
+[N] Before the reading, he needs the route checked for the next visitors. Saoirse offers to take whichever half you leave.
+[DECISION longnight:shore-work] Which part of the winter round will you check?
+[OPTION landmarks] Walk the route as a newcomer would see it. | journal: I checked the winter route and helped move a misleading marker before the next visitors arrived.
+[OPTION lanterns] Inspect the lamps' catches and covers. | journal: I helped find and replace a worn catch on the winter route before the next bridge party used it.
+[END DECISION]
+
+--- SECTION safe-way | place: tully-cottage | time: night | date: 2026-12-21 ---
+[IF longnight:shore-work = landmarks]
+[N] From the bridge, the academy's windows make the lower track look inviting. It points straight towards them. The safe path bends away among the trees.
+[N] You stop where a stranger would have to choose. The arrow is behind you.
+[Kestrel | neutral] There. That's the place we need it.
+[N] Tully brings the marker forward while you stand at the fork. When he turns it, you walk back to the bridge and approach again.
+[N] This time the arrow meets your eye before the bright windows can lead you downhill.
+[Tully | warm] Better. I've been walking past that sign knowing what it meant for twenty years.
+[END IF]
+[IF longnight:shore-work = lanterns]
+[N] Tully shows you how to support a cold lamp while testing its cover. The first two hold. The third clicks shut and springs open under a gentle pull.
+[N] You test it again so Kestrel can see.
+[Kestrel | neutral] Put that movement on the check sheet. The sound alone would have fooled me.
+[N] Tully replaces the hook while you steady the frame. Saoirse passes the spare from the box, then puts the worn one in an envelope for Jory.
+[N] The new hook holds. You put your initials beside the check.
+[END IF]
+[N] A voice calls from the bridge. Tully raises his hand to an escort bringing two visitors around the turn.
+[N] You stand aside. One visitor has an arm through the other's and is concentrating on the packed snow. The escort carries their larger bag.
+[N] They choose to continue to the hall. Tully watches until they reach the next lamp.
+[Tully | neutral] First winter I worked here, I took the route lights down after the last expected arrival. My predecessor asked how I knew nobody unexpected would come.
+[N] He adjusts the spare coat over his arm.
+[Tully | neutral] Didn't have much to say to that.
+[N] At the old landing, Kestrel clears snow from the stone, tests the posts, and sets two ward markers on the dry side of the rope. Nobody steps onto the ice.
+[N] Saoirse weighs your notebooks open with the tool case. Her lamp will supply a steady reference; it cannot pull a memory from the water.
+[IF emberfall:work-plan = simple]
+[N] The plain cover from Emberfall lifts easily in her gloves. Saoirse studies its broad edge with the pleased surprise of somebody discovering a reason to keep her own design.
+[END IF]
+[IF emberfall:work-plan = shared]
+[N] The demonstration shutter's lever is too small for winter gloves. Saoirse uses the plain spare and writes larger handle on a separate scrap. The lake will not have to wait for her to improve it.
+[END IF]
+[IF emberfall:work-plan = (none)]
+[N] Saoirse checks the plain cover with her gloves on, then sets it within reach. The design notes stay under the case; the blank observation page stays open.
+[END IF]
+[N] Kestrel asks you to flex your fingers. Only when you can do so comfortably does she open the narrow boundary over the water.
+
+--- SECTION seven-lights | place: mere | time: night | date: 2026-12-21 ---
+[N] Across the bay, the boathouse roof is a pale curve. The real shore lamps stand above it, and the academy windows stretch into broken reflections along the ice.
+[N] You identify those lights before beginning Echosight.
+[N] The first change is a doubling at the edge of a reflected window. You let the distant building blur and keep your attention close to the landing.
+[N] A small amber flame appears beneath the ice.
+[N] Then another.
+[Saoirse | attentive] One at the far end. Three down each side.
+[IMAGE lake-seven-lights] Seven amber memory lights in an open horseshoe beneath blue ice, seen from a snow-edged stone landing; faint indistinct keeper reflections appear beside them.
+[N] Seven flames form an open ring. The gap faces the landing where you stand. Beside each light is the uncertain shape of a person, with no face clear enough to recognise.
+[N] You can still see blue ice through the memory.
+[N] Arms lift at different times. The small flames remain apart until their keepers offer them.
+[Kestrel | neutral] Choose what you'll record closely. Saoirse, take the other part. We'll compare when the reading is shut.
+[DECISION longnight:echo-record] What will you attend to?
+[OPTION pattern] Watch the separate lights join and the opening remain. | journal: I recorded the seven lights joining separately and the gap in their ring. Saoirse recorded the invitation.
+[OPTION words] Listen to the invitation and its answering voices. | journal: I recorded if you wish and the separate answers. Saoirse drew the seven lights and their open ring.
+[END DECISION]
+[IF longnight:echo-record = pattern]
+[N] You mark seven positions. The nearest light on the left pauses after the others have begun to answer. Your pencil waits over the page until it joins.
+[N] Nothing closes the gap nearest the landing.
+[Saoirse | attentive] If you wish. I heard that clearly. Then answers from different places. I couldn't hear the names.
+[N] You mark the delayed light with a small number rather than forcing its pause into an even sequence.
+[END IF]
+[IF longnight:echo-record = words]
+[N] The first words are too faint to separate from the sound of the shore. Then a voice says if you wish.
+[N] An answer comes from the left. Another crosses it, farther away. The final answer follows a pause long enough that you have begun to think the exchange is finished.
+[Saoirse | attentive] Seven. This one waited. And the gap stayed open. I drew it wrong the first time.
+[N] She turns the sketch towards you without asking you to alter the spaces in your own account.
+[END IF]
+[N] As the last light steadies, a dark break passes through the academy's reflected windows.
+[N] Above the water, the actual building remains whole.
+[N] Saoirse drops her pencil.
+[Kestrel | grave] Lower your hand. Stay behind the rope.
+[N] You release the reading. The small flames fade; the indistinct figures dissolve into blue ice. Kestrel brings the ward markers together.
+[N] Tully picks up the pencil and opens the way back from the landing.
+[Saoirse | scared] Will the school go with it? If the Heartfire goes out?
+[Kestrel | grave] The buildings will stay. I'll explain at the cottage. Your hands need warming first.
+[N] No one asks for another look. You close the notebook around its loose page and follow the lamps back.
+
+--- SECTION what-remains | place: tully-cottage | time: night | date: 2026-12-21 ---
+[N] Tully pours fresh tea. Steam briefly hides Saoirse's face as she bends over her mug.
+[N] Kestrel waits until your gloves are off and your fingers move freely. Then she unfolds the survey she brought.
+[Kestrel | neutral] The break was in the echo. Grey's building checks are sound. Okoro and I have tested the protective wards.
+[Saoirse | guarded] Then what do we lose?
+[N] Kestrel lays the survey flat between the mugs.
+[Kestrel | grave] The welcome carried through the Heartfire. A lamp will still show you a path. It will stop answering as though someone has kept that path for your return.
+[N] Saoirse looks towards the window. Through it, the porch lamp lights a small patch of falling snow.
+[Saoirse | sad] I thought that was only something I felt. The first time I knew which turn to take, even before I could read the sign.
+[Tully | neutral] Used to see the shore lights settle when somebody tired came round the headland. Lately I watch for people myself. First time it didn't happen, I blamed the weather.
+[N] He turns his mug so the chip faces away from his lip.
+[Tully | neutral] Then we had a clear night.
+[N] Kestrel shows you three sets of measurements: September, after Emberfall, this week. The ordinary lamps were tested separately. Each measure of the welcome's response is weaker than the last.
+[Kestrel | neutral] Moth found the annual renewal records. The next turn is Midsummer, the twenty-first of June. The reserve won't carry us through it unaided.
+[N] The date is written at the foot of the sheet: 21 June 2027.
+[N] Between this night and that one lie six months of lessons, meals, drying coats, letters, mornings when the alarm will be unwelcome. The space is large enough for work. It has an end.
+[Saoirse | attentive] Who else knows?
+[Kestrel | neutral] Honoria is organising the response. Hask and Moth have the old accounts. Okoro and I will maintain the wards and test any restoration we attempt. Tully keeps the routes open.
+[N] She leaves a clear space beside the list.
+[Kestrel | warm] The observations you've brought matter. You're not being asked to replace all those people.
+[N] Saoirse looks at the empty space, then writes the lamp's limited job beneath her name.
+
+--- SECTION winter-duty | place: tully-cottage | time: night | date: 2026-12-21 ---
+[N] You compare the two lake accounts while the tea cools. Tully fetches an old chart from the drawer beneath the workbench.
+[IF longnight:echo-record = pattern]
+[N] Your sketch keeps the pause before the seventh light joined. Saoirse's words supply the invitation that preceded it. You leave the accounts on separate pages, each with its observer's name.
+[END IF]
+[IF longnight:echo-record = words]
+[N] Your clear phrase sits between two gaps where you could not hear. Saoirse's sketch gives the answers positions. You mark the likely connection between the delayed answer and the last light without filling either gap.
+[END IF]
+[Kestrel | neutral] An invitation, separate answers, lights joining in their own time. The first keepers offered willingly. We still need to know how the connection worked.
+[N] On Tully's chart, the old landing lies below the Candlestones. Beyond the cottage window, their ridge is only a darker shape against the snow.
+[Tully | neutral] Lower gate's shut until the thaw. We can have the right papers ready when the path opens.
+[N] There are two jobs that can begin here. Tully needs a winter-round sheet another keeper can use without him. Imogen needs a checked route through the records before the spring visit.
+[DECISION longnight:winter-duty] Which winter task will you take?
+[OPTION handover] Help Tully write a usable handover for the rounds. | journal: I began a winter-round handover with Tully, including safe observation points and the name of the next keeper.
+[OPTION archive] Gather the shore references for Imogen's spring research. | journal: I began a source list linking the old shore chart, working registers and our Longnight observations.
+[END DECISION]
+[IF longnight:winter-duty = handover]
+[N] You draw spaces for the route, the check, and the person receiving the next round.
+[N] Tully reads the first version with his hands wrapped around the mug. At usual turn, he stops.
+[Tully | neutral] Which one would you take if you'd never walked it?
+[N] You replace the phrase with the bridge fork and the upper marker. The next line needs a small drawing. By the bottom of the page, there is room to name who takes over.
+[Tully | warm] Bring it next round. We'll give it to somebody who hasn't heard us explain it.
+[END IF]
+[IF longnight:winter-duty = archive]
+[N] You give the chart its own line, with the drawer it came from and permission to copy it. The autumn entries follow, then the two separate observations from tonight.
+[N] Saoirse reads the headings and mistakes a repair date for a keeper's name. You rule another column.
+[Tully | neutral] Copy the chart. The visitor list stays here; those names were given so we could meet people at the bridge.
+[N] You make two copies, one for Imogen and one for the drawer. Beside the spring path you write a question about the gap in the ring.
+[END IF]
+[N] Kestrel puts the survey away. Tully gives you the empty mug crate to carry up to the hall.
+[Tully | warm] Both hands for that. Watch the second turn.
+
+--- SECTION longnight-supper | place: lantern-hall | time: night | date: 2026-12-21 ---
+[N] Blue and white lanterns turn beneath the rafters. Beyond the round window, the snow has begun falling too thickly for you to see the farther shore.
+[N] The food has been kept under covers. When you set the mug crate down, warmth reaches your palms through a plate instead of a cup.
+[N] Tully chooses a chair facing away from the door. It takes him two attempts to stay in it while someone else brings the bread.
+[IF longnight:shore-work = landmarks]
+[N] One of the bridge visitors stops by the table to say the upper marker helped. They had nearly followed the lower track. Tully points to you with his spoon, and the thanks changes direction before the visitor moves on.
+[END IF]
+[IF longnight:shore-work = lanterns]
+[N] The escort reports that every route lamp is shut and burning. Tully asks about the repaired catch. It held. Saoirse taps the initials on your folded check sheet and lets you return to your supper.
+[END IF]
+[IF arrival:house = owlcombe]
+[N] Imogen and Idris bring the three of you a paper puzzle from the Owlcombe table. It folds into a bird if the instructions are followed correctly. Idris's has become a box.
+[Imogen | amused] A useful result, though zoologically disappointing.
+[Idris | neutral] Put the sweets in it. Then we'll see whose bird people prefer.
+[N] Before you compare the lake notes, you help them fill the box. Imogen puts her notebook underneath her chair so the paper bird has somewhere to stand.
+[END IF]
+[IF arrival:house = rookhallow]
+[N] Cas and Rowan make room for you at the Rookhallow end of the table. Between their plates lies a pair of knitted gloves, one longer than the other.
+[Cas | neutral] We followed the same instructions. Separately, which may have been the problem.
+[Rowan | amused] It's for someone with one ambitious hand.
+[N] Cas has brought the spare wool. He asks whether, after the holidays, the three of you can try again before donating them to the landing's coat box.
+[END IF]
+[IF arrival:house = heronmere]
+[N] Noor and Petra have saved you a chair by the window. A letter lies beside Noor's plate, still unopened; she has been waiting until she has time to read it properly.
+[Petra | neutral] I can keep the conversation going for at least five minutes without asking anyone to translate anything.
+[Noor | neutral] You needn't entertain us. Eat your potatoes.
+[N] Petra obeys. Noor unfolds the letter, and the three of you share the quiet while the storm thickens outside.
+[END IF]
+[IF arrival:house = larkspire]
+[N] Toby has a parcel of rolls at the Larkspire table. This time its paper is reinforced with string.
+[Saoirse | amused] An engineering improvement I thoroughly approve of.
+[Toby | neutral] My grandmother did it. I told her about the station.
+[N] He gives you the first roll and Saoirse the second, then asks whether the weather wheel can wait until after the holiday. He would like the window clear for watching the snow.
+[Saoirse | warm] Yes. I'll take it down with you tomorrow.
+[END IF]
+[N] Kestrel returns from speaking with Honoria. The staff reports and your winter work will have a place on the term calendar. There will still be classes in the morning.
+[N] At the far end of the hall, a song begins too softly for everyone to hear. Voices join as the tune travels towards you.
+[N] Saoirse opens her notebook, looks at the boxed date, and closes it again before joining the refrain.
+[Saoirse | warm] I know this bit. Remind me not to start too high.
+[N] She starts too high. Tully supplies a lower note, and she follows it with a laugh.
+[N] Later, her hand rests on the table beside your cup. The notebook stays closed. You can offer company for the uncertain months ahead, or give tomorrow a first clear task.
+[EXIT 0] Take her hand and promise to see the work through together.
+[EXIT 1] Make a careful plan with her for where to begin tomorrow.

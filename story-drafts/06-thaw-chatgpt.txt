@@ -1,0 +1,186 @@
+=== SCENE thaw | chapter 5 ===
+
+--- SECTION path-opens | place: candlestones | time: morning | date: 2027-03-20 ---
+[N] The first sound on the spring path is running water. Somewhere below the ridge, snow is leaving the mountain by a route you cannot see.
+[N] Tully waits at the last gate. His boots are muddy to the ankle; the cord that held it shut through winter is coiled over his arm.
+[N] Across the mere, the academy has become pale stone again. You can see which windows are open.
+[N] Since Longnight there have been lessons, ordinary disagreements, letters arriving after you had stopped watching for them. The winter work has acquired other people's handwriting.
+[IF longnight:winter-duty = handover]
+[N] The round sheet you began with Tully is soft at the folds. One keeper has drawn the gate. Another has replaced tall post with stone step because the post disappears in heavy snow.
+[Tully | warm] That one saved me a trip. Somebody else could take the round while I stayed at the bridge.
+[N] You date the newly opened approach on a fresh line. Imogen asks to copy the observation-point sketch, then turns the old shore chart until the landing matches it.
+[END IF]
+[IF longnight:winter-duty = archive]
+[N] Imogen brings the source list you began at the cottage. Shelf numbers now fill its empty column. One date has been corrected: the landing was repaired that year, not built.
+[Imogen | warm] I could find the original because you kept the reference. It describes the upper approach. We have something to compare with our feet.
+[N] Tully lays the present route sheet beside it. You mark the bend around a fallen rock on a separate page, leaving the older drawing intact.
+[END IF]
+[IF longnight:winter-duty = (none)]
+[N] Tully has the winter route record; Imogen has the checked source list. You put today's dry-path observation beside them and add the date. The earlier initials belong to the people who did those rounds.
+[END IF]
+[N] Kestrel joins you at the gate. Tully gives her the route sheet and heads back towards a boat waiting at the landing.
+[Tully | warm] If the old inscription promises boatkeepers a second breakfast, copy that part very carefully.
+[N] Beyond the gate, the Candlestones stand at unequal heights. Lichen fills the hollows where rain has worn their surfaces. An unlit hearth occupies the middle of the ring.
+[N] The path enters through a gap facing the water.
+[N] Imogen sets down her pencil case. There are three sharpened pencils inside and a piece of bread wrapped separately from the paper.
+[Imogen | amused] I've learned a great deal since September. Mostly about crumbs in bindings.
+[N] Kestrel asks for a record of the place before the spell. Imogen will examine whichever part you leave.
+[DECISION thaw:reading-method] Where will you begin?
+[OPTION approach] Walk the approach and compare it with the winter sketch. | journal: I compared the open approach with the ring seen at Longnight while Imogen recorded the stone's surface.
+[OPTION surface] Draw the weathered marks that remain visible. | journal: I recorded the physical marks before Echosight while Imogen checked the path against the winter sketch.
+[END DECISION]
+
+--- SECTION room-in-stone | place: candlestones | time: morning | date: 2027-03-20 ---
+[IF thaw:reading-method = approach]
+[N] You walk from the outer path into the ring. From the hearth, the landing can be seen through the opening between two stones.
+[N] Turning the Longnight sketch brings the two views into rough agreement. The opening faces the way a traveller would arrive.
+[Imogen | attentive] Two rows of marks here. Some cuts survive. Some don't. I've kept the drawing to what I can see.
+[END IF]
+[IF thaw:reading-method = surface]
+[N] Morning light picks out two shallow rows of cuts. You draw the surviving edges without rubbing the stone. One dark stroke proves to be a crack when you move sideways.
+[N] You mark it differently.
+[Imogen | attentive] The gap faces the landing. I walked it both ways. It's the same relationship as the winter sketch, though I wouldn't trust that sketch to build anything square.
+[END IF]
+[N] Kestrel finds two positions where you and Imogen can stand without blocking each other's view. A flat rock holds the notebooks; the pencil case holds their corners against the wind.
+[Kestrel | neutral] Keep the reading on the surface. Let the marks come to you. Don't try to bring the whole place with them.
+[N] You begin Echosight.
+[N] Amber gathers inside a shallow cut. It extends across a worn patch, showing the line that once continued there. Beneath it, the stone remains broken.
+[N] A letter becomes legible. Then a word.
+[IMAGE candlestones-inscription] A weathered standing stone under Echosight displays: A light freely offered. A space for whoever comes next.
+[N] A light freely offered. A space for whoever comes next.
+[N] You copy the sentences before lowering your hand. Imogen keeps her page turned towards herself until you have finished.
+[N] The copies agree.
+[N] On her page, freely is underlined. Your pencil has left a wider space before whoever.
+[Imogen | grave] I kept expecting a name. Someone who knew how to do it better than everyone else.
+[N] She looks through the gap towards the water.
+[Imogen | attentive] There's nobody named here at all.
+[Kestrel | neutral] There's a condition. A light offered by its keeper. And a place the people already here don't get to fill permanently.
+[N] Wind lifts the loose comparison sheet. You catch it against your coat before it can leave through the opening you have been studying.
+[N] Imogen laughs, then weights it with the bread packet.
+[N] You date the copies and place the surface drawing beside them. Kestrel signs the reading as its witness.
+
+--- SECTION question-for-class | place: candlestones | time: morning | date: 2027-03-20 ---
+[N] On a low rock beside the path, Imogen unwraps the bread. The packet has survived the excursion with only one flattened corner.
+[Imogen | guarded] Suppose somebody changes their mind after offering.
+[N] Kestrel takes a teaching card from her case.
+[Kestrel | neutral] Then the connection needs to let them leave.
+[Imogen | attentive] Even if everyone else has begun?
+[Kestrel | neutral] Especially then. We can test that before June.
+[N] She writes withdrawal on the card, followed by return.
+[Kestrel | neutral] Threadbind. Two willing lights at first. You already know how to make one and how to stop it. This afternoon we'll practise joining them without taking charge of each other's flame.
+[N] Imogen looks at the word return.
+[Imogen | neutral] I'd like to try that part too.
+[N] The stones give you no further instruction. Their amber marks have gone. The space between them remains open to the path and the weather.
+[N] You pack every loose sheet before leaving. The last thing Imogen checks is the bread wrapper.
+
+--- SECTION two-small-lights | place: warding-hall | time: afternoon | date: 2027-03-20 ---
+[N] Afternoon light lies across the patterned floor of Warding Hall. Kestrel has cleared a small area beside the larger practice circles.
+[N] Two lamps stand at knee height. Two stools wait behind them. Imogen puts her notebook on one and then has nowhere to sit.
+[N] You hold it while she removes her coat. By the time it is returned, Kestrel has drawn an open curve between the lamps.
+[Kestrel | neutral] Begin with your own Kindle. We'll join them when both of you are comfortable.
+[N] Imogen's flame leans whenever she looks at yours. Yours trembles when you try to match its height.
+[Kestrel | neutral] They can be different sizes.
+[N] Imogen lets out a breath. Her smaller flame steadies.
+[Imogen | shy] I was copying you. In a practical, of all places.
+[N] Kestrel demonstrates with a third lamp. She asks Imogen whether she wishes to join, waits for an answer, and traces a loose amber curve towards her.
+[N] When Imogen lowers her hand, the connection opens. Both lamps keep burning.
+[Kestrel | neutral] Kindle supplies your light. Threadbind offers the connection. Keep the curve open and wait for the other person's answer.
+[N] Your first attempt together appears too quickly. A bright loop tightens between the stands. Imogen's wrist stiffens.
+[Kestrel | grave] Release.
+[N] Both hands lower. The loop disappears before either wick goes out.
+[N] On the next attempt, you leave more space. Imogen answers before lifting her hand. The curve forms slowly enough for each of you to notice the other's light.
+[N] Kestrel marks its open end with chalk.
+[Kestrel | neutral] Now one person leaves. Then you exchange roles.
+[DECISION thaw:practice-role] Which part will you try first?
+[OPTION leave] Withdraw and describe what the connection does. | journal: I withdrew first during Threadbind practice, then exchanged roles with Imogen. We learned to release without extinguishing either light.
+[OPTION hold] Tend your own flame while Imogen withdraws. | journal: I held my own light while Imogen withdrew, then exchanged roles. The connection could open while both lamps stayed lit.
+[END DECISION]
+
+--- SECTION leave-and-return | place: warding-hall | time: afternoon | date: 2027-03-20 ---
+[IF thaw:practice-role = leave]
+[N] You signal that you are lowering your hand. Imogen nods, but keeps watching your flame.
+[N] The strand follows your wrist like thread caught on a cuff.
+[N] You stop and describe the tug. Imogen looks back at her own lamp. The thread falls away.
+[Imogen | attentive] I was helping with something you hadn't asked me to keep.
+[N] The second release is clean. When you exchange roles, you know the temptation before your hand begins to follow hers. You let her go. Your wick keeps its small flame.
+[END IF]
+[IF thaw:practice-role = hold]
+[N] Imogen tells you she is leaving. As her hand lowers, your attention follows her light.
+[N] The curve stretches instead of opening.
+[Imogen | attentive] It's caught. Here, at the wrist.
+[N] Kestrel points to your lamp. You bring your attention back to its steady wick, and the strand releases.
+[N] On the next attempt, Imogen can step back without a tug. Then you exchange roles. She watches her own flame while yours separates from it.
+[END IF]
+[N] You drink water while the lamps burn quietly on their stands. Imogen writes first attempt above the account of the caught strand.
+[Kestrel | neutral] And now the second question. The person who left would like to return.
+[N] Imogen takes her place inside the curve. You stand beyond the opening.
+[N] She begins explaining where to put your feet, what warmth to expect, and how long the gesture should take. By the third instruction, her invitation has flickered out.
+[N] She stops.
+[Imogen | amused] I can hear myself. Give me a moment.
+[N] Kestrel leaves the next attempt to the two of you.
+[DECISION thaw:rejoining] How will you make the invitation clearer?
+[OPTION signal] Agree on one signal that means ready to be invited. | journal: Imogen and I agreed on a readiness signal, then waited for a separate answer to the invitation.
+[OPTION space] Keep the opening quiet until the returning person asks. | journal: We left a quiet opening and let the returning person choose when to ask for the connection.
+[END DECISION]
+[IF thaw:rejoining = signal]
+[N] An empty raised hand will mean ready for the invitation. Imogen repeats the distinction once, then waits.
+[N] You settle your flame, raise your free hand, and see her notice. The curve reaches towards you without closing.
+[N] This time there is only one thing to answer. Your light joins hers.
+[Imogen | warm] Two sentences on the practice card. You may stop me if I write a third.
+[END IF]
+[IF thaw:rejoining = space]
+[N] Imogen keeps her own light steady and leaves the gap alone.
+[N] You have time to find your balance before asking to join. She looks up, answers, and offers the curve.
+[N] The connection settles without either of you needing to catch up.
+[Imogen | warm] I would have preferred that when I was the one outside.
+[END IF]
+[N] You exchange places. Imogen stands beyond the opening for several breaths before deciding to come back. No one fills those breaths for her.
+[N] Kestrel closes her record board when both lamps are separate again.
+[Kestrel | warm] Joined, left, returned. We'll repeat it with more people. For today, you've done what we came to learn.
+
+--- SECTION invitation-draft | place: warding-hall | time: afternoon | date: 2027-03-20 ---
+[N] You extinguish the lamps and leave them to cool. The chalk comes away beneath a damp cloth, revealing the older pattern on the floor.
+[N] Rowan waits at the door with books he promised to return. Kestrel waves him in.
+[Rowan | warm] How did it go? And have either of you eaten since the stones?
+[Imogen | amused] In that order: eventually, and bread.
+[N] You show him the teaching card. Imogen describes the inscription, then the release that worked on the second attempt.
+[Rowan | neutral] Can someone help without casting? I'm thinking of the people who'll say yes quickly and worry about what they agreed to later.
+[N] Imogen pulls a fresh page towards her.
+[N] The invitation begins with an explanation of the small exercise. Watching is welcome. There will be lamps to carry and records to keep. Someone who tries a light today need not join the restoration in June.
+[IF thaw:rejoining = signal]
+[N] You add the readiness signal, with a spoken alternative for anyone whose hands will be occupied. Rowan reads the two sentences and finds nothing that requires a third.
+[END IF]
+[IF thaw:rejoining = space]
+[N] You add a quiet practice time and the name of the person to ask. Rowan circles the time until it can be checked against the kitchen shifts.
+[END IF]
+[N] Kestrel places a second sheet beside the draft for people's actual answers. The invitation remains an invitation.
+[IF arrival:house = owlcombe]
+[N] Idris arrives to walk back with you and Imogen. He has news from the common-room shelf: the repaired model now has instructions, and someone has borrowed it without needing him there.
+[Idris | neutral] I thought I'd miss explaining it. I went for a walk instead.
+[N] Imogen holds the unfinished invitation against her knee.
+[Imogen | warm] Will you show us where? Tomorrow, perhaps. Somewhere without a catalogue number.
+[N] Idris agrees, leaving the choice of direction open until the three of you reach the gate.
+[END IF]
+[IF arrival:house = rookhallow]
+[N] Cas comes to find you and Rowan with the two finished gloves from the common-room practice table. They are finally the same length.
+[Cas | neutral] I undid the extra row. I should have listened when you counted it.
+[Rowan | warm] You did listen. It just took the glove a few weeks to come round.
+[N] Cas asks you both to help carry the spare clothes to the landing tomorrow. This time he has left a space on his list for whatever Tully actually needs.
+[END IF]
+[IF arrival:house = heronmere]
+[N] Noor and Petra stop at the door on their way from the rookery. They wait while you explain what the invitation offers.
+[Petra | neutral] Put the finish time on it. I can come if I know when I'll get back to my translation.
+[Noor | neutral] I'd like to watch first.
+[N] You write both points down. Noor folds the spare copy for your common-room table; Petra takes the one with the proposed finish time to check against her class.
+[END IF]
+[IF arrival:house = larkspire]
+[N] Saoirse and Toby arrive with a sketch of the weather wheel. Toby has marked the sill where birds land. Saoirse has moved the mechanism to the other end.
+[Toby | neutral] We can put it back now. As long as the bowl stays.
+[Saoirse | warm] The bowl stays. You're both witnesses.
+[N] She turns the sketch over to read the invitation. Toby asks whether a watcher can leave halfway through. Rowan points to the line that says so.
+[END IF]
+[N] Kestrel takes the proposed dates for Okoro to check. By Bloomtide, you will need a rehearsal large enough to test the method and small enough that everyone understands their part.
+[N] Rowan volunteers to ask the kitchen team about times. Imogen reaches for the invitation, then lets it remain in the middle where everyone can read it.
+[N] There are two ways to begin: invite the academy to a supported practice, or try the conversation with your friends before taking it farther.
+[EXIT 0] Start with an invitation to the whole academy.
+[EXIT 1] Begin by asking your friends individually, then widen the invitation.

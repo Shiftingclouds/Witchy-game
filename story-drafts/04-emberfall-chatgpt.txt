@@ -1,0 +1,235 @@
+=== SCENE emberfall | chapter 3 ===
+
+--- SECTION borrowed-afternoon | place: glasshouses | time: afternoon | date: 2026-10-31 ---
+[N] By the last afternoon of October, the glasshouse roof is carrying more leaves than the trees outside it.
+[N] Their shadows lie across Saoirse's workbench. Every time the wind moves, the unfinished lanterns appear to be doing something industrious.
+[N] Saoirse lifts a frame. Its handle comes away in her hand.
+[Saoirse | attentive] That one is still mostly a drawing.
+[N] She puts both pieces down before the frame can find a flowerpot to land in.
+[N] Rhys moves a tray of moonflowers farther along the bench. Their white petals are folded against the afternoon light.
+[Rhys | neutral] Six frames for the west tables. Sound handles, covered glass, nothing sharp where someone will carry them.
+[N] Saoirse's list begins with six frames. Beneath that are twelve frames, adjustable shutters, and travelling memory lamp. The marks beside them do not seem to mean the same thing.
+[Saoirse | guarded] Those are possibilities. I haven't promised all of them.
+[N] Rhys turns the list over. On the back, in Saoirse's handwriting, is a note offering the shutters to the serving team.
+[Saoirse | neutral] I may have been enthusiastic on Tuesday.
+[IF arrival:watering-method = measure]
+[N] The marked watering tube from your first week still hangs above the bench. Saoirse follows your glance and taps the measurements with the handle she is holding.
+[Saoirse | attentive] One change at a time. I do remember. I apparently need it written above my head.
+[END IF]
+[IF arrival:watering-method = simplify]
+[N] The plain reservoir you helped simplify supplies a healthy tray beside the sink. Saoirse looks from it to her list of shutters.
+[Saoirse | amused] The plants remain distressingly content with the boring version.
+[END IF]
+[IF arrival:watering-method = (none)]
+[N] A plain reservoir supplies the tray beside the sink. Above it hangs a drawing with twice as many tubes.
+[Saoirse | attentive] The drawing is more interesting. The reservoir works. I'm trying to appreciate both facts.
+[END IF]
+[N] Delphine arrives carrying a bowl covered with cloth. She introduces herself while setting it beside the paper rolls: brewing, with a particular interest in mixtures that behave as expected.
+[Delphine | neutral] Paste. It holds when it's dry and comes away in warm water. The instructions are on the cloth, so please don't use the cloth to wipe anything.
+[N] She has promised her sister a walk in the village before supper. She can help until the first bell.
+[Saoirse | guarded] If you stayed another twenty minutes, we might get—
+[N] Delphine keeps one hand on the bowl.
+[N] Saoirse looks at her, then at the unfinished frame.
+[Saoirse | neutral] No. You told me. First bell.
+[N] Rhys draws a line beneath the six promised frames. With plain covers, they can be finished comfortably. Dividing the work would leave time for one shuttered demonstration frame after the six are sound.
+[N] Saoirse puts the pencil in the middle of the bench.
+[DECISION emberfall:work-plan] What can you finish before the bell?
+[OPTION simple] Six plain frames, with covers anyone can remove. | journal: We set the shutters aside and finished six reliable frames. Delphine left at the time she had promised her sister.
+[OPTION shared] Divide the six frames between you, then finish one demonstration shutter. | journal: We divided the jobs, completed the six promised frames, and tested one extra shutter. Delphine left on time.
+[END DECISION]
+[IF emberfall:work-plan = simple]
+[N] You put the loose catches in a shallow box. Saoirse writes tomorrow on the lid, presses the pencil down as though tempted to add something, and stops.
+[N] The plain covers fit into grooves above the glass. You check each one while Delphine brushes paste along the paper seams.
+[Saoirse | attentive] Hand it back as though you've never seen one before. I need to know whether the little lip is obvious.
+[N] On the third frame you catch it at once. She makes the same alteration to the first two.
+[END IF]
+[IF emberfall:work-plan = shared]
+[N] Delphine takes the paper. You test the handles with the weight of an unlit lamp inside each frame. Saoirse finishes the plain covers before opening the box of catches.
+[N] The demonstration shutter fails twice. On the third attempt, you notice the hinge dragging against the paper.
+[Saoirse | attentive] There. Hold that angle.
+[N] She moves the fixing onto the metal. The shutter stays where you put it.
+[N] Delphine sets the sixth seam to dry, washes her brush, and points to the instructions before anyone can lose them.
+[END IF]
+[N] The first bell reaches the glasshouse as a vibration in the panes.
+[N] Saoirse takes the washing bowl from Delphine before she can begin another job.
+[Saoirse | warm] Go. Tell your sister we owe her none of your evening.
+[N] Delphine laughs, collects her coat, and leaves with paste drying across one knuckle.
+[N] Rhys tries the handles herself. All six hold.
+
+--- SECTION festival-tables | place: lantern-hall | time: evening | date: 2026-10-31 ---
+[N] Lantern Hall smells of baked apples and warm cloth. Orange paper lights hang beneath the arches; masks lean against the carved birds, making the solemn heron look faintly embarrassed.
+[N] Grey has widened the passage beside the west tables. He meets you there with wire stands and asks which way the covers lift.
+[IF register:worker-question = practice]
+[Grey | attentive] Your copy came. Hask asked about the account of waiting at the landing. The date was there, so she could tell which winter I meant without hunting me down.
+[END IF]
+[IF register:worker-question = record]
+[Grey | attentive] Hask's read the handover explanation. The bit about two signatures helped. Thank you for leaving out what I covered.
+[END IF]
+[IF register:worker-question = (none)]
+[Grey | neutral] Dunne sent the keeper references over. I've put them beside the rounds book. Saves explaining the old wording from memory.
+[END IF]
+[N] A stool stands beside the nearest lamp. Someone will sit there to meet late arrivals while the meal is served.
+[IF emberfall:work-plan = simple]
+[N] Grey slides the plain cover out and returns it without asking another question. Saoirse watches his hands until he has finished, then lets out a quiet breath.
+[END IF]
+[IF emberfall:work-plan = shared]
+[N] The six ordinary frames go onto their stands. Grey tests the separate demonstration shutter and asks how to clean behind its hinge. Saoirse shows him the fastening you moved onto the metal.
+[N] He repeats the movement, then puts the cleaning card where the next keeper will see it.
+[END IF]
+[N] Saoirse writes three names on the makers' card: hers, yours, Delphine's. She adds paste and cleaning beneath Delphine's name before pinning it to the stand.
+[N] Imogen brings supper to the worktable. Bread balances on the edge of your plate, held in place by a roasted onion.
+[IF register:correction = private]
+[Imogen | warm] The replacement note went round the history class. I used the sentence we worked on. I still disliked handing it over, but at least it said what I meant.
+[END IF]
+[IF register:correction = together]
+[Imogen | warm] Maelin used our references in the replacement note. I had to read them aloud again. It was easier the second time.
+[END IF]
+[IF register:correction = (none)]
+[Imogen | attentive] Maelin has corrected the keeper note. The working ledger is in it now. So is Grey.
+[END IF]
+[IF arrival:house = owlcombe]
+[N] Idris has reserved three places at the end of the Owlcombe table. Imogen objects that one is occupied by a cardboard owl.
+[Idris | neutral] That's yours. The chair beneath it is also yours.
+[N] The owl is made from offcuts left by the student who repaired your common-room model. A small signature sits beneath its wing.
+[Imogen | amused] We found our carpenter, then.
+[N] Idris shows you how the head turns. It points towards the pudding with impressive accuracy.
+[END IF]
+[IF arrival:house = rookhallow]
+[N] Cas has made a raven mask. One eyehole is narrower than the other. Rowan puts it on backwards before Cas can explain the fault.
+[Cas | neutral] That is worse.
+[Rowan | amused] I can see perfectly. The mask has its own problems.
+[N] Cas tries not to laugh, fails, and hands you the spare ribbon. The three of you get the knot tied without improving the eyeholes at all.
+[END IF]
+[IF arrival:house = heronmere]
+[N] Noor and Petra have saved the window end of the Heronmere table. Petra is trying to teach Noor a refrain in an old shore dialect.
+[Petra | neutral] The second word is a boat. The word you used is a bucket.
+[Noor | neutral] It still floats. Usually.
+[N] Petra gives you the simpler part. By the second repetition, the three of you have attracted a fourth voice from farther along the bench.
+[END IF]
+[IF arrival:house = larkspire]
+[N] Toby has made a paper lark for your place. Saoirse's has a conspicuously longer tail.
+[Toby | neutral] She kept adding things. I said it needed to be able to stand up.
+[Saoirse | amused] It does stand up. It leans on yours.
+[N] The three birds occupy the centre of the table while you eat, their long paper shadows mingling with the plates.
+[END IF]
+[N] For a while, nobody opens an investigation notebook. A song acquires a second, incompatible chorus. Rowan chooses the louder version. Imogen knows both and refuses to settle the argument.
+[N] When Saoirse mentions the flowers, it is after the last verse.
+[Saoirse | warm] Rhys said they'd be open now. We can go when you've finished eating.
+
+--- SECTION flowers-after-dark | place: glasshouses | time: night | date: 2026-10-31 ---
+[N] The glasshouses hold the dark sky against their roofs. Inside, white flowers have opened along the benches, each petal pale enough to catch the smallest lamp.
+[N] Rhys finishes trimming a damaged leaf before coming over.
+[Rhys | neutral] Fallen petals only. These plants have enough to do without supplying every question we can think of.
+[N] Saoirse sets two shallow saucers beside the observation lamp. One petal has been covered since it fell; the other lay near a working lantern while the frames were carried through.
+[IMAGE moonflower-study] A potted white moonflower, a glass lantern, and two saucers: the left fallen petal glows faintly amber while the right is plain ivory.
+[N] An amber thread runs along the left petal. The right remains ivory. The lamp is behind glass, well clear of the living plant.
+[IF arrival:familiar = cat]
+[N] Your cat stops beneath the bench, watching a moving leaf rather than either saucer. Rhys moves the leaf beyond reach before setting down her notes.
+[END IF]
+[IF arrival:familiar = owl]
+[N] Your owl settles on the perch by the door. Its shadow travels across the bench as it turns to watch Rhys, briefly covering both petals at once.
+[END IF]
+[IF arrival:familiar = fox]
+[N] Your fox sniffs the threshold and stays there, where the cooler air reaches its coat. Saoirse leaves the route back to it clear of toolboxes.
+[END IF]
+[IF arrival:familiar = hare]
+[N] Rhys shows you a sheltered patch by the door for your hare, away from the plants that should not be nibbled. Its ears follow the sound of the saucers touching wood.
+[END IF]
+[IF arrival:familiar = moth]
+[N] Your moth settles on the dark cover beside the observation lamp. You move the cover to the cool end of the bench before the experiment begins.
+[END IF]
+[IF arrival:familiar = raven]
+[N] Your raven inspects a spare plant label. Rhys supplies an unused one, which apparently has none of the appeal of a label someone still needs.
+[END IF]
+[IF arrival:familiar = ferret]
+[N] Your ferret finds the empty basket beneath the stool and curls into it. Saoirse puts the loose brass pieces into a lidded box before sitting down.
+[END IF]
+[IF arrival:familiar = toad]
+[N] Your toad waits in its damp dish at the shaded end of the bench. Rhys checks that the glass lamp will not warm that corner.
+[END IF]
+[Saoirse | attentive] I want to know whether the light belongs to the petal or to where I've put it. We can change one thing, then watch.
+[DECISION emberfall:observation] How will you test the amber trace?
+[OPTION shade] Cover the lamp while the petals stay in place. | journal: The amber trace remained in one petal after we shaded the lamp. Its comparison stayed pale.
+[OPTION exchange] Exchange the saucers, then cover the lamp. | journal: The amber trace followed its petal when we moved the saucers, then persisted briefly after the lamp was shaded.
+[END DECISION]
+[IF emberfall:observation = shade]
+[N] You lower the cover. Reflections withdraw from the saucers and the pencil between them.
+[N] The amber thread remains. Saoirse begins counting, looks up at you, and loses her place.
+[Saoirse | amused] Start again. From a number we actually remember.
+[N] Together you count the breaths until the petal fades.
+[END IF]
+[IF emberfall:observation = exchange]
+[N] You move the saucers without touching the petals. The amber thread moves to the right. Nothing glows on the place it has left.
+[N] When you lower the cover, the trace remains faintly visible.
+[Saoirse | warm] Good. I hadn't worked out how to take the bench to the shore.
+[N] She records the order of the changes before beginning the count.
+[END IF]
+[N] The last amber colour drains from the petal. Saoirse's hand moves towards the lamp, then rests on the bench instead.
+[Rhys | warm] We have its duration now. We can try another sample without changing what this one showed us.
+
+--- SECTION warmth-without-a-face | place: glasshouses | time: night | date: 2026-10-31 ---
+[N] Rhys brings a teaching sample in folded paper. Its label records an earlier Emberfall and a moonflower kept near a shore lantern.
+[Rhys | neutral] One Echosight reading. Leave it when the trace leaves you.
+[N] You set your fingers beside the petal.
+[N] Warmth comes first, low against your knees. Then the roughness of cloth being drawn across a seam. A hand presses a patch flat.
+[N] There is no face beyond the hand.
+[N] A kettle shifts. Damp boots rest on a board that gives beneath their weight. The pieces overlap without resolving into a room you can enter.
+[N] You lift your hand before the last warmth fades.
+[Saoirse | guarded] Did it seem as though somebody was still there?
+[N] You describe the patch, the kettle, the boots. Nothing in the trace answered your attention.
+[Rhys | neutral] The person left something in the flower. The flower hasn't kept the person.
+[N] Saoirse rolls the pencil between her fingers.
+[Saoirse | attentive] I was going to put a speaking part in the travelling lamp. A way of turning the trace into words.
+[N] She looks at the petal, now almost colourless.
+[Saoirse | neutral] I'd have to supply the words it couldn't give me.
+[N] She draws a line through a small box on her sketch. The rest of the lamp remains: a protected trace, a steady reference flame, a cover that can be opened and closed.
+[IF emberfall:work-plan = simple]
+[N] The plain cover slides into place. Saoirse labels its two positions on the drawing and leaves the empty box where the speaking part would have been.
+[END IF]
+[IF emberfall:work-plan = shared]
+[N] Saoirse tests the adjustable shutter, then draws the plain cover beside it as an alternative. The observation can be repeated with either.
+[END IF]
+[Rhys | neutral] Tully knows which shore lamps were tended together. Take him the source card when the winter rounds begin. He may recognise the route even if he cannot recognise the memory.
+[N] Saoirse copies the label exactly. This time the smallness of the lamp's purpose does not make her add another mechanism.
+
+--- SECTION an-unproductive-hour | place: glasshouses | time: night | date: 2026-10-31 ---
+[N] Warm water loosens Delphine's paste from the bowl. You turn it while Saoirse wipes the rim.
+[N] Rhys puts the teaching sample away and gives you the ordinary closing jobs. By the time the bench is dry, the hall's music has become a distant pulse through the glass.
+[Saoirse | guarded] I had a lovely evening planned, in theory. It began just after I finished everything.
+[N] She folds the cloth, unfolds it to straighten one corner, and leaves it alone.
+[Saoirse | tired] I keep moving the end.
+[N] Two stools stand beside the clean bench. Nothing on it needs either of your hands.
+[DECISION emberfall:quiet-company] How will you spend the time left?
+[OPTION listen] Ask what she wanted the travelling lamp to give someone. | journal: Saoirse told me why she wanted to make a travelling memory lamp. I listened without asking her for another design.
+[OPTION rest] Sit with her for a while and leave the work alone. | journal: Saoirse and I left the work shut away and spent a little time on ordinary things we liked.
+[END DECISION]
+[IF emberfall:quiet-company = listen]
+[N] Saoirse sits sideways on the stool, one boot hooked around its leg.
+[Saoirse | guarded] When I first came here, I could always find a reason someone might want my hands. Hold this. Mend that. Stay and help.
+[N] She rubs a spot of dried paste from her thumb.
+[Saoirse | shy] Staying after the job was finished was harder. I never knew whether the invitation included that part.
+[N] Outside, a gust pushes fallen leaves along the glass.
+[Saoirse | warm] I wanted a light you could take into a strange room. Something that reminded you there'd been a place for you before.
+[N] You remain on the other stool. After a while she uncrosses her arms and asks what the train journey was like for you.
+[END IF]
+[IF emberfall:quiet-company = rest]
+[N] You take the second stool. Saoirse looks once at the box marked tomorrow, then turns far enough that she cannot see it.
+[Saoirse | amused] There. An advanced method.
+[N] For a while you listen to the wind in the loose leaves above the roof.
+[Saoirse | warm] I like the first orange somebody peels in winter. You can smell it across a room before you know who's got it.
+[N] She thinks of another thing, then waits for yours. The pause leaves room for an answer, or for looking out through the glass.
+[Saoirse | neutral] Also dry socks. But nobody writes songs about those.
+[END IF]
+[N] When it is time to go, Saoirse checks the lamp is cool and shuts the tool drawer. The box marked tomorrow stays on the shelf.
+
+--- SECTION one-line-left | place: corridor | time: night | date: 2026-10-31 ---
+[N] Rowan waits outside the hall with two pieces of cake on a plate. One has lost most of its icing against the other.
+[Rowan | amused] They looked better before I defended them. You may have to judge them by taste.
+[N] Delphine returns from the village while you are eating. Saoirse asks about her sister before mentioning the paste.
+[Delphine | neutral] We walked to the bridge. She told me the same story twice. I hadn't heard her tell it in person before, so I let her.
+[N] She checks the makers' card on her way into the hall. Her finger pauses at her name.
+[N] On the corridor table, the last sheet of lantern paper waits for an inscription. Beyond it, someone has taken the stool at the west doors to meet the final arrivals.
+[Saoirse | warm] One line. I promise I haven't designed a second side.
+[N] You smooth the paper. The glasshouse account is safe in the notebook; the frames are carrying their small lights; the evening has left room for something you can choose to promise.
+[EXIT 0] Write: No kindness is too small to remember.
+[EXIT 1] Write: We will make room for everyone.
