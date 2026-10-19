@@ -1,5 +1,149 @@
 === SCENE arrival | chapter 0 ===
 
+--- SECTION letter | place: home-kitchen | time: morning | date: 2026-08-14 ---
+[N] The kettle begins with a small disturbance in the quiet: a click, a tremor in the lid, water gathering itself towards a boil.
+[N] Beyond the kitchen window, rain beads along a washing line. It is August, though the morning has made little effort to look like it.
+[N] A cup stands on the table beside yesterday's post. One envelope has been opened with a thumb, leaving a ragged edge. An ordinary morning leaves such things behind it.
+[N] The letterbox lifts.
+[N] You hear paper strike the mat, followed by the retreating step of whoever has brought it. By the time you reach the door, the frosted glass holds only a pale shape of daylight.
+[N] There are two thin envelopes and a third that rests more heavily in your hand.
+[N] This one is cream, thick enough that its contents do not show through. Your name is written across the front in dark green ink. On the back, gold wax holds the folded flap. A little lantern has been pressed into the seal; one line for the handle, four for the frame, a flame no larger than a seed.
+[N] You bring it to the kitchen.
+[N] The kettle switches off while you are turning the envelope over. No return address. No crest you recognise. Beneath the seal, in small print, are the words Lanternmere Academy.
+[N] You ease a finger under the flap. The wax breaks in two, leaving half the lantern on either side.
+[IMAGE cg-acceptance-letter] The letter from Lanternmere unfolded on the kitchen table, its gold lantern seal broken.
+[N] Inside lie a letter, a railway ticket, and a single sheet headed What to Bring.
+[N] The letter begins with your name.
+[N] It is my pleasure to offer you a place at Lanternmere Academy for the coming year. Our first gathering will be held on the evening of the first of September. No previous study of magic is required.
+[N] You read that sentence again.
+[N] Should you wish to accept, please return the enclosed reply by the twenty-fourth of August. You will find a ticket for the green train, which terminates at Platform Nought. Directions for reaching the train are printed overleaf. A boat will meet the arrivals.
+[N] At the station, a lantern will be waiting with your name upon its handle. Please keep it with you for the crossing.
+[N] The final lines have been added by hand, in a writing less even than the printed text.
+[N] You need not arrive knowing what you are best at. That is among the things we hope to help you discover.
+[N] Yours sincerely, Honoria, Headmistress.
+[N] There is nothing on the sheet to suggest an application you have forgotten making. You have never applied to a school of magic.
+[N] Outside, a delivery van passes through a puddle. Water strikes the kerb. The kitchen goes on looking exactly as it did before the letter arrived.
+[N] You turn the page over.
+[N] The directions are disappointingly practical for something so improbable. An ordinary station. An ordinary connection. Then a platform reached by a passage beneath a clock, where you are to look for a green train with brass door handles.
+[N] At the bottom, a smaller line says that the ticket includes the return journey, should you decide not to stay.
+[N] You lay it beside the cup.
+[N] For a while you leave the letter open. The rain has thinned enough to make the opposite roofs visible. Somewhere farther down the street, a door opens and someone struggles with an umbrella.
+[N] The reply waits beneath your hand, with a space for a date and a signature.
+[N] By the time the tea has cooled, your name is in that space.
+[N] Over the next eighteen days, the list becomes an arrangement of objects on a table: warm clothes, stout shoes, something to write with, a bag that closes properly.
+[N] A second, smaller card confirms your place and the time of the train. You keep it with the ticket.
+[N] The things on the list fit, though only after you move them twice. At the bottom of the bag there is room for something the academy has not thought to ask for.
+[DECISION arrival:letter] What do you pack beyond the list?
+[OPTION keepsake] A small keepsake from home. | hint: Bring something familiar to hold. | journal: I tucked a small keepsake from home into the bottom of my bag. It was the one thing the packing list could not have chosen for me.
+[OPTION book] A book worn soft by rereading. | hint: Keep familiar company on the journey. | journal: I brought a book I have read many times. Its spine falls open in familiar places.
+[OPTION nothing] Nothing extra; leave the space. | hint: Make room for what you may find. | journal: I packed what the academy asked for and left the remaining space empty.
+[END DECISION]
+[IF arrival:letter = keepsake]
+[N] The keepsake is small enough to disappear among the clothes. You wrap it once before putting it in, then settle it where a careless movement will not damage it.
+[N] Everything above it can be replaced from a list. This is something you will have to remember for yourself.
+[END IF]
+[IF arrival:letter = book]
+[N] The book opens before you have finished lifting it. A familiar passage lies beneath your thumb, the paper soft at the corner.
+[N] You shut it gently and slide it along the side of the bag, where you can reach it without unpacking your life onto a railway seat.
+[END IF]
+[IF arrival:letter = nothing]
+[N] You close the bag without filling the last corner.
+[N] When you lift it, the contents shift slightly into the gap. There is room to bring something back.
+[END IF]
+[N] On the kitchen table, the two halves of the wax lantern lie beside the packing list. You fold the letter around them before putting it away.
+
+--- SECTION leaving | place: home-street | time: night | date: 2026-09-01 ---
+[N] On the first of September, you close the door while the street is still dark.
+[N] The latch sounds louder outside. For a moment your hand remains on the handle, feeling the door settle into its frame.
+[N] Your bag is heavier than it was beside the table.
+[N] A single upstairs window burns across the street. Beneath it, the pavement shines with a rain that has stopped. The air has the cool, washed smell of the hours before anyone begins cooking breakfast.
+[N] You check the ticket in your pocket.
+[N] Then you look back.
+[N] There is the window. There is the door. The house holds its familiar shape without offering an opinion about what you are doing.
+[N] You adjust the weight of the bag and set off.
+[N] At the corner, the view changes. The house disappears behind the next row of buildings, and the ordinary station becomes the thing ahead of you.
+[N] Its lights are on. A cleaner draws a mop across the entrance while the departure board changes above their head.
+[N] The first train arrives with a shriek of brakes and a warm draught from its open doors.
+[N] You find a seat among people carrying coffee, work bags, newspapers folded to the same page. No one asks about the gold wax caught in the fold of your letter.
+[N] By the time the train leaves the last familiar streets, a thin strip of morning shows beyond the glass.
+
+--- SECTION train | place: train-carriage | time: afternoon | date: 2026-09-01 ---
+[N] The passage beneath the clock is where the directions say it will be.
+[N] You pass a closed kiosk and a wall of white tiles. At the far end, daylight falls through a high window onto a platform with no electronic board.
+[N] A green train waits beside it.
+[N] Its paint is the dark colour of leaves seen through rain. The brass handles have been polished around their edges by years of hands. A paper destination card in the window reads Platform Nought.
+[N] Inside, your bag fits beneath a wooden bench upholstered in worn velvet. Above it, a brass luggage rack casts a striped shadow across the compartment wall.
+[N] The window is open by the width of two fingers. You can smell warm rails and the oil used on the carriage hinges.
+[N] An inspector pauses at the door.
+[N] You hold out your ticket before deciding how to ask whether this is the right train.
+[N] The inspector reads it, punches a neat crescent from one corner, and returns it with a nod towards the destination card.
+[N] When the train begins to move, the cup in its wire holder gives a small, clear rattle.
+[N] For the first few miles, there are back gardens and factories and glimpses of people waiting at level crossings. Then the houses draw apart. Fields spread between them, divided by hedges so dark that the late sunlight seems caught along their tops.
+[N] You take the letter out once more.
+[IF arrival:letter = keepsake]
+[N] Beneath it, your fingers find the small wrapped shape at the bottom of the bag. You check that it has survived the changes of train and tuck the wrapping close again.
+[N] The movement is familiar enough to do without looking. Outside, the country has become entirely new.
+[END IF]
+[IF arrival:letter = book]
+[N] You open your book with the letter for a marker. For several miles you follow a page you know well, then look up to find that the fields have risen into hills.
+[N] When you return to the page, you have lost your place. You close it on the letter and keep looking out.
+[END IF]
+[IF arrival:letter = nothing]
+[N] The empty corner of your bag has caught a fold of the lining. You smooth it flat and put the letter there for a moment.
+[N] With nothing to search for, you have both hands free when the train rounds the bend.
+[END IF]
+[N] Hills lift beyond the fields. Pines gather on their slopes, first in little stands, then in a forest that comes close enough to brush the carriage with shade.
+[IMAGE journey-countryside] Hills, pine woods and a long lake passing the train window in the late gold light.
+[N] Through a break between the trees, you glimpse water. A long reach of it, still enough to hold the pale sky.
+[N] The forest closes again before you can decide where the farther shore lies.
+[N] In the corridor, a brass handle catches the light.
+[N] An older passenger is carrying a small lantern past your door. Its flame hardly shifts with the movement of the train. Behind them, another lantern hangs from a bag, its glass dark.
+[N] You look down at the line in your letter about the station.
+[N] A little farther along, someone laughs. Someone else asks whether there is time to eat before they arrive. The question travels through the carriage with the smell of an orange being peeled.
+[N] There are other people making this journey.
+[N] Afternoon gathers into evening. Gold thins to rose along the window frame. The train follows the shore for a little way, close enough that you can see stones beneath the shallow water.
+[N] Then the brakes begin their long, gentle pull.
+
+--- SECTION platform | place: platform-nought | time: evening | date: 2026-09-01 ---
+[N] Platform Nought has a clock, a wooden canopy, and more lake than station beyond it.
+[N] Lamps are coming on along the platform. Their reflections stretch across the wet rails as you step down.
+[N] A station worker steadies the carriage door while you lift out your bag. Other passengers gather beneath the canopy, consulting letters like yours.
+[N] Beyond the clock, a young woman stands at a counter where small brass lanterns have been arranged in rows. A ledger lies open beside her elbow.
+[Priya | neutral] New arrivals here, please. Letters out, bags wherever you can put them without losing a footpath.
+[N] When your turn comes, she checks the name on your letter against the ledger.
+[Priya | neutral] I'm Priya. The academy asked us to keep these until you came in person.
+[N] She lifts a lantern from the second row and turns its handle towards you.
+[N] Your name is engraved there. The letters are deeper than they looked on the page; a thumb can follow them even in the failing light.
+[Priya | neutral] Check the spelling before you go. A surprising number of people are too polite to tell us.
+[N] The spelling is right.
+[N] Inside the glass, a new wick sits white and unburned.
+[Priya | neutral] Keep it upright on the path. They'll explain the lighting at the academy.
+[N] A little way along the platform, the bottom drops out of a paper bag.
+[N] Three wrapped rolls fall around a pair of boots. A fourth begins a determined journey towards the tracks.
+[N] You stop it with the side of your shoe.
+[Toby | neutral] Oh, thank you. That one was making a run for it.
+[N] The round-cheeked student crouches to gather the others. You lift the escaped roll by its paper and hand it back.
+[Toby | neutral] I'm Toby. I had them all in my coat before, but I couldn't bend my elbows.
+[N] He tries to push the rolls into the broken bag. One immediately falls through.
+[Cas | neutral] Fold the bottom twice. Once will open again.
+[N] The student beside him lowers a folded packing list and holds the bag while Toby makes the folds.
+[Toby | neutral] I thought railway paper was supposed to be waterproof.
+[Cas | neutral] The tickets are. I don't think the bread was meant to travel this far.
+[N] He gives the bag back with both hands.
+[Cas | neutral] Sorry. That sounded unhelpful. I'm Cas.
+[N] You give them your name.
+[N] Toby checks it against the engraving on your lantern, then grins as though this is a useful arrangement the three of you have discovered together.
+[Toby | neutral] Good. If I forget, I can ask to carry that.
+[N] Cas looks at his list. He draws a line beneath the final item, but leaves the paper open on his palm.
+[Cas | neutral] Did either of you see where we're meant to take the trunks?
+[N] Before Toby can answer, a bell rings at the end of the platform.
+[N] Priya points towards a path descending between the trees.
+[Priya | neutral] Boats this way. Follow the lamps. If you need help with anything heavy, wait by the trolley; somebody will come to you.
+[N] Toby tucks the repaired bag beneath one arm. Cas takes the handle of his case.
+[N] The three of you follow the lamps together. Below the station, water knocks softly against a wooden landing.
+[N] A boat waits there, broad and low, with room for your bags under the benches.
+
+
 --- SECTION crossing | place: mere | time: evening | date: 2026-09-01 ---
 [N] The boat slips away from the landing with a scrape of wood against stone.
 [N] Behind you, the station lamps grow smaller between the trees.
@@ -7,21 +151,21 @@
 [N] The evening air smells of lake weed and wet rope. Where your sleeve rests against the gunwale, the cloth begins to darken.
 [N] A small brass lantern stands between your knees. Your name is engraved along its handle, in letters deep enough to feel with a thumb.
 [N] Its glass is clear. Inside, a new wick sits white and unburned.
-[N] The academy's letter gives the date of your arrival, a list of things to pack, and directions to the lake. It offers no explanation for why a place has been offered to you.
+[N] The letter lies folded in your pocket. Its directions have brought you as far as they can; the rest of the way is water.
 [N] At the stern, the boatkeeper hums through his nose. One broad hand rests on the tiller; the other holds the end of a rope coiled beside his boot.
 [Tully | warm] Welcome aboard. I'm Tully. You can put your bag under the seat if it's in your way.
 [N] He steers around a patch of reeds without interrupting his tune.
 [Tully | neutral] We'll be across before supper. The crossing takes as long as it takes, so you might as well get comfortable.
-[N] A round-cheeked student on the opposite bench leans over the side. He drops a crumb into the water.
+[N] Toby leans over the opposite side and drops a crumb into the water.
 [N] A silver mouth breaks the surface beneath it.
 [Toby | neutral] Oh. There's another.
 [N] He shifts his bread roll out of the damp and offers you the untouched half.
-[Toby | neutral] I'm Toby. Would you like some? I haven't given the fish that bit.
+[Toby | neutral] Would you like some? This is the roll that stayed in the bag. I haven't given the fish that bit.
 [N] Two more fish gather beside the boat, their backs just visible below the surface.
 [Toby | neutral] They're very polite here. They wait for you to drop it.
 [Cas | neutral] They're following us because you keep feeding them.
-[N] The student beside Toby sits with his heels together and a folded list balanced on one knee.
-[Cas | neutral] Sorry. You probably knew that. I'm Cas.
+[N] Cas sits beside Toby with his heels together and the folded list balanced on one knee.
+[Cas | neutral] Sorry. You probably knew that.
 [N] Cas presses a crease flat with his thumbnail and returns to counting the items on his list.
 [N] Mist stretches across the water ahead. A single square of yellow light appears high inside it.
 [DECISION arrival:crossing] How will you spend the crossing?
@@ -101,7 +245,7 @@
 [Honoria | neutral] You'll learn to do a great many things here. Some will look impressive. Others will keep a room warm or help a plant survive the winter. We take those seriously too.
 [Honoria | neutral] Every student receives a lantern. You've each been offered a place here; the name on that handle is yours.
 [N] She gestures towards four tall lanterns standing before the tables.
-[Honoria | neutral] Tonight you'll choose a house. I'll ask you a question, and you may answer it in your own way. There is no answer I'm waiting for you to get right.
+[Honoria | neutral] Tonight you'll choose a house. I'll ask a few questions first, and offer you a suggestion. The choice will still be yours.
 [Honoria | neutral] After that, we can let the kitchen serve the potatoes before they have a complaint to make.
 [N] A few students laugh. Someone near the kitchen raises a covered dish in agreement.
 
@@ -111,28 +255,81 @@
 [N] Beside it stands Rookhallow's red lantern, marked with a raven and the word Courage.
 [N] A heron bends its long neck across Heronmere's teal panes. Its plate reads Kindness.
 [N] The last lantern is yellow-gold, with a lark rising through its glass. Larkspire: Wonder.
-[N] Honoria calls the new students forward one at a time.
-[Honoria | neutral] When something is lost, what do you do first?
-[N] Some answers come quickly. Others follow a long look at the floor.
-[N] Honoria gives each person time. As they finish speaking, one of the four lanterns brightens.
-[N] Toby steps forward ahead of you.
-[Toby | neutral] I wonder where it's got to. Sometimes things turn up somewhere better. Though I would still look, if someone needed it back.
-[N] Golden light climbs the lark's wings. A cheer rises from the Larkspire table.
-[N] Cas goes next.
-[Cas | neutral] I'd go after it. I'd rather know what was out there than keep imagining it.
-[N] The red lantern brightens, throwing the raven's shadow onto the flagstones.
+[N] Honoria sits beside the lanterns while the new students come forward, one at a time. At this distance, most of their conversation is lost beneath the low talk at the tables.
+[N] Toby goes before you. You catch the word hens, followed by a question from Honoria and an answer that makes her smile.
+[N] At the end he points towards the golden lantern. Light climbs the lark's wings, and a cheer rises from the Larkspire table.
+[N] Cas takes longer. Once, he unfolds his list, looks at it, and puts it away without showing it to her.
+[N] He chooses the red lantern. The raven throws a long shadow across the flagstones.
 [N] Then Honoria calls the name engraved on your handle.
-[N] She waits until you are standing in front of her. Her attention stays on your face.
-[DECISION arrival:house] When something is lost, what do you do first?
-[OPTION owlcombe] Look for clues that might explain where it went. | hint: Owlcombe · Curiosity | journal: I told Honoria I would look for an answer. The Owlcombe lantern brightened for me.
-[OPTION rookhallow] Go after it, even if the way is dark. | hint: Rookhallow · Courage | journal: I told Honoria I would go after what was lost, even in the dark. The Rookhallow lantern brightened for me.
-[OPTION heronmere] Find out who needs help looking. | hint: Heronmere · Kindness | journal: I told Honoria I would make sure nobody had to search alone. The Heronmere lantern brightened for me.
-[OPTION larkspire] Wonder where it went and what it might have found. | hint: Larkspire · Wonder | journal: I told Honoria I would wonder where the lost thing had gone. The Larkspire lantern brightened for me.
+[N] Up close, you can see a small repair in the arm of her chair. She gestures towards the seat beside it.
+[Honoria | neutral] A few questions. They help me suggest somewhere you may feel at ease. They don't settle the matter for you.
+[N] She leaves the four lanterns within your sight.
+[Honoria | neutral] Suppose you've borrowed something and can't find it. Where do you begin?
+[DECISION arrival:sorting-1] What would you do first?
+[OPTION owlcombe] Work backwards through the last places I used it.
+[OPTION rookhallow] Tell its owner, then start looking before I lose my nerve.
+[OPTION heronmere] Ask when they need it, so I know what trouble I've caused.
+[OPTION larkspire] Look somewhere unexpected; I may have carried it farther than I remember.
 [END DECISION]
-[N] One of the lanterns fills with light, its crest shining clearly against the glass.
-[N] At the matching table, a student lifts an arm to catch your eye. Others move their bags to make room.
-[Honoria | neutral] Thank you. They'll help you find your room later.
-[N] You carry your lantern towards the waiting space.
+[Honoria | neutral] Thank you. People often tell me what they hope they would do. An answer they can actually use is more helpful.
+[N] A serving spoon rings against a dish at the kitchen door. Honoria waits for the noise to pass.
+[Honoria | neutral] You have an afternoon free in a place you've never visited. What draws you out of your room?
+[DECISION arrival:sorting-2] Where would you go?
+[OPTION owlcombe] Somewhere I can find out how the place came to be.
+[OPTION rookhallow] To the activity I've been tempted to try and putting off.
+[OPTION heronmere] To see whether anyone else wants company for a walk.
+[OPTION larkspire] Down a path whose end I can't see yet.
+[END DECISION]
+[Honoria | neutral] You will have some afternoons like that. I shall try to remember to leave them free.
+[N] She shifts her chair slightly so you need not speak towards the room.
+[Honoria | neutral] A friend shows you something they've made. They love it. You can see a problem. How do you begin?
+[DECISION arrival:sorting-3] How would you respond?
+[OPTION owlcombe] Ask them to show me how it works before I decide what's wrong.
+[OPTION rookhallow] Tell them the difficult part plainly, while there's still time to fix it.
+[OPTION heronmere] Ask what sort of help they want from me today.
+[OPTION larkspire] Try another use for it; the unexpected part may be worth keeping.
+[END DECISION]
+[Honoria | neutral] That conversation is likely to happen here. Usually before breakfast, if you know an inventor.
+[N] A laugh reaches you from the yellow-gold table. Honoria glances towards it, then returns her attention to you.
+[Honoria | neutral] You've practised something all week and it still won't come right. What helps you begin again?
+[DECISION arrival:sorting-4] What would help most?
+[OPTION owlcombe] Finding the one step I don't yet understand.
+[OPTION rookhallow] Setting a time to try again, even if I'm still doubtful.
+[OPTION heronmere] Working beside someone who won't mind a slow attempt.
+[OPTION larkspire] Trying it another way, to see what the change teaches me.
+[END DECISION]
+[Honoria | neutral] Keep that answer. A teacher may ask you the same question when you need it.
+[N] She rests one hand on the chair arm, just above the mended wood.
+[Honoria | neutral] You've been asked to keep a small place running for a month. A garden, perhaps, or a reading room. What would you want to leave behind?
+[DECISION arrival:sorting-5] What would you hope someone noticed afterwards?
+[OPTION owlcombe] Notes that make the next person's work easier to understand.
+[OPTION rookhallow] One neglected problem finally dealt with.
+[OPTION heronmere] A place where people have begun looking after one another.
+[OPTION larkspire] Something new growing where we hadn't thought to put it.
+[END DECISION]
+[Honoria | neutral] A month is long enough to discover how much work a small place can be.
+[N] From where you sit, the lantern glass colours the edges of her sleeve.
+[Honoria | neutral] One last question. When you imagine going home at the end of this year, what would you like to take with you?
+[DECISION arrival:sorting-6] What would make the year worthwhile?
+[OPTION owlcombe] An answer to something I've never understood.
+[OPTION rookhallow] The knowledge that I tried something I was afraid to begin.
+[OPTION heronmere] People I can keep in touch with after I leave.
+[OPTION larkspire] An idea I couldn't have had before coming here.
+[END DECISION]
+[N] Honoria considers your answers without reaching for your lantern.
+[Honoria | neutral] I can see a leaning. I have a suggestion for you, but you've had a lifetime in your own company and I've had a few minutes.
+[Honoria | neutral] Look at the four lights. Which one would you like to go towards?
+[DECISION arrival:house] Which house will you choose?
+[OPTION owlcombe] The owl in the violet-grey glass. | hint: Owlcombe · Curiosity | journal: After Honoria's questions, I chose Owlcombe. The owl's wings filled with light.
+[OPTION rookhallow] The raven against the red panes. | hint: Rookhallow · Courage | journal: After Honoria's questions, I chose Rookhallow. The raven cast its shadow across the floor.
+[OPTION heronmere] The heron in the teal lantern. | hint: Heronmere · Kindness | journal: After Honoria's questions, I chose Heronmere. Teal light reached the edge of my sleeve.
+[OPTION larkspire] The lark rising through yellow-gold glass. | hint: Larkspire · Wonder | journal: After Honoria's questions, I chose Larkspire. The lark's wings shone above the table.
+[END DECISION]
+[N] The chosen lantern brightens.
+[N] At its table, someone lifts an arm to catch your eye. Bags move from the bench; a jug is shifted; a space appears among people whose names you have yet to learn.
+[Honoria | neutral] There you are. They'll show you the way upstairs later.
+[N] You rise with your unlit lantern. Behind you, Honoria calls the next name.
+
 
 --- SECTION familiar | place: lantern-hall | time: evening | date: 2026-09-01 ---
 [N] The last new student has barely reached a seat when a side door opens.
@@ -675,6 +872,37 @@
 [Noor | neutral] I'll leave these notes for whoever does the next one. Especially the bit about the day.
 [N] Idris adds a line about keeping the paper on the lower table.
 [N] You help return a chair to the window, then fold the checked map inside your timetable.
+[IF arrival:house = owlcombe]
+[N] Imogen appears at the open door to fetch you and Idris for supper. He is still holding the cardboard staircase he brought to explain a warding exercise.
+[Imogen | attentive] Bring it upstairs afterwards. We have a shelf for things people can borrow when a textbook stops being helpful.
+[Idris | neutral] Is that what the shelf is for? I thought somebody had abandoned a model of a roof.
+[Imogen | amused] Both can be true. We ought to put a label on it.
+[N] She waits while you gather your things. Idris offers you the lighter half of the model, and the three of you negotiate the doorway together.
+[END IF]
+[IF arrival:house = rookhallow]
+[N] Rowan and Cas arrive to walk back with you. Cas has found a place in the Rookhallow common room where the table does not wobble and wants to know whether the three of you can use it after supper.
+[Rowan | warm] For practice, apparently. He says making room on a table isn't practice, so I'm already behind.
+[Cas | neutral] We could start with something none of us can do. Then nobody would be behind.
+[N] Rowan looks at him, surprised, before offering to bring the instruction cards.
+[N] Cas folds the timetable away with a little more care than the paper needs.
+[END IF]
+[IF arrival:house = heronmere]
+[N] After the visitors leave, Noor introduces the student carrying the last cups to the tray.
+[Noor | neutral] Petra. She lives along our corridor. Petra, this is the person who helped me make that notice understandable.
+[Petra | neutral] I arrived on the right day. A considerable improvement on last term.
+[N] She studies languages, she tells you, including the practical difficulty of finding a polite way to ask someone to move their coat.
+[N] Noor removes hers from the window chair without looking offended.
+[Noor | neutral] The three of us could take that table after supper. Petra needs room for a dictionary. I need room for one letter, which has somehow become a larger problem.
+[N] Petra sets out three cups before carrying the rest away.
+[END IF]
+[IF arrival:house = larkspire]
+[N] Toby and Saoirse come to find you before supper. They have discovered that the Larkspire window catches the wind from two directions, and are disagreeing about what to put there.
+[Saoirse | attentive] A little weather wheel. Something we can actually finish before the weather changes.
+[Toby | neutral] I said a bowl of water. The birds already know which way the wind goes.
+[N] Saoirse considers this with an expression you recognise from the glasshouses.
+[Saoirse | amused] We may need both. Come and look after supper? I haven't promised anyone a mechanism yet.
+[N] Toby takes the empty cup from your hand and adds it to the tray before the three of you go.
+[END IF]
 [N] Tomorrow's practical has a room, a time, and a route you can follow. Your lantern is waiting upstairs, ready to bring with you.
 [N] In the corridor beyond the common-room door, the lamps have begun to glow for the evening.
 

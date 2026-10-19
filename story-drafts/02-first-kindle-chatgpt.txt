@@ -1,0 +1,224 @@
+=== SCENE first-kindle | chapter 1 ===
+
+--- SECTION before-practical | place: classroom | time: morning | date: 2026-09-04 ---
+[N] On Friday morning, you reach the charms classroom without unfolding your map.
+[N] A line of damp footprints leads through the doorway. Inside, the windows are misted along their lower edges, and somebody has written their name backwards in the condensation.
+[N] Each desk holds a stone mat, a dish of sand, and a square of white paper.
+[N] Your lantern bumps softly against your knee as you find a place. Grey's report is tucked into your notebook: fitting sound, ordinary relighting unsuccessful, referred to the warding teachers. The red ribbon still hangs above your supper seat.
+[IF arrival:house = owlcombe]
+[N] Idris has walked down with you and Imogen. At the door, she hands him a borrowed pencil; he produces two more from his sleeve.
+[Imogen | amused] He lends them out and forgets to get them back. I have appointed myself the unpleasant half of the arrangement.
+[Idris | neutral] She remembers which one was yours. That's the useful half.
+[N] Imogen leaves for the library. Idris takes the desk behind yours, close enough to compare notes afterwards without reading over your shoulder.
+[END IF]
+[IF arrival:house = rookhallow]
+[N] Rowan and Cas have come down from the common room with you. Cas is carrying a timetable on which somebody has corrected the same room number three times.
+[Cas | neutral] I checked this one in person.
+[Rowan | amused] He knocked on the door before breakfast. I've never seen a teacher answer a question while still eating toast.
+[Cas | neutral] He pointed. It was quite clear.
+[N] Cas takes a desk by the window. Rowan pulls out the chair beside yours.
+[END IF]
+[IF arrival:house = heronmere]
+[N] Noor reaches the classroom with you. Petra has come as far as the doorway, where she is trying to settle a dispute with the strap of her book bag.
+[Petra | neutral] The buckle slips when the dictionary is in it. Unfortunately, the dictionary is the point of the bag.
+[Noor | neutral] Leave it with me at supper. I have a smaller buckle.
+[N] Petra thanks her and heads towards the language room. Noor takes the desk behind yours, putting her own repaired bag carefully beneath it.
+[END IF]
+[IF arrival:house = larkspire]
+[N] Toby walks in beside you, with Saoirse carrying the practice lamp he has borrowed from the common room.
+[Toby | neutral] It was already bent.
+[Saoirse | amused] So was the shelf. Together they looked level. A valuable lesson in why I shouldn't judge things from across the room.
+[N] She gives the lamp to Elian to inspect before leaving for her own class. Toby watches until the teacher puts it among the usable ones.
+[END IF]
+[N] Rowan moves his bag from the neighbouring chair. His books remain on the floor, safely contained by a strap.
+[Rowan | warm] I thought we'd have a go together, if you'd like. I've been practising the gesture. That's nearly the same as practising the spell.
+[N] At the front, the teacher unpacks a dented lantern from a crate. A much finer one catches his sleeve with its ornamental finial.
+[Elian Vale | neutral] Elian Vale. Firecraft and introductory charms. This handsome object has spent the summer trying to undress me. We'll use the plain one.
+[N] He lays it on the stone mat.
+[Elian Vale | neutral] Three things today: start a small light, hold it, stop it. You'll use the practice wick in your own lantern. Its ordinary flame is separate from the enduring welcome-light some of you have seen in the hall.
+[N] He points to a small mark stamped beneath the handle.
+[Elian Vale | neutral] Thumb here to end the charm. If anything burns outside the glass, hands away and call me. The sand is here because paper doesn't always wait for a teacher.
+[N] Bags are moved. Sleeves are rolled. Rowan checks that neither elbow will catch the other's lantern.
+[N] Elian traces a short arc over the wick. Light appears, holds for two breaths, and disappears beneath his thumb.
+[N] His hand has already moved on by the time you can place the moment when the flame began.
+[IF arrival:night-intention = ask]
+[N] In the margin of your notebook is the question mark you drew on your first night. You lift your hand and ask him to show the beginning again.
+[Elian Vale | neutral] Before the gesture? Yes. That's the part I skipped.
+[END IF]
+[IF arrival:night-intention = stay]
+[N] You start the motion, find yourself copying only its shape, and stop. The promise to try again allows time to ask for help first.
+[N] Elian sees your raised hand and repeats the beginning.
+[Elian Vale | neutral] Watch what I do before my fingers move. I choose how much warmth I want. I ought to have said that.
+[END IF]
+[IF arrival:night-intention = (none)]
+[N] Several hands rise, yours among them. Elian looks down at his lantern and begins again, slowly enough to explain the part he has made look effortless.
+[END IF]
+[N] He describes warmth small enough to hold comfortably in a cup. His hand follows the arc; the wick catches.
+[Elian Vale | neutral] Kindle. The motion helps you keep the intention steady. The paper tells you whether you've supplied too much heat.
+[N] He holds up the unmarked square, then sets it down for the first student to examine.
+
+--- SECTION partners | place: classroom | time: morning | date: 2026-09-04 ---
+[IF arrival:common-room-rule = quiet]
+[N] Rowan starts to talk you through the instruction card, then remembers the quiet interval you helped arrange upstairs.
+[Rowan | warm] Shall we have one attempt without commentary? I can save my excellent advice until I've watched something happen.
+[N] He lays his pencil across the card as a reminder.
+[END IF]
+[IF arrival:common-room-rule = welcome]
+[N] You turn the instruction card towards Rowan. Making the study invitation clearer has left you with a useful suspicion of unexplained words.
+[N] The observer's job is written on the back: watch the paper, count the breaths, call a stop if the heat escapes.
+[Rowan | amused] I had planned to look encouraging. I'll watch the paper as well.
+[END IF]
+[N] Rowan takes the first turn. His flame rises bright and narrow, lights the underside of his chin, and goes out.
+[N] One corner of the paper curls towards the glass.
+[Rowan | amused] A brief but distinguished career.
+[N] He leaves his hand above the wick. At the next desk, someone succeeds, and a delighted laugh travels across the room.
+[N] Rowan tries to flatten the paper with one finger. It curls back up.
+[Rowan | neutral] You should put it down. The corner, I mean. On the sheet.
+[N] He pushes the pencil towards you.
+[DECISION first-kindle:partner-response] What will help you work together?
+[OPTION observe] Show him when the paper curled, then try less heat. | hint: Give him a change he can test. | journal: I showed Rowan where his first flame overheated the paper. His smaller second attempt held steady.
+[OPTION swap] Take the next turn and let him watch. | hint: Share the awkward part of learning. | journal: I took the next turn at Kindle. Rowan noticed what improved, and we traded places until both of us could hold a small flame.
+[END DECISION]
+[IF first-kindle:partner-response = observe]
+[N] You place a fresh square beside the curled one and point to where its edge moved first.
+[N] Rowan draws a shorter arc in the air without casting.
+[Rowan | shy] I know it isn't a competition. I keep forgetting that while other people are looking.
+[N] This time his flame hardly rises above the wick. You count five breaths. The paper stays flat.
+[N] When he stops the spell, he looks first at the square and then at you.
+[Rowan | warm] Smaller. All right. I can do smaller again.
+[END IF]
+[IF first-kindle:partner-response = swap]
+[N] You move your lantern onto the mat. Rowan straightens the paper and picks up the pencil.
+[N] Your first gesture produces nothing. The second warms the handle without lighting the wick.
+[Rowan | neutral] It started that time. Your hand slowed down here.
+[N] He marks the point on the drawing. On the third attempt a small flame takes hold, and he is too occupied counting to watch the other desks.
+[N] You exchange places again. His next flame is lower and lasts until he stops it.
+[Rowan | warm] Keep the first attempts on the sheet. Otherwise it looks as if we knew what we were doing all along.
+[END IF]
+[N] Elian reaches your desk while Rowan is comparing the two squares of paper.
+[IF arrival:first-observation = frame]
+[Rowan | neutral] We checked the hall lantern like this. The frame, the seal, the things we could actually see.
+[Elian Vale | neutral] Then you've had some practice. What changed between these two attempts?
+[END IF]
+[IF arrival:first-observation = record]
+[N] You show Elian the observations you made with Imogen after supper. He asks to borrow the headings for the board and writes her name beneath them.
+[Rowan | warm] She'll pretend she's annoyed about people copying her notes. Tell her you put the name in. That'll help.
+[END IF]
+[IF arrival:first-observation = (none)]
+[Elian Vale | neutral] Put what happened beside what you changed. You'll want both when you try again tomorrow.
+[END IF]
+[N] He watches you cast. Your shoulders rise; the flame leans; he waits until you notice the tension and lower them.
+[N] The wick steadies.
+[N] He has you end the spell, move the lantern to the other side of the mat, and begin again.
+[Elian Vale | neutral] There. You can carry that skill out of this chair now. Open practice before you try it alone, please.
+[N] The small mark he makes beside your name is almost lost among the other marks on his class sheet.
+[N] You have learned something that would have been impossible to explain at your kitchen table three weeks ago.
+
+--- SECTION voice-in-flame | place: classroom | time: morning | date: 2026-09-04 ---
+[N] There is time for one more attempt while Elian gathers the used paper.
+[N] You kindle the wick. Rowan reaches for the pencil.
+[N] Beneath the dry crackle of the flame, a voice says five words.
+[N] Remember the way home.
+[N] Rowan's hand stops above the desk.
+[N] The flame remains small and yellow. At the next table, two students are laughing over a scorch mark shaped roughly like a rabbit.
+[N] You press the stop mark.
+[Rowan | tense] You heard it too?
+[N] You nod. Elian puts down the paper he is carrying.
+[Elian Vale | neutral] Leave the lantern where it is. Each of you, write what you heard before you tell the other.
+[N] He gives Rowan a clean slip. You use the unmarked page beneath your practice notes.
+[N] The words take very little space. Below them is a question Elian asks quietly enough that the next desk cannot hear.
+[Elian Vale | neutral] Is there anything else you want in your account?
+[DECISION first-kindle:voice-account] What will you add?
+[OPTION uncertainty] The words were clear; their source wasn't. | hint: Keep the uncertainty in the report. | journal: I recorded the words Remember the way home and left their source unidentified.
+[OPTION feeling] It felt as though the words were meant for me. | hint: Record an impression without calling it proof. | journal: I told Elian that the words felt directed at me, while keeping that impression separate from what I could establish.
+[END DECISION]
+[IF first-kindle:voice-account = uncertainty]
+[N] Elian writes source unconfirmed beneath your account.
+[N] Rowan turns his slip over. The same five words are there, with a question mark after home.
+[Rowan | grave] I looked at the next table. Neither of them had turned round.
+[Elian Vale | neutral] I'll include that. We can leave the question mark.
+[END IF]
+[IF first-kindle:voice-account = feeling]
+[N] Elian records the impression below the words.
+[Rowan | grave] It felt farther away to me. As if someone were calling through a door.
+[Elian Vale | neutral] I'll keep both descriptions. You don't have to agree about that part.
+[N] He places the slips side by side without crossing anything out.
+[END IF]
+[N] With your permission, he opens the lantern. The wick is ordinary prepared fibre; the maker's mark on the handle matches those on the other desks.
+[N] Twice he repeats Kindle. Twice a quiet light burns in the glass.
+[N] Neither attempt produces a voice.
+[Elian Vale | neutral] Bring this to supervised practice for now. I'll ask the warding staff about old echoes in fittings.
+[Rowan | grave] The light over our supper table went cold on the first night. Grey couldn't mend it.
+[Elian Vale | neutral] Give me the report number. We'll compare the accounts before we decide they're the same problem.
+[N] You unfold Grey's receipt. The crease is already soft from the number of times you have checked it.
+[N] Elian copies the number beside today's date.
+[N] The bell rings, releasing a scrape of chairs around you. He leaves your lantern on the mat until you are ready to take it.
+
+--- SECTION packing-up | place: classroom | time: morning | date: 2026-09-04 ---
+[IF arrival:watering-method = measure]
+[N] While you pack, the marked tubes on Saoirse's watering bench come to mind: what leaves a tank and what reaches a pot are separate things to measure.
+[N] You add one more observation to the page. The light stayed steady while the words were heard.
+[N] Elian dates the addition and clips it to your first account.
+[Elian Vale | neutral] Thank you. If anything else comes back later, put the time beside it.
+[END IF]
+[IF arrival:watering-method = simplify]
+[N] The simpler watering machine was easier to understand because fewer things changed at once. You ask Elian what differed between your attempt and his.
+[Elian Vale | neutral] The person casting. And the time. The rest I kept as close as I could.
+[N] He adds both differences to the sheet.
+[Elian Vale | neutral] We can agree on another comparison at practice. You won't have to keep doing this until I'm satisfied.
+[END IF]
+[IF arrival:familiar = cat]
+[N] Your cat waits on the deep window ledge beyond the practice mats. When you collect your bag, it steps into the space where the lantern has been and sits on the warm lining.
+[END IF]
+[IF arrival:familiar = owl]
+[N] Your owl turns on its perch beyond the practice area as you lift your bag. A dropped pencil receives more attention than the silent lantern.
+[END IF]
+[IF arrival:familiar = fox]
+[N] Your fox waits beside the door, nose resting on its forepaws. It rises when you do and checks your hand before following the bag.
+[END IF]
+[IF arrival:familiar = hare]
+[N] Your hare has made a sheltered place beneath the coat bench, well away from the mats. You give it time to emerge before joining the crowd at the door.
+[END IF]
+[IF arrival:familiar = moth]
+[N] Your moth rests on the shady side of the coat rack, away from the practice flames. You offer the cool lantern handle, and it steps onto the brass.
+[END IF]
+[IF arrival:familiar = raven]
+[N] Your raven waits on the window perch with a paper crescent beneath one claw. You exchange a clean scrap for the class label before Elian needs it back.
+[END IF]
+[IF arrival:familiar = ferret]
+[N] Your ferret has slept through the lesson in its open carrier beneath the coat bench. It wakes when you touch the handle and investigates the smell of warm brass on your fingers.
+[END IF]
+[IF arrival:familiar = toad]
+[N] Your toad waits in its damp travelling dish on the cool sill. You close the ventilated carrier and settle it level in your bag before lifting the lantern.
+[END IF]
+[N] Rowan stays to help collect the unused mats. He carries two, checks that he can see his feet, and takes a second trip for the rest.
+
+--- SECTION lesson-aftermath | place: corridor | time: morning | date: 2026-09-04 ---
+[N] Outside, the corridor is busy with the next class. You stand against the wall until the traffic thins.
+[N] Imogen waits beneath the library noticeboard with the atlas against her hip. She looks at Rowan, then at the lantern in your hand.
+[Imogen | attentive] What happened?
+[N] You give her the words and the account of Elian's two quiet attempts. Rowan supplies the part about the report.
+[Imogen | attentive] I can look for the phrase. It might be an instruction, or a song. There's a great deal of repetition in both.
+[Rowan | tired] I would prefer a song. Unless it has forty verses.
+[Imogen | amused] If it has forty verses, I'll bring you the relevant one.
+[IF arrival:corridor-job = sign]
+[N] Cas passes with a roll of tape. He stops to report that three luggage trolleys have crossed the repaired rug that morning and the sign still points in the right direction.
+[Cas | neutral] I thought you'd want to know whether it lasted.
+[N] He waits for your answer before continuing down the corridor.
+[END IF]
+[IF arrival:corridor-job = trunk]
+[N] Toby passes with his bag properly buckled. The steward has replaced the broken hinge on his trunk, he tells you.
+[Toby | neutral] I can open it without everything coming out. I thought I'd celebrate by finding my other jumper.
+[N] He holds up the sleeve protruding from the bag, then remembers to ask whether you will be at supper.
+[END IF]
+[IF arrival:corridor-job = (none)]
+[N] A luggage trolley rolls over the repaired edge of the rug. Cas watches it pass and puts away the tape. The corner lies flat behind it.
+[END IF]
+[N] Rowan shifts the lantern into one hand.
+[Rowan | neutral] When it spoke, I thought you might know what it meant. Then you looked as lost as I felt.
+[N] He studies the thumb mark on the handle of his own lamp.
+[Rowan | warm] I'd like to find out with you. If we're going to be puzzled, we could at least compare notes.
+[N] Imogen opens the atlas to its catalogue reference, leaving room for Grey's receipt beside it.
+[N] The voice has given you a question. Between the two of them, there is somewhere to begin asking it.
+[EXIT 0] Agree to investigate with Rowan, starting with the lantern.
+[EXIT 1] Ask Imogen to help trace the words through the old records.

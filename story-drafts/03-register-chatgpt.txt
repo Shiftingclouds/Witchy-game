@@ -1,0 +1,231 @@
+=== SCENE register | chapter 2 ===
+
+--- SECTION catalogue-request | place: library | time: evening | date: 2026-09-18 ---
+[N] By the eighteenth of September, you know which library windows catch the evening sun. You also know that the chair beneath the leftmost one rocks unless a folded catalogue slip is tucked under its back leg.
+[N] Imogen has given you the other chair.
+[N] The atlas lies open between two green lamps. Along its map of the mere, names have been squeezed into the curves of landing places and old paths. Some are so small that Imogen has borrowed a reading glass.
+[Imogen | attentive] This is what I wanted to show you. The catalogue calls these dedications, but the reference sends you to maintenance.
+[N] She moves the glass so you can see the fine line beneath a drawing of a shore lamp.
+[Imogen | neutral] I've spent a week looking for somebody who might have said those words. I may have been looking in the wrong sort of book.
+[IF arrival:first-observation = record]
+[N] Your account of the dark lantern lies beside hers. She has added a fourth heading beneath the original observations: source.
+[Imogen | warm] For when we forget which of us knew something and which of us thought it sounded likely.
+[END IF]
+[IF arrival:first-observation = frame]
+[N] Rowan's description of the cold frame is clipped to the maintenance reference. Imogen asks whether either of you timed how quickly it cooled.
+[N] You cannot supply a time. She leaves the space empty.
+[END IF]
+[IF arrival:first-observation = (none)]
+[N] You begin a fresh account together: the hall lantern, Grey's inspection, the classroom voice, Elian's two quiet attempts. Imogen leaves space between events that may still prove unrelated.
+[END IF]
+[N] Dunne arrives carrying request slips. She sets them beyond the atlas, where neither of you can hide behind the map.
+[Dunne | neutral] What are you trying to find?
+[Imogen | attentive] Why the lights are forgetting people.
+[Dunne | attentive] That's an explanation. What would you need to see to decide whether it's true?
+[N] Imogen looks down. Beneath the reading glass, a printed letter fills half the lens.
+[Imogen | neutral] Who kept the shore lamps. And whether those people are recorded the same way in different books.
+[Dunne | attentive] Start with one lamp. We can fetch more books if the first pair earns them.
+[N] She turns a request slip towards you.
+[N] Maelin Quill joins the table with a teaching sheet folded inside a book. Their spectacles catch the green light as they bend over the reference.
+[Maelin Quill | neutral] Maelin Quill. History and rune languages. Dunne tells me you've found an old use of keeper. May I look?
+[N] Imogen slides the atlas across, keeping the reference slip beside it.
+[N] There are two ways into the catalogue: a date on the shore map, and the maker's mark Grey copied from the hall lantern.
+[DECISION register:search-method] Which reference will you follow first?
+[OPTION dates] Compare the dated entries from the shore map. | journal: We followed the atlas dates and kept both the dedication and the next day's inspection.
+[OPTION makers] Trace the maker's stamp in Grey's report. | journal: We traced the stamp to Reed & Daughters, then used dates to identify a particular fitting.
+[END DECISION]
+[IF register:search-method = dates]
+[N] The index gives you two entries a day apart. One records a dedication; the other records an inspection the following morning.
+[N] Imogen copies the first number and begins to shut the index. Your finger remains beneath the second.
+[Imogen | attentive] Yes. Someone had to come back afterwards.
+[N] She adds it to the slip.
+[END IF]
+[IF register:search-method = makers]
+[N] The little bent-reed stamp belongs to Reed & Daughters. Their fittings appear in the hall and along the shore over several decades.
+[N] Maelin runs a finger down the dates without touching the page.
+[Maelin Quill | neutral] The workshop made a great many lamps. Choose one whose repair we can match to its dedication. A shared stamp alone will give us too many answers.
+[N] You narrow the search to a single dated pair.
+[END IF]
+[N] Dunne checks the numbers and unlocks the ironwork gate. Imogen stays in her chair, though her foot begins tapping beneath the table.
+
+--- SECTION missing-names | place: library | time: evening | date: 2026-09-18 ---
+[N] The formal register settles into its green cushion with a slow sigh of leather. Dunne opens it a little at a time and places brass weights beyond the writing.
+[IMAGE register-study] An intact register on a green cushion under a library lamp, with blank name cells between filled rows and separate comparison slips.
+[N] Dates and payments run neatly down the page. Between them, several cells in the keeper column are empty. The ruled lines pass through the blanks without a break.
+[N] Imogen leans forward.
+[Imogen | grave] Somebody rubbed the names out.
+[N] Dunne moves the lamp until its light lies across the grain of the paper.
+[Dunne | attentive] Show me where.
+[N] There are dents under the payment figures and a rough patch where a corner was mended. The empty cells have neither.
+[N] Imogen sits back. She keeps the pencil in her hand.
+[N] In the working ledger, M. Fen repairs a shore fitting, changes the wick, and stays until the next keeper arrives. The formal entry preserves the cost and the date. It leaves the keeper's cell blank.
+[N] You check the reference numbers. They match.
+[Maelin Quill | neutral] Try another pair.
+[N] The second records A. Moss replacing a shelter over a lamp on the kitchen approach. There is a note about waiting through rain for the evening handover.
+[N] In the formal copy, you find the shelter and its price. No Moss. No rain. No waiting.
+[N] The third pair names a student who carries a repaired lantern back to the landing. The dedication credits the donor who bought it years before.
+[Imogen | attentive] They copied what the objects cost. They left out who kept them useful.
+[Maelin Quill | neutral] In all three of these entries, yes.
+[N] Maelin unfolds the teaching sheet. Beneath its diagram of the shore is a definition: keepers, the patrons who endowed the lights.
+[N] For a moment their hand covers the word patrons.
+[Maelin Quill | reflective] I used the dedication index for this.
+[N] Imogen looks from the sheet to the ledger.
+[Imogen | guarded] Did you look at the working copy?
+[Maelin Quill | neutral] No. I should have.
+[N] The answer leaves no argument ready for her. She sets the pencil down.
+[N] Maelin shows you the old heading in the ledger. Its final stroke turns back on itself. Used beside a payment, it can mean the person responsible for the endowment. Used beside a task, it can mean the person who remains to complete it.
+[Maelin Quill | neutral] Grey uses a later form of this book. Ask him what a handover involves. Then bring the answer back to the wording.
+[N] You copy the three names as written, including the initials. Imogen pauses over M. Fen long enough to fill in a life, then copies only the letters on the page.
+[Dunne | attentive] Take the slips. The books stay here. If Grey lends you anything, ask when he needs it back.
+
+--- SECTION working-record | place: old-cloisters | time: evening | date: 2026-09-18 ---
+[N] Grey has lifted a threshold strip outside the cloister office. Exposed nail heads shine along its underside.
+[N] Before he reads your paper, he asks you to watch the corner while two students carry a long box through the passage.
+[IF arrival:corridor-job = sign]
+[Grey | neutral] You know the turn. Your sign's still doing its job; just keep them clear of these nails.
+[END IF]
+[IF arrival:corridor-job = trunk]
+[Grey | neutral] Same arrangement as Toby's trunk. Give them room to turn before you try to help them through.
+[END IF]
+[IF arrival:corridor-job = (none)]
+[Grey | neutral] I'm Grey. Mind this edge until I've fastened it. Then you can show me what you've found.
+[END IF]
+[N] Once the box has passed, he wipes his hands and reads the comparison slips.
+[Grey | attentive] Whoever copied this was interested in what had been paid for.
+[Imogen | attentive] What would they have missed?
+[N] Grey glances at the loose strip, then at the office behind him.
+[DECISION register:worker-question] What will you ask him to show you?
+[OPTION practice] What does a keeper actually do at handover? | journal: Grey described a recent return at the landing. We dated his account separately from the old records.
+[OPTION record] How is the handover written down? | journal: Grey showed us why two keepers sign a handover, keeping the traveller's private details covered.
+[END DECISION]
+[IF register:worker-question = practice]
+[Grey | neutral] Last week I had a repair at the landing. Finished it before supper. Then a student came back late, wet through, couldn't find the upper path.
+[N] He rests the comparison slip on the closed toolbox.
+[Grey | neutral] I stayed until somebody came to walk up with them. The lamp settled warmer while we waited. Might have been the shelter I'd adjusted. Might have been the wind dropping. I know the student stopped shivering before I left.
+[N] He finds the date in his current book. Imogen writes it above the account, keeping it separate from the old keeper's entry.
+[END IF]
+[IF register:worker-question = record]
+[N] Grey takes a narrow book from his coat. He covers a traveller's room number with a spare slip before letting you read the entry.
+[N] Two names stand beside the account of a return: his, and the keeper who relieved him.
+[Grey | neutral] Mine says I stayed. The second says somebody was there when I left. If all I write is lamp repaired, nobody knows whether the boat was met.
+[N] He lets you copy the headings. The slip stays over the room number.
+[END IF]
+[N] The wording in your old ledger reminds him of an instruction leaf. He retrieves the working copy from a drawer and spreads it on a clean piece of wrapping paper.
+[N] Near the bottom, keepers are directed to leave a light where a returning traveller will recognise the way, and to remain until that traveller is received.
+[Grey | neutral] Dunne has the archive copy. Take the reference. This one needs to be here when I'm not.
+[N] Imogen bends to transcribe it. Grey goes back to the threshold.
+[N] For the next few minutes, questions travel between the page and the work. You hold the tray while he collects the old nails. Imogen checks a spelling while he tests the replacement strip against the stone.
+[Imogen | attentive] May we quote you about staying? With today's date.
+[Grey | neutral] Yes. Send me what you decide. People ask plenty of questions about my work. I don't always hear the answers.
+[N] Imogen writes return copy beneath the reference, large enough that it cannot hide among the notes.
+[N] Grey fastens the strip and asks you to walk across it. Your shoe passes over without catching.
+
+--- SECTION supervised-echo | place: library | time: night | date: 2026-09-18 ---
+[N] The library windows are black when you return. Dunne has the archive copy waiting, weighted open at the same instruction.
+[N] Its wording matches Grey's, down to an old spelling he has kept in the working version.
+[Imogen | grave] A familiar way. Someone waiting for you. Those could belong beside what you heard in class.
+[Maelin Quill | neutral] They could. We can look for a trace of the work, but it won't give us a person to question.
+[N] They set a folded teaching card on a clear part of the table, away from the register.
+[Maelin Quill | neutral] Echosight. We'll begin with this. I used it this morning, so there are some things I can check against what you notice.
+[N] You practise the gesture first: fingers beside the fold, a breath held easily, attention on the paper rather than on an answer you hope to find.
+[N] The card is cool. Its corner casts a thin shadow.
+[N] On your second attempt, pressure crosses the paper as though a heavy book has just been laid against it. There is a scrape, brief and close.
+[N] You lift your hand. Across the room, a chair moves; someone coughs into a sleeve.
+[Maelin Quill | neutral] A dictionary. The corner wouldn't lie flat. I can't verify everything you felt, but I did put a dictionary there.
+[N] Imogen sees pressure without hearing the scrape. Maelin records both accounts, then turns the card over to show you a stain neither of you noticed.
+[Maelin Quill | neutral] You haven't seen the whole morning. Keep that in mind when the trace is more interesting.
+[N] Dunne agrees to one reading from the clean margin beside the working entry. She moves the brass weight herself and shows you where your fingers can rest without stressing the binding.
+[N] The echo arrives as warmth against damp cloth.
+[N] A sleeve drags across a brass edge. Someone shifts aside. For an instant there is room on a narrow seat where there was none before.
+[N] You try to see who made it.
+[N] The impression has no face. It loosens as soon as you reach beyond the small action it holds.
+[N] You lift your hand.
+[Imogen | grave] Someone stayed.
+[N] Her pencil hovers over the blank keeper cell in your copy.
+[Maelin Quill | neutral] That's consistent with the entry. The name and the reason it was omitted will need other sources.
+[N] You put the Echosight account on a separate slip, with tonight's date. Dunne checks the binding and closes the ledger.
+[N] At the water stand, Imogen fills two cups. She gives you the fuller one without looking up from the stream.
+
+--- SECTION correcting-claim | place: library | time: night | date: 2026-09-18 ---
+[N] When you return to the table, her first sentence waits at the top of the notebook: somebody rubbed the names out.
+[N] Beneath it she has written page intact. The second line is much smaller.
+[Imogen | guarded] If someone did it deliberately, there's something to argue against. Someone to make answer for it.
+[N] She turns the cup between her palms.
+[Imogen | grave] I don't know what to do with a clerk who might simply have thought the price of a lamp was enough.
+[N] Across the table, Maelin is still looking at the definition on their teaching sheet.
+[Imogen | attentive] I can't leave the first sentence as it is. Will you help me?
+[DECISION register:correction] How will you support her correction?
+[OPTION private] Work through the wording with her before she addresses the table. | journal: I helped Imogen revise the claim privately before she explained what the records actually showed.
+[OPTION together] Compare the entries beside her while she explains. | journal: I read the references beside Imogen while she corrected her claim at the library table.
+[END DECISION]
+[IF register:correction = private]
+[N] You turn the notebook between you. Imogen crosses out rubbed, pauses over somebody, and draws a line through that as well.
+[Imogen | attentive] Three entries keep the work and omit its workers. That is what we can show.
+[N] She checks the sentence against each slip.
+[Imogen | warm] Thank you. I wanted a moment to get the words right before everyone heard them.
+[N] When she addresses Dunne, she leaves the notebook open at the crossed-out line.
+[END IF]
+[IF register:correction = together]
+[N] You lay the three comparison slips in order and read the references as Imogen turns to the corresponding entries.
+[Imogen | attentive] I said the names had been rubbed out. We haven't found that. What we have is a formal copy that leaves out workers named in three working entries.
+[N] Her voice catches briefly on the second reference. You keep your finger beside the number until she finds her place.
+[Imogen | warm] Yes. That one. Thank you.
+[END IF]
+[Dunne | attentive] Attach the comparisons. I'll keep the correction with the request.
+[N] Maelin turns their teaching sheet over.
+[Maelin Quill | reflective] My account needs a correction too. I taught people to read keeper as patron without showing them the work behind the word.
+[Imogen | attentive] Will the class see why it changed?
+[Maelin Quill | neutral] They will. With your permission, I'll credit the comparison and Grey's explanation. He'll receive a copy.
+[N] Imogen looks at the return-copy reminder. For the first time that evening, someone else adds a task to their own list instead of to hers.
+
+--- SECTION supported-conclusion | place: library | time: night | date: 2026-09-18 ---
+[N] Before Dunne puts the books away, you arrange the three kinds of evidence on a single page: the omitted workers, the instruction to receive a traveller, the echo of care in a used object.
+[IF register:search-method = dates]
+[N] The inspection you kept beside the dedication has become the hinge of the comparison. You circle the second date. There was work to do after the ceremony ended.
+[END IF]
+[IF register:search-method = makers]
+[N] You put the Reed & Daughters reference beside the fitting it helped identify. The workshop explains how you found the entry; it does not explain the voice or the cold light.
+[END IF]
+[Imogen | attentive] Perhaps the lamps depend on more than the records have kept. People, and what they did for one another.
+[Maelin Quill | neutral] A question we can test. Nothing here yet proves what caused the failure.
+[N] In the instruction's margin, Dunne finds a reference to flowers kept near the autumn lamps. She translates the old botanical name: moonflower.
+[Dunne | attentive] Rhys keeps them in the glasshouses. Ask her before you make plans for her plants.
+[N] Imogen writes the name beneath Saoirse's. A conversation is beginning to take shape beyond the shelves.
+[IF register:worker-question = practice]
+[N] For Grey, you copy his account with its date and leave the returning student unnamed. Beneath it goes the older instruction, clearly labelled. Imogen checks that the two events have not become one in the retelling.
+[END IF]
+[IF register:worker-question = record]
+[N] Grey's copy includes the two signatures and the work each confirms. The traveller's room number never reaches your page. You leave room at the bottom for anything he wants corrected.
+[END IF]
+[IF arrival:house = owlcombe]
+[N] Idris comes to collect you and Imogen at closing time. He has brought the cardboard roof from your common-room shelf.
+[Idris | neutral] Someone borrowed it and improved the joint. They left a note, but no name. I thought you might want to help me ask who.
+[N] Imogen examines the neat new hinge.
+[Imogen | warm] Yes. Tomorrow. Tonight I would like to eat something that isn't a reference.
+[N] She hands you the little roof while she gathers the books. Idris waits until her notebook is shut before asking about the reading.
+[END IF]
+[IF arrival:house = rookhallow]
+[N] Rowan and Cas are waiting outside with the practice cards for your common-room table. Cas has crossed out a complicated exercise and circled a simpler one.
+[Cas | neutral] I couldn't explain the third step. We can ask tomorrow. This one we can actually try.
+[Rowan | warm] After supper. I made that amendment.
+[N] Rowan asks what you found. You tell them about the working names as Cas puts the difficult card away without tearing it up.
+[END IF]
+[IF arrival:house = heronmere]
+[N] Noor and Petra meet you at the library doors. Petra has a dictionary under one arm; Noor carries the repaired bag it will finally fit inside.
+[Petra | neutral] I found three meanings for a word I thought I understood. How was your evening?
+[N] You tell her about keeper. She listens closely enough to miss Noor offering her the bag.
+[Noor | neutral] You can both carry your own mysteries to supper. I'm only carrying this one as far as the stairs.
+[N] Petra takes the bag, tests its buckle, and thanks her.
+[END IF]
+[IF arrival:house = larkspire]
+[N] Saoirse and Toby are waiting beyond the library door with the weather wheel from your common-room window.
+[Saoirse | attentive] No tools in the library. I remembered. We came to fetch you.
+[Toby | neutral] It turns. It also rattles. The birds prefer the bowl.
+[N] Saoirse admits that the birds have a fair point. When you mention moonflowers, she asks for Rhys's reference before proposing anything to do with them.
+[N] Toby takes the wheel, leaving her hands free to carry one of your books.
+[END IF]
+[N] Imogen's chair rocks when she gets up. She catches the table with her fingertips, and you finally see the missing slip beneath its leg.
+[Imogen | amused] I gave you the good chair. It was meant to be a subtle kindness. Please don't make it an item in the report.
+[N] She waits for you at the door, carrying a page on which three workers' names can still be read.
+[EXIT 0] Offer to keep looking for the people behind the missing names.
+[EXIT 1] Ask Imogen which of those people's stories she would begin with.
